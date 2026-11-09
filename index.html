@@ -449,6 +449,24 @@ table.dg .n0{color:var(--texto-3)}
 .cd-seg.gn{background:#E1ECF8;color:#1C5596}[data-theme="dark"] .cd-seg.gn{background:#16253A;color:#8DB9EE}
 .cd-seg.glp{background:#FFE7D6;color:#9A3F00}[data-theme="dark"] .cd-seg.glp{background:#3A2210;color:#F5A66B}
 .cd-seg.med{background:#EDE7F6;color:#5B3A99}[data-theme="dark"] .cd-seg.med{background:#251C36;color:#C2A8F0}
+
+/* Agronegócio */
+.ag-use{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.ag-u{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio-card);padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.ag-u .h{display:flex;gap:8px;align-items:center;font-weight:700;font-size:14px}
+.ag-u .h .ms{color:var(--laranja);font-size:20px;width:1em;overflow:hidden;flex:none}
+.ag-u p{margin:0;font-size:12.5px;color:var(--texto-2);line-height:1.45}
+.ag-u .pl{font-size:11px;color:var(--texto-3);font-weight:600}
+.ag-reg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.ag-r{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio-card);padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.ag-r .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ag-r h4{margin:0;font-size:15px}
+.ag-r .uf{font-size:11px;color:var(--texto-3);font-weight:700;letter-spacing:.06em}
+.ag-dots{display:flex;gap:4px}.ag-dots i{width:10px;height:10px;border-radius:50%;background:var(--linha);display:block}.ag-dots i.on{background:var(--laranja)}
+.ag-r ul{margin:0;padding-left:18px;font-size:12.5px;color:var(--texto-2);display:flex;flex-direction:column;gap:5px;line-height:1.45}
+.ag-r .tag{align-self:flex-start;font-size:11px;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--painel-2);color:var(--texto-2)}
+.ag-r .tag.a{background:#FFE7D6;color:#9A3F00}[data-theme="dark"] .ag-r .tag.a{background:#3A2210;color:#F5A66B}
+#cdApps td:nth-child(4),#cdApps td:nth-child(5){white-space:nowrap}
 </style>
 </head>
 <body>
@@ -467,13 +485,14 @@ table.dg .n0{color:var(--texto-3)}
   <a href="#reputacao" data-nav title="Reputação no Reclame Aqui"><span class="pill"><span class="ms">reviews</span></span>Reputação</a>
   <a href="#digital" data-nav title="Canais digitais"><span class="pill"><span class="ms">smartphone</span></span>Digital</a>
   <a href="#condominios" data-nav title="Condomínios residenciais"><span class="pill"><span class="ms">apartment</span></span>Condomínios</a>
+  <a href="#agro" data-nav title="Agronegócio, GLP e BioGL"><span class="pill"><span class="ms">agriculture</span></span>Agro</a>
   <a href="#licitacoes" data-nav><span class="pill"><span class="ms">request_quote</span></span>Licitações</a>
   <a href="#alerta-uf" data-nav><span class="pill"><span class="ms">notifications_active</span></span>Alerta UF</a>
 </nav>
 
 <div class="sres" id="sres" role="listbox" aria-label="Resultados da busca"></div>
 <header class="topbar">
-  <div class="brand"><b>Radar do <span>Mercado</span></b><small>Gás natural &amp; GLP · Brasil</small></div>
+  <div class="brand"><b>Radar do <span>Mercado</span></b><small>GLP &amp; Gás natural · Brasil</small></div>
   <label class="search" aria-label="Buscar no radar">
     <span class="ms">search</span>
     <input id="q" type="search" placeholder="Busque empresa, estado ou tema (ex.: biometano, PE, Gás do Povo)">
@@ -701,7 +720,7 @@ table.dg .n0{color:var(--texto-3)}
     <div class="panel rv"><p class="chart-title" style="margin-bottom:12px">Leitura rápida</p><ul class="insight" id="raRead"></ul></div>
   </div>
   <div class="panel rv" style="margin-top:16px"><p class="chart-title">Reclamações recentes em destaque</p><p class="chart-sub">Casos públicos de 2026, resumidos. Abra o link para ler a reclamação e a resposta da empresa.</p><div class="rq-grid" id="raQ"></div></div>
-  <p class="note rv" style="font-size:11.5px;color:var(--texto-3);margin:12px 0 0">Os perfis do Reclame Aqui mudam todo dia e cada um mostra uma janela de 6 meses própria, indicada em cada cartão. Liquigás e Copa Energia aparecem separadas porque têm perfis distintos na plataforma. Consigaz não exibiu a nota geral na consulta.</p>
+  <p class="note rv" style="font-size:11.5px;color:var(--texto-3);margin:12px 0 0">Os perfis do Reclame Aqui mudam todo dia e cada um mostra uma janela de 6 meses própria, indicada em cada cartão. A Copa Energia aparece com o perfil principal da empresa, que reúne Liquigás e Copagaz. Consigaz não exibiu a nota geral na consulta.</p>
 </section>
 
 <!-- CANAIS DIGITAIS -->
@@ -726,9 +745,33 @@ table.dg .n0{color:var(--texto-3)}
   <div class="cd-vs rv" style="margin-top:16px" id="cdVs"></div>
   <div class="panel rv" style="margin-top:16px"><p class="chart-title" style="margin-bottom:12px">Como está o mercado</p><ul class="insight" id="cdRead"></ul></div>
   <div class="panel rv" style="margin-top:16px"><p class="chart-title">Canais digitais para síndico e morador</p><p class="chart-sub">O que cada empresa oferece a condomínios. “Não identificado” quer dizer que a pesquisa não achou o canal, não que ele não exista.</p><div class="dg-wrap"><table class="dg" id="cdTbl"></table></div></div>
+  <div class="panel rv" style="margin-top:16px"><p class="chart-title">Notas dos apps residenciais nas lojas</p><p class="chart-sub">Apps de pedido de botijão e de medição individual (morador). Notas de 0 a 5 e número de avaliações, consulta de nov/26.</p><div class="dg-wrap"><table class="dg" id="cdApps"></table></div><div class="axisnote"><span>Fontes: App Store Brasil e Google Play Brasil, consultados em 09/11/26. “Sem nota” quer dizer que a loja não mostra média ou que a página não abriu na consulta.</span></div></div>
+  <div class="panel rv" style="margin-top:16px"><p class="chart-title">Sugestões de melhoria para os canais digitais</p><p class="chart-sub">Ideias tiradas de quem faz melhor (benchmark) e das reclamações de condomínio vistas acima.</p><div class="dg-co" id="cdBench" style="margin-top:8px"></div></div>
   <div class="panel rv" id="cdQBox" style="margin-top:16px"><p class="chart-title">Reclamações recentes em condomínios</p><p class="chart-sub">Casos públicos de 2026 no Reclame Aqui. Boa parte mira a empresa terceirizada de medição, não a distribuidora.</p><div class="rq-grid" id="cdQ"></div></div>
   <div class="panel rv" style="margin-top:16px"><p class="chart-title" style="margin-bottom:12px">Notícias e decisões sobre gás em condomínios</p><div class="mini-list" id="cdNews" style="max-height:none"></div></div>
   <p class="note rv" style="font-size:11.5px;color:var(--texto-3);margin:12px 0 0">Não há estatística pública consolidada de quantos condomínios usam GLP ou gás natural, nem de quantos têm medição individual de gás. Os números acima são os que as próprias empresas ou a imprensa divulgaram, com a data de cada um.</p>
+</section>
+
+
+<!-- AGRONEGÓCIO -->
+<section id="agro">
+  <div class="sec-head rv"><div><div class="eyebrow">Campo e agroindústria</div><h2>Agronegócio, <b>GLP e BioGL</b></h2><p>Onde o gás entra nas culturas, os números da safra, o que as distribuidoras estão fazendo no agro, as notícias recentes e as regiões com mais potencial.</p></div></div>
+  <div class="grid g-4 rv" id="agKpi"></div>
+  <div class="panel rv" style="margin-top:16px"><p class="chart-title">Onde o GLP e o BioGL entram no campo</p><p class="chart-sub">Aplicações de calor de processo citadas por Sindigás, distribuidoras e imprensa setorial. O BioGL é “drop-in”: usa a mesma instalação do GLP.</p><div class="ag-use" id="agUse"></div></div>
+  <div class="panel rv" style="margin-top:16px"><p class="chart-title">Destaques das culturas</p><p class="chart-sub">Números mais recentes de Conab, IBGE e entidades do setor, com a aplicação de gás em cada cadeia e os principais polos.</p><div class="chips" id="agF" style="margin:4px 0 12px"></div><div class="dg-wrap"><table class="dg" id="agTbl"></table></div></div>
+  <div class="grid g-2" style="margin-top:16px">
+    <div class="panel rv"><p class="chart-title">Safra de grãos (Conab)</p><p class="chart-sub">Milhões de toneladas. 2025/26 fechado no 12º levantamento; 2026/27 é a primeira estimativa.</p><div id="agSafra"></div><div class="axisnote"><span>Fonte: Conab, levantamentos de set/26 e out/26.</span></div></div>
+    <div class="panel rv"><p class="chart-title">Participação no abate de frangos</p><p class="chart-sub">Principais estados, % do abate nacional. Sul soma cerca de 60%.</p><div id="agAves"></div><div class="axisnote"><span>Fonte: IBGE via AEN-PR e O Presente Rural (2025 e 1º tri/26).</span></div></div>
+  </div>
+  <div class="sec-head rv" style="margin-top:28px"><div><h3 style="margin:0;font-size:20px">Melhores regiões para atuar</h3><p style="margin:6px 0 0">Leitura do Radar a partir da concentração das cadeias que usam calor, da distância da rede de gás natural e da logística de GLP e BioGL. Escala de 1 a 5.</p></div></div>
+  <div class="ag-reg rv" id="agReg"></div>
+  <div class="sec-head rv" style="margin-top:28px"><div><h3 style="margin:0;font-size:20px">O que as empresas de GLP estão fazendo no agro</h3></div></div>
+  <div class="dg-co rv" id="agCos"></div>
+  <div class="grid g-2" style="margin-top:16px">
+    <div class="panel rv"><p class="chart-title" style="margin-bottom:12px">Tendências</p><ul class="insight" id="agTr"></ul></div>
+    <div class="panel rv"><p class="chart-title" style="margin-bottom:12px">Notícias recentes</p><div class="mini-list" id="agNews"></div></div>
+  </div>
+  <p class="note rv" style="font-size:11.5px;color:var(--texto-3);margin:12px 0 0">Não há dado público atualizado do volume de GLP vendido ao agronegócio por estado. A nota de regiões é uma leitura qualitativa do Radar, não um número oficial.</p>
 </section>
 
 <!-- LICITAÇÕES -->
@@ -1236,10 +1279,9 @@ let SR=[],SRi=-1;
 const RA_URL="https://www.reclameaqui.com.br/empresa/";
 const RA=[
  {n:"Supergasbras",s:"GLP",me:1,st:"Boa",nota:7.7,rec:600,resp:99.2,resol:81.3,volt:null,cons:null,tempo:"7d 11h",per:"Últimos 6 meses · consulta nov/26",obs:"Caiu de Ótima para Boa no semestre. As queixas mais citadas são mau atendimento e demora na execução, muitas de granel e condomínios.",u:RA_URL+"supergasbras/"},
- {n:"Liquigás (Copa Energia)",s:"GLP",st:"Boa",nota:7.9,rec:98,resp:88.8,resol:82.4,volt:72.5,cons:7.18,tempo:"11d 8h",per:"Mar–ago/26",obs:"Melhor nota entre as marcas de botijão, mas passou de Ótima para Boa em julho e tinha 11 reclamações sem resposta.",u:RA_URL+"liquigas-distribuidora/"},
  {n:"Ultragaz",s:"GLP",st:"Boa",nota:7.3,rec:2177,resp:99.8,resol:77.8,volt:62.6,cons:5.67,tempo:"7d 12h",per:"Fev–jul/26",obs:"Maior volume de reclamações do GLP. Está em 9º no ranking de Gás do Reclame Aqui e o problema mais citado é mau atendimento (13,9%).",u:RA_URL+"ultragaz/"},
  {n:"Consigaz",s:"GLP",st:"Boa",nota:null,rec:null,resp:null,resol:null,volt:null,cons:5.86,tempo:"3d 13h",per:"Fev–jul/26",obs:"7º lugar no ranking de Gás e a resposta mais rápida entre as grandes. Teve 225 reclamações avaliadas no período.",u:RA_URL+"consigaz-distribuidora-de-gas/"},
- {n:"Copa Energia",s:"GLP",st:"Regular",nota:6.8,rec:1350,resp:85.9,resol:79.0,volt:53.7,cons:5.6,tempo:null,per:"Últimos 6 meses · consulta nov/26",obs:"Caiu de Boa para Regular. Os temas mais comuns são cobrança indevida, demora na execução e mau atendimento.",u:RA_URL+"copa-energia/"},
+ {n:"Copa Energia",s:"GLP",st:"Regular",nota:6.8,rec:1350,resp:85.9,resol:79.0,volt:53.7,cons:5.6,tempo:null,per:"Últimos 6 meses · consulta nov/26",obs:"Dona das marcas Liquigás e Copagaz. Caiu de Boa para Regular; os temas mais comuns são cobrança indevida, demora na execução e mau atendimento. A página antiga da marca Liquigás no Reclame Aqui ainda mostra 7,9.",u:RA_URL+"copa-energia/"},
  {n:"Nacional Gás",s:"GLP",st:"Ruim",nota:5.7,rec:70,resp:92.9,resol:null,volt:null,cons:3.65,tempo:"17d 5h",per:"Jan–jun/26",obs:"Pior reputação entre as grandes de GLP, com nota do consumidor de 3,65. Há relatos de vazamento e de falta de suporte na troca do registro.",u:RA_URL+"nacional-gas-butano-distribuidora/"},
  {n:"Compagas (PR)",s:"GN",st:"Ótima",nota:9.1,rec:null,resp:null,resol:null,volt:null,cons:null,tempo:null,per:"2026",obs:"Saiu de 4,7 em 2023 e 5,6 em 2024 para 9,1. Foi indicada ao Prêmio Reclame AQUI 2026 em Distribuidora de Gás, com resultado em 8/12.",u:"https://www.gazetadopovo.com.br/vozes/parana-sa/premio-reclame-aqui-2026-compagas/"},
  {n:"Naturgy (RJ)",s:"GN",st:"Boa",nota:7.2,rec:null,resp:null,resol:null,volt:null,cons:5.41,tempo:null,per:"Últimos 6 meses",obs:"986 reclamações avaliadas e 34 aguardando resposta. Medição e valor da fatura aparecem entre os temas.",u:"https://www.reclameaqui.com.br/empresa/ceg-gas-natural-fenosa/lista-reclamacoes"},
@@ -1251,15 +1293,15 @@ const RQ=[
  {co:"Copa Energia",s:"GLP",tema:"Fim de contrato",t:"Cobrança depois que o condomínio saiu",d:"O condomínio encerrou o contrato em 27/08 e o morador recebeu boleto com vencimento em outubro.",st:"Em aberto",q:"out/26",u:RA_URL+"copa-energia/"},
  {co:"Supergasbras",s:"GLP",tema:"Fatura do granel",t:"Conta incompatível com o consumo",d:"Cliente contesta os valores da fatura de gás e diz que não teve retorno do atendimento.",st:"Em aberto",q:"2026",u:RA_URL+"supergasbras/"},
  {co:"Supergasbras",s:"GLP",tema:"Valor abusivo",t:"Aumento forte na conta de gás",d:"Cliente antigo de condomínio reclama de alta na fatura e diz que sempre pagou em dia.",st:"Em aberto",q:"2026",u:"https://www.reclameaqui.com.br/empresa/supergasbras/lista-reclamacoes/?problema=0000000000000171"},
- {co:"Liquigás",s:"GLP",tema:"Segurança",t:"Botijão lacrado com vazamento",d:"Consumidor relata vazamento antes do uso. Em outro caso, a revenda negou atendimento e indicou outra marca.",st:"Não respondida",q:"2026",u:RA_URL+"liquigas-distribuidora/lista-reclamacoes/"},
- {co:"Liquigás",s:"GLP",tema:"Qualidade",t:"Chama alaranjada e panelas sujas",d:"Depois de 30 dias de uso, o gás passou a sujar as panelas. A cliente deu nota 2 e disse que não compra mais.",st:"Não resolvida",q:"ago/26",u:"https://www.reclameaqui.com.br/liquigas-distribuidora/gas-de-pessima-qualidade_Y0k-SNNzY0S9VZDM/"},
- {co:"Liquigás",s:"GLP",tema:"Revenda",t:"Revenda de 30 anos sem uniformes nem reembolso",d:"Revenda autorizada comprou uniformes na loja da Copa e esperou meses. A empresa entregou depois da reclamação.",st:"Resolvida",q:"mai/26",u:"https://www.reclameaqui.com.br/copa-energia/copa-energia-e-liquigas-nao-entregam-uniformes-e-nao-realizam-reembolso-e-site-indisponivel_MZd5MRbQ6vLKkzRu/"},
+ {co:"Copa Energia",s:"GLP",tema:"Segurança",t:"Botijão lacrado com vazamento",d:"Consumidor relata vazamento antes do uso. Em outro caso, a revenda negou atendimento e indicou outra marca.",st:"Não respondida",q:"2026",u:RA_URL+"liquigas-distribuidora/lista-reclamacoes/"},
+ {co:"Copa Energia",s:"GLP",tema:"Qualidade",t:"Chama alaranjada e panelas sujas",d:"Depois de 30 dias de uso, o gás passou a sujar as panelas. A cliente deu nota 2 e disse que não compra mais.",st:"Não resolvida",q:"ago/26",u:"https://www.reclameaqui.com.br/liquigas-distribuidora/gas-de-pessima-qualidade_Y0k-SNNzY0S9VZDM/"},
+ {co:"Copa Energia",s:"GLP",tema:"Revenda",t:"Revenda de 30 anos sem uniformes nem reembolso",d:"Revenda autorizada comprou uniformes na loja da Copa e esperou meses. A empresa entregou depois da reclamação.",st:"Resolvida",q:"mai/26",u:"https://www.reclameaqui.com.br/copa-energia/copa-energia-e-liquigas-nao-entregam-uniformes-e-nao-realizam-reembolso-e-site-indisponivel_MZd5MRbQ6vLKkzRu/"},
  {co:"Nacional Gás",s:"GLP",tema:"Suporte",t:"Sem ajuda para trocar o registro do botijão",d:"Cliente precisou trocar o registro e não teve suporte. Outro relato fala em vazamento na hora da troca.",st:"Não respondida",q:"2026",u:RA_URL+"nacional-gas-butano-distribuidora/lista-reclamacoes/"},
  {co:"Comgás",s:"GN",tema:"Religação",t:"Religação pelo site veio com cobrança indevida",d:"Caso de 23/07/2026, resolvido. Na resposta, a Comgás indicou o app Comgás Virtual, o WhatsApp e o chat.",st:"Resolvida",q:"jul/26",u:"https://www.reclameaqui.com.br/comgas/cobranca-indevida-e-dificuldade-de-atendimento-para-religacao-de-gas_WiHv9yb7c0Iq2q0i/"},
  {co:"Naturgy",s:"GN",tema:"Medição",t:"Consumo cobrado pelo medidor antigo",d:"Cliente trocou o medidor, enviou laudo e segue aguardando a revisão da fatura.",st:"Em análise",q:"jul/26",u:"https://www.reclameaqui.com.br/agenersa-agencia-reguladora-de-energia-e-saneamento-do-estado-do-rio-d/naturgy-cobra-consumo-abusivo-e-mantem-registro-de-medidor-antigo-apos-troca-e-envio-de-laudo_NXp2-i9Nv-lTt3Ia/"}
 ];
 const RA_READ=[
- "<b>Supergasbras está em 3º no GLP pela nota (7,7)</b>, atrás de Liquigás (7,9), e à frente de Ultragaz (7,3), Copa Energia (6,8) e Nacional Gás (5,7). Respondeu 99,2% e resolveu 81,3%, mas perdeu o selo Ótima no semestre.",
+ "<b>Supergasbras tem a melhor nota entre as grandes do GLP (7,7)</b>, à frente de Ultragaz (7,3), Copa Energia (6,8) e Nacional Gás (5,7). Respondeu 99,2% e resolveu 81,3%, mas perdeu o selo Ótima no semestre.",
  "<b>Granel e condomínio concentram as queixas.</b> Cobrança, valor por quilo e fatura incompatível aparecem em Supergasbras, Copa e no gás canalizado. No botijão, os temas são vazamento, registro e gás que acaba rápido.",
  "<b>A Copa Energia piorou</b>: caiu de Boa para Regular, com só 53,7% de clientes que voltariam a comprar. Há reclamações recentes de negativação e de cobrança sem contrato, sem resposta.",
  "<b>No gás natural, a Compagas virou referência</b> (de 4,7 para 9,1 em três anos) com uma área dedicada à reputação dentro de Experiência do Cliente. A Comgás segue Regular, com 22 dias para responder.",
@@ -1304,7 +1346,7 @@ const DG=[
  {n:"Supergasbras",me:1,c:["Pedir Gás: P13 e P45, Pix e rastreio","Pedir Gás (0800 591 2591)","Chatbot no WhatsApp e no site","Super Gestão e portal Minha Conta","","Clube Pedir Gás"]},
  {n:"Ultragaz",c:["App Ultragaz: pedir ou agendar","Sim","Ully, assistente digital","Portal do cliente empresarial","MAP – Meu Aplicativo Parceiro","Cupons no app (ex.: 12/12)"]},
  {n:"Nacional Gás",c:["","","","App Minha conta Nacionalgás","Minha Revenda","" ]},
- {n:"Copa Energia (Liquigás e Copagaz)",c:["","","","","Copa Shop (loja da revenda)",""]},
+ {n:"Copa Energia",c:["","","","","Copa Shop (loja da revenda)",""]},
  {n:"Consigaz",c:["","","","App Grupo Consigaz (Conta SIM)","",""]},
  {n:"Comgás",c:["Comgás Virtual","(11) 3325-0197","IA no autoatendimento","388 mil medidores inteligentes","",""]},
  {n:"Naturgy",c:["Portal Minha Naturgy","Sim, via menu visual","Menu de autoatendimento","Fatura digital com Pix","",""]}
@@ -1316,7 +1358,7 @@ const DG_NPS=[
  "<b>Supergasbras</b>: ganhou em 2023 o prêmio MESC de melhor empresa em satisfação do cliente entre as distribuidoras de gás. O tempo médio de entrega do Pedir Gás é de 29 minutos.",
  "<b>Leitura para a Supergasbras</b>: no Reclame Aqui, a empresa não exibe o “voltariam a fazer negócio”. Vale medir um NPS por canal (app, WhatsApp, granel) para comparar com o mercado."
 ];
-const DG_BACK=[{n:"Liquigás (Copa Energia)",v:72.5},{n:"Ultragaz",v:62.6},{n:"Copa Energia",v:53.7},{n:"Comgás",v:53.5}];
+const DG_BACK=[{n:"Ultragaz",v:62.6},{n:"Copa Energia",v:53.7},{n:"Comgás",v:53.5}];
 const DG_CO=[
  {n:"Supergasbras",me:1,b:["Pedir Gás conecta consumidor, revenda e entregador; mais de 5 milhões de consumidores atendidos desde 2023.","Mais de R$ 60 milhões investidos em tecnologia para digitalizar o varejo de GLP (abr/26).","Clube Pedir Gás (jul/25): cupom a cada três compras no app ou no WhatsApp.","Para empresas e condomínios: Super Gestão, portal Minha Conta e WhatsApp para pedido e segunda via."],src:"Portal Tela, Click Petróleo e Gás, ITForum"},
  {n:"Ultragaz",b:["App lançado em 2020; a empresa citou 5 milhões de clientes no app em 2024.","Ully, assistente digital, e estratégia omnichannel com WhatsApp, telefone e chat.","MAP para a revenda e portal para o cliente empresarial.","Promoções exclusivas no app, como 12% de desconto no 12/12 com pagamento online."],src:"Ultrapar RI, Melhores Cartões, Consumidor Moderno"},
@@ -1370,7 +1412,7 @@ const CD=[
  {n:"Ultragaz",s:"GLP",c:["Sim, com taxa por unidade","Portfólio Condomínio Inteligente; FAQ do síndico no Reclame Aqui","App Ultragaz",null,"Em evolução, segundo relatório de 2025"]},
  {n:"Consigaz",s:"GLP",c:["Conta SIM (Sistema Individual de Medição)",null,"App Grupo Consigaz e Área do Cliente",null,"Regulador com bloqueio para corte e religação (Prêmio GLP 2024)"]},
  {n:"Nacional Gás",s:"GLP",c:["Sim",null,"App Minha conta Nacionalgás: segunda via, histórico e certidão de débito",null,null]},
- {n:"Liquigás / Copa",s:"GLP",c:["Sim",null,null,null,null]},
+ {n:"Copa Energia",s:"GLP",c:["Sim",null,null,null,null]},
  {n:"Comgás",s:"GN",c:["Cada apartamento é cliente da concessionária","Guia do Síndico para obra e mutirão de conversão","App Comgás Virtual","(11) 3325-0197","388 mil medidores inteligentes"]},
  {n:"Naturgy",s:"GN",c:["Cada apartamento é cliente da concessionária","Atuação com administradoras e síndicos","Portal Minha Naturgy, fatura com Pix",null,null]},
  {n:"Compagas",s:"GN",c:["A Compagas instala os medidores individuais",null,null,null,null]}
@@ -1396,6 +1438,28 @@ const CD_NEWS=[
  {d:"2024",t:"Consigaz premiada por regulador com bloqueio para a Conta SIM",s:"Sindigás · Prêmio GLP",u:"https://sindigas.org.br/Download/PREMIO_GLP/2024/PROJETOS_DE_INSTALACOES/REGULADOR-DE-PRESSAO-PARA-GAS-DE-SEGUNDO-ESTAGIO-BAIXA-PRESSAO-COM-SISTEMA-INTERNO-DE-BLOQUEIO-MECANICO.pdf"},
  {d:"12/10/2023",t:"STJ: distribuidora pode cobrar tarifa pela medição individual em condomínio",s:"Dizer o Direito",u:"https://www.dizerodireito.com.br/2023/10/distribuidora-de-gas-pode-cobrar-tarifa.html"}
 ];
+const CD_APPS=[
+ {e:"Supergasbras",me:1,a:"Pedir Gás",f:"Pedido de botijão P13 e P45",ios:"4,6 (3,2 mil)",and:"4,7 (28,2 mil)",obs:"Mais de 1 milhão de downloads no Android"},
+ {e:"Supergasbras",me:1,a:"Minha Conta",f:"Morador com medição individual",ios:"3,8 (327)",and:"4,8 (720)",obs:"Segunda via, histórico, chat e débito automático"},
+ {e:"Ultragaz",a:"Ultragaz: Peça botijão",f:"Pedido e agendamento de botijão",ios:"4,6 (18 mil)",and:"4,6 (152 mil)",obs:"Maior base de avaliações do setor; mais de 5 milhões de downloads no Android"},
+ {e:"Consigaz",a:"App Consigaz",f:"Pedido de botijão",ios:"3,5",and:"3,5",obs:"As lojas não mostram o total de avaliações na busca"},
+ {e:"Consigaz",a:"Grupo Consigaz",f:"Morador com medição individual (Conta SIM)",ios:"1,0 (1)",and:"2,2 (1,32 mil)",obs:"Nota mais baixa entre os apps de medição individual; 100 mil+ downloads"},
+ {e:"Nacional Gás",a:"Minha conta Nacionalgás",f:"Morador com medição individual",ios:null,and:"2,7 (58)",obs:"10 mil+ downloads; segunda via e histórico"},
+ {e:"Copa Energia",a:"Não identificado",f:"Sem app próprio de pedido para o consumidor",ios:null,and:null,obs:"Pedido via revendas e marketplaces"},
+ {e:"Comgás",a:"Comgás Virtual",f:"Fatura, segunda via, ligação nova",ios:"4,7 (38,8 mil)",and:"3,7 (6,03 mil)",obs:"Um ponto a menos no Android; queixas de lentidão e permissões"},
+ {e:"Naturgy",a:"Não identificado",f:"Sem app brasileiro nas lojas; atende pelo portal Minha Naturgy",ios:null,and:null,obs:"No Google Play só aparece o app da Naturgy México"},
+ {e:"Fogás (regional)",a:"Fogás: Pedir Gás de Cozinha",f:"Pedido de botijão",ios:"4,9 (30,6 mil)",and:"4,9",obs:"Referência de nota no setor"}
+];
+const CD_BENCH=[
+ {t:"Consumo diário e alerta de consumo fora do padrão",b:"Comgás (388 mil medidores com leitura remota) e Gasmig (gráficos, comparação de períodos e notificações no app).",s:"Mostrar no app do morador o consumo do dia pela telemetria e avisar quando sair da média. Ataca a maior queixa: a conta que dobra sem explicação."},
+ {t:"Fatura explicada e contestação pelo app",b:"Apps de medição como o Hidrozap leem a foto do medidor com IA; a Naturgy simplificou a conta no Rio (nov/26).",s:"Mostrar a leitura anterior e a atual com foto do medidor e abrir a contestação com um toque, com prazo de resposta visível."},
+ {t:"Pagar como o cliente quer",b:"Naturgy com fatura por e-mail e Pix; Supergasbras Minha Conta já tem débito automático.",s:"Pix copia e cola na fatura individual, cartão recorrente e lembrete por WhatsApp antes do vencimento."},
+ {t:"Painel do síndico",b:"Super Gestão (Supergasbras) e o portfólio Condomínio Inteligente da Ultragaz.",s:"Num só lugar: nível do tanque, próximas entregas, manutenção, consumo por unidade, inadimplência e um relatório pronto para a assembleia."},
+ {t:"Um app só para o morador",b:"Fogás tem 4,9 com um único app; o Pedir Gás tem 4,6 no iPhone e 4,7 no Android; o Minha Conta, 3,8 e 4,8.",s:"Um só login para pedir botijão e cuidar da conta individual, com o mesmo padrão de experiência do app mais bem avaliado."},
+ {t:"Cuidar das notas nas lojas",b:"A Comgás tem 4,7 no iPhone e 3,7 no Android; Grupo Consigaz (2,2) e Nacional Gás (2,7) mostram como app de conta individual mal cuidado derruba a nota.",s:"Responder avaliações, pedir nota logo depois de uma boa experiência (pedido entregue, chamado resolvido) e monitorar Android e iPhone separadamente."},
+ {t:"WhatsApp que resolve, não só informa",b:"Comgás com 94% do atendimento digital e IA no autoatendimento.",s:"Segunda via, leitura, religação e chamado técnico 24h direto no WhatsApp, com passagem para atendente sem repetir dados."},
+ {t:"Boas-vindas para quem muda de apartamento",b:"Várias reclamações de 2026 são de moradores novos com contas altas nos primeiros meses.",s:"Cadastro e troca de titularidade online, leitura de entrada registrada com foto e uma primeira fatura explicada."}
+];
 let cdSeg="all";
 function renderCD(){
   const segs=[["all","Todos"],["GLP","GLP"],["GN","Gás natural"],["MED","Empresas de medição"]];
@@ -1411,9 +1475,95 @@ function renderCD(){
   $("#cdQ").innerHTML=Q.length?Q.map(q=>{const cls=/Resolvida/.test(q.st)&&!/Não/.test(q.st)?"ok":/Não|réplica/.test(q.st)?"open":"";
     return `<div class="rq ${cls}"><div class="co"><span>${esc(q.co)} · ${esc(q.tema)}</span><span>${esc(q.dt)}</span></div><div class="t">${esc(q.t)}</div><p class="d">${esc(q.d)}</p><div class="ft"><span class="st">${esc(q.st)}</span><a href="${q.u}" target="_blank" rel="noopener">Ler no Reclame Aqui ↗</a></div></div>`}).join(""):"";
   $("#cdQBox").style.display=Q.length?"":"none";
+  $("#cdApps").innerHTML=`<tr><th>Empresa</th><th>App</th><th>Para quem</th><th>App Store</th><th>Google Play</th><th>Observação</th></tr>`+CD_APPS.map(a=>`<tr class="${a.me?"me":""}"><td>${esc(a.e)}</td><td>${esc(a.a)}</td><td>${esc(a.f)}</td>${[a.ios,a.and].map(v=>v?`<td><b>★ ${esc(v)}</b></td>`:`<td class="n0">Sem nota</td>`).join("")}<td>${esc(a.obs)}</td></tr>`).join("");
+  $("#cdBench").innerHTML=CD_BENCH.map(b=>`<div class="dg-card"><h4>${esc(b.t)}</h4><ul><li><b>Benchmark:</b> ${esc(b.b)}</li><li><b>Sugestão:</b> ${esc(b.s)}</li></ul></div>`).join("");
   $("#cdNews").innerHTML=CD_NEWS.map(n=>`<a class="mini" href="${n.u}" target="_blank" rel="noopener"><span class="d">${n.d}</span><span><span class="t">${esc(n.t)}</span><br><small style="color:var(--texto-3);font-size:11.5px">${esc(n.s)}</small></span></a>`).join("");
 }
 renderCD();
+
+
+const AG_KPI=[
+ {l:"Safra de grãos 2026/27",v:"367,1 Mt",s:"1ª estimativa da Conab (out/26), +1,4%; soja em 181,6 Mt"},
+ {l:"Frangos abatidos em 2025",v:"6,69 bi",s:"recorde da série do IBGE; Paraná faz cerca de 35%"},
+ {l:"Café 2026",v:"67,6 mi sc",s:"recorde da Conab (set/26), +19,6%; Minas com 34,96 mi sacas de arábica"},
+ {l:"Primeira carga de BioGL",v:"1,7 mil t",s:"importada pela Supergasbras em abr/26 via Tergasul (RS), para granel na indústria e no agro"}
+];
+const AG_USE=[
+ {i:"grain",t:"Secagem de grãos e sementes",d:"Calor controlado, sem fumaça nem fuligem no grão, menos quebra e fungos. Forte em arroz, feijão, milho e sementes.",pl:"MT, PR, RS, GO"},
+ {i:"egg",t:"Aquecimento de aviários",d:"Pintinho não regula a própria temperatura; aquecedor a gás dá calor homogêneo e sem fumaça, melhorando conversão e mortalidade.",pl:"PR, SC, RS, SP, GO"},
+ {i:"water_drop",t:"Resfriamento do leite",d:"Sistemas a GLP resfriam o leite logo após a ordenha, em propriedades longe da rede elétrica robusta.",pl:"MG, PR, RS, SC, GO"},
+ {i:"coffee",t:"Secagem e torrefação de café",d:"Controle fino de temperatura preserva a qualidade da bebida, do terreiro ao torrador.",pl:"MG, SP, ES, BA"},
+ {i:"eco",t:"Cura do tabaco",d:"Estufas de fumo ainda usam lenha na grande maioria: substituição por gás reduz trabalho noturno e melhora a cura.",pl:"RS, SC, PR"},
+ {i:"checkroom",t:"Algodão e beneficiamento",d:"Secagem e beneficiamento com automação; a Ultragaz criou solução com o IMA-MT.",pl:"MT, BA, GO"},
+ {i:"bolt",t:"Geração de energia",d:"Backup e geração em fazendas e granjas. Hoje restrita por regra da ANP; as distribuidoras pedem a liberação.",pl:"Em discussão"},
+ {i:"recycling",t:"BioGL e escopo 1",d:"Agroindústrias compram volume de BioGL certificado ISCC PLUS para abater emissões diretas sem trocar equipamento.",pl:"Grandes clientes granel"}
+];
+const AG_CULT=[
+ {c:"Soja e milho",g:"grãos",d:"Safra 2025/26 fechou em 361,7 Mt (+2,6%); 2026/27 começa estimada em 367,1 Mt, com soja em 181,6 Mt.",u:"Secagem e aeração em armazéns, cooperativas e fazendas",p:"MT (32% dos grãos), PR, GO, RS, MS"},
+ {c:"Arroz",g:"grãos",d:"11,08 Mt em 2025/26, queda de 13,2% com menor área; produtor migra para soja e milho.",u:"Secagem a baixa temperatura, sem cheiro de fumaça",p:"RS, SC, TO"},
+ {c:"Feijão e sementes",g:"grãos",d:"Cerca de 3 Mt por safra; sementes exigem secagem precisa para manter germinação.",u:"Secagem com controle automatizado",p:"PR, MG, GO, BA"},
+ {c:"Trigo",g:"grãos",d:"5,7 Mt em 2026, queda de 27,1% e área 21% menor.",u:"Secagem pós-colheita",p:"PR, RS"},
+ {c:"Frango",g:"proteína",d:"6,69 bi de aves abatidas em 2025 (recorde); Paraná abateu 1,1 bi no 1º semestre de 2026 (+4,9%). Exportação de agosto/26 subiu 24,8%.",u:"Aquecimento de pintinhos nos aviários",p:"PR (35%), SC, RS, SP, GO"},
+ {c:"Suínos",g:"proteína",d:"Santa Catarina lidera com 28,2% dos abates e o Paraná tem 21,2% (2025).",u:"Aquecimento de leitões em maternidade e creche",p:"SC, PR, RS, MG, MT"},
+ {c:"Leite",g:"proteína",d:"27,51 bi de litros entregues aos laticínios em 2025 (IBGE); Paraná em 2º lugar nacional.",u:"Resfriamento após a ordenha e aquecimento de água",p:"MG, PR, RS, SC, GO"},
+ {c:"Café",g:"perenes",d:"Recorde de 67,6 mi de sacas em 2026 (+19,6%); Minas colhe 34,96 mi sacas de arábica, 15,93 mi no Sul e Centro-Oeste mineiro.",u:"Secagem e torrefação",p:"MG, SP, ES, BA"},
+ {c:"Tabaco",g:"perenes",d:"Sul responde por 98% da produção, com cerca de 150 mil produtores integrados; colheita 2026/27 aberta em nov/26 no Vale do Rio Pardo.",u:"Cura em estufa, hoje quase toda a lenha",p:"RS, SC, PR"},
+ {c:"Algodão",g:"perenes",d:"Cadeia concentrada no Cerrado, com alto nível de mecanização.",u:"Secagem e beneficiamento da pluma e da semente",p:"MT, BA, GO"}
+];
+const AG_SAFRA=[{n:"2024/25",v:352.5},{n:"2025/26",v:361.7},{n:"2026/27 (est.)",v:367.1}];
+const AG_AVES=[{n:"Paraná",v:34.4},{n:"Santa Catarina",v:13.7},{n:"Rio Grande do Sul",v:11.8},{n:"São Paulo",v:10.9}];
+const AG_REG=[
+ {n:"Sul",uf:"PR · SC · RS",sc:5,tag:"Prioridade alta",b:["Concentra cerca de 60% do abate de frangos e a maior parte da suinocultura: calor o ano todo nos aviários e creches.","Arroz gaúcho e grãos do Paraná puxam secagem; tabaco ainda cura a lenha em quase todas as estufas.","Porta de entrada do BioGL: Tergasul (RS) e Refinaria Riograndense, que tem autorização para produzir bioGLP."]},
+ {n:"Centro-Oeste",uf:"MT · GO · MS",sc:4,tag:"Prioridade alta",b:["Mato Grosso faz 32% dos grãos do país; algodão e aves crescem em GO e MS.","Fazendas longe de rede de gás natural, o que favorece o GLP a granel.","Desafio: frete longo e concorrência com lenha e biomassa nos secadores."]},
+ {n:"Sudeste",uf:"MG · SP · ES",sc:4,tag:"Prioridade alta",b:["Café em safra recorde: Minas é o maior polo de secagem e torrefação.","São Paulo e Minas somam aves, ovos e leite.","Mais clientes de porte para BioGL com metas de descarbonização."]},
+ {n:"Nordeste",uf:"BA · MA · PI",sc:3,tag:"Prioridade média",b:["Oeste da Bahia e Matopiba são fronteira de grãos e algodão.","O terminal de GLP no Pecém (CE), da Supergasbras com a Ultragaz, previsto para 2029, deve baratear o GLP na região.","Café e fruticultura irrigada como nichos."]},
+ {n:"Norte",uf:"TO · RO · PA",sc:2,tag:"Prioridade baixa",b:["Fronteira de soja e arroz em Tocantins, Rondônia e Pará.","Logística cara e estiagem dos rios: a ANP acionou plano de contingência em 2026.","Bom para contratos pontuais com grandes armazéns."]}
+];
+const AG_CO=[
+ {n:"Supergasbras",me:1,b:["Fez a primeira importação de BioGL do Brasil (abr/26), cerca de 1,7 mil t, voltada ao granel de indústrias e agronegócio com metas de descarbonização.","Fechou o primeiro contrato de BioGL com certificado ISCC PLUS, com a Ortobras (jul/26), com rampa de descarbonização até 2027.","Novo diretor de Operações (abr/26) com atendimento ao agro na pauta; investe em especialização do portfólio para o setor.","Na ROG.e (set/26) apontou agro e geração de energia como oportunidades, desde que o GLP possa competir livremente."],src:"Cenário Energia, eixos, Revista Cultivar"},
+ {n:"Ultragaz",b:["Soluções digitais para o campo: Smartseed (algodão, com o IMA-MT), Secagem de Feijão com sensores e Ultragaz Aviários para monitorar granjas.","Vende bioGLP desde 2024, com cargas da Refinaria Riograndense, que pode chegar a 30 mil t por ano.","O volume do granel cresceu 18% entre o 1º semestre de 2019 e o de 2024, puxado por indústria, comércio, condomínios e agronegócio.","Começou o bioGLP por clientes industriais com metas de carbono."],src:"PwC Agtech, Consumidor Moderno, eixos, Ultrapar RI"},
+ {n:"Copa Energia",b:["Aposta em biometano e GNL (GNLink) como complemento ao GLP no interior.","Vê o gás liquefeito renovável como realidade no fim da década.","O CEO disse, no Fórum do Biogás (ago/26), que o biometano precisa baixar preço e não depender só de mandato.","Usou feiras do agro, como a Agrishow, para vender secagem e aquecimento de aviário."],src:"eixos, NovaCana, Agrolink"},
+ {n:"Consigaz",b:["O CEO Maher Kadri aponta o agronegócio como nova fronteira para o GLP.","Além de secagem e aviários, quer GLP para geração de energia no campo, o que depende de revisão regulatória.","Vê o bioGLP como o caminho da transformação do próprio setor."],src:"Times Brasil (CNBC)"}
+];
+const AG_TR=[
+ "<b>Trocar a lenha é a maior avenida de volume.</b> Secadores de grãos e estufas de tabaco ainda queimam lenha; o argumento é qualidade sem fumaça e menos trabalho noturno.",
+ "<b>BioGL abre a conversa com grandes agroindústrias.</b> Frigoríficos, cooperativas e tradings exportadoras precisam reduzir emissões de escopo 1, e o BioGL entra sem troca de equipamento.",
+ "<b>Serviço digital vira diferencial.</b> Sensores em secadores e aviários, telemetria de tanque e automação de queima substituem a venda só de molécula.",
+ "<b>A regra ainda trava novos usos.</b> A liberação do GLP para geração de energia e outros usos é pedida por todo o setor, mas o processo regulatório na ANP só deve voltar em 2027.",
+ "<b>Biometano no campo é rival e parceiro.</b> Usinas de biogás em granjas e usinas de cana disputam o mesmo calor de processo; Copa e Ultragaz já atuam nas duas frentes.",
+ "<b>Safras grandes, renda apertada.</b> Recordes em grãos e café convivem com juros altos e um Plano Safra 26/27 criticado pela FPA: proposta de valor precisa mostrar economia."
+];
+const AG_NEWS=[
+ {d:"06/11/2026",t:"Colheita do tabaco 2026/27 começa oficialmente no RS",s:"Agrolink",u:"https://www.agrolink.com.br/noticias/colheita-do-tabaco-2026-2027-comeca-oficialmente-no-rio-grande-do-sul_520687.html"},
+ {d:"15/10/2026",t:"Conab estima safra de grãos 2026/27 acima de 367 milhões de toneladas",s:"Agência Gov",u:"https://agenciagov.ebc.com.br/noticias/202610/primeiro-levantamento-da-safra-de-graos-2026-27-estima-producao-acima-de-367-milhoes-de-toneladas"},
+ {d:"set/2026",t:"Supergasbras vê agro e geração de energia como oportunidades para o GLP",s:"eixos (ROG.e 2026)",u:"https://eixos.com.br/videos-e-podcasts/ao-vivo/mercado-de-glp-nao-cresce-como-esperado-com-o-gas-do-povo-e-supergasbras-pede-estudos-sobre-o-real-impacto-do-programa/"},
+ {d:"24/09/2026",t:"Safra de café deve atingir recorde de 67,6 milhões de sacas",s:"Revista Cultivar",u:"https://revistacultivar.com.br/noticias/safra-de-cafe-deve-atingir-recorde-de-67-6-milhoes-de-sacas"},
+ {d:"15/09/2026",t:"Conab fecha safra 2025/26 em 361,7 milhões de toneladas",s:"Revista Cultivar",u:"https://revistacultivar.com.br/noticias/conab-eleva-safra-2025-26-a-361-7-milhoes-de-toneladas"},
+ {d:"ago/2026",t:"Exportação de frango cresce 24,8% em agosto",s:"Paraíba Business (ABPA)",u:"https://paraibabusiness.com.br/exportacao-de-frango-do-brasil-cresce-248-em-agosto/"},
+ {d:"08/07/2026",t:"No campo, GLP vira infraestrutura da safra (conteúdo patrocinado)",s:"Metrópoles",u:"https://www.metropoles.com/conteudo-especial/glp"},
+ {d:"03/07/2026",t:"Supergasbras fecha o primeiro contrato de BioGL com certificado ISCC PLUS",s:"Cenário Energia",u:"https://cenarioenergia.com.br/2026/07/03/supergasbras-inaugura-mercado-de-biogl-no-brasil-com-contrato-certificado-iscc-plus/"},
+ {d:"02/04/2026",t:"Supergasbras faz a primeira importação de BioGL, para indústria e agro",s:"Cenário Energia",u:"https://cenarioenergia.com.br/2026/04/02/supergasbras-inaugura-mercado-de-biogl-no-brasil-e-abre-nova-rota-para-descarbonizacao-industrial/"},
+ {d:"18/03/2026",t:"Paraná bate recorde em frango, suínos, leite e ovos em 2025",s:"AEN-PR",u:"https://www.parana.pr.gov.br/Audio/Parana-bate-recorde-na-producao-de-frangos-suinos-bovinos-leite-e-ovos-em-2025"},
+ {d:"26/01/2026",t:"ANP autoriza a Refinaria Riograndense a vender bioGLP",s:"eixos",u:"https://eixos.com.br/combustiveis-e-bioenergia/riograndense-recebe-primeira-autorizacao-para-biorrefino-de-gas-de-"},
+ {d:"2026",t:"Consigaz aposta em IA, dados e agro para ampliar o mercado de gás",s:"Times Brasil",u:"https://timesbrasil.com.br/empresas-e-negocios/consigaz-aposta-em-ia-dados-e-agro-para-ampliar-mercado/"}
+];
+let agG="all";
+function renderAG(){
+  $("#agKpi").innerHTML=AG_KPI.map(k=>`<div class="kpi"><div class="lbl">${esc(k.l)}</div><div class="val">${k.v}</div><div class="src">${esc(k.s)}</div></div>`).join("");
+  $("#agUse").innerHTML=AG_USE.map(u=>`<div class="ag-u"><div class="h"><span class="ms">${u.i}</span>${esc(u.t)}</div><p>${esc(u.d)}</p><span class="pl">${esc(u.pl)}</span></div>`).join("");
+  const gs=[["all","Todas"],["grãos","Grãos"],["proteína","Proteína animal"],["perenes","Café, tabaco e algodão"]];
+  $("#agF").innerHTML=gs.map(([k,l])=>`<button class="chip ${agG===k?"on":""}" data-ag="${k}">${l}</button>`).join("");
+  $("#agF").querySelectorAll("[data-ag]").forEach(b=>b.onclick=()=>{agG=b.dataset.ag;renderAG()});
+  $("#agTbl").innerHTML=`<tr><th>Cultura</th><th>Destaque recente</th><th>Onde o gás entra</th><th>Polos</th></tr>`+AG_CULT.filter(c=>agG==="all"||c.g===agG).map(c=>`<tr><td>${esc(c.c)}</td><td>${esc(c.d)}</td><td>${esc(c.u)}</td><td>${esc(c.p)}</td></tr>`).join("");
+  bars($("#agSafra"),AG_SAFRA,380,v=>nf(v,1)+" Mt");
+  bars($("#agAves"),AG_AVES,40,v=>nf(v,1)+"%");
+  ["#agSafra","#agAves"].forEach(id=>$(id).querySelectorAll(".fill").forEach(f=>requestAnimationFrame(()=>f.style.width=f.dataset.w+"%")));
+  $("#agReg").innerHTML=AG_REG.map(r=>`<div class="ag-r"><div class="top"><div><h4>${esc(r.n)}</h4><div class="uf">${esc(r.uf)}</div></div><div class="ag-dots" title="Potencial ${r.sc} de 5">${[1,2,3,4,5].map(i=>`<i class="${i<=r.sc?"on":""}"></i>`).join("")}</div></div><span class="tag ${r.sc>=4?"a":""}">${esc(r.tag)}</span><ul>${r.b.map(b=>`<li>${esc(b)}</li>`).join("")}</ul></div>`).join("");
+  $("#agCos").innerHTML=AG_CO.map(c=>`<div class="dg-card ${c.me?"me":""}"><h4>${esc(c.n)}</h4><ul>${c.b.map(b=>`<li>${esc(b)}</li>`).join("")}</ul><div class="src">Fontes: ${esc(c.src)}</div></div>`).join("");
+  $("#agTr").innerHTML=AG_TR.map(t=>`<li>${t}</li>`).join("");
+  $("#agNews").innerHTML=AG_NEWS.map(n=>`<a class="mini" href="${n.u}" target="_blank" rel="noopener"><span class="d">${n.d}</span><span><span class="t">${esc(n.t)}</span><br><small style="color:var(--texto-3);font-size:11.5px">${esc(n.s)}</small></span></a>`).join("");
+}
+renderAG();
 
 function globalSearch(q){
   const box=$("#sres");const ws=words(q);$("#qClear").style.display=q?"grid":"none";
@@ -1436,6 +1586,11 @@ function globalSearch(q){
     .concat(CQ.filter(q=>hit([q.co,q.t,q.tema,q.d,"condominio reclamacao medicao gas"].join(" "),ws)).map(q=>({i:"report",t:q.t,d:q.co+" · "+q.st,go:()=>goSec("condominios")})))
     .concat(CD_NEWS.filter(n=>hit(n.t+" "+n.s+" condominio",ws)).map(n=>({i:"newspaper",t:n.t,d:n.s+" · "+n.d,go:()=>goSec("condominios")})));
   if(cd.length)groups.push(["Condomínios",cd.slice(0,6),cd.length]);
+  const ag=AG_CULT.filter(c=>hit([c.c,c.d,c.u,c.p,"agro agronegocio cultura safra"].join(" "),ws)).map(c=>({i:"agriculture",t:c.c+" · agronegócio",d:c.u+" · "+c.p,go:()=>goSec("agro")}))
+    .concat(AG_REG.filter(r=>hit([r.n,r.uf,r.b.join(" "),"regiao agro"].join(" "),ws)).map(r=>({i:"map",t:"Agro · "+r.n+" ("+r.uf+")",d:r.tag,go:()=>goSec("agro")})))
+    .concat(AG_CO.filter(c=>hit([c.n,c.b.join(" "),"agro agronegocio biogl"].join(" "),ws)).map(c=>({i:"agriculture",t:c.n+" no agronegócio",d:c.b[0].slice(0,100),go:()=>goSec("agro")})))
+    .concat(AG_NEWS.filter(n=>hit(n.t+" "+n.s+" agro",ws)).map(n=>({i:"newspaper",t:n.t,d:n.s+" · "+n.d,go:()=>goSec("agro")})));
+  if(ag.length)groups.push(["Agronegócio",ag.slice(0,6),ag.length]);
   const ms=[...SHARES["2026"].rows].filter(r=>hit(r.n+" "+(r.x||"")+" market share participacao",ws));
   if(ms.length)groups.push(["Market share (jan–mai/26)",ms.map(r=>({i:"pie_chart",t:r.n+" · "+pct(r.v),d:"Sindigás com dados da ANP",go:()=>goSec("share")}))]);
   const pu=Object.keys(UF_PRICE).filter(k=>hit(k+" "+UFS[k].n+" preco botijao p13",ws));
@@ -1700,7 +1855,7 @@ $$(".rv").forEach(el=>io.observe(el));
 setTimeout(()=>{$$(".rv").forEach(el=>{el.classList.add("in");el.querySelectorAll(".fill").forEach(f=>f.style.width=f.dataset.w+"%")})},2500);
 
 /* rail active + fab */
-const secs=["visao","share","precos","dados","mapa","noticias","empresas","tendencias","comunicacao","reputacao","digital","condominios","licitacoes","alerta-uf"].map(id=>document.getElementById(id));
+const secs=["visao","share","precos","dados","mapa","noticias","empresas","tendencias","comunicacao","reputacao","digital","condominios","agro","licitacoes","alerta-uf"].map(id=>document.getElementById(id));
 addEventListener("scroll",()=>{
   $("#fab").classList.toggle("show",scrollY>600);
   let cur="visao";secs.forEach(s=>{if(s.getBoundingClientRect().top<140)cur=s.id});
