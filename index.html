@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar do Mercado · Gás Natural e GLP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,300..500,0..1,0&display=swap" rel="stylesheet">
+<style>
+:root{
+  --laranja:#D33100; --laranja-75:#DE6540; --laranja-50:#E99880; --laranja-20:#F6D6CC; --laranja-10:#FBEAE5;
+  --amarelo:#F0BE00; --amarelo-50:#F7DE80;
+  --cinza-claro:#B2B2B2; --cinza-escuro:#575757;
+  --preto:#141414; --branco:#FFFFFF;
+  --superficie:#F6F5F3; --painel:#FFFFFF; --painel-2:#EFEDEA; --linha:#E2DFDB;
+  --texto:#141414; --texto-2:#575757; --texto-3:#7A7A7A;
+  --sobre-laranja:#FFFFFF;
+  --raio-painel:24px; --raio-card:16px; --raio-selo:999px;
+  --sombra:0 1px 2px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.05);
+  --sombra-2:0 4px 18px rgba(0,0,0,.10);
+  --gn:#575757; --glp:#D33100;
+  --heat-0:#EFEDEA; --heat-1:#F6D6CC; --heat-2:#EE9673; --heat-3:#E0632F; --heat-4:#D33100;
+}
+[data-theme="dark"]{
+  --superficie:#0E0E0E; --painel:#1A1A1A; --painel-2:#242424; --linha:#2E2E2E;
+  --texto:#F4F2EF; --texto-2:#C9C6C2; --texto-3:#9A9692;
+  --laranja-10:#2A1710; --laranja-20:#43200F;
+  --sombra:0 1px 2px rgba(0,0,0,.5); --sombra-2:0 6px 24px rgba(0,0,0,.6);
+  --gn:#B2B2B2; --glp:#FF6A33;
+  --heat-0:#242424; --heat-1:#4A2416; --heat-2:#7A2E10; --heat-3:#B03508; --heat-4:#FF5A1F;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,sans-serif;background:var(--superficie);color:var(--texto);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.ms{width:1em;overflow:hidden;white-space:nowrap;font-family:'Material Symbols Rounded';font-weight:normal;font-style:normal;font-size:22px;line-height:1;display:inline-block;vertical-align:middle;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;user-select:none}
+.ms.fill{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24}
+
+/* ---------- Top app bar ---------- */
+.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:16px;padding:10px 24px 10px 104px;background:color-mix(in srgb,var(--superficie) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--linha)}
+.brand{flex:none;white-space:nowrap;display:flex;flex-direction:column;line-height:1.1;min-width:0}
+.brand b{font-weight:800;font-size:18px;letter-spacing:-.01em}
+.brand b span{color:var(--laranja)}
+.brand small{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--texto-3);font-weight:600}
+.search{min-width:0;flex:1;max-width:520px;margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--painel-2);border-radius:28px;padding:0 14px;height:44px;border:1px solid transparent;transition:border-color .2s}
+.search:focus-within{border-color:var(--laranja)}
+.search input{flex:1;border:0;background:transparent;font:inherit;color:var(--texto);outline:none;min-width:0}
+.icon-btn{width:44px;height:44px;border-radius:50%;border:0;background:transparent;color:var(--texto);display:grid;place-items:center;cursor:pointer;flex:none}
+.icon-btn:hover{background:var(--painel-2)}
+
+/* ---------- Navigation rail ---------- */
+.rail{position:fixed;left:0;top:0;bottom:0;width:88px;z-index:40;background:var(--painel);border-right:1px solid var(--linha);display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:6px}
+.rail .logo{width:48px;height:48px;border-radius:14px;background:var(--laranja);display:grid;place-items:center;color:#fff;margin-bottom:14px}
+.rail a{display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;font-size:11px;font-weight:600;color:var(--texto-2);width:72px;padding:4px 0}
+.rail a .pill{width:56px;height:32px;border-radius:16px;display:grid;place-items:center;transition:background .2s}
+.rail a:hover .pill{background:var(--painel-2)}
+.rail a.on{color:var(--texto)}
+.rail a.on .pill{background:var(--laranja-20)}
+.rail a.on .ms{color:var(--laranja);font-variation-settings:'FILL' 1}
+
+main{padding:0 32px 64px 120px;max-width:1520px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;margin:24px 0 28px;border-radius:var(--raio-painel);overflow:hidden;background:var(--preto);color:#fff;min-height:300px;padding:40px 44px 92px}
+.hero .kicker{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--laranja);border-radius:var(--raio-selo);padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+.hero .kicker i{width:8px;height:8px;border-radius:50%;background:var(--laranja);box-shadow:0 0 0 0 rgba(211,49,0,.7);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(211,49,0,.7)}70%{box-shadow:0 0 0 10px rgba(211,49,0,0)}100%{box-shadow:0 0 0 0 rgba(211,49,0,0)}}
+.hero h1{font-family:'Source Serif 4',Georgia,serif;font-weight:300;font-size:clamp(34px,4.4vw,58px);line-height:1.05;margin:18px 0 8px;letter-spacing:-.01em;color:var(--laranja);max-width:820px}
+.hero h1 em{font-style:italic;color:#fff}
+.hero .hl{width:64px;height:4px;background:var(--amarelo);border-radius:2px;margin:14px 0 14px}
+.hero p{max-width:640px;color:#D9D6D2;margin:0;font-size:15.5px}
+.hero .radar{z-index:0;position:absolute;right:-40px;top:-40px;width:420px;height:420px;opacity:.9;pointer-events:none}
+.hero .barra{z-index:1;position:absolute;left:0;bottom:0;width:100%;height:86px}
+.hero .barra-txt{z-index:2;position:absolute;left:44px;right:44px;bottom:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;color:#fff;font-size:12.5px;font-weight:600;flex-wrap:wrap}
+.hero .barra-txt span{opacity:.95}
+.hero .curve-line{position:absolute;inset:0;pointer-events:none}
+
+/* ---------- Section ---------- */
+section{scroll-margin-top:80px;margin-bottom:44px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.sec-head h2{font-family:'Source Serif 4',Georgia,serif;font-weight:400;font-size:30px;margin:0;line-height:1.1}
+.sec-head h2 b{font-weight:600;color:var(--laranja)}
+.sec-head .eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--laranja);margin-bottom:6px}
+.sec-head p{margin:6px 0 0;color:var(--texto-2);max-width:680px}
+.panel{background:var(--painel);border-radius:var(--raio-painel);padding:24px;box-shadow:var(--sombra);border:1px solid var(--linha)}
+.grid{display:grid;gap:16px}
+.g-kpi{grid-template-columns:repeat(6,1fr)}
+@media (max-width:1400px){.g-kpi{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.g-kpi{grid-template-columns:1fr 1fr}.kpi .val{font-size:26px}}
+.g-2{grid-template-columns:1fr 1fr}
+.g-map{grid-template-columns:minmax(320px,440px) 1fr}
+@media (max-width:1100px){.g-2,.g-map{grid-template-columns:1fr}}
+
+/* KPI */
+.kpi{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio-card);padding:18px 18px 16px;position:relative;overflow:hidden;box-shadow:var(--sombra)}
+.kpi .lbl{padding-right:44px;min-height:36px;font-size:12px;font-weight:600;color:var(--texto-2);display:flex;align-items:center;gap:6px}
+.kpi .val{font-weight:800;font-size:32px;letter-spacing:-.02em;margin:6px 0 2px;line-height:1.05}
+.kpi .val small{font-size:15px;font-weight:600;color:var(--texto-2);margin-left:3px}
+.kpi .delta{display:inline-flex;align-items:center;gap:2px;font-size:12px;font-weight:700;border-radius:8px;padding:2px 8px;background:var(--laranja-10);color:var(--laranja)}
+[data-theme="dark"] .kpi .delta{color:#FF8A5C}
+.kpi .src{font-size:11px;color:var(--texto-3);margin-top:8px}
+.kpi .tag{position:absolute;top:14px;right:14px}
+
+/* chips & tags */
+.seg{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:2px 7px;border:1.5px solid currentColor;line-height:1.4;white-space:nowrap}
+.seg.GLP{color:var(--glp)} .seg.GN{color:var(--gn)} .seg.AMBOS{color:var(--texto-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:10px;border:1px solid var(--cinza-claro);background:transparent;color:var(--texto);font:600 13px Montserrat,sans-serif;cursor:pointer;transition:background .15s,border-color .15s}
+.chip:hover{background:var(--painel-2)}
+.chip .ms{font-size:18px;display:none}
+.chip.on{background:var(--laranja-20);border-color:transparent}
+.chip.on .ms{display:inline-block}
+.chip .n{font-size:11px;color:var(--texto-3);font-weight:600}
+.segbtn{display:inline-flex;border:1px solid var(--cinza-claro);border-radius:22px;overflow:hidden}
+.segbtn button{border:0;background:transparent;font:600 13px Montserrat,sans-serif;color:var(--texto);padding:0 16px;height:38px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.segbtn button+button{border-left:1px solid var(--cinza-claro)}
+.segbtn button.on{background:var(--laranja-20)}
+.segbtn button .ms{font-size:18px;display:none}
+.segbtn button.on .ms{display:inline-block}
+.filters{display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.filters .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.filters .row > .lab{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--texto-3);width:72px}
+.select{height:38px;border-radius:10px;border:1px solid var(--cinza-claro);background:var(--painel);color:var(--texto);font:600 13px Montserrat,sans-serif;padding:0 10px}
+
+/* charts */
+.chart-title{font-weight:700;font-size:15px;margin:0}
+.chart-sub{font-size:12.5px;color:var(--texto-2);margin:2px 0 16px}
+.hbar{display:grid;grid-template-columns:150px 1fr auto;align-items:center;gap:10px;padding:5px 0;position:relative;cursor:default}
+.hbar .nm{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hbar .track{height:22px;position:relative}
+.hbar .fill{height:100%;border-radius:0 4px 4px 0;background:var(--cinza-claro);transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.hbar.me .fill{background:var(--laranja)}
+.hbar .v{font-size:13px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.hbar:hover .fill{filter:brightness(.92)}
+.hbar.me .nm::after{content:'nós';font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--laranja);border:1.5px solid var(--laranja);border-radius:999px;padding:0 6px;margin-left:6px}
+.axisnote{font-size:11px;color:var(--texto-3);margin-top:10px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.tip{position:fixed;z-index:80;pointer-events:none;background:var(--preto);color:#fff;font-size:12px;border-radius:10px;padding:8px 10px;box-shadow:var(--sombra-2);opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s;max-width:260px}
+[data-theme="dark"] .tip{background:#F4F2EF;color:#141414}
+.tip.show{opacity:1;transform:none}
+.tip b{display:block;font-size:12.5px}
+.tbl-toggle{background:none;border:0;color:var(--laranja);font:700 12px Montserrat,sans-serif;cursor:pointer;padding:0;display:inline-flex;align-items:center;gap:4px}
+[data-theme="dark"] .tbl-toggle{color:#FF8A5C}
+table.data{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:10px}
+table.data th,table.data td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--linha)}
+table.data td.n{text-align:right;font-variant-numeric:tabular-nums}
+
+/* map */
+.tilemap{display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:1fr;gap:5px;aspect-ratio:7/8.2;max-width:400px;margin:0 auto}
+.tile{border:0;border-radius:10px;background:var(--heat-0);color:var(--texto);font:700 12px Montserrat,sans-serif;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:transform .15s,box-shadow .15s;position:relative}
+.tile small{font-size:9.5px;font-weight:600;opacity:.8}
+.tile:hover{transform:scale(1.07);box-shadow:var(--sombra-2);z-index:2}
+.tile.h1{background:var(--heat-1)} .tile.h2{background:var(--heat-2)} .tile.h3{background:var(--heat-3);color:#fff} .tile.h4{background:var(--heat-4);color:#fff}
+.tile.sel{outline:3px solid var(--amarelo);outline-offset:2px;z-index:3}
+.legend-heat{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--texto-2);justify-content:center;margin-top:14px;flex-wrap:wrap}
+.legend-heat i{width:22px;height:12px;border-radius:3px;display:inline-block}
+.regbtns{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:16px}
+.uf-panel h3{font-family:'Source Serif 4',Georgia,serif;font-weight:400;font-size:26px;margin:0}
+.uf-panel .meta{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 16px}
+.pillinfo{display:inline-flex;align-items:center;gap:6px;background:var(--painel-2);border-radius:12px;padding:8px 12px;font-size:12.5px;font-weight:600}
+.pillinfo .ms{font-size:18px;color:var(--laranja)}
+.mini-list{display:flex;flex-direction:column;gap:8px;max-height:380px;overflow:auto;padding-right:4px}
+.mini{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:12px;border:1px solid var(--linha);text-decoration:none}
+.mini:hover{background:var(--painel-2)}
+.mini .d{font-size:11px;font-weight:700;color:var(--texto-3);white-space:nowrap;min-width:62px}
+.mini .t{font-size:13px;font-weight:600;line-height:1.35}
+
+/* news */
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.ncard{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio-card);padding:18px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s,transform .2s;position:relative;overflow:hidden}
+.ncard:hover{box-shadow:var(--sombra-2);transform:translateY(-2px)}
+.ncard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--glp)}
+.ncard.GN::before{background:var(--gn)}
+.ncard.AMBOS::before{background:linear-gradient(var(--glp) 50%,var(--gn) 50%)}
+.ncard .top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:11.5px;color:var(--texto-2);font-weight:600}
+.ncard .top .dot{width:3px;height:3px;border-radius:50%;background:var(--cinza-claro)}
+.ncard h4{margin:0;font-size:15.5px;line-height:1.35;font-weight:700}
+.ncard p{margin:0;font-size:13.5px;color:var(--texto-2)}
+.ncard .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;padding-top:6px}
+.ncard .co{font-size:12px;font-weight:700}
+.ncard .lnk{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--laranja);text-decoration:none}
+[data-theme="dark"] .ncard .lnk{color:#FF8A5C}
+.ncard .lnk .ms{font-size:16px}
+.theme-tag{display:inline-flex;align-items:center;gap:4px;background:var(--painel-2);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700}
+.theme-tag .ms{font-size:14px}
+.empty{padding:40px;text-align:center;color:var(--texto-2);border:1px dashed var(--cinza-claro);border-radius:var(--raio-card)}
+.count-line{font-size:12.5px;color:var(--texto-2);margin:-6px 0 12px}
+
+/* companies */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--linha);margin-bottom:18px}
+.tab{background:none;border:0;font:700 14px Montserrat,sans-serif;color:var(--texto-2);padding:12px 18px;cursor:pointer;position:relative;display:flex;align-items:center;gap:8px}
+.tab.on{color:var(--texto)}
+.tab.on::after{content:'';position:absolute;left:12px;right:12px;bottom:-1px;height:3px;border-radius:3px 3px 0 0;background:var(--laranja)}
+.co-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.co-card{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio-card);padding:18px;display:flex;flex-direction:column;gap:10px}
+.co-card.me{border:1.5px solid var(--laranja)}
+.co-card .hd{display:flex;gap:12px;align-items:center}
+.avatar{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:15px;color:#fff;background:var(--cinza-escuro);flex:none}
+.co-card.glp .avatar{background:var(--laranja)}
+.co-card .hd b{font-size:15.5px;display:block;line-height:1.2}
+.co-card .hd small{font-size:12px;color:var(--texto-2)}
+.co-card dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:12.5px}
+.co-card dt{color:var(--texto-3);font-weight:600}
+.co-card dd{margin:0;font-weight:600}
+.co-card .move{background:var(--painel-2);border-radius:12px;padding:10px 12px;font-size:13px}
+.co-card .move b{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--laranja);margin-bottom:2px}
+[data-theme="dark"] .co-card .move b{color:#FF8A5C}
+.co-card .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.btn-o{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:17px;border:1px solid var(--cinza-claro);font:700 12.5px Montserrat,sans-serif;text-decoration:none;color:var(--texto)}
+.btn-o:hover{background:var(--painel-2)}
+.btn-o .ms{font-size:16px}
+
+/* trends */
+.tr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.tr{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio-card);padding:20px;display:flex;flex-direction:column;gap:10px}
+.tr .hd{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tr .ico{width:42px;height:42px;border-radius:12px;background:var(--laranja-10);display:grid;place-items:center;color:var(--laranja)}
+[data-theme="dark"] .tr .ico{color:#FF8A5C}
+.signal{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;border-radius:999px;padding:3px 10px;border:1.5px solid}
+.signal.up{color:#1E7B45;border-color:#1E7B45}
+.signal.watch{color:#9A6B00;border-color:#C99400}
+.signal.risk{color:var(--laranja);border-color:var(--laranja)}
+[data-theme="dark"] .signal.up{color:#5FD08F;border-color:#5FD08F}
+[data-theme="dark"] .signal.watch{color:#F0BE00;border-color:#F0BE00}
+[data-theme="dark"] .signal.risk{color:#FF8A5C;border-color:#FF8A5C}
+.signal .ms{font-size:15px}
+.tr h4{margin:0;font-size:16.5px;font-weight:700;line-height:1.3}
+.tr p{margin:0;font-size:13.5px;color:var(--texto-2)}
+.tr .so{border-left:3px solid var(--amarelo);padding:4px 0 4px 12px;font-size:13px;font-family:'Source Serif 4',Georgia,serif;font-style:italic;color:var(--texto)}
+
+/* comms timeline */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--linha)}
+.tl{position:relative;padding:0 0 22px}
+.tl::before{content:'';position:absolute;left:-24px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--painel);border:3px solid var(--laranja)}
+.tl.GN::before{border-color:var(--gn)}
+.tl .when{font-size:11.5px;font-weight:700;color:var(--texto-3);letter-spacing:.06em;text-transform:uppercase}
+.tl h5{margin:2px 0 4px;font-size:15px}
+.tl p{margin:0;font-size:13.5px;color:var(--texto-2)}
+.tl a{font-size:12px;font-weight:700;color:var(--laranja);text-decoration:none}
+[data-theme="dark"] .tl a{color:#FF8A5C}
+
+/* agenda */
+.ag{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--linha)}
+.ag:last-child{border-bottom:0}
+.ag .date{width:62px;height:62px;border-radius:16px;background:var(--laranja);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;line-height:1}
+.ag .date b{font-size:22px;font-weight:800}
+.ag .date small{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.ag .date.soft{background:var(--painel-2);color:var(--texto)}
+.ag h5{margin:0;font-size:14.5px}
+.ag p{margin:2px 0 0;font-size:13px;color:var(--texto-2)}
+
+/* ANP section */
+.anp-strip{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--painel);border:1px solid var(--linha);border-radius:16px;padding:12px 16px;margin-bottom:16px;font-size:13px}
+.anp-strip > span:last-child{flex:1;min-width:240px}
+.anp-strip .dotlive{flex:none;width:10px;height:10px;border-radius:50%;background:#1E7B45;box-shadow:0 0 0 4px rgba(30,123,69,.15)}
+.anp-strip b{font-weight:700}
+.g-4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:1100px){.g-4{grid-template-columns:1fr 1fr}}
+.link-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.lcard{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:14px;border:1px solid var(--linha);background:var(--painel);text-decoration:none;transition:background .15s,box-shadow .15s}
+.lcard:hover{background:var(--painel-2);box-shadow:var(--sombra)}
+.lcard .ico{width:40px;height:40px;border-radius:12px;background:var(--laranja-10);color:var(--laranja);display:grid;place-items:center;flex:none}
+[data-theme="dark"] .lcard .ico{color:#FF8A5C}
+.lcard b{display:block;font-size:13.5px;line-height:1.3}
+.lcard small{display:block;font-size:12px;color:var(--texto-2);margin-top:2px}
+.gbars{width:100%;height:auto;display:block}
+.gbars text{font-family:Montserrat,sans-serif;fill:var(--texto-2);font-size:11px}
+.gbars .grid-l{stroke:var(--linha);stroke-width:1}
+.gbars .b25{fill:var(--cinza-claro)} .gbars .b26{fill:var(--laranja)}
+.gbars .hit{fill:transparent;cursor:default}
+.gbars .hit:hover{fill:var(--painel-2);opacity:.6}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--texto-2);margin:-6px 0 8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.drop{border:2px dashed var(--cinza-claro);border-radius:18px;padding:28px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+.drop:hover,.drop.over{border-color:var(--laranja);background:var(--laranja-10)}
+.drop .ms{font-size:40px;color:var(--laranja);width:auto}
+.drop p{margin:6px 0 0;color:var(--texto-2);font-size:13px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+@media (max-width:900px){.steps{grid-template-columns:1fr}}
+.step{background:var(--painel-2);border-radius:14px;padding:12px 14px;font-size:13px}
+.step b{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.step b span.n{width:22px;height:22px;border-radius:50%;background:var(--laranja);color:#fff;display:grid;place-items:center;font-size:12px}
+.mapper{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:14px 0}
+.mapper label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-3);display:flex;flex-direction:column;gap:4px}
+.mapper select,.mapper input{height:38px;border-radius:10px;border:1px solid var(--cinza-claro);background:var(--painel);color:var(--texto);font:600 13px Montserrat,sans-serif;padding:0 10px;text-transform:none;letter-spacing:0}
+.btn-f{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 20px;border-radius:20px;border:0;background:var(--laranja);color:#fff;font:700 13.5px Montserrat,sans-serif;cursor:pointer}
+.btn-f:disabled{opacity:.5;cursor:default}
+.imp-status{font-size:13px;color:var(--texto-2);margin-top:10px}
+.imp-out{margin-top:18px}
+.chip.rev.on{background:var(--amarelo-50)}
+.cli-tag{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:700;color:var(--texto-2);border:1px solid var(--linha);border-radius:6px;padding:1px 6px}
+.cli-tag .ms{font-size:13px}
+.cli-tags{display:flex;gap:4px;flex-wrap:wrap}
+
+/* licitações */
+.alert-box{background:var(--preto);color:#fff;border-radius:var(--raio-painel);padding:26px 28px;position:relative;overflow:hidden;margin-bottom:16px}
+.alert-box h3{font-family:'Source Serif 4',Georgia,serif;font-weight:300;font-size:28px;margin:0 0 6px;color:var(--laranja)}
+.alert-box p{margin:0;color:#D9D6D2;max-width:900px}
+.alert-box .bul{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:18px}
+.alert-box .bul div{background:#1f1f1f;border-radius:14px;padding:14px;font-size:13.5px;color:#E8E5E1;border-left:3px solid var(--amarelo)}
+.alert-box .bul b{display:block;color:#fff;margin-bottom:4px;font-size:14px}
+.lic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.lic{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio-card);padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.lic .top{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:11.5px;font-weight:700;color:var(--texto-3);text-transform:uppercase;letter-spacing:.06em}
+.lic h4{margin:0;font-size:15px;line-height:1.3}
+.lic .val{font-weight:800;font-size:20px}
+.lic .val small{font-size:12px;font-weight:600;color:var(--texto-2)}
+.lic p{margin:0;font-size:13px;color:var(--texto-2)}
+.lic .pill-st{font-size:10.5px;font-weight:700;border-radius:999px;padding:2px 9px;border:1.5px solid}
+.lic .pill-st.aberta{color:#1E7B45;border-color:#1E7B45}
+.lic .pill-st.homol{color:var(--texto-2);border-color:var(--cinza-claro)}
+[data-theme="dark"] .lic .pill-st.aberta{color:#5FD08F;border-color:#5FD08F}
+.lic .vs{display:inline-flex;gap:6px;align-items:center;background:var(--laranja-10);color:var(--laranja);font-weight:700;font-size:12px;border-radius:8px;padding:3px 8px;align-self:flex-start}
+[data-theme="dark"] .lic .vs{color:#FF8A5C}
+.lic a{font-size:12px;font-weight:700;color:var(--laranja);text-decoration:none;margin-top:auto}
+[data-theme="dark"] .lic a{color:#FF8A5C}
+
+/* busca global */
+.sres{position:fixed;top:66px;right:24px;width:min(620px,calc(100vw - 130px));max-height:min(72vh,640px);overflow:auto;z-index:60;background:var(--painel);border:1px solid var(--linha);border-radius:20px;box-shadow:var(--sombra-2);padding:10px;display:none}
+.sres.show{display:block}
+.sres .grp{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--laranja);padding:10px 10px 4px}
+.sres .it{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border-radius:12px;cursor:pointer;text-decoration:none;color:var(--texto)}
+.sres .it:hover,.sres .it.act{background:var(--painel-2)}
+.sres .it .ms{font-size:20px;color:var(--texto-3);flex:none;margin-top:1px}
+.sres .it b{display:block;font-size:13.5px;line-height:1.3}
+.sres .it small{display:block;font-size:12px;color:var(--texto-2);line-height:1.35}
+.sres mark{background:var(--amarelo-50);color:inherit;border-radius:3px;padding:0 1px}
+.sres .none{padding:18px;text-align:center;color:var(--texto-2);font-size:13px}
+.sres .foot{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--linha);margin-top:6px;padding:10px 10px 4px;font-size:12px;color:var(--texto-2)}
+.flash{animation:flash 1.8s ease}
+@keyframes flash{0%,40%{box-shadow:0 0 0 4px var(--amarelo)}100%{box-shadow:0 0 0 0 transparent}}
+@media (max-width:760px){.sres{left:10px;right:10px;width:auto;top:60px}}
+
+/* alerta por UF */
+.uf-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.ufb{min-width:52px;height:40px;border-radius:12px;border:1px solid var(--cinza-claro);background:var(--painel);color:var(--texto);font:700 12.5px Montserrat,sans-serif;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.05;padding:0 8px;position:relative}
+.ufb small{font-size:9.5px;font-weight:600;color:var(--texto-3)}
+.ufb.has{border-color:var(--laranja)}
+.ufb.open::after{content:'';position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:#1E7B45}
+.ufb.on{background:var(--laranja);border-color:var(--laranja);color:#fff}
+.ufb.on small{color:#fff}
+.uf-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px}
+.uf-head h3{font-family:'Source Serif 4',Georgia,serif;font-weight:400;font-size:28px;margin:0}
+.uf-stats{display:flex;gap:8px;flex-wrap:wrap}
+.lic.open{border-color:#1E7B45}
+.lic .pill-st.fech{color:var(--texto-3);border-color:var(--cinza-claro)}
+.lic .pill-st.cred{color:#9A6B00;border-color:#C99400}
+[data-theme="dark"] .lic .pill-st.cred{color:#F0BE00;border-color:#F0BE00}
+.lic .kind{font-size:11px;font-weight:700;color:var(--texto-2)}
+.bio-box{border:1.5px dashed var(--laranja);border-radius:var(--raio-card);padding:18px 20px;background:var(--laranja-10);margin-top:16px}
+.bio-box h4{margin:0 0 6px;font-size:16px;display:flex;align-items:center;gap:8px}
+.bio-box ul{margin:8px 0 0;padding-left:18px;font-size:13.5px;color:var(--texto-2)}
+.bio-box li{margin-bottom:4px}
+
+/* footer */
+footer{margin-top:20px}
+.sources{columns:2 360px;column-gap:28px;font-size:12px;color:var(--texto-2)}
+.sources li{break-inside:avoid;margin-bottom:6px}
+.sources a{color:var(--texto-2)}
+.note{display:flex;gap:12px;align-items:flex-start;background:var(--laranja-10);border-radius:16px;padding:14px 16px;font-size:13px;margin-bottom:18px}
+.note .ms{color:var(--laranja)}
+.sig{margin-top:28px;font-family:'Source Serif 4',Georgia,serif;font-size:15px;color:var(--texto-2)}
+
+.fab{position:fixed;right:24px;bottom:24px;z-index:50;height:56px;border-radius:16px;border:0;background:var(--laranja);color:#fff;font:700 14px Montserrat,sans-serif;padding:0 20px;display:flex;align-items:center;gap:8px;box-shadow:var(--sombra-2);cursor:pointer;opacity:0;transform:translateY(20px);transition:opacity .2s,transform .2s;pointer-events:none}
+.fab.show{opacity:1;transform:none;pointer-events:auto}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* mobile */
+@media (max-width:760px){
+  .rail{top:auto;bottom:0;left:0;right:0;width:auto;height:72px;flex-direction:row;justify-content:flex-start;overflow-x:auto;padding:0;border-right:0;border-top:1px solid var(--linha)}
+  .rail .logo{display:none}
+  .rail a{width:auto;min-width:72px;flex:none;font-size:10px}
+  .rail a .pill{width:48px}
+  .topbar{padding:10px 14px}
+  .brand small{display:none}
+  .brand b{font-size:15px}
+  .topbar{gap:8px}
+  .search{height:40px;padding:0 10px}
+  main{padding:0 14px 110px}
+  .hero{padding:28px 22px 96px}
+  .hero .radar{width:260px;height:260px;opacity:.5}
+  .hero .barra-txt{left:22px;right:22px}
+  .fab{bottom:88px}
+  .hbar{grid-template-columns:96px 1fr 54px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav class="rail" aria-label="Seções">
+  <div class="logo" title="Radar do Mercado"><span class="ms fill">radar</span></div>
+  <a href="#visao" class="on" data-nav><span class="pill"><span class="ms">space_dashboard</span></span>Visão</a>
+  <a href="#share" data-nav><span class="pill"><span class="ms">pie_chart</span></span>Market share</a>
+  <a href="#precos" data-nav><span class="pill"><span class="ms">sell</span></span>Preços</a>
+  <a href="#dados" data-nav><span class="pill"><span class="ms">database</span></span>Dados ANP</a>
+  <a href="#mapa" data-nav><span class="pill"><span class="ms">map</span></span>Regiões</a>
+  <a href="#noticias" data-nav><span class="pill"><span class="ms">newspaper</span></span>Notícias</a>
+  <a href="#empresas" data-nav><span class="pill"><span class="ms">apartment</span></span>Empresas</a>
+  <a href="#tendencias" data-nav><span class="pill"><span class="ms">trending_up</span></span>Tendências</a>
+  <a href="#comunicacao" data-nav><span class="pill"><span class="ms">campaign</span></span>Comunicação</a>
+  <a href="#licitacoes" data-nav><span class="pill"><span class="ms">request_quote</span></span>Licitações</a>
+  <a href="#alerta-uf" data-nav><span class="pill"><span class="ms">notifications_active</span></span>Alerta UF</a>
+</nav>
+
+<div class="sres" id="sres" role="listbox" aria-label="Resultados da busca"></div>
+<header class="topbar">
+  <div class="brand"><b>Radar do <span>Mercado</span></b><small>Gás natural &amp; GLP · Brasil</small></div>
+  <label class="search" aria-label="Buscar no radar">
+    <span class="ms">search</span>
+    <input id="q" type="search" placeholder="Busque empresa, estado ou tema (ex.: biometano, PE, Gás do Povo)">
+  </label>
+  <button class="icon-btn" id="qClear" title="Limpar busca" style="display:none"><span class="ms">close</span></button>
+  <button class="icon-btn" id="themeBtn" title="Alternar tema claro/escuro"><span class="ms">dark_mode</span></button>
+</header>
+
+<main>
+
+<!-- HERO -->
+<div class="hero rv" id="visao">
+  <svg class="radar" viewBox="0 0 400 400" aria-hidden="true">
+    <defs>
+      <radialGradient id="rg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#D33100" stop-opacity=".35"/><stop offset="1" stop-color="#D33100" stop-opacity="0"/></radialGradient>
+      <linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D33100" stop-opacity="0"/><stop offset="1" stop-color="#D33100" stop-opacity=".55"/></linearGradient>
+    </defs>
+    <circle cx="200" cy="200" r="190" fill="url(#rg)"/>
+    <g fill="none" stroke="#D33100" stroke-opacity=".45" stroke-width="1">
+      <circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="110"/><circle cx="200" cy="200" r="160"/>
+      <line x1="200" y1="20" x2="200" y2="380"/><line x1="20" y1="200" x2="380" y2="200"/>
+    </g>
+    <g style="transform-origin:200px 200px;animation:spin 6s linear infinite">
+      <path d="M200 200 L200 40 A160 160 0 0 1 338 120 Z" fill="url(#sw)"/>
+    </g>
+    <g fill="#F0BE00"><circle cx="268" cy="150" r="4"/><circle cx="150" cy="260" r="3"/><circle cx="300" cy="250" r="3.5"/><circle cx="170" cy="120" r="2.5"/></g>
+    <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+  </svg>
+  <span class="kicker"><i></i>Radar ao vivo · dados públicos</span>
+  <h1>O mercado de gás, <em>em um só radar.</em></h1>
+  <div class="hl"></div>
+  <p>Gás natural canalizado e GLP lado a lado: quem cresce, quem investe, o que muda na regra do jogo e onde cada movimento acontece no Brasil. Tudo a partir de portais públicos, associações e imprensa setorial.</p>
+  <svg class="barra" viewBox="0 0 1200 86" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 380 40, 620 6, 1200 2 L1200 86 L0 86 Z" fill="#D33100"/></svg>
+  <div class="barra-txt"><span id="stamp">Atualizado em 9 nov 2026 · ANP com dados até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
+</div>
+
+<!-- KPIs -->
+<section>
+  <div class="grid g-kpi" id="kpis"></div>
+</section>
+
+<!-- Charts -->
+<section>
+  <div class="sec-head rv"><div><div class="eyebrow">Panorama</div><h2>Preço do botijão e <b>onde o gás cresce</b></h2><p>A série histórica do preço do P13 e o crescimento do consumo de gás natural por segmento no 1º semestre de 2026.</p></div></div>
+  <div class="grid g-2">
+    <div class="panel rv">
+      <p class="chart-title">Preço médio do botijão P13 no Brasil</p>
+      <p class="chart-sub">R$ por botijão de 13 kg · média mensal oficial da ANP (jan–set/26) e última semana pesquisada (25–31/10)</p>
+      <div id="chartPrice"></div>
+      <div class="axisnote"><span>Fonte: ANP, Evolução dos preços de GLP 2026 (R$/botijão de 13 kg) · ponto vazado = pesquisa semanal ANP</span><button class="tbl-toggle" data-tbl="tPrice"><span class="ms" style="font-size:16px">table_rows</span>Ver tabela</button></div>
+      <div id="tPrice" hidden></div>
+    </div>
+    <div class="panel rv">
+      <p class="chart-title">Gás natural · consumo por segmento no 1S26</p>
+      <p class="chart-sub">Milhões de m³/dia e variação vs 1S25 · total do país: <b>57,5</b> (+15,36%)</p>
+      <div id="chartSeg"></div>
+      <div class="axisnote"><span>Fonte: Abegás, balanço do 1º semestre de 2026 (04/11/2026)</span><button class="tbl-toggle" data-tbl="tSeg"><span class="ms" style="font-size:16px">table_rows</span>Ver tabela</button></div>
+      <div id="tSeg" hidden></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET SHARE -->
+<section id="share">
+  <div class="sec-head rv"><div><div class="eyebrow">Market share</div><h2>Quem é quem na <b>distribuição de GLP</b></h2><p>Dados oficiais da ANP compilados pelo Sindigás: quatro grupos separados por menos de 2,5 pontos, com a Supergasbras em 3º lugar em 2026.</p></div></div>
+  <div class="grid g-2">
+    <div class="panel rv">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start"><div><p class="chart-title" id="shareTitle">Participação no mercado de GLP</p>
+      <p class="chart-sub" id="shareSub"></p></div>
+      <div class="segbtn" id="shareTgl"><button data-v="2026" class="on"><span class="ms">check</span>jan–mai/26</button><button data-v="2025"><span class="ms">check</span>jan–nov/25</button></div></div>
+      <div id="chartShare"></div>
+      <div class="axisnote"><span id="shareSrc"></span><button class="tbl-toggle" data-tbl="tShare"><span class="ms" style="font-size:16px">table_rows</span>Ver tabela</button></div>
+      <div id="tShare" hidden></div>
+    </div>
+    <div class="panel rv">
+      <p class="chart-title">Evolução das fatias</p>
+      <p class="chart-sub">% das vendas nacionais de GLP · dados da ANP; 2016 é ano fechado, os demais são acumulados parciais</p>
+      <div id="shareHist"></div>
+      <div class="axisnote"><span>Fontes: ANP, Anuário Estatístico 2017 (dados de 2016); Sindigás, Panoramas dez/2025 e jun/2026 (dados ANP)</span></div>
+    </div>
+  </div>
+  <div class="tr-grid" id="shareReads" style="margin-top:16px"></div>
+</section>
+
+<!-- PREÇOS -->
+<section id="precos">
+  <div class="sec-head rv"><div><div class="eyebrow">Preços e reajustes</div><h2>De onde vem o <b>preço do botijão</b></h2><p>Como o preço médio do P13 se divide entre produtor, imposto e margens, e os reajustes que pressionaram o GLP e o gás natural em 2026.</p></div></div>
+  <div class="grid g-2">
+    <div class="panel rv">
+      <p class="chart-title">Composição do preço do P13 · Brasil</p>
+      <p class="chart-sub">R$ por botijão · janeiro vs agosto de 2026 · total: R$ 110,31 → R$ 113,90</p>
+      <div class="legend"><span><i style="background:var(--cinza-claro)"></i>jan/26</span><span><i style="background:var(--laranja)"></i>ago/26</span></div>
+      <div id="chartComp"></div>
+      <div class="axisnote"><span>Fonte: ANP, Evolução dos preços de GLP 2026 · média Brasil</span><button class="tbl-toggle" data-tbl="tComp"><span class="ms" style="font-size:16px">table_rows</span>Ver tabela</button></div>
+      <div id="tComp" hidden></div>
+    </div>
+    <div class="panel rv">
+      <p class="chart-title" style="margin-bottom:6px">Linha do tempo dos reajustes</p>
+      <div id="priceNews" style="max-height:520px;overflow:auto;padding-right:6px"></div>
+    </div>
+  </div>
+  <div class="panel rv" style="margin-top:16px" id="ufPrice">
+    <p class="chart-title">Preço final do P13 por estado · agosto de 2026</p>
+    <p class="chart-sub">R$ por botijão de 13 kg · média Brasil: R$ 113,90 · do mais caro ao mais barato</p>
+    <div class="grid g-2"><div id="ufP1"></div><div id="ufP2"></div></div>
+    <div class="axisnote"><span>Fonte: ANP, Evolução dos preços de GLP 2026 (média mensal por UF)</span></div>
+  </div>
+</section>
+
+<!-- ANP -->
+<section id="dados">
+  <div class="sec-head rv"><div><div class="eyebrow">Dados oficiais</div><h2>ANP, Sindigás e <b>Abegás</b>, direto na fonte</h2><p>Vendas de GLP da Síntese Mensal da ANP, consumo por região do Sindigás e o balanço do gás canalizado da Abegás.</p></div></div>
+  <div class="anp-strip rv"><span class="dotlive"></span><span><b>Calendário da ANP:</b> a base é atualizada no <b>dia 1º</b> (fechamento do mês retrasado) e no <b>dia 20</b> (prévia do mês anterior). Última Síntese Mensal consultada: <b>agosto/2026</b>. Preços do P13 mensais até set/2026. Sindigás: Panorama de jun/2026 (dados até mai/26). Abegás: balanço do 1º semestre de 2026, publicado em 04/11/2026.</span></div>
+  <div class="grid g-kpi" id="anpKpis" style="margin-bottom:16px"></div>
+  <div class="grid g-2">
+    <div class="panel rv">
+      <p class="chart-title">Botijões P13 vendidos por mês</p>
+      <p class="chart-sub">Milhões de botijões · jan–ago, 2025 vs 2026 · acumulado estável (0,0%)</p>
+      <div class="legend"><span><i style="background:var(--cinza-claro)"></i>2025</span><span><i style="background:var(--laranja)"></i>2026</span></div>
+      <div id="chartP13"></div>
+      <div class="axisnote"><span>Fonte: ANP, Síntese Mensal de Comercialização, ago/2026</span><button class="tbl-toggle" data-tbl="tP13"><span class="ms" style="font-size:16px">table_rows</span>Ver tabela</button></div>
+      <div id="tP13" hidden></div>
+    </div>
+    <div class="panel rv">
+      <p class="chart-title">GLP P-Outros (acima de 13 kg e granel)</p>
+      <p class="chart-sub">Mil toneladas por mês · jan–ago, 2025 vs 2026 · acumulado +1,3%</p>
+      <div class="legend"><span><i style="background:var(--cinza-claro)"></i>2025</span><span><i style="background:var(--laranja)"></i>2026</span></div>
+      <div id="chartPO"></div>
+      <div class="axisnote"><span>Fonte: ANP, Síntese Mensal de Comercialização, ago/2026</span><button class="tbl-toggle" data-tbl="tPO"><span class="ms" style="font-size:16px">table_rows</span>Ver tabela</button></div>
+      <div id="tPO" hidden></div>
+    </div>
+  </div>
+
+  <div class="grid g-2" style="margin-top:16px">
+    <div class="panel rv">
+      <p class="chart-title">Consumo de GLP por região</p>
+      <p class="chart-sub">% do volume vendido · janeiro a maio de 2026 · total 3.081.374 t</p>
+      <div id="chartReg"></div>
+      <div class="axisnote"><span>Fonte: Sindigás, Panorama jun/2026, com dados da ANP</span></div>
+    </div>
+    <div class="panel rv">
+      <p class="chart-title" style="margin-bottom:12px">Gás canalizado · indicadores Abegás</p>
+      <div class="grid" style="grid-template-columns:1fr 1fr" id="abegasKpis"></div>
+    </div>
+  </div>
+
+  <div class="panel rv" style="margin-top:16px">
+    <p class="chart-title" style="margin-bottom:12px">Painéis e bases oficiais</p>
+    <div class="link-grid" id="anpLinks"></div>
+  </div>
+
+</section>
+
+<!-- MAP -->
+<section id="mapa">
+  <div class="sec-head rv"><div><div class="eyebrow">Radar regional</div><h2>Notícias <b>por estado</b></h2><p>Toque em um estado para ver a distribuidora de gás natural local, os números do Gás do Povo disponíveis e as notícias da região. A cor mostra quantos sinais o radar captou.</p></div></div>
+  <div class="grid g-map">
+    <div class="panel rv">
+      <div class="regbtns" id="regBtns"></div>
+      <div class="tilemap" id="tilemap" role="group" aria-label="Mapa esquemático do Brasil por UF"></div>
+      <div class="legend-heat"><span>Menos</span><i style="background:var(--heat-0)"></i><i style="background:var(--heat-1)"></i><i style="background:var(--heat-2)"></i><i style="background:var(--heat-3)"></i><i style="background:var(--heat-4)"></i><span>Mais sinais</span></div>
+      <p style="text-align:center;font-size:11px;color:var(--texto-3);margin:8px 0 0">Mapa esquemático: cada quadrado é uma UF.</p>
+    </div>
+    <div class="panel rv uf-panel" id="ufPanel"></div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="noticias">
+  <div class="sec-head rv"><div><div class="eyebrow">Feed</div><h2>Notícias e <b>movimentos</b></h2><p>Filtre por segmento, tema e região. Cada card leva à fonte original.</p></div></div>
+  <div class="filters">
+    <div class="row"><span class="lab">Segmento</span>
+      <div class="segbtn" id="fSeg">
+        <button data-v="all" class="on"><span class="ms">check</span>Todos</button>
+        <button data-v="GLP"><span class="ms">check</span>GLP</button>
+        <button data-v="GN"><span class="ms">check</span>Gás natural</button>
+      </div>
+      <select class="select" id="fReg" aria-label="Região">
+        <option value="all">Todas as regiões</option>
+        <option value="BR">Nacional</option>
+        <option value="N">Norte</option><option value="NE">Nordeste</option><option value="CO">Centro-Oeste</option><option value="SE">Sudeste</option><option value="S">Sul</option>
+      </select>
+      <select class="select" id="fSort" aria-label="Ordenar"><option value="new">Mais recentes</option><option value="old">Mais antigas</option></select>
+    </div>
+    <div class="row"><span class="lab">Tema</span><div class="chips" id="fTema"></div></div>
+    <div class="row"><span class="lab">Cliente</span><div class="chips" id="fCli"></div></div>
+  </div>
+  <p class="count-line" id="countLine"></p>
+  <div class="news-grid" id="news"></div>
+</section>
+
+<!-- COMPANIES -->
+<section id="empresas">
+  <div class="sec-head rv"><div><div class="eyebrow">Quem é quem</div><h2>Empresas <b>no radar</b></h2><p>Congêneres de GLP e distribuidoras de gás natural canalizado: controlador, área, números públicos e o último movimento captado.</p></div></div>
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-tab="GLP"><span class="ms">propane_tank</span>Congêneres GLP</button>
+    <button class="tab" data-tab="GN"><span class="ms">valve</span>Gás natural canalizado</button>
+  </div>
+  <div class="co-grid" id="cos"></div>
+</section>
+
+<!-- TRENDS -->
+<section id="tendencias">
+  <div class="sec-head rv"><div><div class="eyebrow">Leitura de mercado</div><h2>Tendências que <b>mexem no jogo</b></h2><p>Os sinais mais fortes do período e, em itálico, o que cada um pode significar para nós.</p></div></div>
+  <div class="tr-grid" id="trends"></div>
+</section>
+
+<!-- COMMS + AGENDA -->
+<section id="comunicacao">
+  <div class="sec-head rv"><div><div class="eyebrow">Marca e agenda</div><h2>Ações de <b>comunicação</b> e próximos marcos</h2><p>Campanhas, reposicionamentos e trocas de agência dos concorrentes, ao lado das datas que vale acompanhar.</p></div></div>
+  <div class="grid g-2">
+    <div class="panel rv"><p class="chart-title" style="margin-bottom:16px">Linha do tempo de comunicação</p><div class="timeline" id="comms"></div></div>
+    <div class="panel rv"><p class="chart-title" style="margin-bottom:6px">No radar dos próximos meses</p><div id="agenda"></div></div>
+  </div>
+</section>
+
+<!-- LICITAÇÕES -->
+<section id="licitacoes">
+  <div class="sec-head rv"><div><div class="eyebrow">Fique atento</div><h2>Licitações e <b>leilões de GLP</b></h2><p>Do leilão da Petrobras que abastece as distribuidoras às compras públicas de prefeituras, escolas e quartéis: onde está a demanda e o que observar antes de entrar.</p></div></div>
+
+  <div class="alert-box rv">
+    <h3>Resumo do radar</h3>
+    <p>As compras públicas de GLP são, em sua maioria, <b>registros de preço de 12 meses</b> para P13 e P45, muitas com <b>comodato de vasilhames</b> e várias exclusivas para ME/EPP. Nos casos levantados, o preço de referência ficou de <b>10% a 21% acima da média da ANP</b> no estado. No atacado, os <b>leilões da Petrobras</b> para distribuidoras seguem como o principal risco de custo em 2026.</p>
+    <div class="bul">
+      <div><b>Quem costuma vencer</b>Revendas e distribuidores locais de pequeno porte. A distribuidora chega a esse mercado pela sua rede de revendas.</div>
+      <div><b>Preço de referência alto</b>Matões (MA) estimou R$ 138,67 por P13, contra R$ 125,42 da média ANP no estado em junho. São José da Barra (MG) homologou R$ 130,00 por P13, contra R$ 107,58 em fevereiro.</div>
+      <div><b>Exigências recorrentes</b>Lacre e selo do Inmetro, conformidade com resoluções da ANP, entrega parcelada, troca do vasilhame vazio e, em alguns editais, granel em P190.</div>
+      <div><b>Risco no atacado</b>O leilão de 31/03 vendeu 70 mil t com ágio de até 100% sobre a tabela. A Petrobras depois decidiu neutralizar o efeito e devolver parte do ganho.</div>
+    </div>
+  </div>
+
+  <div class="grid g-2" style="margin-bottom:16px">
+    <div class="panel rv"><p class="chart-title" style="margin-bottom:6px">Leilões e licitações no atacado</p><div class="timeline" id="licUp"></div></div>
+    <div class="panel rv"><p class="chart-title" style="margin-bottom:12px">Onde acompanhar</p><div class="link-grid" id="licLinks" style="grid-template-columns:1fr"></div></div>
+  </div>
+  <p class="chart-title rv" style="margin:0 0 12px">Compras públicas de GLP · exemplos de 2026</p>
+  <div class="lic-grid" id="licList"></div>
+</section>
+
+<!-- ALERTA POR ESTADO -->
+<section id="alerta-uf">
+  <div class="sec-head rv"><div><div class="eyebrow">Alerta de licitações</div><h2>Licitações de <b>GLP e BioGL</b> por estado</h2><p>Escolha um estado para ver os editais de GLP levantados, quais ainda recebem propostas e os atalhos para acompanhar novos pregões. O ponto verde indica estado com edital aberto.</p></div></div>
+  <div class="panel rv">
+    <div class="uf-bar" id="ufBar"></div>
+    <div id="ufAlert"></div>
+  </div>
+  <div class="bio-box rv">
+    <h4><span class="ms" style="color:var(--laranja)">eco</span>BioGL em compras públicas: ainda não há edital</h4>
+    <div style="font-size:13.5px;color:var(--texto-2)">Nas buscas por “BioGL”, “bioGLP” e “GLP renovável” em portais de licitação, não apareceu nenhum edital público em 2026. As compras de BioGL ainda são contratos privados com certificação.</div>
+    <ul>
+      <li>Supergasbras e Ortobras fecharam o 1º contrato de BioGL com certificação ISCC PLUS (jul/26), começando com 5% do volume.</li>
+      <li>Segundo a EPE, a CBMM comprou 60 t de BioGLP em 2024. A EPE sugere editais e chamadas de fomento para a cadeia.</li>
+      <li>Fique de olho em editais de órgãos com metas de descarbonização (universidades federais, tribunais, estatais) que já compram GLP a granel: um item de “GLP com conteúdo renovável certificado” pode ser proposto em consulta pública ou audiência prévia.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="note"><span class="ms">info</span><div><b>Como ler este radar.</b> É uma fotografia em 9/11/2026. Os números vêm primeiro da ANP, do Sindigás e da Abegás; portais e RI das empresas e agências estaduais complementam, e a imprensa setorial entra só para fatos que essas fontes não publicam. Os cards com fonte oficial têm o selo “Fonte oficial”. Números citados como foram publicados por cada fonte; quando a data exata da notícia não estava clara, o card mostra só o mês ou o ano. </div></div>
+  <div class="panel">
+    <p class="chart-title" style="margin-bottom:12px">Fontes</p>
+    <ul class="sources" id="sources"></ul>
+  </div>
+  <p class="sig">É mais que energia. É Super.</p>
+</footer>
+</main>
+
+<button class="fab" id="fab"><span class="ms">arrow_upward</span>Topo</button>
+<div class="tip" id="tip"></div>
+
+<script>
+/* =========================================================
+   DADOS — edite aqui para atualizar o radar
+   seg: GLP | GN | AMBOS · uf: sigla ou BR (nacional)
+   tema: mercado | regulacao | expansao | resultados | sustentabilidade | comunicacao | social
+   ========================================================= */
+const NEWS = [
+ {d:"2026-04-09",dl:"09 abr 2026",seg:"GLP",uf:"BR",tema:"precos",co:"Petrobras",t:"Petrobras neutraliza efeito do leilão de GLP e devolve parte do ganho",s:"Decisão após o leilão de 31/03, que vendeu 70 mil t com ágio de até 100%.",src:"Agência iNFRA",u:"https://agenciainfra.com/blog/petrobras-devolvera-parte-do-lucro-de-leilao-de-glp-as-distribuidoras/",cli:["residencial","comercial","industrial"]},
+ {d:"2026-07-01",dl:"jun 2026",seg:"GLP",uf:"BR",tema:"mercado",co:"Sindigás",t:"Sindigás: Supergasbras é a 3ª maior no ano, com 21,49%",s:"Market share jan–mai/26 com dados da ANP: Copa 23,81%, Ultragaz 21,92%, Supergasbras 21,49%, Nacional 21,37% e Consigaz 7,31%. Consumo de 3,08 milhões de t no período.",src:"Sindigás · Panorama jun/2026",u:"https://www.sindigas.org.br/Download/PANORAMAS/NOVO%20GLP%20EM%20MOVIMENTO_JUN_2026.pdf",cli:["residencial","industrial","comercial","agro"]},
+ {d:"2026-10-01",dl:"out 2026",seg:"GLP",uf:"BR",tema:"precos",co:"ANP",t:"P13 fecha setembro em R$ 114,33; revenda fica com R$ 34,90 por botijão",s:"Série mensal oficial: o preço subiu de R$ 110,31 (jan) para R$ 114,71 (mai) e estabilizou. A margem da revenda foi a parcela que mais cresceu no ano.",src:"ANP · Evolução dos preços de GLP 2026",u:"https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arq-precos/tabelas/2026-margens-p13-tabela.pdf",cli:["residencial"],rev:true},
+ {d:"2026-05-04",dl:"04 mai 2026",seg:"GN",uf:"ES",tema:"expansao",co:"ES Gás",t:"ES Gás projeta alta de 44% no consumo de gás até 2030",s:"GNV deve dobrar com a frota pesada; comercial e residencial devem crescer 81% cada. Clientes no mercado livre subiram 33% no ano.",src:"Abegás",u:"https://www.abegas.org.br/arquivos/100095",cli:["residencial","comercial","industrial"]},
+ {d:"2026-11-02",dl:"02 nov 2026",seg:"GLP",uf:"BA",tema:"precos",co:"Acelen (Refinaria de Mataripe)",t:"Mataripe sobe 17,5% o GLP às distribuidoras da Bahia",s:"Maior reajuste desde a venda da refinaria. Estimativa de R$ 12 a R$ 15 a mais no botijão; antes da alta, o P13 custava em média R$ 117,35 no estado.",src:"Click Petróleo e Gás",u:"https://clickpetroleoegas.com.br/refinaria-de-mataripe-aumenta-em-17-5-o-gas-de-cozinha-na-bahia-o-maior-reajuste-desde-que-foi-vendida-pela-petrobras-e-o-botijao-de-13-kg-pode-subir-ate-r-15-btl96",cli:["residencial","comercial","industrial"],rev:true},
+ {d:"2026-10-31",dl:"nov 2026",seg:"GN",uf:"ES",tema:"precos",co:"ES Gás (Energisa)",t:"ARSP homologa reajuste das tarifas de gás canalizado no ES a partir de 1º/11",s:"Comunicado da Energisa, sócia da ES Gás, ao mercado.",src:"Visno Invest",u:"https://visnoinvest.com.br/news/16006/energisa-engi3-registra-tarifa-de-gas-de-r-30842-por-m3",cli:["residencial","industrial","comercial"]},
+ {d:"2026-10-05",dl:"out 2026",seg:"GLP",uf:"BR",tema:"precos",co:"ANP",t:"Margens de distribuição e revenda somam 52% do preço do botijão",s:"Na semana de 27/9 a 3/10, o P13 custou R$ 114,88: R$ 36,02 ao produtor, R$ 19,11 de ICMS e R$ 59,75 de margens estimadas.",src:"Click Petróleo e Gás",u:"https://clickpetroleoegas.com.br/anp-de-cada-botijao-de-r-114-88-r-59-75-52-sao-margem-estimada-de-distribuicao-e-revenda-r-36-02-vao-ao-produtor-e-r-19-11-ao-icms-mhbb01",cli:["residencial"],rev:true},
+ {d:"2026-09-28",dl:"set 2026",seg:"GLP",uf:"BR",tema:"precos",co:"ANP",t:"P13 custa R$ 114,80 em média; Roraima R$ 143,34 e Rio R$ 104,05",s:"Pesquisa semanal da ANP em 3.301 revendas, semana de 20 a 26 de setembro.",src:"Click Petróleo e Gás",u:"https://clickpetroleoegas.com.br/botijao-gas-13-kg-preco-medio-estado-anp-roraima-rio-btl96",cli:["residencial"],rev:true},
+ {d:"2026-05-01",dl:"01 mai 2026",seg:"GN",uf:"BR",tema:"precos",co:"Petrobras",t:"Petrobras sobe 19,2% o preço do gás natural às distribuidoras",s:"Reajuste trimestral da molécula; afeta gás canalizado e GNV, não o botijão. O GLP acumulava alta acima de 4% desde o início da guerra no Oriente Médio.",src:"Portal Tela / Folhapress",u:"https://www.portaltela.com/noticias/economia/2026/05/01/petrobras-aumenta-preco-do-gas-natural-em-192-a-partir-desta-sexta/",cli:["residencial","industrial","comercial"]},
+ {d:"2026-04-18",dl:"18 abr 2026",seg:"GLP",uf:"BR",tema:"precos",co:"ANP",t:"Botijão sobe pela 5ª semana seguida e chega a R$ 114,39",s:"Na semana de 12 a 18 de abril, alta de 1,75% sobre os R$ 112,42 da semana anterior.",src:"CNN Brasil",u:"https://www.cnnbrasil.com.br/economia/money/macroeconomia/diesel-e-gasolina-tem-queda-nos-precos-botijao-de-gas-sobe-pela-5a-semana/",cli:["residencial"],rev:true},
+ {d:"2026-04-01",dl:"01 abr 2026",seg:"GLP",uf:"BR",tema:"precos",co:"Petrobras / Mataripe / Abragás",t:"Leilão da Petrobras encarece o GLP e revendas ameaçam deixar o Gás do Povo",s:"Mataripe confirmou reajuste de 15,3% a partir de 1º de abril. A Abragás pede atualização dos valores de referência do programa.",src:"eixos",u:"https://eixos.com.br/combustiveis-e-bioenergia/aumento-de-glp-pela-petrobras-ameaca-gas-do-povo-dizem-revendedoras/",cli:["residencial"],rev:true},
+ {d:"2026-01-27",dl:"27 jan 2026",seg:"GN",uf:"BR",tema:"precos",co:"Petrobras",t:"Petrobras reduz em 7,8% o gás natural às distribuidoras",s:"Atualização trimestral a partir de 1º/2, já com parcela indexada ao Henry Hub. Não afeta o GLP.",src:"Agência Brasil",u:"https://agenciabrasil.ebc.com.br/economia/noticia/2026-01/petrobras-reduz-em-78-preco-de-venda-do-gas-natural-distribuidoras",cli:["residencial","industrial","comercial"]},
+ {d:"2026-09-30",dl:"set 2026",seg:"GLP",uf:"BR",tema:"mercado",co:"ANP",t:"Vendas de P13 ficam estáveis no ano: 266 milhões de botijões até agosto",s:"Em agosto, o P13 recuou 0,61%. O P-Outros (granel e acima de 13 kg) soma 1,67 milhão de toneladas no ano (+1,3%). Importações de GLP caem 31,7% no acumulado.",src:"ANP · Síntese Mensal",u:"https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/sinteses/scc/2026/sintese-volumes-agosto-2026.pdf",cli:["residencial","industrial","comercial","agro"]},
+ {d:"2026-08-18",dl:"18 ago 2026",seg:"GLP",uf:"SP",tema:"sustentabilidade",co:"Ultragaz",t:"Ultragaz inaugura estação própria de biometano em Paulínia",s:"Até 20 mil m³/dia para cerca de 200 caminhões da frota que transporta GLP.",src:"Cenário Energia",u:"https://cenarioenergia.com.br/2026/08/18/ultragaz-inaugura-estacao-de-biometano-em-paulinia-para-descarbonizar-frota-pesada/",cli:["industrial"]},
+ {d:"2026-07-17",dl:"17 jul 2026",seg:"GLP",uf:"BR",tema:"regulacao",co:"Abragás / Sindigás",t:"Quem pode encher o botijão? Revendas e grandes distribuidoras em disputa",s:"Cerca de 60 mil revendas no país. A Abragás quer que revendas de grande porte (≈15%) possam envasar; revendas ficam com ≈R$ 16 bi de um mercado de R$ 60 bi.",src:"InvestNews",u:"https://investnews.com.br/negocios/disputa-gas-cozinha-anp/amp/",rev:true,cli:["residencial"]},
+ {d:"2026-07-08",dl:"08 jul 2026",seg:"GLP",uf:"BR",tema:"mercado",co:"Sindigás",t:"GLP no campo: secagem de grãos, aviários e refrigeração do leite",s:"Conteúdo patrocinado com dados do Sindigás: 19 distribuidoras, 182 bases de envase e cerca de 59 mil revendedores atendendo o agro.",src:"Metrópoles (conteúdo patrocinado)",u:"https://www.metropoles.com/conteudo-especial/glp",cli:["agro"]},
+ {d:"2026-05-28",dl:"28 mai 2026",seg:"GLP",uf:"BR",tema:"mercado",co:"Sindigás",t:"19 distribuidoras e mais de 59 mil revendedores; 73% vinculados às grandes",s:"Segundo o Sindigás, o mercado movimenta 35 milhões de botijões por mês e as quatro maiores somam quase 90%.",src:"Sindigás",u:"https://www.sindigas.org.br/?p=45314",rev:true,cli:["residencial"]},
+ {d:"2026-05-15",dl:"15 mai 2026",seg:"GLP",uf:"BR",tema:"mercado",co:"Copa · Ultragaz · Nacional · Supergasbras",t:"Ranking 1T26: Copa 24,4%, Ultragaz 22,7%, Nacional 22% e Supergasbras 21,9%",s:"Mercado de 1,78 milhão de t no trimestre, 68% em P13. Gás do Povo já chega a 42% das revendas (≈25 mil) em 4,8 mil municípios.",src:"NeoFeed",u:"https://neofeed.com.br/negocios/uma-decisao-da-anp-pode-implodir-o-mercado-de-gas-de-cozinha-no-brasil/",rev:true,cli:["residencial"]},
+ {d:"2026-05-30",dl:"30 mai 2026",seg:"GLP",uf:"BR",tema:"regulacao",co:"Governo federal / ANP",t:"Subvenção à importação de GLP é prorrogada e chega a R$ 660 milhões",s:"Medida do regime emergencial (MP 1.349/2026) contra o choque de preços. Em consulta pública, houve crítica de que o subsídio beneficia consumidores industriais.",src:"Câmara · Decreto 12.992/2026",u:"https://www2.camara.leg.br/legin/fed/decret/2026/decreto-12992-30-maio-2026-799206-norma-pe.html",cli:["industrial"]},
+ {d:"2026-04-15",dl:"abr 2026",seg:"GLP",uf:"GO",tema:"mercado",co:"Procon Goiás",t:"Procon-GO compara preço do P13 nas revendas de Goiânia",s:"Na região Norte da capital, o botijão variou de R$ 98 a R$ 125 na retirada, diferença de 27,55%.",src:"Procon Goiás",u:"https://goias.gov.br/procon/wp-content/uploads/sites/19/2026/04/Relatorio-GAS-DE-COZINHA-2026-OFICIAL-1-1.pdf",rev:true,cli:["residencial"]},
+ {d:"2026-06-15",dl:"2026",seg:"GLP",uf:"MS",tema:"mercado",co:"Copa Energia",t:"Venda de P13 em MS é a menor desde 2018; Copa perde espaço no estado",s:"30.443 t entre janeiro e maio. A fatia da Copa no P13 estadual caiu de 62,06% (2022) para 34,58% (2026), segundo o painel da ANP.",src:"Campo Grande News",u:"https://www.campograndenews.com.br/economia/vendas-de-botijao-glp-p13-caem-em-ms-e-atingem-menor-nivel-desde-2018",cli:["residencial"]},
+ {d:"2026-01-26",dl:"26 jan 2026",seg:"GLP",uf:"RS",tema:"sustentabilidade",co:"Refinaria Riograndense",t:"ANP autoriza a primeira produção nacional de Bio-GL, na Refinaria Riograndense",s:"Refinaria do grupo Ultra com Petrobras e Braskem processa óleo vegetal; o Bio-GL é equiparado ao GLP nas regras de comercialização.",src:"Agência iNFRA",u:"https://agenciainfra.com/blog/refinaria-riograndense-e-autorizada-a-produzir-gas-de-cozinha-renovavel/",cli:["biogl","industrial"]},
+ {d:"2026-06-20",dl:"2026",seg:"GLP",uf:"BR",tema:"mercado",co:"Nacional Gás / EPE",t:"EPE projeta demanda de GLP 3,7% maior em 2026, puxada por agro e granel industrial",s:"Análise da Nacional Gás com dados de EPE e ANP sobre o 1º semestre.",src:"Nacional Gás (blog)",u:"https://nacionalgas.com.br/novidades/industrias/tendencias-do-setor/o-papel-do-glp-na-rotina-dos-brasileiros-panorama-e-tendencias-do-mercado/",cli:["agro","industrial"]},
+ {d:"2025-10-27",dl:"27 out 2025",seg:"GLP",uf:"BR",tema:"mercado",co:"Nacional Gás",t:"Nacional Gás cria o app “Minha Revenda” e quer toda a rede nele até o fim de 2026",s:"Pedidos, troca de vasilhames, estoque e crédito pelo app; meta de mais de 6 mil revendas. Investimento de R$ 150 milhões em tecnologia.",src:"Baguete / NeoFeed",u:"https://baguete.com.br/public/noticias/nacional-gas-cria-aplicativo-para-revenda-de-botijoes",rev:true,cli:["residencial","comercial"]},
+ {d:"2026-11-06",dl:"06 nov 2026",seg:"GLP",uf:"BR",tema:"regulacao",co:"CNPE / ANP",t:"CNPE aprova resolução que fecha mais uma porta para a reforma do GLP na ANP",s:"A reforma em discussão desde 2024 previa enchimento fracionado e envase de botijões de outras marcas. A regra da marca no botijão fica com a ANP.",src:"eixos",u:"https://eixos.com.br/combustiveis-e-bioenergia/governo-usa-cnpe-para-barrar-de-vez-a-reforma-do-glp-na-anp/"},
+ {d:"2026-11-03",dl:"03 nov 2026",seg:"GN",uf:"BR",tema:"mercado",co:"Abegás",t:"Consumo de gás natural cresce 15,36% no 1º semestre",s:"Média de 57,5 milhões de m³/dia. Indústria sobe 4,5% (30,8 milhões m³/dia), matéria-prima 8% e residencial 2,3%.",src:"Abegás",u:"https://www.abegas.org.br/arquivos/102613"},
+ {d:"2026-11-03",dl:"03 nov 2026",seg:"GN",uf:"BR",tema:"mercado",co:"Abegás",t:"Despacho termelétrico salta 49% e puxa a alta do semestre",s:"Usinas chegaram a 17 milhões de m³/dia; mercado livre de gás cresceu 36,8% em 12 meses.",src:"Abegás",u:"https://www.abegas.org.br/arquivos/102611"},
+ {d:"2026-11-03",dl:"03 nov 2026",seg:"GN",uf:"SP",tema:"mercado",co:"Abegás",t:"Mercado livre industrial chega a 19,8 milhões de m³/dia; SP concentra 37%",s:"Alta de 48,8% em junho frente a junho de 2025. Abegás pede que o regime de data centers (Redata) inclua projetos a gás.",src:"Abegás",u:"https://www.abegas.org.br/arquivos/102609"},
+ {d:"2026-10-31",dl:"out 2026",seg:"GN",uf:"MG",tema:"mercado",co:"Gasmig",t:"Gasmig mantém tarifas sem reajuste pela 2ª vez em 2026",s:"Industrial, cogeração, veicular e GNC/GNL ficam estáveis a partir de 1º de novembro.",src:"Agência Minas",u:"https://www.agenciaminas.mg.gov.br/noticia/gasmig-mantem-tarifas-sem-reajuste-pela-segunda-vez-consecutiva-em-2026"},
+ {d:"2026-10-23",dl:"out 2026",seg:"GN",uf:"MG",tema:"sustentabilidade",co:"Gasmig",t:"Gasmig prorroga até 6/11 chamada pública para comprar biometano",s:"É a quinta iniciativa do tipo da distribuidora em 2026, com três modelos de fornecimento.",src:"Diário do Comércio",u:"https://diariodocomercio.com.br/economia/gasmig-prorroga-prazo-propostas-chamada-publica-aquisicao-biometano/"},
+ {d:"2026-10-13",dl:"13 out 2026",seg:"GLP",uf:"BR",tema:"social",co:"Gás do Povo",t:"Recargas de outubro do Gás do Povo liberadas desde o dia 10",s:"Famílias têm até 9 de novembro para retirar o botijão nas revendas credenciadas. Programa substitui o Auxílio Gás desde março.",src:"BP Money",u:"https://bpmoney.com.br/?p=426253"},
+ {d:"2026-10-08",dl:"08 out 2026",seg:"GN",uf:"MG",tema:"sustentabilidade",co:"Gasmig",t:"Gasmig busca contratos de biometano de até 10 anos",s:"Distribuidora espera contratar até 250 mil m³/dia de biometano em ondas nos próximos anos.",src:"TAGD",u:"https://tagdlaw.com.br/?p=16258"},
+ {d:"2026-09-30",dl:"30 set 2026",seg:"GLP",uf:"BA",tema:"social",co:"Gás do Povo",t:"Gás do Povo chega a 1,8 milhão de famílias na Bahia",s:"Em setembro, 1.804.566 famílias e mais de 5,1 milhões de pessoas atendidas no estado.",src:"Mix Vale",u:"https://www.mixvale.com.br/2026/09/30/gas-do-povo-libera-recarga-de-botijao-para-18-milhao-de-familias-na-bahia/"},
+ {d:"2026-09-28",dl:"28 set 2026",seg:"GLP",uf:"PA",tema:"social",co:"Gás do Povo",t:"Pará passa de 1 milhão de famílias no Gás do Povo",s:"Programa alcança 3,19 milhões de pessoas no estado, com 1.150 revendas credenciadas.",src:"O Liberal",u:"https://www.oliberal.com/economia/gas-do-povo-atende-mais-de-1-milhao-de-familias-no-para-em-setembro-1.1174286"},
+ {d:"2026-09-28",dl:"28 set 2026",seg:"GLP",uf:"MS",tema:"social",co:"Gás do Povo",t:"Mais de 142 mil famílias de MS recebem o Gás do Povo em setembro",s:"Benefício chega a 461 mil pessoas no estado; vales liberados todo dia 10.",src:"Midiamax",u:"https://midiamax.com.br/cotidiano/2026/mais-142-mil-familias-ms-foram-beneficiadas-programa-gas-povo-setembro/"},
+ {d:"2026-09-01",dl:"01 set 2026",seg:"GLP",uf:"SP",tema:"mercado",co:"Consigaz",t:"Consigaz aposta em agro, dados e IA para crescer",s:"CEO diz que a empresa se reposicionou como empresa de energia, acompanha biogás e GNC, mas mantém o GLP como principal aposta.",src:"Times Brasil (CNBC)",u:"https://timesbrasil.com.br/empresas-e-negocios/consigaz-aposta-em-ia-dados-e-agro-para-ampliar-mercado/"},
+ {d:"2026-08-13",dl:"13 ago 2026",seg:"GLP",uf:"BR",tema:"resultados",co:"Ultragaz",t:"Ultragaz vende 418 mil toneladas no 2T26, queda de 3% no ano",s:"Menor demanda nos segmentos industrial e envasado, pela dinâmica competitiva. Ultrapar reduz alavancagem a 0,9x.",src:"Cenário Energia",u:"https://cenarioenergia.com.br/2026/08/13/ultrapar-eleva-ebitda-em-70-e-reduz-alavancagem-para-09x-no-2o-trimestre/"},
+ {d:"2026-07-30",dl:"30 jul 2026",seg:"GN",uf:"BR",tema:"regulacao",co:"CNPE / MME",t:"Governo prevê gás da União a US$ 5/MMBtu para a indústria",s:"Resolução do CNPE cria leilões de curto e longo prazo; primeiro leilão previsto para o último bimestre de 2026.",src:"XP / Agência iNFRA",u:"https://conteudos.xpi.com.br/?p=1551159"},
+ {d:"2026-07-03",dl:"03 jul 2026",seg:"GLP",uf:"BR",tema:"sustentabilidade",co:"Supergasbras",t:"Supergasbras fecha 1º contrato de BioGL certificado ISCC PLUS do país",s:"Acordo com a Ortobras começa com 5% do volume anual da indústria e prevê rampa de descarbonização até 2027.",src:"Cenário Energia",u:"https://cenarioenergia.com.br/2026/07/03/supergasbras-inaugura-mercado-de-biogl-no-brasil-com-contrato-certificado-iscc-plus/"},
+ {d:"2026-06-19",dl:"19 jun 2026",seg:"GN",uf:"RS",tema:"expansao",co:"Sulgás",t:"Sulgás investe R$ 163,7 milhões em 2026",s:"Expansão de rede, biometano (BioHub em Esteio) e segurança. Meta de 122 mil clientes no ano, 76% acima de 2021.",src:"Jornal NH",u:"https://pdf.gruposinos.com.br/jornalnh/2026/06/19/0959c4/pdf/YZ012_19-DIG.pdf"},
+ {d:"2026-06-12",dl:"12 jun 2026",seg:"GLP",uf:"BR",tema:"regulacao",co:"ANP",t:"ANP coloca a reforma do GLP “na geladeira” para focar na subvenção",s:"A pedido do governo federal, a agência prioriza fiscalização e o Gás do Povo. Sindigás alerta para insegurança jurídica.",src:"Agência iNFRA",u:"https://agenciainfra.com/blog/anp-colocara-reforma-do-glp-na-geladeira-para-focar-em-subvencao/"},
+ {d:"2026-05-14",dl:"14 mai 2026",seg:"GLP",uf:"BR",tema:"comunicacao",co:"Copa Energia",t:"Purpple assume a comunicação integrada de Copa Energia, Copagaz e Liquigás",s:"Agência cuida de posicionamento, campanhas 360° e canais digitais do grupo, presente em 24 estados e no DF.",src:"Nosso Meio",u:"https://nossomeio.com.br/purpple-conquista-copa-energia-e-assume-comunicacao-integrada-de-copagaz-e-liquigas/"},
+ {d:"2026-05-08",dl:"08 mai 2026",seg:"GN",uf:"MG",tema:"resultados",co:"Gasmig",t:"Gasmig lucra R$ 100,6 milhões no 1T26",s:"Investimentos de R$ 38,1 milhões em infraestrutura no trimestre, com foco em expansão.",src:"Agência Minas",u:"https://www.agenciaminas.mg.gov.br/noticia/gasmig-mantem-solidez-no-primeiro-trimestre-de-2026-com-foco-em-expansao-e-eficiencia"},
+ {d:"2026-05-06",dl:"06 mai 2026",seg:"GN",uf:"MG",tema:"expansao",co:"Gasmig",t:"Gasmig conclui gasoduto do Centro-Oeste mineiro em 2026",s:"Últimos 35 km de ramais previstos para este ano.",src:"Brasil Energia",u:"https://brasilenergia.com.br/brasilenergy/oil-gas/gasmig-to-complete-center-west-gas-pipeline-this-year"},
+ {d:"2026-04-17",dl:"17 abr 2026",seg:"GN",uf:"BR",tema:"mercado",co:"Abegás",t:"Consumo de gás natural cresceu 3,8% em 2025",s:"Residencial foi o destaque, com +8,8%. Indústria subiu 5,3%, para 29,9 milhões de m³/dia.",src:"Abegás",u:"https://www.abegas.org.br/arquivos/99939"},
+ {d:"2026-04-02",dl:"02 abr 2026",seg:"GLP",uf:"RS",tema:"sustentabilidade",co:"Supergasbras",t:"Supergasbras faz a primeira importação de BioGL do Brasil",s:"Navio chega ao Tergasul (RS) com cerca de 1,7 mil toneladas vindas da Europa. Foco inicial em indústria e agro.",src:"eixos / Jornal do Comércio",u:"https://eixos.com.br/combustiveis-e-bioenergia/biocombustiveis/supergasbras-faz-primeira-importacao-de-gas-liquefeito-renovavel-do-brasil/"},
+ {d:"2026-04-01",dl:"01 abr 2026",seg:"GN",uf:"PE",tema:"mercado",co:"Copergás",t:"Guilherme Cavalcanti assume a presidência da Copergás",s:"Governo de Pernambuco anuncia novo diretor-presidente da distribuidora estadual.",src:"Portal de Prefeitura",u:"https://portaldeprefeitura.com.br/bastidores-da-politica/governo-estado-anuncia-guilherme-cavalcanti-novo-presidente-copergas/618259/"},
+ {d:"2026-03-24",dl:"24 mar 2026",seg:"GLP",uf:"BR",tema:"mercado",co:"Sindigás / Petrobras",t:"Sindigás teme alta do GLP após leilão programado pela Petrobras",s:"Petrobras vende fatias crescentes do GLP às distribuidoras via leilão desde novembro de 2024.",src:"IstoÉ Dinheiro",u:"https://istoedinheiro.com.br/sindigas-teme-alta-do-glp-apos-petrobras-programar-leilao-para-o-dia-27-2"},
+ {d:"2026-03-23",dl:"23 mar 2026",seg:"GLP",uf:"BR",tema:"social",co:"Gás do Povo",t:"Gás do Povo chega a quase 15 milhões de famílias",s:"Nova etapa inclui 9,4 milhões de famílias, com R$ 957,2 milhões só em março.",src:"eixos",u:"https://eixos.com.br/gas-natural/gas-do-povo-chega-a-15-milhoes-de-familias-com-nova-expansao/"},
+ {d:"2026-03-23",dl:"mar 2026",seg:"GN",uf:"AM",tema:"expansao",co:"Cigás",t:"Cigás apresenta expansão da rede e busca novos clientes",s:"Na Amazonas Óleo, Gás & Energia, a distribuidora mostrou o fluxo do gás de Urucu e prospectou contratos.",src:"Brasil Energia",u:"https://brasilenergia.com.br/brasilenergia/amazonas-oge-2026/cigas-apresenta-expansao-da-rede-e-busca-novos-clientes"},
+ {d:"2026-03-20",dl:"20 mar 2026",seg:"GN",uf:"MG",tema:"resultados",co:"Gasmig",t:"Gasmig fecha 2025 com lucro de R$ 515 milhões",s:"1,03 bilhão de m³ comercializados, faturamento de R$ 3,09 bilhões e presença em 56 municípios.",src:"Agência Minas",u:"https://www.agenciaminas.mg.gov.br/noticia/gasmig-encerra-2025-com-lucro-liquido-de-r-515-milhoes-e-investimentos-de-r-314-milhoes-129422"},
+ {d:"2026-03-17",dl:"17 mar 2026",seg:"GN",uf:"SP",tema:"resultados",co:"Comgás",t:"Moody’s atribui AAA.br à 15ª emissão de debêntures da Comgás",s:"Rating da companhia segue AAA.br com perspectiva estável.",src:"Investidor10 / Moody’s",u:"https://investidor10.com.br/acoes/link_comunicado/CGAS3/34276"},
+ {d:"2026-03-02",dl:"02 mar 2026",seg:"GLP",uf:"BR",tema:"mercado",co:"Sindigás / EPE",t:"Gás do Povo vira lei e GLP vive crescimento recorde",s:"Lei 15.348/2026 torna o programa permanente. Brasil fechou 2025 com 7,7 milhões de toneladas de GLP vendidas.",src:"Cenário Energia",u:"https://cenarioenergia.com.br/2026/03/02/gas-do-povo-avanca-com-crescimento-recorde-do-glp-e-sindigas-cobra-coerencia-regulatoria-para-sustentar-expansao/"},
+ {d:"2026-02-27",dl:"27 fev 2026",seg:"GN",uf:"PR",tema:"mercado",co:"Abegás / Compagas",t:"Abegás elege conselho 2026-2028 presidido por Rafael Lamastra Jr. (Compagas)",s:"Agenda: segurança jurídica, oferta de gás, Gas Release, biometano e competitividade industrial.",src:"Agência iNFRA",u:"https://agenciainfra.com/blog/?p=37177"},
+ {d:"2026-02-11",dl:"11 fev 2026",seg:"GLP",uf:"CE",tema:"expansao",co:"Supergasbras / Ultragaz",t:"Supergasbras investe R$ 500 mi em 2 milhões de botijões e terminal no Pecém",s:"Terminal de importação de GLP no Ceará, em parceria com a Ultragaz, para atender o Nordeste. Capex adicional de R$ 300 mi em 2026.",src:"NeoFeed",u:"https://neofeed.com.br/negocios/o-plano-da-supergasbras-para-colocar-2-milhoes-de-novos-botijoes-no-mercado/"},
+ {d:"2026-01-13",dl:"13 jan 2026",seg:"GN",uf:"RJ",tema:"mercado",co:"Naturgy (CEG / CEG Rio)",t:"Naturgy reduz tarifas de gás no Rio a partir de fevereiro",s:"Na CEG, queda média de 4,44% no residencial e 11,63% na indústria, refletindo o preço da Petrobras.",src:"Times Brasil (CNBC)",u:"https://timesbrasil.com.br/brasil/reducao-de-preco-da-petrobras-faz-naturgy-reduzir-tarifas-de-gas-residencial-comercial-e-industrial-no-rio/"},
+ {d:"2026-01-05",dl:"05 jan 2026",seg:"GLP",uf:"BR",tema:"sustentabilidade",co:"Supergasbras",t:"Supergasbras aposta em ciência nacional para viabilizar o BioGL",s:"Pesquisas com UFRJ, UFF e UFBA: óleo residual, etanol e DME renovável como rotas.",src:"Cenário Energia",u:"https://cenarioenergia.com.br/2026/01/05/supergasbras-aposta-em-ciencia-nacional-para-viabilizar-o-biogl-e-acelerar-a-descarbonizacao-do-setor-de-gas/"},
+ {d:"2026-01-02",dl:"2026",seg:"GN",uf:"MS",tema:"resultados",co:"MSGás",t:"MSGás supera meta de lucro em 2025, mas executa 61% do investimento",s:"Lucro de R$ 49,5 mi; 27,3 mil clientes ativos. Plano prevê R$ 373 mi entre 2026 e 2030.",src:"Midiamax",u:"https://midiamax.com.br/politica/transparencia/2026/msgas-supera-metas-lucro-2025-frustra-39-investimentos-planejados/"},
+ {d:"2026-01-01",dl:"2026",seg:"AMBOS",uf:"BR",tema:"mercado",co:"Supergasbras",t:"Mercado de GLP não cresce como esperado com o Gás do Povo, diz Supergasbras",s:"Empresa pede estudos sobre o impacto real do programa. BioGL já atende clientes industriais.",src:"eixos (vídeo)",u:"https://eixos.com.br/videos-e-podcasts/ao-vivo/mercado-de-glp-nao-cresce-como-esperado-com-o-gas-do-povo-e-supergasbras-pede-estudos-sobre-o-real-impacto-do-programa/"},
+ {d:"2025-12-31",dl:"recente",seg:"GN",uf:"PR",tema:"sustentabilidade",co:"Compagas",t:"Londrina e Cambé são as primeiras cidades do PR com rede local de biometano",s:"Compagas investiu mais de R$ 10 milhões e mira 3 mil unidades consumidoras no Norte do Paraná até 2029.",src:"eixos",u:"https://eixos.com.br/gas-natural/biogas/londrina-e-cambe-tornam-se-as-primeiras-cidades-do-parana-com-rede-local-de-biometano/"},
+ {d:"2025-12-30",dl:"recente",seg:"GN",uf:"RJ",tema:"regulacao",co:"Naturgy (CEG / CEG Rio)",t:"Rio vai relicitar as concessões da CEG e CEG Rio, que vencem em julho de 2027",s:"Naturgy defende a prorrogação e propõe R$ 11,9 bi em 30 anos na CEG e R$ 4 bi na CEG Rio.",src:"eixos",u:"https://eixos.com.br/gas-natural/mercado-de-gas/governo-do-rio-vai-relicitar-as-concessoes-de-gas-da-ceg-e-ceg-rio/"},
+ {d:"2025-05-29",dl:"mai 2025",seg:"GN",uf:"PE",tema:"expansao",co:"Copergás",t:"Copergás chega a 100 mil clientes residenciais e lidera o Nordeste",s:"Bahiagás vem em seguida, com 83 mil. Piauí ainda não tem rede de gás natural em operação.",src:"Movimento Econômico",u:"https://movimentoeconomico.com.br/economia/combustivel/2025/05/29/gas-natural-copergas-alcanca-100-mil-lares-e-lidera-no-nordeste/"}
+];
+
+/* segmentos de cliente e revendas para as notícias que já estavam no radar */
+const TAGS = {
+ "barrar-de-vez-a-reforma":{cli:["residencial"],rev:true},
+ "102613":{cli:["industrial","residencial"]},
+ "102611":{cli:["industrial"]},
+ "102609":{cli:["industrial"]},
+ "sem-reajuste-pela-segunda":{cli:["industrial","comercial"]},
+ "prorroga-prazo-propostas":{cli:["industrial"]},
+ "?p=426253":{cli:["residencial"],rev:true},
+ "?p=16258":{cli:["industrial"]},
+ "1-8-milhao-de-familias":{cli:["residencial"],rev:true},
+ "1-milhao-de-familias-no-para":{cli:["residencial"],rev:true},
+ "mais-142-mil-familias":{cli:["residencial"],rev:true},
+ "consigaz-aposta":{cli:["agro","industrial"]},
+ "reduz-alavancagem":{cli:["industrial","residencial"]},
+ "?p=1551159":{cli:["industrial"]},
+ "contrato-certificado-iscc":{cli:["biogl","industrial"]},
+ "YZ012_19":{cli:["residencial","industrial"]},
+ "na-geladeira":{cli:["residencial"],rev:true},
+ "purpple":{cli:["residencial"]},
+ "centro-oeste-gas-pipeline":{cli:["industrial"]},
+ "99939":{cli:["residencial","industrial"]},
+ "primeira-importacao-de-gas-liquefeito":{cli:["biogl","industrial","agro"]},
+ "cigas-apresenta":{cli:["industrial"]},
+ "leilao-para-o-dia-27":{cli:["residencial"]},
+ "chega-a-15-milhoes":{cli:["residencial"],rev:true},
+ "crescimento-recorde-do-glp":{cli:["residencial"],rev:true},
+ "2-milhoes-de-novos-botijoes":{cli:["residencial"]},
+ "reduzir-tarifas-de-gas":{cli:["residencial","comercial","industrial"]},
+ "ciencia-nacional":{cli:["biogl"]},
+ "nao-cresce-como-esperado":{cli:["residencial","biogl","industrial"]},
+ "londrina-e-cambe":{cli:["residencial","comercial"]},
+ "100-mil-lares":{cli:["residencial"]}
+};
+["leilao-para-o-dia-27","reduzir-tarifas-de-gas","sem-reajuste-pela-segunda"].forEach(k=>NEWS.forEach(n=>{if(n.u.includes(k))n.tema="precos"}));
+NEWS.forEach(n=>{n.prim=/gov\.br|abegas\.org|sindigas\.org|camara\.leg|planalto\.gov/.test(n.u)});
+NEWS.forEach(n=>{n.cli=n.cli||[];for(const k in TAGS){if(n.u.includes(k)){const t=TAGS[k];n.cli=[...new Set([...n.cli,...(t.cli||[])])];if(t.rev)n.rev=true}}});
+
+const CLI = {
+ industrial:{l:"Industrial",i:"factory"},
+ residencial:{l:"Residencial",i:"home"},
+ agro:{l:"Agronegócio",i:"agriculture"},
+ comercial:{l:"Comercial",i:"storefront"},
+ biogl:{l:"BioGL",i:"eco"}
+};
+
+const PRICE = [
+ {d:"2026-01-15",v:110.31,l:"jan/26 · média mensal oficial"},
+ {d:"2026-02-15",v:110.00,l:"fev/26 · média mensal oficial"},
+ {d:"2026-03-15",v:110.15,l:"mar/26 · média mensal oficial"},
+ {d:"2026-04-15",v:113.69,l:"abr/26 · média mensal oficial"},
+ {d:"2026-05-15",v:114.71,l:"mai/26 · média mensal oficial"},
+ {d:"2026-06-15",v:114.52,l:"jun/26 · média mensal oficial"},
+ {d:"2026-07-15",v:114.22,l:"jul/26 · média mensal oficial"},
+ {d:"2026-08-15",v:113.90,l:"ago/26 · média mensal oficial"},
+ {d:"2026-09-15",v:114.33,l:"set/26 · média mensal oficial"},
+ {d:"2026-10-31",v:115.13,l:"semana de 25 a 31/10/26 · pesquisa semanal ANP",m:true}
+];
+const COMP = {m:["Produtor","ICMS","Distribuição","Revenda"],a:[38.38,19.11,22.17,30.65],b:[36.17,19.11,23.72,34.90],u:"R$",la:"jan/26",lb:"ago/26"};
+const COMP_M = {m:["jan","fev","mar","abr","mai","jun","jul","ago"],prod:[38.38,36.21,36.71,37.91,36.27,36.41,36.39,36.17],dist:[22.17,24.19,22.95,25.51,25.98,24.79,24.02,23.72],rev:[30.65,30.49,31.38,31.16,33.35,34.21,34.71,34.90],fin:[110.31,110.00,110.15,113.69,114.71,114.52,114.22,113.90]};
+const UF_PRICE = {AC:126.20,AP:128.64,AM:128.63,PA:116.58,RO:127.43,RR:142.06,TO:132.63,AL:106.15,BA:115.07,CE:115.95,MA:126.62,PB:108.87,PE:103.98,PI:112.29,RN:114.75,SE:113.22,ES:105.76,MG:111.07,RJ:102.00,SP:115.84,PR:111.80,RS:117.59,SC:122.87,DF:106.28,GO:113.92,MT:127.47,MS:119.14};
+const SHARE_HIST = [
+ {n:"Copa Energia",x:"Copagaz + Liquigás",v:{"2016":null,"jan–nov/25":23.77,"jan–mai/26":23.81},note:"Em 2016, a Liquigás (então da Petrobras) tinha 21,6%"},
+ {n:"Ultragaz",x:"inclui a Bahiana, como na ANP",v:{"2016":23.9,"jan–nov/25":22.36,"jan–mai/26":21.92}},
+ {n:"Supergasbras",me:true,v:{"2016":20.5,"jan–nov/25":21.22,"jan–mai/26":21.49},note:"Incorporou a Minasgás em out/2022 (ANP)"},
+ {n:"Nacional Gás",v:{"2016":19.3,"jan–nov/25":21.36,"jan–mai/26":21.37}},
+ {n:"Consigaz",x:"inclui Gasball, como na ANP",v:{"2016":null,"jan–nov/25":7.22,"jan–mai/26":7.31}}
+];
+const SHARE_READS = [
+ {i:"balance",sig:"watch",sl:"Equilíbrio",t:"Quatro grupos separados por 2,4 pontos",p:"De janeiro a maio de 2026, a Copa lidera com 23,81% e a Nacional é a 4ª com 21,37%. As quatro maiores somam 88,6%; com a Consigaz, 95,9%.",so:"Cada ponto de share vale cerca de 77 mil toneladas por ano num mercado de 7,67 milhões de t (2025)."},
+ {i:"trending_up",sig:"up",sl:"Supergasbras",t:"Supergasbras sobe para 3ª no ano",p:"Passou de 21,22% (jan–nov/25) para 21,49% (jan–mai/26), à frente da Nacional. A Ultragaz recuou de 22,36% para 21,92%.",so:"Ganho de 0,27 p.p. em poucos meses, com a Ultragaz a 0,43 p.p. de distância."},
+ {i:"merge",sig:"watch",sl:"Consolidação",t:"Fusões redesenharam o ranking",p:"A Liquigás saiu da Petrobras em 2020 e virou Copa Energia com a Copagaz. A Supergasbras incorporou a Minasgás em 2022 e opera engarrafadoras em consórcio com Ultragaz e Bahiana.",so:"Na ANP, Ultragaz e Bahiana aparecem somadas; Consigaz inclui a Gasball."},
+ {i:"map",sig:"risk",sl:"Regional",t:"Sudeste concentra 42% do consumo",p:"Jan–mai/26 (Sindigás/ANP): Sudeste 42,3%, Nordeste 24,6%, Sul 17,1%, Centro-Oeste 9,0% e Norte 6,9%. A liderança muda de estado para estado.",so:"Use o Painel Dinâmico de GLP da ANP para ver o share por UF antes de cada plano regional."}
+];
+const REG_GLP = [
+ {n:"Sudeste",v:42.3,x:"1.304.162 t"},{n:"Nordeste",v:24.6,x:"759.171 t"},{n:"Sul",v:17.1,x:"527.275 t"},{n:"Centro-Oeste",v:9.0,x:"277.576 t"},{n:"Norte",v:6.9,x:"213.192 t"}
+];
+const ABEGAS_KPIS = [
+ {i:"group",l:"Clientes de gás canalizado",v:"5,1",u:"mi",dt:"+6,2% em 12 meses (jun/26)",src:"Abegás",seg:"GN"},
+ {i:"route",l:"Rede de distribuição",v:"47,4",u:"mil km",dt:"+3,65% · 520 municípios",src:"Abegás",seg:"GN"},
+ {i:"handshake",l:"Mercado livre (jun/26)",v:"34,6",u:"mi m³/dia",dt:"+36,8% vs jun/25",src:"Abegás",seg:"GN"},
+ {i:"history",l:"Consumo médio em 2025",v:"54,5",u:"mi m³/dia",dt:"+3,8% vs 2024",src:"Abegás",seg:"GN"}
+];
+
+const TEMAS = {
+ mercado:{l:"Mercado",i:"monitoring"},
+ regulacao:{l:"Regulação",i:"gavel"},
+ expansao:{l:"Expansão",i:"add_road"},
+ resultados:{l:"Resultados",i:"payments"},
+ sustentabilidade:{l:"Sustentabilidade",i:"eco"},
+ comunicacao:{l:"Comunicação",i:"campaign"},
+ social:{l:"Gás do Povo",i:"volunteer_activism"},
+ precos:{l:"Preços e reajustes",i:"sell"}
+};
+
+const UFS = {
+ RR:{n:"Roraima",r:"N",c:2,y:0}, AP:{n:"Amapá",r:"N",c:4,y:0},
+ AM:{n:"Amazonas",r:"N",c:1,y:1}, PA:{n:"Pará",r:"N",c:3,y:1}, MA:{n:"Maranhão",r:"NE",c:4,y:1}, CE:{n:"Ceará",r:"NE",c:5,y:1}, RN:{n:"Rio Grande do Norte",r:"NE",c:6,y:1},
+ AC:{n:"Acre",r:"N",c:0,y:2}, RO:{n:"Rondônia",r:"N",c:1,y:2}, TO:{n:"Tocantins",r:"N",c:3,y:2}, PI:{n:"Piauí",r:"NE",c:4,y:2}, PE:{n:"Pernambuco",r:"NE",c:5,y:2}, PB:{n:"Paraíba",r:"NE",c:6,y:2},
+ MT:{n:"Mato Grosso",r:"CO",c:2,y:3}, DF:{n:"Distrito Federal",r:"CO",c:3,y:3}, BA:{n:"Bahia",r:"NE",c:4,y:3}, SE:{n:"Sergipe",r:"NE",c:5,y:3}, AL:{n:"Alagoas",r:"NE",c:6,y:3},
+ MS:{n:"Mato Grosso do Sul",r:"CO",c:2,y:4}, GO:{n:"Goiás",r:"CO",c:3,y:4}, MG:{n:"Minas Gerais",r:"SE",c:4,y:4}, ES:{n:"Espírito Santo",r:"SE",c:5,y:4},
+ PR:{n:"Paraná",r:"S",c:2,y:5}, SP:{n:"São Paulo",r:"SE",c:3,y:5}, RJ:{n:"Rio de Janeiro",r:"SE",c:4,y:5},
+ SC:{n:"Santa Catarina",r:"S",c:2,y:6},
+ RS:{n:"Rio Grande do Sul",r:"S",c:2,y:7}
+};
+const REG = {N:"Norte",NE:"Nordeste",CO:"Centro-Oeste",SE:"Sudeste",S:"Sul"};
+
+/* distribuidora de gás canalizado por UF (somente as confirmadas em fontes públicas) */
+const GN_UF = {
+ SP:"Comgás · Necta · Naturgy (SPS)", RJ:"Naturgy — CEG e CEG Rio", MG:"Gasmig", PR:"Compagas", SC:"SCGás", RS:"Sulgás",
+ MS:"MSGás", ES:"ES Gás", BA:"Bahiagás", PE:"Copergás", CE:"Cegás", RN:"Potigás", PB:"PBGás", AL:"Algás", SE:"Sergas",
+ AM:"Cigás", PA:"Gás do Pará", MA:"Gasmar", PI:"Gaspisa (sem operação comercial)"
+};
+/* Gás do Povo — números estaduais publicados */
+const GDP_UF = { BA:"1,80 mi famílias (set/26)", PA:"> 1 mi famílias (set/26)", MS:"142 mil famílias (set/26)" };
+
+const KPIS = [
+ {i:"propane_tank",l:"GLP vendido no Brasil",v:"7,67",u:"mi t",dt:"2025 · 3,08 mi t em jan–mai/26",src:"Sindigás com dados da ANP",seg:"GLP"},
+ {i:"family_restroom",l:"Famílias no Gás do Povo",v:"≈15",u:"mi",dt:"desde mar/26",src:"MDS via eixos",seg:"GLP"},
+ {i:"inventory_2",l:"Botijões de até 13 kg / mês",v:"33,5",u:"mi",dt:"Panorama jun/26",src:"Sindigás",seg:"GLP"},
+ {i:"local_fire_department",l:"Consumo de gás natural",v:"57,5",u:"mi m³/dia",dt:"+15,36% no 1S26",src:"Abegás",seg:"GN"},
+ {i:"factory",l:"Mercado livre industrial",v:"19,8",u:"mi m³/dia",dt:"+48,8% jun/26",src:"Abegás",seg:"GN"},
+ {i:"bolt",l:"Térmicas a gás",v:"17",u:"mi m³/dia",dt:"+49% no 1S26",src:"Abegás",seg:"GN"}
+];
+
+const SHARES = {
+ "2026":{sub:"% das vendas nacionais de GLP (envasado + granel) · janeiro a maio de 2026",src:"Fonte: Sindigás, Panorama GLP em Movimento jun/2026, com dados do Painel Dinâmico da ANP",rows:[
+  {n:"Copa Energia",v:23.81,x:"Copagaz + Liquigás"},
+  {n:"Ultragaz",v:21.92,x:"inclui a Bahiana"},
+  {n:"Supergasbras",v:21.49,me:true},
+  {n:"Nacional Gás",v:21.37},
+  {n:"Consigaz",v:7.31,x:"inclui Gasball"},
+  {n:"Amazongás",v:0.85},
+  {n:"Gaslog",v:0.25},
+  {n:"Outros",v:3.01}]},
+ "2025":{sub:"% das vendas nacionais de GLP (envasado + granel) · janeiro a novembro de 2025",src:"Fonte: Sindigás, Panorama GLP em Movimento dez/2025, com dados do Painel Dinâmico da ANP",rows:[
+  {n:"Copa Energia",v:23.77,x:"Copagaz + Liquigás"},
+  {n:"Ultragaz",v:22.36,x:"inclui a Bahiana"},
+  {n:"Nacional Gás",v:21.36},
+  {n:"Supergasbras",v:21.22,me:true},
+  {n:"Consigaz",v:7.22,x:"inclui Gasball"},
+  {n:"Amazongás",v:0.85},
+  {n:"Gaslog",v:0.29},
+  {n:"Outros",v:2.94}]}
+};
+const ANP_KPIS = [
+ {i:"propane_tank",l:"P13 vendidos · jan–ago/26",v:"266,0",u:"mi botijões",dt:"0,0% vs 2025",src:"ANP · Síntese ago/26",seg:"GLP"},
+ {i:"local_shipping",l:"P-Outros · jan–ago/26",v:"1.674,8",u:"mil t",dt:"+1,3% vs 2025",src:"ANP · Síntese ago/26",seg:"GLP"},
+ {i:"directions_boat",l:"Importações de GLP · jan–ago",v:"807",u:"mil t",dt:"−31,7% vs 2025",src:"ANP · Síntese ago/26",seg:"GLP"},
+ {i:"public",l:"Fatia importada em ago/26",v:"17,7",u:"%",dt:"15,5% em ago/25",src:"ANP · Argentina 54%, EUA 44%",seg:"GLP"},
+ {i:"storefront",l:"Revendas autorizadas",v:"≈59",u:"mil",dt:"19 distribuidoras autorizadas",src:"Sindigás (jun/26)",seg:"GLP"},
+ {i:"inventory_2",l:"Botijões de 13 kg em circulação",v:"134,6",u:"mi",dt:"1,9 mi requalificados/mês",src:"Sindigás (jun/26)",seg:"GLP"}
+];
+const P13 = {m:["jan","fev","mar","abr","mai","jun","jul","ago"],a:[32.2,30.0,31.7,32.5,34.9,33.8,36.4,34.4],b:[31.1,29.7,35.3,32.1,32.4,34.6,36.7,34.2],u:"mi botijões"};
+const PO = {m:["jan","fev","mar","abr","mai","jun","jul","ago"],a:[191,189,192,201,214,214,235,218],b:[185,186,210,201,212,223,237,221],u:"mil t"};
+const ANP_LINKS = [
+ {i:"monitoring",t:"Painel Dinâmico do Mercado de GLP",d:"Vendas por distribuidora, embalagem (P13, P45, granel) e UF",u:"https://www.gov.br/anp/pt-br/centrais-de-conteudo/paineis-dinamicos-da-anp/paineis-dinamicos-do-abastecimento/painel-dinamico-do-mercado-brasileiro-de-glp"},
+    {i:"table_view",t:"Dados de mercado de GLP",d:"Vendas_Atual, Vendas_UF_Atual e histórico desde 2007",u:"https://www.gov.br/anp/pt-br/assuntos/distribuicao-e-revenda/distribuidor/dados-de-mercado-glp"},
+ {i:"description",t:"Síntese Mensal · agosto/2026",d:"Vendas de P13 e P-Outros e importações de GLP",u:"https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/sinteses/scc/2026/sintese-volumes-agosto-2026.pdf"},
+ {i:"storefront",t:"Cadastro das revendas de GLP",d:"Dados abertos das revendas autorizadas",u:"https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/dados-cadastrais-das-revendas-de-gas-liquefeito-de-petroleo"},
+ {i:"payments",t:"Composição do preço do P13 · 2026",d:"Produtor, ICMS e margens por estado, mês a mês",u:"https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arq-precos/tabelas/2026-margens-p13-tabela.pdf"},
+ {i:"sell",t:"Série histórica de preços do GLP",d:"Levantamento semanal de preços do P13",u:"https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/serie-historica-de-precos-de-combustiveis"},
+ {i:"insights",t:"Sindigás · Dados ANP",d:"Planilha de vendas por recipiente até set/2026",u:"https://www.sindigas.org.br/?page_id=3026"},
+ {i:"pie_chart",t:"Sindigás · Market share (consumo aparente)",d:"Painel com dados da ANP, atualizado em 23/10/2026",u:"https://www.sindigas.org.br/?page_id=24243"},
+ {i:"menu_book",t:"Sindigás · Panorama GLP em Movimento",d:"Edição jun/2026: share, consumo por região e grandes números",u:"https://www.sindigas.org.br/Download/PANORAMAS/NOVO%20GLP%20EM%20MOVIMENTO_JUN_2026.pdf"},
+ {i:"local_fire_department",t:"Abegás · balanço do 1º semestre de 2026",d:"Consumo por segmento, clientes, rede e mercado livre",u:"https://www.abegas.org.br/arquivos/102613"},
+ {i:"history",t:"Abegás · balanço de 2025",d:"Consumo anual, clientes por região e mercado livre",u:"https://www.abegas.org.br/arquivos/99939"}
+];
+const SEGS = [
+ {n:"Indústria",v:30.8,lab:"30,8 · +4,5%",x:"+4,5% vs 1S25"},
+ {n:"Geração elétrica",v:17.0,lab:"17,0 · +49%",x:"+49% (era 11,4 no 1S25)"},
+ {n:"GNV",v:3.8,lab:"3,8 · −7,4%",x:"−7,4% vs 1S25"},
+ {n:"Residencial",v:1.5,lab:"1,5 · +2,3%",x:"+2,3% vs 1S25"},
+ {n:"Cogeração",v:1.2,lab:"1,2 · −5,3%",x:"−5,3% vs 1S25"},
+ {n:"Matéria-prima",v:0.556,lab:"0,56 · +8%",x:"556,3 mil m³/dia, +8%"}
+];
+
+const COMPANIES = [
+ {s:"GLP",n:"Copa Energia",ab:"CE",g:"Copagaz + Liquigás",area:"24 estados + DF",f:"Líder: 23,81% em jan–mai/26 (Sindigás/ANP); marcas atendem 10,5 mi residências/mês",mv:"Contratou a Purpple para a comunicação integrada das marcas (mai/26). Já atua em gás natural e biometano (comprou a CTG).",l:[["Site","https://www.copaenergia.com.br"]]},
+ {s:"GLP",n:"Nacional Gás",ab:"NG",g:"Grupo Edson Queiroz",area:"Nacional",f:"21,37% em jan–mai/26, 4ª maior (Sindigás/ANP)",mv:"App “Minha Revenda” para digitalizar mais de 6 mil revendas até o fim de 2026, com R$ 150 mi em tecnologia.",l:[["Site","https://www.nacionalgas.com.br"]]},
+ {s:"GLP",n:"Supergasbras",ab:"SG",g:"SHV Energy",area:"Nacional",f:"3ª maior: 21,49% em jan–mai/26 (Sindigás/ANP); cerca de 8 mi botijões/mês e parque de 23 mi",mv:"Plano de R$ 500 mi em 2 mi de botijões, terminal no Pecém com a Ultragaz e 1º contrato de BioGL ISCC PLUS.",me:true,l:[["Site","https://www.supergasbras.com.br"]]},
+ {s:"GLP",n:"Ultragaz",ab:"UG",g:"Ultrapar (UGPA3)",area:"Nacional",f:"21,92% em jan–mai/26 com a Bahiana (Sindigás/ANP); 418 mil t no 2T26 (−3%)",mv:"Estação de biometano em Paulínia (ago/26) e Bio-GL da Refinaria Riograndense. Resultado do 3T26 sai em 12/11.",l:[["RI Ultrapar","https://ri.ultra.com.br"],["Site","https://www.ultragaz.com.br"]]},
+ {s:"GLP",n:"Consigaz",ab:"CZ",g:"Grupo Consigaz",area:"Sudeste e outras praças",f:"5ª maior: 7,31% em jan–mai/26, com a Gasball (Sindigás/ANP)",mv:"CEO aponta agro, dados e IA como motores (set/26). Escolheu a CL como agência de publicidade.",l:[["Relatório ESG 2025","https://consigaz.com.br/wp-content/uploads/2026/07/Relatorio-Consigaz-ano-base-2025-4.pdf"]]},
+ {s:"GLP",n:"Petrobras (GLP)",ab:"PB",g:"Petrobras",area:"Suprimento nacional",f:"Principal supridora de GLP; conselho aprovou volta à distribuição em ago/25",mv:"Leilões mensais de GLP às distribuidoras desde nov/24. Detalhes do retorno ao varejo ainda não divulgados.",l:[["Fato relevante (Metrópoles)","https://www.metropoles.com/negocios/petrobras-anuncia-volta-a-distribuicao-do-gas-de-cozinha"]]},
+
+ {s:"GN",n:"Comgás",ab:"CG",g:"Compass / Cosan",area:"SP (maior área do país)",f:"Maior distribuidora de gás canalizado da América Latina; rede de mais de 16 mil km. O Sudeste soma 4,3 mi dos 5,0 mi de clientes do país (Abegás, 2025)",mv:"Rating AAA.br na 15ª emissão de debêntures (mar/26). Maior distribuidora de biometano do país.",l:[["RI","https://ri.comgas.com.br"]]},
+ {s:"GN",n:"Naturgy (CEG / CEG Rio)",ab:"NT",g:"Naturgy",area:"RJ",f:"Concessões vencem em jul/2027; Rio decidiu relicitar",mv:"Reduziu tarifas em fev/26. Propõe R$ 11,9 bi (CEG) + R$ 4 bi (CEG Rio) em 30 anos para renovar.",l:[["Site","https://www.naturgy.com.br"]]},
+ {s:"GN",n:"Gasmig",ab:"GM",g:"Cemig",area:"MG · 56 municípios",f:"Lucro de R$ 515 mi em 2025; 1,03 bi m³ vendidos",mv:"Tarifas sem reajuste em nov/26; chamadas de biometano de até 10 anos; gasoduto Centro-Oeste em 2026.",l:[["Agência Minas","https://www.agenciaminas.mg.gov.br/noticia/gasmig-encerra-2025-com-lucro-liquido-de-r-515-milhoes-e-investimentos-de-r-314-milhoes-129422"]]},
+ {s:"GN",n:"Compagas",ab:"CP",g:"Concessão do Paraná",area:"PR",f:"R$ 505 mi previstos até 2029; meta de 15% de biometano no portfólio",mv:"Rede local de biometano em Londrina e Cambé; CEO preside o conselho da Abegás 2026-2028.",l:[["AEN Paraná","https://www.parana.pr.gov.br/aen/Noticia/Parana-recebe-investimentos-e-rede-de-gas-tem-expansao-no-primeiro-semestre"]]},
+ {s:"GN",n:"Sulgás",ab:"SU",g:"Compass / Cosan",area:"RS",f:"R$ 163,7 mi de investimento em 2026; meta de 122 mil clientes",mv:"Sulgás BioHub em Esteio como ponto único de injeção de biometano.",l:[["Jornal do Comércio","https://www.jornaldocomercio.com/especiais/anuario-de-investimentos/2026/01/1234248-sulgas-investiu-rs-90-milhoes-em-plano-de-expansao-em-2025.html"]]},
+ {s:"GN",n:"SCGás",ab:"SC",g:"Estado de SC",area:"SC",f:"Plano de R$ 773 mi para 2023-2027; meta de mais de 80 municípios",mv:"Rede para papeleiras no Planalto Norte e reforço de oferta no Sul do estado.",l:[["eixos","https://eixos.com.br/scgas-anuncia-plano-de-investimento-de-r-773-milhoes-e-diversifica-fornecedores/"]]},
+ {s:"GN",n:"Copergás",ab:"PE",g:"Estado de PE + Energisa (minoritária)",area:"PE",f:"Mais de 100 mil clientes residenciais, líder no Nordeste",mv:"Novo presidente, Guilherme Cavalcanti (abr/26). Supridores privados como PetroReconcavo e Brava.",l:[["Site","https://www.copergas.com.br"]]},
+ {s:"GN",n:"Bahiagás",ab:"BA",g:"Estado da BA",area:"BA",f:"83 mil clientes residenciais, 2ª do Nordeste",mv:"Conselheiro Luiz Gavazza representa o Nordeste no conselho da Abegás.",l:[["Site","https://www.bahiagas.com.br"]]},
+ {s:"GN",n:"Cegás",ab:"CE",g:"Estado do CE + Energisa (minoritária)",area:"CE",f:"Pioneira em injetar biometano na rede (cerca de 15% do volume)",mv:"Chamada pública para gás spot na plataforma Open Gás (gas week 2026).",l:[["Site","https://www.cegas.com.br"]]},
+ {s:"GN",n:"MSGás",ab:"MS",g:"Estado de MS",area:"MS",f:"Lucro de R$ 49,5 mi em 2025; 27,3 mil clientes",mv:"R$ 373 mi previstos para 2026-2030; Projeto Sucuriú adiado para 2026-2027.",l:[["Midiamax","https://midiamax.com.br/politica/transparencia/2026/msgas-supera-metas-lucro-2025-frustra-39-investimentos-planejados/"]]},
+ {s:"GN",n:"Cigás",ab:"AM",g:"Estado do AM",area:"AM",f:"Gás de Urucu (Coari) até Manaus",mv:"Expansão de rede e prospecção de clientes na Amazonas OGE 2026.",l:[["Brasil Energia","https://brasilenergia.com.br/brasilenergia/amazonas-oge-2026/cigas-apresenta-expansao-da-rede-e-busca-novos-clientes"]]}
+];
+
+const TRENDS = [
+ {i:"volunteer_activism",sig:"watch",sl:"Atenção",t:"Gás do Povo virou política permanente",p:"Lei 15.348/2026. Cerca de 15 milhões de famílias, vales todo dia 10 e retirada em revendas credenciadas. O Nordeste concentra a maior fatia.",so:"Volume garantido na base da pirâmide, mas o próprio setor questiona o ganho real de mercado. Vale medir revenda credenciada por região."},
+ {i:"gavel",sig:"up",sl:"Estabilidade",t:"Reforma do GLP travada",p:"Fracionamento já tinha sido vetado na lei do Gás do Povo; a ANP engavetou a reforma em junho e o CNPE fechou mais uma porta em 6/11.",so:"Botijão marcado e envase pela própria distribuidora seguem protegidos. Reduz a incerteza sobre o investimento em vasilhames."},
+ {i:"oil_barrel",sig:"risk",sl:"Risco",t:"Petrobras de volta à distribuição de GLP",p:"Conselho aprovou o retorno em ago/25, sem detalhar modelo. A estatal já vende GLP por leilão às distribuidoras.",so:"Possível novo concorrente com acesso direto ao produto. Acompanhar fatos relevantes e o desenho de canal."},
+ {i:"factory",sig:"risk",sl:"Concorrência",t:"Gás natural mais barato para a indústria",p:"Mercado livre industrial cresce quase 50%; leilão do gás da União mira US$ 5/MMBtu; Gasmig congela tarifas.",so:"Pressão sobre o GLP granel industrial onde há rede. Priorizar contas fora do alcance dos dutos e o argumento do BioGL."},
+ {i:"eco",sig:"up",sl:"Oportunidade",t:"Renováveis: biometano no GN, BioGL no GLP",p:"Distribuidoras disputam biometano (Gasmig, Compagas, Sulgás, Cegás). No GLP, a Supergasbras abriu o mercado de BioGL com certificação ISCC PLUS.",so:"Descarbonização vira argumento comercial dos dois lados. Escopo 1 sem trocar equipamento é o nosso diferencial."},
+ {i:"storefront",sig:"watch",sl:"Atenção",t:"Revendas no centro da disputa",p:"São cerca de 59 a 60 mil revendas, 73% vinculadas às grandes. A Abragás quer que as de grande porte possam envasar; o Gás do Povo já passa por 42% delas; a Nacional Gás digitaliza a rede com app próprio.",so:"Fidelizar e digitalizar a rede revendedora vira vantagem competitiva. Vale comparar nossos programas de revenda com o “Minha Revenda”."},
+ {i:"route",sig:"up",sl:"Expansão",t:"Redes de gás avançam pelo interior",p:"Londrina, Maringá, Triângulo Mineiro, Planalto Norte de SC e Serra Gaúcha recebem dutos e redes locais de biometano.",so:"Cidades médias passam a ter alternativa ao GLP em condomínios e comércio. Mapear bairros com obra de rede."},
+ {i:"bolt",sig:"watch",sl:"Atenção",t:"Térmicas puxam a demanda de gás",p:"O despacho termelétrico subiu 49% no semestre e explica boa parte da alta de 15% no consumo.",so:"Crescimento do GN não é todo de varejo: o residencial subiu só 2,3%."},
+ {i:"handshake",sig:"watch",sl:"Atenção",t:"Concessões e governança em transição",p:"Rio vai relicitar CEG e CEG Rio (vencem em jul/27); Energisa entrou como sócia em distribuidoras do Nordeste; Gasmig mudou de regulador.",so:"Novos donos e regras podem acelerar a expansão de rede em praças hoje dominadas pelo GLP."}
+];
+
+const COMMS = [
+ {w:"mai 2026",seg:"GLP",t:"Copa Energia troca de agência",p:"Purpple assume a estratégia integrada de Copa Energia, Copagaz e Liquigás, com campanhas 360° e redes sociais.",u:"https://nossomeio.com.br/purpple-conquista-copa-energia-e-assume-comunicacao-integrada-de-copagaz-e-liquigas/"},
+ {w:"abr 2026",seg:"GLP",t:"Supergasbras pauta o BioGL na imprensa",p:"Primeira importação de BioGL com navio no Tergasul ganhou cobertura em veículos nacionais e internacionais.",u:"https://cenarioenergia.com.br/2026/04/02/supergasbras-inaugura-mercado-de-biogl-no-brasil-e-abre-nova-rota-para-descarbonizacao-industrial/"},
+ {w:"2026",seg:"GLP",t:"Consigaz se reposiciona como empresa de energia",p:"Discurso de dados, IA e agro na mídia de negócios; agência CL na conta publicitária.",u:"https://timesbrasil.com.br/empresas-e-negocios/consigaz-aposta-em-ia-dados-e-agro-para-ampliar-mercado/"},
+ {w:"mar 2025",seg:"GLP",t:"Ultragaz lança “Tá Ligado”",p:"Campanha da Talent estreou no intervalo do Jornal Nacional, apresentando biometano e energia elétrica junto ao gás de cozinha. Muros grafitados em Heliópolis e Paraisópolis.",u:"https://marcaspelomundo.com.br/anunciantes/ultragaz-divulga-ampliacao-de-portfolio-com-campanha-ta-ligado/"},
+ {w:"set 2024",seg:"GLP",t:"Liquigás: “Mais energia para sua vida”",p:"Novo posicionamento lançado com promoção nas redes convidando o consumidor a compartilhar sonhos.",u:"https://www.abcdacomunicacao.com.br/liquigas-cria-promocao-e-convida-consumidores-para-compartilhar-sonhos-nas-redes-sociais/"},
+ {w:"contínuo",seg:"GN",t:"Comgás: eventos e patrocínio cultural",p:"Chamadas abertas de patrocínio e ações de meio ambiente reforçam a marca da maior distribuidora do país.",u:"https://www.abcdacomunicacao.com.br/tag/comgas/"}
+];
+
+const AGENDA = [
+ {d:"10",m:"nov",t:"Gás do Povo · ciclo de novembro",p:"Novos vales liberados pela Caixa (calendário do dia 10). Ciclo de outubro encerrou em 9/11."},
+ {d:"12",m:"nov",t:"Ultrapar divulga o 3T26",p:"Números da Ultragaz após o 2T26 fraco em volume. Teleconferência em 13/11."},
+ {d:"nov–dez",m:"2026",t:"1º leilão do gás da União",p:"Previsto pelo MME/PPSA para o último bimestre de 2026, com gás mais barato para a indústria.",soft:true},
+ {d:"jul",m:"2027",t:"Vencimento das concessões CEG e CEG Rio",p:"Rio de Janeiro prepara relicitação; Naturgy busca renovar.",soft:true}
+];
+
+/* ========================================================= */
+function nf(v,d=1){return v.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d})}
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const state={seg:"all",reg:"all",temas:new Set(),cli:new Set(),rev:false,prim:false,q:"",uf:null,sort:"new",tab:"GLP"};
+const tip=$("#tip");
+function showTip(e,html){tip.innerHTML=html;tip.classList.add("show");moveTip(e)}
+function moveTip(e){const x=Math.min(e.clientX+14,innerWidth-270);tip.style.left=x+"px";tip.style.top=(e.clientY+14)+"px"}
+function hideTip(){tip.classList.remove("show")}
+
+/* theme */
+try{const t=localStorage.getItem("radar-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}
+function syncThemeIcon(){$("#themeBtn .ms").textContent=document.documentElement.dataset.theme==="dark"?"light_mode":"dark_mode"}
+syncThemeIcon();
+$("#themeBtn").onclick=()=>{const d=document.documentElement;d.dataset.theme=d.dataset.theme==="dark"?"light":"dark";try{localStorage.setItem("radar-theme",d.dataset.theme)}catch(e){}syncThemeIcon()};
+
+/* KPIs */
+$("#kpis").innerHTML=KPIS.map(k=>`<div class="kpi rv"><span class="seg ${k.seg} tag">${k.seg==="GN"?"GN":"GLP"}</span><div class="lbl"><span class="ms" style="font-size:18px;color:var(--laranja)">${k.i}</span>${k.l}</div><div class="val">${k.v}<small>${k.u}</small></div><span class="delta">${k.dt}</span><div class="src">Fonte: ${k.src}</div></div>`).join("");
+
+/* ANP KPIs, links */
+$("#anpKpis").innerHTML=ANP_KPIS.map(k=>`<div class="kpi rv"><div class="lbl" style="padding-right:0"><span class="ms" style="font-size:18px;color:var(--laranja)">${k.i}</span>${k.l}</div><div class="val">${k.v}<small>${k.u}</small></div><span class="delta">${k.dt}</span><div class="src">Fonte: ${k.src}</div></div>`).join("");
+bars($("#chartReg"),REG_GLP,45,v=>nf(v,1)+"%");$$("#chartReg .fill").forEach(f=>f.style.width=f.dataset.w+"%");
+$("#abegasKpis").innerHTML=ABEGAS_KPIS.map(k=>`<div class="kpi" style="box-shadow:none"><div class="lbl" style="padding-right:0;min-height:0"><span class="ms" style="font-size:18px;color:var(--laranja)">${k.i}</span>${k.l}</div><div class="val" style="font-size:26px">${k.v}<small>${k.u}</small></div><span class="delta">${k.dt}</span><div class="src">Fonte: ${k.src}</div></div>`).join("");
+$("#anpLinks").innerHTML=ANP_LINKS.map(l=>`<a class="lcard" href="${l.u}" target="_blank" rel="noopener"><span class="ico"><span class="ms">${l.i}</span></span><span><b>${l.t}</b><small>${l.d}</small></span></a>`).join("");
+function gbars(el,D,dec){
+  const W=560,H=230,pl=34,pb=24,pt=8,raw=Math.max(...D.a,...D.b)/4,mag=Math.pow(10,Math.floor(Math.log10(raw))),stp=[1,2,2.5,5,10].map(k=>k*mag).find(k=>k>=raw),max=stp*4,gw=(W-pl)/D.m.length,bw=Math.min(18,gw*0.32);
+  const y=v=>pt+(H-pt-pb)*(1-v/max);let g="";
+  for(let i=0;i<=4;i++){const v=max*i/4,yy=y(v);g+=`<line class="grid-l" x1="${pl}" x2="${W}" y1="${yy}" y2="${yy}"/><text x="${pl-6}" y="${yy+4}" text-anchor="end">${Math.round(v)}</text>`}
+  D.m.forEach((m,i)=>{const cx=pl+gw*i+gw/2;
+    g+=`<rect class="hit" data-i="${i}" x="${cx-gw/2}" y="${pt}" width="${gw}" height="${H-pt-pb}"/>`;
+    g+=`<path class="b25" d="M${cx-bw-1} ${H-pb} V${y(D.a[i])+4} q0 -4 4 -4 h${bw-8} q4 0 4 4 V${H-pb} Z" pointer-events="none"/>`;
+    g+=`<path class="b26" d="M${cx+1} ${H-pb} V${y(D.b[i])+4} q0 -4 4 -4 h${bw-8} q4 0 4 4 V${H-pb} Z" pointer-events="none"/>`;
+    g+=`<text x="${cx}" y="${H-6}" text-anchor="middle">${m}</text>`});
+  el.innerHTML=`<svg class="gbars" viewBox="0 0 ${W} ${H}" role="img" aria-label="Barras agrupadas 2025 vs 2026">${g}</svg>`;
+  el.querySelectorAll(".hit").forEach(r=>{const i=+r.dataset.i,dv=(D.b[i]/D.a[i]-1)*100;
+    r.addEventListener("mousemove",e=>showTip(e,`<b>${D.m[i]}</b>${D.la||"2025"}: ${nf(D.a[i],dec)} ${D.u}<br>${D.lb||"2026"}: ${nf(D.b[i],dec)} ${D.u}<br>Variação: ${dv>=0?"+":""}${nf(dv,1)}%`));
+    r.addEventListener("mouseleave",hideTip)});
+}
+function gtable(id,D,dec){document.getElementById(id).innerHTML=`<table class="data"><tr><th>${D.la?"Item":"Mês"}</th><th style="text-align:right">${D.la||"2025"}</th><th style="text-align:right">${D.lb||"2026"}</th><th style="text-align:right">Var.</th></tr>${D.m.map((m,i)=>`<tr><td>${m}</td><td class="n">${nf(D.a[i],dec)}</td><td class="n">${nf(D.b[i],dec)}</td><td class="n">${nf((D.b[i]/D.a[i]-1)*100,1)}%</td></tr>`).join("")}</table>`}
+gbars($("#chartP13"),P13,1);gtable("tP13",P13,1);
+gbars($("#chartPO"),PO,0);gtable("tPO",PO,0);
+
+/* bars */
+function bars(el,data,max,fmt){
+  el.innerHTML=data.map((d,i)=>`<div class="hbar ${d.me?"me":""}" data-i="${i}"><span class="nm">${esc(d.n)}</span><div class="track"><div class="fill" style="width:0" data-w="${(d.v/max*100).toFixed(1)}"></div></div><span class="v">${d.lab||fmt(d.v)}</span></div>`).join("");
+  el.querySelectorAll(".hbar").forEach(r=>{const d=data[r.dataset.i];
+    r.addEventListener("mousemove",e=>showTip(e,`<b>${esc(d.n)}</b>${fmt(d.v)}${d.x?"<br>"+esc(d.x):""}`));
+    r.addEventListener("mouseleave",hideTip);});
+}
+const pct=v=>v.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})+"%";
+const pctp=v=>"+"+v.toLocaleString("pt-BR",{maximumFractionDigits:1})+"%";
+function renderShare(k){const S=SHARES[k];$("#shareSub").textContent=S.sub;$("#shareSrc").textContent=S.src;bars($("#chartShare"),S.rows,25,pct);
+  $("#chartShare").querySelectorAll(".fill").forEach(f=>requestAnimationFrame(()=>f.style.width=f.dataset.w+"%"));
+  $("#tShare").innerHTML=`<table class="data"><tr><th>Distribuidora</th><th style="text-align:right">Participação</th></tr>${S.rows.map(d=>`<tr><td>${d.n}${d.x?" ("+d.x+")":""}</td><td class="n">${pct(d.v)}</td></tr>`).join("")}</table>`;}
+renderShare("2026");
+$$("#shareTgl button").forEach(b=>b.onclick=()=>{$$("#shareTgl button").forEach(x=>x.classList.toggle("on",x===b));renderShare(b.dataset.v)});
+bars($("#chartSeg"),SEGS,32,v=>nf(v,1));
+$("#tSeg").innerHTML=`<table class="data"><tr><th>Segmento</th><th style="text-align:right">mi m³/dia · variação</th></tr>${SEGS.map(d=>`<tr><td>${d.n}</td><td class="n">${d.lab}</td></tr>`).join("")}</table>`;
+$$(".tbl-toggle").forEach(b=>b.onclick=()=>{const t=document.getElementById(b.dataset.tbl);t.hidden=!t.hidden;b.lastChild.textContent=t.hidden?"Ver tabela":"Ocultar tabela"});
+
+/* map */
+const ufCount={};NEWS.forEach(n=>{if(n.uf!=="BR")ufCount[n.uf]=(ufCount[n.uf]||0)+1});
+COMPANIES.forEach(c=>{});
+function heat(n){return !n?"":n>=6?"h4":n>=4?"h3":n>=2?"h2":"h1"}
+function renderMap(){
+  const tm=$("#tilemap");tm.innerHTML="";
+  const grid=Array.from({length:8},()=>Array(7).fill(null));
+  Object.entries(UFS).forEach(([k,v])=>grid[v.y][v.c]=k);
+  grid.forEach((row,y)=>row.forEach((k,x)=>{
+    if(!k){const s=document.createElement("span");tm.appendChild(s);return}
+    const b=document.createElement("button");const n=ufCount[k]||0;
+    b.className="tile "+heat(n)+(state.uf===k?" sel":"");
+    b.innerHTML=`${k}<small>${n||""}</small>`;b.setAttribute("aria-label",`${UFS[k].n}: ${n} sinais`);
+    b.onclick=()=>{state.uf=state.uf===k?null:k;renderMap();renderUF()};
+    b.onmousemove=e=>showTip(e,`<b>${UFS[k].n}</b>${n} sinal(is) no radar<br>${GN_UF[k]?"GN: "+GN_UF[k]:"Sem distribuidora de GN mapeada"}`);
+    b.onmouseleave=hideTip;tm.appendChild(b);
+  }));
+}
+function renderRegBtns(){
+  $("#regBtns").innerHTML=`<button class="chip ${!state.uf?"on":""}" data-r="BR"><span class="ms">check</span>Brasil</button>`+Object.entries(REG).map(([k,v])=>`<button class="chip ${state.uf==="R:"+k?"on":""}" data-r="${k}"><span class="ms">check</span>${v}</button>`).join("");
+  $$("#regBtns .chip").forEach(b=>b.onclick=()=>{state.uf=b.dataset.r==="BR"?null:"R:"+b.dataset.r;renderMap();renderUF()});
+}
+function miniList(items){
+  if(!items.length)return `<div class="empty" style="padding:24px">Nenhuma notícia captada para esta área ainda. O GLP está presente em 100% dos municípios do país.</div>`;
+  return `<div class="mini-list">${items.map(n=>`<a class="mini" href="${n.u}" target="_blank" rel="noopener"><span class="d">${n.dl}</span><span><span class="seg ${n.seg}" style="margin-right:6px">${n.seg==="AMBOS"?"GN+GLP":n.seg}</span><span class="t">${esc(n.t)}</span></span></a>`).join("")}</div>`;
+}
+function renderUF(){
+  renderRegBtns();
+  const p=$("#ufPanel");let items,title,meta="";
+  if(!state.uf){
+    items=NEWS.filter(n=>n.uf==="BR");title="Brasil · sinais nacionais";
+    meta=`<span class="pillinfo"><span class="ms">public</span>${items.length} notícias nacionais</span><span class="pillinfo"><span class="ms">location_on</span>${Object.keys(ufCount).length} estados com sinais</span>`;
+  }else if(state.uf.startsWith("R:")){
+    const r=state.uf.slice(2);items=NEWS.filter(n=>n.uf!=="BR"&&UFS[n.uf].r===r);title="Região "+REG[r];
+    const dists=Object.entries(GN_UF).filter(([k])=>UFS[k].r===r).map(([,v])=>v);
+    meta=`<span class="pillinfo"><span class="ms">newspaper</span>${items.length} notícias</span><span class="pillinfo"><span class="ms">valve</span>${dists.length} áreas de gás canalizado</span>`;
+  }else{
+    const k=state.uf;items=NEWS.filter(n=>n.uf===k);title=UFS[k].n+" <span style='color:var(--texto-3);font-size:18px'>· "+REG[UFS[k].r]+"</span>";
+    meta=`<span class="pillinfo"><span class="ms">valve</span>Gás natural: ${GN_UF[k]||"não mapeada"}</span>`+(GDP_UF[k]?`<span class="pillinfo"><span class="ms">volunteer_activism</span>Gás do Povo: ${GDP_UF[k]}</span>`:"")+`<span class="pillinfo"><span class="ms">propane_tank</span>GLP: todas as congêneres nacionais</span>`;
+  }
+  items=[...items].sort((a,b)=>b.d.localeCompare(a.d));
+  p.innerHTML=`<h3>${title}</h3><div class="meta">${meta}</div>${miniList(items)}`;
+}
+
+/* news */
+function renderTemaChips(){
+  const cnt={};NEWS.forEach(n=>cnt[n.tema]=(cnt[n.tema]||0)+1);
+  $("#fTema").innerHTML=Object.entries(TEMAS).map(([k,v])=>`<button class="chip ${state.temas.has(k)?"on":""}" data-t="${k}"><span class="ms">check</span>${v.l} <span class="n">${cnt[k]||0}</span></button>`).join("");
+  $$("#fTema .chip").forEach(b=>b.onclick=()=>{const t=b.dataset.t;state.temas.has(t)?state.temas.delete(t):state.temas.add(t);renderTemaChips();renderNews()});
+}
+function renderCliChips(){
+  const cnt={};NEWS.forEach(n=>n.cli.forEach(c=>cnt[c]=(cnt[c]||0)+1));const nr=NEWS.filter(n=>n.rev).length;
+  $("#fCli").innerHTML=Object.entries(CLI).map(([k,v])=>`<button class="chip ${state.cli.has(k)?"on":""}" data-c="${k}"><span class="ms">check</span>${v.l} <span class="n">${cnt[k]||0}</span></button>`).join("")+`<button class="chip rev ${state.rev?"on":""}" data-rev="1"><span class="ms">check</span>Revendas / franquias <span class="n">${nr}</span></button><button class="chip ${state.prim?"on":""}" data-prim="1"><span class="ms">check</span>Só fontes oficiais <span class="n">${NEWS.filter(n=>n.prim).length}</span></button>`;
+  $$("#fCli .chip").forEach(b=>b.onclick=()=>{if(b.dataset.prim){state.prim=!state.prim}else if(b.dataset.rev){state.rev=!state.rev}else{const c=b.dataset.c;state.cli.has(c)?state.cli.delete(c):state.cli.add(c)}renderCliChips();renderNews()});
+}
+function match(n){
+  if(state.rev&&!n.rev)return false;
+  if(state.prim&&!n.prim)return false;
+  if(state.cli.size&&!n.cli.some(c=>state.cli.has(c)))return false;
+  if(state.seg!=="all"&&n.seg!==state.seg&&n.seg!=="AMBOS")return false;
+  if(state.reg!=="all"){if(state.reg==="BR"){if(n.uf!=="BR")return false}else if(n.uf==="BR"||UFS[n.uf].r!==state.reg)return false}
+  if(state.temas.size&&!state.temas.has(n.tema))return false;
+  if(state.q){const q=state.q.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+    const hay=[n.t,n.s,n.co,n.src,n.uf,n.cli.map(c=>CLI[c].l).join(" "),n.rev?"revenda revendas franquia franquias":"",n.uf!=="BR"?UFS[n.uf].n:"Brasil",TEMAS[n.tema].l].join(" ").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+    if(!q.split(/\s+/).every(w=>hay.includes(w)))return false}
+  return true;
+}
+function renderNews(){
+  let list=NEWS.filter(match).sort((a,b)=>state.sort==="new"?b.d.localeCompare(a.d):a.d.localeCompare(b.d));
+  $("#countLine").textContent=`${list.length} de ${NEWS.length} notícias`;
+  $("#news").innerHTML=list.length?list.map(n=>`<article class="ncard ${n.seg}">
+    <div class="top"><span class="seg ${n.seg}">${n.seg==="AMBOS"?"GN + GLP":n.seg==="GN"?"Gás natural":"GLP"}</span><span class="theme-tag"><span class="ms">${TEMAS[n.tema].i}</span>${TEMAS[n.tema].l}</span><span class="dot"></span><span>${n.uf==="BR"?"Nacional":n.uf+" · "+REG[UFS[n.uf].r]}</span>${n.prim?`<span class="theme-tag" style="background:var(--amarelo-50);color:#141414"><span class="ms">verified</span>Fonte oficial</span>`:""}</div>
+    <h4>${esc(n.t)}</h4><p>${esc(n.s)}</p>
+    ${(n.cli.length||n.rev)?`<div class="cli-tags">${n.cli.map(c=>`<span class="cli-tag"><span class="ms">${CLI[c].i}</span>${CLI[c].l}</span>`).join("")}${n.rev?`<span class="cli-tag" style="border-color:var(--amarelo)"><span class="ms">storefront</span>Revendas</span>`:""}</div>`:""}
+    <div class="foot"><span class="co">${esc(n.co)} <span style="color:var(--texto-3);font-weight:600">· ${n.dl}</span></span><a class="lnk" href="${n.u}" target="_blank" rel="noopener">${esc(n.src)}<span class="ms">open_in_new</span></a></div>
+  </article>`).join(""):`<div class="empty">Nada por aqui com esses filtros. Que tal ampliar a busca?</div>`;
+}
+$$("#fSeg button").forEach(b=>b.onclick=()=>{state.seg=b.dataset.v;$$("#fSeg button").forEach(x=>x.classList.toggle("on",x===b));renderNews()});
+$("#fReg").onchange=e=>{state.reg=e.target.value;renderNews()};
+$("#fSort").onchange=e=>{state.sort=e.target.value;renderNews()};
+/* ===== busca global ===== */
+const NORM=t=>String(t||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const ALIAS={"liquigas":"copa energia","copagaz":"copa energia","bahiana":"ultragaz","minasgas":"supergasbras","sgb":"supergasbras","ceg":"naturgy","ceg rio":"naturgy","gasball":"consigaz","nacional gas butano":"nacional gas","biogas":"biometano","bio gl":"biogl","bioglp":"biogl","botijao":"p13","granel":"p-outros"};
+function words(q){let n=NORM(q).trim();for(const k in ALIAS){if(n===k)n+=" "+ALIAS[k]}return n.split(/\s+/).filter(Boolean)}
+function has(h,w){return w.length<=2?new RegExp("(^|[^a-z0-9])"+w+"([^a-z0-9]|$)").test(h):h.includes(w)}
+function hit(hay,ws){const h=NORM(hay);return ws.every(w=>has(h,w))||ws.some(w=>w.length>3&&h.includes(w))&&ws.length>2}
+function hl(t,ws){let o=esc(t);ws.filter(w=>w.length>2).sort((a,b)=>b.length-a.length).slice(0,1).forEach(w=>{const re=new RegExp("("+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","gi");const nt=NORM(o);let out="",i=0,m;re.lastIndex=0;while((m=re.exec(nt))){out+=o.slice(i,m.index)+"<mark>"+o.slice(m.index,m.index+m[0].length)+"</mark>";i=m.index+m[0].length;if(!re.global)break}o=out+o.slice(i)});return o}
+function ufName(u){return u==="BR"?"Brasil Nacional":(UFS[u]?UFS[u].n+" "+REG[UFS[u].r]:"")}
+let SR=[],SRi=-1;
+function globalSearch(q){
+  const box=$("#sres");const ws=words(q);$("#qClear").style.display=q?"grid":"none";
+  if(!ws.length){box.classList.remove("show");box.innerHTML="";return}
+  const groups=[];
+  const co=COMPANIES.filter(c=>hit([c.n,c.g,c.area,c.f,c.mv,c.s==="GN"?"gas natural canalizado":"glp"].join(" "),ws)).sort((a,b)=>(hit(b.n+" "+b.g,ws)?1:0)-(hit(a.n+" "+a.g,ws)?1:0));
+  if(co.length)groups.push(["Empresas",co.map(c=>({i:c.s==="GN"?"valve":"propane_tank",t:c.n,d:c.g+" · "+c.area,go:()=>goCompany(c)}))]);
+  const nw=NEWS.filter(n=>hit([n.t,n.s,n.co,n.src,n.uf,ufName(n.uf),TEMAS[n.tema].l,(n.cli||[]).map(c=>CLI[c].l).join(" "),n.seg==="GN"?"gas natural":"glp"].join(" "),ws)).sort((a,b)=>((hit(b.t+" "+b.co,ws)?1:0)-(hit(a.t+" "+a.co,ws)?1:0))||b.d.localeCompare(a.d));
+  if(nw.length)groups.push(["Notícias",nw.slice(0,6).map(n=>({i:"newspaper",t:n.t,d:n.co+" · "+n.dl,go:()=>goNews(q)})),nw.length]);
+  const lc=LIC.filter(l=>hit([l.org,l.t,l.uf,ufName(l.uf),l.vs,"licitacao pregao edital"].join(" "),ws)).map(l=>({i:"request_quote",t:l.org,d:l.t+" · "+l.val,go:()=>goSec("licitacoes")}))
+    .concat(LIC_UP.filter(l=>hit([l.t,l.p,"leilao licitacao"].join(" "),ws)).map(l=>({i:"gavel",t:l.t,d:l.w,go:()=>goSec("licitacoes")})));
+  const lu=LIC_UF.filter(l=>hit([l.org,l.t,l.k,l.uf,ufName(l.uf),"licitacao pregao edital glp"].join(" "),ws)).map(l=>({i:"notifications_active",t:l.org+" ("+l.uf+")",d:l.t+" · "+(isOpen(l)?"aberta":"encerrada"),go:()=>{ufSel=l.uf;renderUfBar();renderUfAlert();goSec("alerta-uf")}}));
+  lc.push(...lu);
+  if(lc.length)groups.push(["Licitações e leilões",lc.slice(0,6)]);
+  const ms=[...SHARES["2026"].rows].filter(r=>hit(r.n+" "+(r.x||"")+" market share participacao",ws));
+  if(ms.length)groups.push(["Market share (jan–mai/26)",ms.map(r=>({i:"pie_chart",t:r.n+" · "+pct(r.v),d:"Sindigás com dados da ANP",go:()=>goSec("share")}))]);
+  const pu=Object.keys(UF_PRICE).filter(k=>hit(k+" "+UFS[k].n+" preco botijao p13",ws));
+  if(pu.length&&pu.length<6)groups.push(["Preço do P13 (ago/26)",pu.map(k=>({i:"sell",t:UFS[k].n+" · R$ "+nf(UF_PRICE[k],2),d:"Média mensal ANP · Brasil R$ 113,90",go:()=>goSec("precos")}))]);
+  const tr=TRENDS.filter(t=>hit(t.t+" "+t.p+" "+t.so,ws)).concat(SHARE_READS.filter(t=>hit(t.t+" "+t.p,ws)));
+  if(tr.length)groups.push(["Tendências e leituras",tr.slice(0,4).map(t=>({i:"trending_up",t:t.t,d:t.p.slice(0,110)+(t.p.length>110?"…":""),go:()=>goSec(TRENDS.includes(t)?"tendencias":"share")}))]);
+  const ufHit=Object.keys(UFS).find(k=>NORM(q).trim()===NORM(k)||NORM(q).trim()===NORM(UFS[k].n));
+  if(ufHit)groups.unshift(["Estado",[{i:"map",t:UFS[ufHit].n,d:"Ver distribuidora de gás, notícias e preço no mapa",go:()=>{state.uf=ufHit;renderMap();renderUF();goSec("mapa")}},{i:"notifications_active",t:"Licitações de GLP · "+UFS[ufHit].n,d:"Ver o alerta de licitações do estado",go:()=>{ufSel=ufHit;renderUfBar();renderUfAlert();goSec("alerta-uf")}}]]);
+  SR=[];SRi=-1;
+  let html=groups.map(([g,items,tot])=>`<div class="grp">${g}${tot&&tot>items.length?` · ${tot}`:""}</div>`+items.map(it=>{SR.push(it);return `<div class="it" data-k="${SR.length-1}"><span class="ms">${it.i}</span><span><b>${hl(it.t,ws)}</b><small>${hl(it.d,ws)}</small></span></div>`}).join("")).join("");
+  const total=SR.length;
+  if(!total)html=`<div class="none">Nada encontrado para “${esc(q)}”. Tente o nome da empresa (ex.: Ultragaz, Comgás), um estado (PE, Bahia) ou um tema (biometano, preço, licitação).</div>`;
+  html+=`<div class="foot"><span>${total?`${total} resultado(s) · ↑↓ para navegar, Enter para abrir`:""}</span>${nw.length?`<button class="tbl-toggle" id="srAll">Ver todas as ${nw.length} notícias</button>`:""}</div>`;
+  box.innerHTML=html;box.classList.add("show");
+  box.querySelectorAll(".it").forEach(el=>el.onclick=()=>{SR[+el.dataset.k].go();closeSR()});
+  const all=$("#srAll");if(all)all.onclick=()=>{goNews(q);closeSR()};
+}
+function closeSR(){$("#sres").classList.remove("show")}
+function scrollToEl(el){if(!el)return;const y=el.getBoundingClientRect().top+scrollY-80;scrollTo({top:y,behavior:"smooth"});el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash")}
+function goSec(id){scrollToEl(document.getElementById(id))}
+function goNews(q){state.q=q;["#fSeg button"].forEach(()=>{});renderNews();scrollToEl(document.getElementById("noticias"))}
+function goCompany(c){state.tab=c.s;$$(".tab").forEach(x=>x.classList.toggle("on",x.dataset.tab===c.s));renderCos();
+  const el=[...document.querySelectorAll("#cos .co-card")].find(e=>e.dataset.co===c.n);scrollToEl(el||document.getElementById("empresas"))}
+let qT;const qIn=$("#q");
+qIn.addEventListener("input",e=>{clearTimeout(qT);qT=setTimeout(()=>{const v=e.target.value.trim();globalSearch(v);if(!v){state.q="";renderNews()}},120)});
+qIn.addEventListener("focus",()=>{if(qIn.value.trim())globalSearch(qIn.value.trim())});
+qIn.addEventListener("keydown",e=>{const items=$$("#sres .it");
+  if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();if(!items.length)return;SRi=(SRi+(e.key==="ArrowDown"?1:-1)+items.length)%items.length;items.forEach((x,i)=>x.classList.toggle("act",i===SRi));items[SRi].scrollIntoView({block:"nearest"})}
+  else if(e.key==="Enter"){e.preventDefault();const v=qIn.value.trim();if(!v)return;if(SRi>=0&&SR[SRi])SR[SRi].go();else if(SR.length)SR[0].go();else goNews(v);closeSR()}
+  else if(e.key==="Escape"){closeSR();qIn.blur()}});
+$("#qClear").onclick=()=>{qIn.value="";state.q="";renderNews();globalSearch("");qIn.focus()};
+document.addEventListener("click",e=>{if(!e.target.closest("#sres")&&!e.target.closest(".search"))closeSR()});
+
+/* companies */
+function renderCos(){
+  $("#cos").innerHTML=COMPANIES.filter(c=>c.s===state.tab).map(c=>`<div class="co-card ${c.s==="GLP"?"glp":""} ${c.me?"me":""}" data-co="${esc(c.n)}">
+    <div class="hd"><div class="avatar">${c.ab}</div><div><b>${esc(c.n)}${c.me?' <span class="seg GLP" style="margin-left:4px">nós</span>':""}</b><small>${esc(c.g)}</small></div></div>
+    <dl><dt>Área</dt><dd>${esc(c.area)}</dd><dt>Destaque</dt><dd>${esc(c.f)}</dd></dl>
+    <div class="move"><b>Último movimento</b>${esc(c.mv)}</div>
+    <div class="links">${c.l.map(([t,u])=>`<a class="btn-o" href="${u}" target="_blank" rel="noopener"><span class="ms">open_in_new</span>${esc(t)}</a>`).join("")}</div>
+  </div>`).join("");
+}
+$$(".tab").forEach(t=>t.onclick=()=>{state.tab=t.dataset.tab;$$(".tab").forEach(x=>x.classList.toggle("on",x===t));renderCos()});
+
+/* trends, comms, agenda */
+const sigIcon={up:"north_east",watch:"visibility",risk:"warning"};
+$("#trends").innerHTML=TRENDS.map(t=>`<div class="tr rv"><div class="hd"><div class="ico"><span class="ms">${t.i}</span></div><span class="signal ${t.sig}"><span class="ms">${sigIcon[t.sig]}</span>${t.sl}</span></div><h4>${esc(t.t)}</h4><p>${esc(t.p)}</p><div class="so">${esc(t.so)}</div></div>`).join("");
+$("#comms").innerHTML=COMMS.map(c=>`<div class="tl ${c.seg}"><div class="when">${c.w} · ${c.seg==="GN"?"Gás natural":"GLP"}</div><h5>${esc(c.t)}</h5><p>${esc(c.p)}</p><a href="${c.u}" target="_blank" rel="noopener">Ver fonte ↗</a></div>`).join("");
+$("#agenda").innerHTML=AGENDA.map(a=>`<div class="ag"><div class="date ${a.soft?"soft":""}"><b style="${a.d.length>3?"font-size:13px":""}">${a.d}</b><small>${a.m}</small></div><div><h5>${esc(a.t)}</h5><p>${esc(a.p)}</p></div></div>`).join("");
+
+/* sources */
+const srcs=new Map();NEWS.forEach(n=>srcs.set(n.u,`${n.src} — ${n.t}`));COMMS.forEach(c=>srcs.set(c.u,c.t));
+srcs.set("https://neofeed.com.br/negocios/o-plano-da-supergasbras-para-colocar-2-milhoes-de-novos-botijoes-no-mercado/","NeoFeed — participação de mercado ANP 2025");
+ANP_LINKS.forEach(l=>srcs.set(l.u,"ANP / Sindigás — "+l.t));
+srcs.set("https://www.sindigas.org.br/Download/PANORAMAS/NOVO%20GLP%20EM%20MOVIMENTO_JUN_2026.pdf","Sindigás — GLP em Movimento, jun/2026");
+$("#sources").innerHTML=[...srcs].map(([u,t])=>`<li><a href="${u}" target="_blank" rel="noopener">${esc(t)}</a></li>`).join("");
+
+
+/* preço P13 — linha */
+function lineChart(el,P){
+  const W=560,H=240,pl=40,pr=14,pt=14,pb=26;const t=P.map(p=>new Date(p.d).getTime());const t0=Math.min(...t),t1=Math.max(...t);
+  const vs=P.map(p=>p.v),mn=Math.floor(Math.min(...vs)-1),mx=mn+Math.ceil((Math.max(...vs)+1-mn)/4)*4;
+  const x=v=>pl+(W-pl-pr)*(v-t0)/(t1-t0),y=v=>pt+(H-pt-pb)*(1-(v-mn)/(mx-mn));let g="";
+  for(let i=0;i<=4;i++){const v=mn+(mx-mn)*i/4;g+=`<line class="grid-l" x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}"/><text x="${pl-6}" y="${y(v)+4}" text-anchor="end">${v.toFixed(0)}</text>`}
+  const mn3=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  P.forEach((p,i)=>{if(p.m)return;const dt=new Date(p.d);g+=`<text x="${x(t[i])}" y="${H-6}" text-anchor="middle">${mn3[dt.getUTCMonth()]}</text>`});
+  const pts=P.map((p,i)=>`${x(t[i])},${y(p.v)}`).join(" ");
+  g+=`<polyline points="${pts}" fill="none" stroke="var(--laranja)" stroke-width="2" stroke-linejoin="round"/>`;
+  P.forEach((p,i)=>{g+=`<circle cx="${x(t[i])}" cy="${y(p.v)}" r="${p.m?5:4}" fill="${p.m?"var(--painel)":"var(--laranja)"}" stroke="var(--laranja)" stroke-width="2" stroke-opacity="1"/><circle class="hitp" data-i="${i}" cx="${x(t[i])}" cy="${y(p.v)}" r="14" fill="transparent"/>`});
+  const L=P[P.length-1];g+=`<text x="${x(t[t.length-1])-6}" y="${y(L.v)-12}" text-anchor="end" style="font-weight:700;fill:var(--texto)">R$ ${nf(L.v,2)}</text>`;
+  el.innerHTML=`<svg class="gbars" viewBox="0 0 ${W} ${H}" role="img" aria-label="Preço médio do botijão P13">${g}</svg>`;
+  el.querySelectorAll(".hitp").forEach(c=>{const p=P[+c.dataset.i];c.addEventListener("mousemove",e=>showTip(e,`<b>R$ ${nf(p.v,2)}</b>${esc(p.l)}`));c.addEventListener("mouseleave",hideTip)});
+}
+lineChart($("#chartPrice"),PRICE);
+$("#tPrice").innerHTML=`<table class="data"><tr><th>Referência</th><th style="text-align:right">R$ / P13</th></tr>${PRICE.map(p=>`<tr><td>${esc(p.l)}</td><td class="n">${nf(p.v,2)}</td></tr>`).join("")}</table>`;
+gbars($("#chartComp"),COMP,2);
+$("#tComp").innerHTML=`<table class="data"><tr><th>Mês</th><th style="text-align:right">Produtor</th><th style="text-align:right">ICMS</th><th style="text-align:right">Distrib.</th><th style="text-align:right">Revenda</th><th style="text-align:right">Final</th></tr>${COMP_M.m.map((m,i)=>`<tr><td>${m}/26</td><td class="n">${nf(COMP_M.prod[i],2)}</td><td class="n">19,11</td><td class="n">${nf(COMP_M.dist[i],2)}</td><td class="n">${nf(COMP_M.rev[i],2)}</td><td class="n"><b>${nf(COMP_M.fin[i],2)}</b></td></tr>`).join("")}</table>`;
+(function(){const rows=Object.entries(UF_PRICE).map(([k,v])=>({n:UFS[k].n,v,lab:"R$ "+nf(v,2),x:REG[UFS[k].r]})).sort((a,b)=>b.v-a.v);const h=Math.ceil(rows.length/2);
+  bars($("#ufP1"),rows.slice(0,h),145,v=>"R$ "+nf(v,2));bars($("#ufP2"),rows.slice(h),145,v=>"R$ "+nf(v,2));
+  $$("#ufPrice .fill").forEach(f=>requestAnimationFrame(()=>f.style.width=f.dataset.w+"%"));})();
+
+/* market share — evolução */
+(function(){const cols=["2016","jan–nov/25","jan–mai/26"];
+  $("#shareHist").innerHTML=`<table class="data" style="margin-top:0"><tr><th>Distribuidora</th>${cols.map(c=>`<th style="text-align:right">${c}</th>`).join("")}</tr>${SHARE_HIST.map(r=>`<tr${r.me?' style="font-weight:700"':''}><td>${esc(r.n)}${r.me?' <span class="seg GLP" style="margin-left:4px">nós</span>':""}${r.x?`<div style="font-size:11px;color:var(--texto-3);font-weight:500">${esc(r.x)}</div>`:""}</td>${cols.map(c=>`<td class="n">${r.v[c]==null?"<span style='color:var(--texto-3)'>—</span>":nf(r.v[c],r.v[c]%1?2:0).replace(",00","")+"%"}</td>`).join("")}</tr>`).join("")}</table>
+  <ul style="margin:12px 0 0;padding-left:18px;font-size:12.5px;color:var(--texto-2)">${SHARE_HIST.filter(r=>r.note).map(r=>`<li><b>${esc(r.n)}:</b> ${esc(r.note)}</li>`).join("")}</ul>`;
+  $("#shareReads").innerHTML=SHARE_READS.map(t=>`<div class="tr rv in"><div class="hd"><div class="ico"><span class="ms">${t.i}</span></div><span class="signal ${t.sig}"><span class="ms">${{up:"north_east",watch:"visibility",risk:"warning"}[t.sig]}</span>${t.sl}</span></div><h4>${esc(t.t)}</h4><p>${esc(t.p)}</p><div class="so">${esc(t.so)}</div></div>`).join("");
+})();
+
+/* reajustes — timeline */
+$("#priceNews").innerHTML=`<div class="timeline">${NEWS.filter(n=>n.tema==="precos").sort((a,b)=>b.d.localeCompare(a.d)).map(n=>`<div class="tl ${n.seg==="GN"?"GN":""}"><div class="when">${n.dl} · ${n.seg==="GN"?"Gás natural":"GLP"}${n.uf!=="BR"?" · "+n.uf:""}</div><h5>${esc(n.t)}</h5><p>${esc(n.s)}</p><a href="${n.u}" target="_blank" rel="noopener">${esc(n.src)} ↗</a></div>`).join("")}</div>`;
+
+/* licitações e leilões */
+const LIC_UP = [
+ {w:"09 abr 2026",t:"Petrobras neutraliza o leilão de GLP e devolve parte do ganho às distribuidoras",p:"A diretoria aprovou anular o efeito de preço do leilão de 31/03, que levou à saída do diretor da área comercial.",src:"Agência iNFRA",u:"https://agenciainfra.com/blog/petrobras-devolvera-parte-do-lucro-de-leilao-de-glp-as-distribuidoras/"},
+ {w:"02 abr 2026",t:"Lula diz que vai anular o leilão de 70 mil t de GLP",p:"O volume equivale a 10% a 15% do consumo mensal e foi vendido bem acima da tabela. A Petrobras manteve as entregas já leiloadas.",src:"Agência iNFRA",u:"https://agenciainfra.com/blog/lula-diz-que-vai-anular-leilao-de-glp-da-petrobras-cretinice/"},
+ {w:"31 mar 2026",t:"Leilão da Petrobras: GLP sai até 100% acima da tabela",p:"A Abragás alertou que revendas avaliam deixar o Gás do Povo. No mesmo dia, Mataripe anunciou alta de 15,3%.",src:"eixos",u:"https://eixos.com.br/combustiveis-e-bioenergia/aumento-de-glp-pela-petrobras-ameaca-gas-do-povo-dizem-revendedoras/"},
+ {w:"24 mar 2026",t:"Sindigás alerta para alta de até R$ 11 por botijão com o leilão",p:"A Petrobras vende por leilão fatias crescentes do GLP desde nov/2024: de 10 mil t (2% do mercado) para 80 mil t (13%) em jul/2025.",src:"CNN Brasil / NeoFeed",u:"https://www.cnnbrasil.com.br/economia/macroeconomia/sindigas-teme-alta-do-glp-apos-petrobras-programar-leilao-para-o-dia-27/"},
+ {w:"2025",t:"Transpetro licita 8 navios gaseiros",p:"A frota de transporte de GLP deve passar de 6 para 14 navios, em dois lotes que não podem ir para o mesmo estaleiro.",src:"Mercado & Consumo",u:"https://mercadoeconsumo.com.br/17/02/2025/economia/lula-lancara-licitacao-que-devera-triplicar-capacidade-da-transpetro-de-transportar-glp/amp/"}
+];
+const LIC = [
+ {uf:"MA",org:"Prefeitura de Matões",t:"4.000 botijões P13 + vasilhames",val:"R$ 554.680",st:"homol",stl:"Publicada 25/06/26",vs:"R$ 138,67/P13 · +10,6% vs ANP-MA (jun)",u:"https://licitachei.iagenes.com.br/licitacao/2008771"},
+ {uf:"RN",org:"Prefeitura de Touros",t:"Registro de preços P13 e P45",val:"R$ 618.136",st:"homol",stl:"Abertura 28/07/26",u:"https://alertalicitacao.com.br/!licitacao/PNCP-08234155000102-1-000115-2026"},
+ {uf:"MG",org:"Prefeitura de Itaúna",t:"Recargas de GLP em cilindros P45",val:"R$ 84.045",st:"homol",stl:"Contrato até 2031",vs:"Vencedora: Gasminas",u:"https://www.itauna.mg.gov.br/portal/editais/0/1/8136/"},
+ {uf:"MG",org:"Prefeitura de São José da Barra",t:"P13 e P45 · exclusiva ME/EPP",val:"R$ 16.900",st:"homol",stl:"Homologada 13/02/26",vs:"R$ 130,00/P13 · +20,8% vs ANP-MG (fev)",u:"https://www.saojosedabarra.mg.gov.br/portal/editais/0/1/3554"},
+ {uf:"SC",org:"Prefeitura de Água Doce",t:"P13 e P45 com botijões em comodato",val:"12 meses",st:"homol",stl:"Vencedor out/26",vs:"Vencedora: GDI Transportes e Distribuição de GLP",u:"https://www.portaldecompraspublicas.com.br/processos/SC/Prefeitura-Municipal-de-Agua-Doce-1643/RPE-44-2026-PMAD-2026-2026-514017"},
+ {uf:"SP",org:"Secretaria da Segurança Pública de SP",t:"Recargas P45 por ata de registro de preços",val:"Ata SRP",st:"homol",stl:"Propostas até 22/09/26",u:"https://mabus.com.br/licitacao/5562536/pregao-eletronico-sao-paulo-secretaria-da-seguranca-publica-sao-paulo-sp"},
+ {uf:"BA",org:"Prefeitura de Santana",t:"Fornecimento de gás de cozinha",val:"R$ 223.300",st:"homol",stl:"Homologada 2026",u:"https://www.velhochiconews.com/noticia/8580/prefeitura-de-santana-homologa-licitacao-com-valor-global-de-rs-223-300-00-para-fornecimento-de-gas.html"},
+ {uf:"MG",org:"Prefeitura de Albertina",t:"Pregão presencial de GLP",val:"R$ 101.710",st:"homol",stl:"Abertura 28/08/26",u:"https://alertalicitacao.com.br/!licitacao/ALBT-MG-8-252026"},
+ {uf:"BR",org:"Forças Armadas (Organizações Militares)",t:"GLP para o Quantitativo de Rancho",val:"Pregão 28/2026",st:"homol",stl:"PNCP",vs:"Demanda contínua de cozinhas militares",u:"https://alertalicitacao.com.br/!cnae/855"}
+];
+const LIC_LINKS = [
+ {i:"account_balance",t:"PNCP · Portal Nacional de Contratações Públicas",d:"Busque por “gás liquefeito de petróleo” ou “GLP”",u:"https://pncp.gov.br/app/editais"},
+ {i:"notifications_active",t:"Alerta Licitação · GLP por estado",d:"Lista diária de pregões de GLP (ex.: RS, PA, ES)",u:"https://alertalicitacao.com.br/licitacoes/glp/RS"},
+ {i:"storefront",t:"Portal de Compras Públicas",d:"Muitos municípios publicam aqui os registros de preço",u:"https://www.portaldecompraspublicas.com.br"},
+ {i:"sell",t:"ANP · preço médio do P13 por estado",d:"Use para comparar com o preço de referência do edital",u:"https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arq-precos/tabelas/2026-margens-p13-tabela.pdf"}
+];
+$("#licUp").innerHTML=LIC_UP.map(c=>`<div class="tl"><div class="when">${c.w}</div><h5>${esc(c.t)}</h5><p>${esc(c.p)}</p><a href="${c.u}" target="_blank" rel="noopener">${esc(c.src)} ↗</a></div>`).join("");
+$("#licLinks").innerHTML=LIC_LINKS.map(l=>`<a class="lcard" href="${l.u}" target="_blank" rel="noopener"><span class="ico"><span class="ms">${l.i}</span></span><span><b>${l.t}</b><small>${l.d}</small></span></a>`).join("");
+$("#licList").innerHTML=LIC.map(l=>`<div class="lic rv in"><div class="top"><span>${l.uf==="BR"?"Federal":l.uf+" · "+REG[UFS[l.uf].r]}</span><span class="pill-st ${l.st}">${esc(l.stl)}</span></div><h4>${esc(l.org)}</h4><p>${esc(l.t)}</p><div class="val">${esc(l.val)}</div>${l.vs?`<span class="vs">${esc(l.vs)}</span>`:""}<a href="${l.u}" target="_blank" rel="noopener">Ver edital ↗</a></div>`).join("");
+
+/* ===== alerta de licitações por UF ===== */
+const LIC_UF = [
+ {uf:"RS",org:"Prefeitura de Torres",t:"Recargas de GLP P13 com troca de botijão",d:"2026-11-11",val:"R$ 134.420",k:"Pregão eletrônico 392/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-87876801000101-1-000307-2026"},
+ {uf:"RS",org:"Comando Militar do Sul",t:"GLP em cargas de 13 kg e 45 kg com troca de recipientes",d:"2026-11-11",val:"Federal",k:"Pregão 41/2026",u:"https://alertalicitacao.com.br/!licitacao/DOU-95901d08fc19234dd513"},
+ {uf:"RS",org:"Município de Bom Jesus",t:"Registro de preços de água mineral, GLP e acessórios",d:"2026-11-12",val:"Não informado",k:"Pregão eletrônico 051/2026",u:"https://alertalicitacao.com.br/!licitacao/BLL-4302303-1994-0512026"},
+ {uf:"RS",org:"Município de São Vicente do Sul",t:"GLP P13 e P45, botijões P45 e kit central",d:"2026-11-16",val:"R$ 85.242",k:"Edital 34/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-87572079000103-1-000388-2026"},
+ {uf:"RS",org:"Educação de Farroupilha",t:"Manutenção e instalação de centrais e redes de GLP, com teste de estanqueidade",d:"2026-11-17",val:"R$ 148.750",k:"Edital PCE 121/2026 · serviço",u:"https://alertalicitacao.com.br/!licitacao/PNCP-89848949000150-1-001267-2026"},
+ {uf:"RS",org:"Município de Jóia",t:"Aquisição de GLP",d:"2026-11-18",val:"R$ 28.365",k:"Edital 29/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-89650121000192-1-000087-2026"},
+ {uf:"RS",org:"Município de Cotiporã",t:"Recargas de GLP para as secretarias",d:"2026-11-18",val:"R$ 37.400",k:"Edital 39/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-90898487000164-1-000339-2026"},
+ {uf:"RS",org:"Município de Imbé",t:"GLP, botijões retornáveis e kit de instalação",d:"2026-11-19",val:"R$ 554.017",k:"Edital 0095/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-90256652000184-1-000174-2026"},
+ {uf:"RS",org:"Município de Santa Bárbara do Sul",t:"Cargas de gás P13 e P45 (credenciamento)",d:"2027-01-27",val:"R$ 160.714",k:"Chamamento 1/2026",cred:true,u:"https://alertalicitacao.com.br/!licitacao/PNCP-88496468000160-1-000008-2026"},
+ {uf:"RS",org:"Prefeitura de Gaurama",t:"Fornecimento de cargas de GLP por troca de botijões (credenciamento)",d:"2027-04-07",val:"R$ 907",k:"Chamamento 7/2026",cred:true,u:"https://alertalicitacao.com.br/!licitacao/LCON-RS-1512629"},
+ {uf:"PA",org:"Município de Magalhães Barata",t:"Água mineral, GLP e vasilhames",d:"2026-11-18",val:"R$ 308.821",k:"Edital 019/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-05171947000189-1-000056-2026"},
+ {uf:"PA",org:"Município de Oriximiná",t:"GLP 13 kg e vasilhames, acetileno e oxigênio industrial",d:"2026-11-19",val:"R$ 137.789",k:"Edital 007/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-05131081000182-1-000024-2026"},
+ {uf:"ES",org:"Fundo de Saúde de Conceição da Barra",t:"Água mineral e gás liquefeito",d:"2026-11-11",val:"Não informado",k:"Dispensa 74/2026",u:"https://alertalicitacao.com.br/!licitacao/BLL-D-3201605-751e-00000742026"},
+ {uf:"PE",org:"Polícia Rodoviária Federal em PE",t:"GLP em botijões de 13 kg",d:"2026-08-06",val:"Federal",k:"Pregão 25/2026",u:"https://alertalicitacao.com.br/!licitacao/DOU-9f49bdf77dcdbc232f24"},
+ {uf:"MG",org:"Universidade Federal de Ouro Preto",t:"Registro de preços de gás GLP",d:"2026-09-11",val:"Federal",k:"Pregão 65/2026",u:"https://alertalicitacao.com.br/!licitacao/DOU-0a1c441e6068bdc5ec7d"},
+ {uf:"MG",org:"Prefeitura de Albertina",t:"Pregão presencial de GLP",d:"2026-08-28",val:"R$ 101.710",k:"Pregão presencial 25/2026",u:"https://alertalicitacao.com.br/!licitacao/ALBT-MG-8-252026"},
+ {uf:"MG",org:"Prefeitura de Itaúna",t:"Recargas de GLP em cilindros P45 · vencedora Gasminas",d:"2026-05-28",val:"R$ 84.045",k:"Pregão 14/2026",u:"https://www.itauna.mg.gov.br/portal/editais/0/1/8136/"},
+ {uf:"MG",org:"Prefeitura de São José da Barra",t:"P13 e P45 · exclusiva ME/EPP · R$ 130,00/P13",d:"2026-02-09",val:"R$ 16.900",k:"Pregão 3/2026",u:"https://www.saojosedabarra.mg.gov.br/portal/editais/0/1/3554"},
+ {uf:"SP",org:"Secretaria da Segurança Pública de SP",t:"Recargas de GLP P45 por ata de registro de preços",d:"2026-09-22",val:"Ata SRP",k:"Pregão 114",u:"https://mabus.com.br/licitacao/5562536/pregao-eletronico-sao-paulo-secretaria-da-seguranca-publica-sao-paulo-sp"},
+ {uf:"SP",org:"Prefeitura de Pedro de Toledo",t:"GLP e água mineral por registro de preços",d:"2026-08-27",val:"Não informado",k:"Pregão 012/2026",u:"https://pedrodetoledo.sp.gov.br/licitacao/pregao-eletronico/detalhes/701"},
+ {uf:"SC",org:"Prefeitura de Água Doce",t:"P13 e P45 com botijões em comodato · vencedora GDI",d:"2026-10-07",val:"12 meses",k:"RPE 44/2026",u:"https://www.portaldecompraspublicas.com.br/processos/SC/Prefeitura-Municipal-de-Agua-Doce-1643/RPE-44-2026-PMAD-2026-2026-514017"},
+ {uf:"MA",org:"Prefeitura de Matões",t:"4.000 botijões P13 + vasilhames · R$ 138,67/P13",d:"2026-06-25",val:"R$ 554.680",k:"Pregão 10/2026",u:"https://licitachei.iagenes.com.br/licitacao/2008771"},
+ {uf:"RN",org:"Prefeitura de Touros",t:"Registro de preços P13 e P45",d:"2026-07-28",val:"R$ 618.136",k:"Pregão 27/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-08234155000102-1-000115-2026"},
+ {uf:"BA",org:"Prefeitura de São Félix",t:"P13, P45 e vasilhames para creches e escolas",d:"2026-06-01",val:"Homologado",k:"Pregão 013/2026",u:"https://saofelix.ba.gov.br/pregao-eletronico-srp-no-pe-013-2026-ata-de-homologacao/"},
+ {uf:"BA",org:"Prefeitura de Santana",t:"Fornecimento de gás de cozinha",d:"2026-06-15",val:"R$ 223.300",k:"Pregão 010/2026",u:"https://www.velhochiconews.com/noticia/8580/prefeitura-de-santana-homologa-licitacao-com-valor-global-de-rs-223-300-00-para-fornecimento-de-gas.html"},
+ {uf:"AM",org:"TRE-AM · Cartório de Parintins",t:"GLP em botijão de 13 kg por tíquetes",d:"2026-06-01",val:"Pequeno valor",k:"Termo de referência 2026",u:"https://www.tre-am.jus.br/transparencia-e-prestacao-de-contas/contratos/arquivos-transparencia/transparencia-contratacoes/0000736-78-2026-6-04-0004-tr-pdf"}
+];
+const TODAY=new Date(new Date().toDateString());
+const isOpen=l=>new Date(l.d+"T23:59:59")>=TODAY;
+const fmtD=d=>{const x=new Date(d+"T12:00:00");return x.toLocaleDateString("pt-BR",{day:"2-digit",month:"short",year:"numeric"}).replace(".","")};
+let ufSel=null;
+function renderUfBar(){
+  const cnt={},open={};LIC_UF.forEach(l=>{cnt[l.uf]=(cnt[l.uf]||0)+1;if(isOpen(l))open[l.uf]=(open[l.uf]||0)+1});
+  const totOpen=LIC_UF.filter(isOpen).length;
+  $("#ufBar").innerHTML=`<button class="ufb ${!ufSel?"on":""} ${totOpen?"open":""}" data-u="">BR<small>${LIC_UF.length}</small></button>`+Object.keys(UFS).sort().map(k=>`<button class="ufb ${cnt[k]?"has":""} ${open[k]?"open":""} ${ufSel===k?"on":""}" data-u="${k}" title="${UFS[k].n}: ${cnt[k]||0} edital(is), ${open[k]||0} aberto(s)">${k}<small>${cnt[k]||"–"}</small></button>`).join("");
+  $$("#ufBar .ufb").forEach(b=>b.onclick=()=>{ufSel=b.dataset.u||null;renderUfBar();renderUfAlert()});
+}
+function renderUfAlert(){
+  const list=LIC_UF.filter(l=>!ufSel||l.uf===ufSel).sort((a,b)=>(isOpen(b)-isOpen(a))||(isOpen(a)?a.d.localeCompare(b.d):b.d.localeCompare(a.d)));
+  const op=list.filter(isOpen).length;const k=ufSel;
+  const name=k?UFS[k].n:"Brasil";
+  const price=k&&UF_PRICE[k]?`<span class="pillinfo"><span class="ms">sell</span>P13 na ANP (ago/26): R$ ${nf(UF_PRICE[k],2)}</span>`:`<span class="pillinfo"><span class="ms">sell</span>P13 Brasil (ago/26): R$ 113,90</span>`;
+  const al=k?`https://alertalicitacao.com.br/licitacoes/glp/${k}`:"https://alertalicitacao.com.br/!cnae/855";
+  $("#ufAlert").innerHTML=`<div class="uf-head"><div><h3>${name}</h3><div class="uf-stats" style="margin-top:8px"><span class="pillinfo"><span class="ms" style="color:#1E7B45">radio_button_checked</span>${op} aberta(s)</span><span class="pillinfo"><span class="ms">description</span>${list.length} edital(is) no radar</span>${price}</div></div>
+    <div class="chips"><a class="btn-o" href="${al}" target="_blank" rel="noopener"><span class="ms">notifications_active</span>Alerta Licitação · GLP${k?" "+k:""}</a><a class="btn-o" href="https://pncp.gov.br/app/editais" target="_blank" rel="noopener"><span class="ms">account_balance</span>PNCP</a></div></div>
+    ${list.length?`<div class="lic-grid">${list.map(l=>{const o=isOpen(l);return `<div class="lic ${o?"open":""}"><div class="top"><span>${l.uf} · ${REG[UFS[l.uf].r]}</span><span class="pill-st ${o?(l.cred?"cred":"aberta"):"fech"}">${o?(l.cred?"Credenciamento até ":"Abre ")+fmtD(l.d):"Encerrada · "+fmtD(l.d)}</span></div><h4>${esc(l.org)}</h4><p>${esc(l.t)}</p><div class="val">${esc(l.val)}</div><span class="kind">${esc(l.k)}</span><a href="${l.u}" target="_blank" rel="noopener">Ver edital ↗</a></div>`}).join("")}</div>`
+    :`<div class="empty">Nenhum edital de GLP levantado para ${name} ainda. Use o atalho “Alerta Licitação · GLP ${k}” acima para ver os pregões publicados hoje.</div>`}
+    <p style="font-size:11.5px;color:var(--texto-3);margin:12px 0 0">Levantamento de 9/11/2026 em PNCP, Diário Oficial da União e portais municipais, via Alerta Licitação e sites das prefeituras. “Aberta” é calculado pela data de abertura em relação a hoje; confira prazo e status no edital antes de participar.</p>`;
+}
+renderUfBar();renderUfAlert();
+
+/* init */
+renderMap();renderUF();renderTemaChips();renderCliChips();renderNews();renderCos();
+
+/* reveal + bar animation */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");e.target.querySelectorAll(".fill").forEach(f=>f.style.width=f.dataset.w+"%");io.unobserve(e.target)}}),{threshold:.12});
+$$(".rv").forEach(el=>io.observe(el));
+setTimeout(()=>{$$(".rv").forEach(el=>{el.classList.add("in");el.querySelectorAll(".fill").forEach(f=>f.style.width=f.dataset.w+"%")})},2500);
+
+/* rail active + fab */
+const secs=["visao","share","precos","dados","mapa","noticias","empresas","tendencias","comunicacao","licitacoes","alerta-uf"].map(id=>document.getElementById(id));
+addEventListener("scroll",()=>{
+  $("#fab").classList.toggle("show",scrollY>600);
+  let cur="visao";secs.forEach(s=>{if(s.getBoundingClientRect().top<140)cur=s.id});
+  $$("[data-nav]").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+cur));
+},{passive:true});
+$("#fab").onclick=()=>scrollTo({top:0,behavior:"smooth"});
+addEventListener("scroll",hideTip,{passive:true});
+</script>
+</body>
+</html>
