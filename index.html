@@ -467,6 +467,21 @@ table.dg .n0{color:var(--texto-3)}
 .ag-r .tag{align-self:flex-start;font-size:11px;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--painel-2);color:var(--texto-2)}
 .ag-r .tag.a{background:#FFE7D6;color:#9A3F00}[data-theme="dark"] .ag-r .tag.a{background:#3A2210;color:#F5A66B}
 #cdApps td:nth-child(4),#cdApps td:nth-child(5){white-space:nowrap}
+.kpi-link{display:inline-flex;gap:4px;align-items:flex-start;margin-top:10px;font-size:12px;font-weight:700;color:var(--laranja);text-decoration:none;line-height:1.35}.kpi-link:hover{text-decoration:underline}.kpi-link .ms{font-size:15px;width:1em;overflow:hidden;flex:none}
+
+/* filtro de estados (substitui o mapa) */
+.g-map{grid-template-columns:1fr!important}
+.uf-filter{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.uf-filter .ufb{min-width:58px}
+.uf-filter .ufb.n0{opacity:.55}
+.uf-filter-note{text-align:center;font-size:11.5px;color:var(--texto-3);margin:12px 0 0}
+.tr .tr-src{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:auto;padding-top:4px}
+.tr .tr-src a{font-size:12px;font-weight:700;color:var(--laranja);text-decoration:none}
+.tr .tr-src a:hover{text-decoration:underline}
+.ra-tip{margin:0;font-size:12.5px;line-height:1.45;color:var(--texto);background:#FFF4D6;border-left:3px solid #E8A200;border-radius:8px;padding:8px 10px}
+.ra-tip b.ast{color:#D33100;font-size:16px;margin-right:3px}
+[data-theme="dark"] .ra-tip{background:#33270D;color:#F5E6C4}
+@media (max-width:720px){.hero p{font-size:14px}.hero .barra-txt{flex-direction:column;align-items:flex-start;gap:2px;font-size:11px;bottom:12px}.hero .barra-txt span+span{display:none}.hero{padding-bottom:84px}}
 </style>
 </head>
 <body>
@@ -483,7 +498,6 @@ table.dg .n0{color:var(--texto-3)}
   <a href="#tendencias" data-nav><span class="pill"><span class="ms">trending_up</span></span>Tendências</a>
   <a href="#comunicacao" data-nav><span class="pill"><span class="ms">campaign</span></span>Comunicação</a>
   <a href="#reputacao" data-nav title="Reputação no Reclame Aqui"><span class="pill"><span class="ms">reviews</span></span>Reputação</a>
-  <a href="#digital" data-nav title="Canais digitais"><span class="pill"><span class="ms">smartphone</span></span>Digital</a>
   <a href="#condominios" data-nav title="Condomínios residenciais"><span class="pill"><span class="ms">apartment</span></span>Condomínios</a>
   <a href="#agro" data-nav title="Agronegócio, GLP e BioGL"><span class="pill"><span class="ms">agriculture</span></span>Agro</a>
   <a href="#licitacoes" data-nav><span class="pill"><span class="ms">request_quote</span></span>Licitações</a>
@@ -524,7 +538,7 @@ table.dg .n0{color:var(--texto-3)}
   <span class="kicker"><i></i>Radar ao vivo · dados públicos</span>
   <h1>O mercado de gás, <em>em um só radar.</em></h1>
   <div class="hl"></div>
-  <p>Gás natural canalizado e GLP lado a lado: quem cresce, quem investe, o que muda na regra do jogo e onde cada movimento acontece no Brasil. Tudo a partir de portais públicos, associações e imprensa setorial.</p>
+  <p>GLP e gás natural lado a lado: quem cresce, quem investe e o que muda no mercado, com dados públicos.</p>
   <svg class="barra" viewBox="0 0 1200 86" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 380 40, 620 6, 1200 2 L1200 86 L0 86 Z" fill="#D33100"/></svg>
   <div class="barra-txt"><span id="stamp">Atualizado em 9 nov 2026, 19h · ANP com dados até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
 </div>
@@ -648,13 +662,12 @@ table.dg .n0{color:var(--texto-3)}
 
 <!-- MAP -->
 <section id="mapa">
-  <div class="sec-head rv"><div><div class="eyebrow">Radar regional</div><h2>Notícias <b>por estado</b></h2><p>Toque em um estado para ver a distribuidora de gás natural local, os números do Gás do Povo disponíveis e as notícias da região. A cor mostra quantos sinais o radar captou.</p></div></div>
+  <div class="sec-head rv"><div><div class="eyebrow">Radar regional</div><h2>Notícias <b>por estado</b></h2><p>Escolha um estado para ver a distribuidora de gás natural local, os números do Gás do Povo disponíveis e as notícias da região. O número em cada estado mostra quantas notícias o radar captou.</p></div></div>
   <div class="grid g-map">
     <div class="panel rv">
       <div class="regbtns" id="regBtns"></div>
-      <div class="tilemap" id="tilemap" role="group" aria-label="Mapa esquemático do Brasil por UF"></div>
-      <div class="legend-heat"><span>Menos</span><i style="background:var(--heat-0)"></i><i style="background:var(--heat-1)"></i><i style="background:var(--heat-2)"></i><i style="background:var(--heat-3)"></i><i style="background:var(--heat-4)"></i><span>Mais sinais</span></div>
-      <p style="text-align:center;font-size:11px;color:var(--texto-3);margin:8px 0 0">Mapa esquemático: cada quadrado é uma UF.</p>
+      <div class="uf-filter" id="tilemap" role="group" aria-label="Filtro por estado"></div>
+      <p class="uf-filter-note">Escolha uma região e depois um estado. O número é a quantidade de notícias no radar.</p>
     </div>
     <div class="panel rv uf-panel" id="ufPanel"></div>
   </div>
@@ -723,32 +736,23 @@ table.dg .n0{color:var(--texto-3)}
   <p class="note rv" style="font-size:11.5px;color:var(--texto-3);margin:12px 0 0">Os perfis do Reclame Aqui mudam todo dia e cada um mostra uma janela de 6 meses própria, indicada em cada cartão. A Copa Energia aparece com o perfil principal da empresa, que reúne Liquigás e Copagaz. Consigaz não exibiu a nota geral na consulta.</p>
 </section>
 
-<!-- CANAIS DIGITAIS -->
-<section id="digital">
-  <div class="sec-head rv"><div><div class="eyebrow">Experiência digital</div><h2>Canais <b>digitais</b> das distribuidoras</h2><p>O que cada empresa oferece em app, WhatsApp, assistente virtual e portais, os números divulgados, o que se sabe de NPS e as notícias mais recentes.</p></div></div>
-  <div class="grid g-4 rv" id="dgKpi"></div>
-  <div class="panel rv" style="margin-top:16px"><p class="chart-title">Quem oferece o quê</p><p class="chart-sub">Canais encontrados em sites, lojas de aplicativos, notícias e respostas das empresas. “Não identificado” quer dizer que a pesquisa não achou o canal, não que ele não exista.</p><div class="dg-wrap"><table class="dg" id="dgTbl"></table></div></div>
-  <div class="grid g-2" style="margin-top:16px">
-    <div class="panel rv"><p class="chart-title" style="margin-bottom:12px">NPS e satisfação: o que é público</p><ul class="insight" id="dgNps"></ul></div>
-    <div class="panel rv"><p class="chart-title">Voltariam a fazer negócio</p><p class="chart-sub">Indicador do Reclame Aqui mais próximo de um NPS público: % de quem reclamou e diz que compraria de novo.</p><div id="dgBack"></div><div class="axisnote"><span>Fonte: Reclame Aqui, últimos 6 meses de cada perfil.</span></div></div>
-  </div>
-  <div class="dg-co rv" id="dgCos" style="margin-top:16px"></div>
-  <div class="panel rv" style="margin-top:16px"><p class="chart-title" style="margin-bottom:12px">Notícias sobre canais digitais</p><div class="mini-list" id="dgNews" style="max-height:none"></div></div>
-</section>
+
 
 
 <!-- CONDOMÍNIOS -->
 <section id="condominios">
   <div class="sec-head rv"><div><div class="eyebrow">Segmento residencial vertical</div><h2>Condomínios <b>residenciais</b></h2><p>Como GLP a granel e gás natural canalizado disputam os prédios, com e sem medição individual: o estado do mercado, o que as empresas oferecem ao síndico e ao morador, as reclamações e as notícias recentes.</p></div></div>
   <div class="chips rv" id="cdF" style="margin-bottom:16px"></div>
-  <div class="grid g-4 rv" id="cdKpi" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))"></div>
-  <div class="cd-vs rv" style="margin-top:16px" id="cdVs"></div>
-  <div class="panel rv" style="margin-top:16px"><p class="chart-title" style="margin-bottom:12px">Como está o mercado</p><ul class="insight" id="cdRead"></ul></div>
   <div class="panel rv" style="margin-top:16px"><p class="chart-title">Canais digitais para síndico e morador</p><p class="chart-sub">O que cada empresa oferece a condomínios. “Não identificado” quer dizer que a pesquisa não achou o canal, não que ele não exista.</p><div class="dg-wrap"><table class="dg" id="cdTbl"></table></div></div>
+  <div class="panel rv" style="margin-top:16px"><p class="chart-title">O que cada empresa oferece a condomínios</p><p class="chart-sub">Oferta para o prédio, portal e app, assistentes e satisfação (NPS ou o indicador público mais próximo). Segue o filtro acima.</p><div class="dg-co" id="cdCos" style="margin-top:8px"></div></div>
   <div class="panel rv" style="margin-top:16px"><p class="chart-title">Notas dos apps residenciais nas lojas</p><p class="chart-sub">Apps de pedido de botijão e de medição individual (morador). Notas de 0 a 5 e número de avaliações, consulta de nov/26.</p><div class="dg-wrap"><table class="dg" id="cdApps"></table></div><div class="axisnote"><span>Fontes: App Store Brasil e Google Play Brasil, consultados em 09/11/26. “Sem nota” quer dizer que a loja não mostra média ou que a página não abriu na consulta.</span></div></div>
   <div class="panel rv" style="margin-top:16px"><p class="chart-title">Sugestões de melhoria para os canais digitais</p><p class="chart-sub">Ideias tiradas de quem faz melhor (benchmark) e das reclamações de condomínio vistas acima.</p><div class="dg-co" id="cdBench" style="margin-top:8px"></div></div>
+  <div class="panel rv" style="margin-top:16px"><p class="chart-title">Aumento do gás no residencial: o que mudou em 2026</p><p class="chart-sub">Reajustes e decisões de preço que chegam aos condomínios, de GLP (botijão e granel) e de gás natural canalizado, por empresa e estado. Segue o filtro acima.</p><div class="dg-wrap"><table class="dg" id="cdPrice"></table></div><ul class="insight" id="cdPriceRead" style="margin-top:16px"></ul></div>
   <div class="panel rv" id="cdQBox" style="margin-top:16px"><p class="chart-title">Reclamações recentes em condomínios</p><p class="chart-sub">Casos públicos de 2026 no Reclame Aqui. Boa parte mira a empresa terceirizada de medição, não a distribuidora.</p><div class="rq-grid" id="cdQ"></div></div>
   <div class="panel rv" style="margin-top:16px"><p class="chart-title" style="margin-bottom:12px">Notícias e decisões sobre gás em condomínios</p><div class="mini-list" id="cdNews" style="max-height:none"></div></div>
+  <div class="grid g-4 rv" id="cdKpi" style="margin-top:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))"></div>
+  <div class="cd-vs rv" style="margin-top:16px" id="cdVs"></div>
+  <div class="panel rv" style="margin-top:16px"><p class="chart-title" style="margin-bottom:12px">Como está o mercado</p><ul class="insight" id="cdRead"></ul></div>
   <p class="note rv" style="font-size:11.5px;color:var(--texto-3);margin:12px 0 0">Não há estatística pública consolidada de quantos condomínios usam GLP ou gás natural, nem de quantos têm medição individual de gás. Os números acima são os que as próprias empresas ou a imprensa divulgaram, com a data de cada um.</p>
 </section>
 
@@ -1098,14 +1102,14 @@ const COMPANIES = [
 ];
 
 const TRENDS = [
- {i:"volunteer_activism",sig:"watch",sl:"Atenção",t:"Gás do Povo virou política permanente",p:"Lei 15.348/2026. Cerca de 15 milhões de famílias, vales todo dia 10 e retirada em revendas credenciadas. O Nordeste concentra a maior fatia.",so:"Volume garantido na base da pirâmide, mas o próprio setor questiona o ganho real de mercado. Vale medir revenda credenciada por região."},
- {i:"gavel",sig:"up",sl:"Estabilidade",t:"Reforma do GLP travada",p:"Fracionamento já tinha sido vetado na lei do Gás do Povo; a ANP engavetou a reforma em junho e o CNPE fechou mais uma porta em 6/11.",so:"Botijão marcado e envase pela própria distribuidora seguem protegidos. Reduz a incerteza sobre o investimento em vasilhames."},
- {i:"oil_barrel",sig:"risk",sl:"Risco",t:"Petrobras de volta à distribuição de GLP",p:"Conselho aprovou o retorno em ago/25, sem detalhar modelo. A estatal já vende GLP por leilão às distribuidoras.",so:"Possível novo concorrente com acesso direto ao produto. Acompanhar fatos relevantes e o desenho de canal."},
- {i:"factory",sig:"risk",sl:"Concorrência",t:"Gás natural mais barato para a indústria",p:"Mercado livre industrial cresce quase 50%; leilão do gás da União mira US$ 5/MMBtu; Gasmig congela tarifas.",so:"Pressão sobre o GLP granel industrial onde há rede. Priorizar contas fora do alcance dos dutos e o argumento do BioGL."},
- {i:"eco",sig:"up",sl:"Oportunidade",t:"Renováveis: biometano no GN, BioGL no GLP",p:"Distribuidoras disputam biometano (Gasmig, Compagas, Sulgás, Cegás). No GLP, a Supergasbras abriu o mercado de BioGL com certificação ISCC PLUS.",so:"Descarbonização vira argumento comercial dos dois lados. Escopo 1 sem trocar equipamento é o nosso diferencial."},
- {i:"storefront",sig:"watch",sl:"Atenção",t:"Revendas no centro da disputa",p:"São cerca de 59 a 60 mil revendas, 73% vinculadas às grandes. A Abragás quer que as de grande porte possam envasar; o Gás do Povo já passa por 42% delas; a Nacional Gás digitaliza a rede com app próprio.",so:"Fidelizar e digitalizar a rede revendedora vira vantagem competitiva. Vale comparar nossos programas de revenda com o “Minha Revenda”."},
- {i:"route",sig:"up",sl:"Expansão",t:"Redes de gás avançam pelo interior",p:"Londrina, Maringá, Triângulo Mineiro, Planalto Norte de SC e Serra Gaúcha recebem dutos e redes locais de biometano.",so:"Cidades médias passam a ter alternativa ao GLP em condomínios e comércio. Mapear bairros com obra de rede."},
- {i:"bolt",sig:"watch",sl:"Atenção",t:"Térmicas puxam a demanda de gás",p:"O despacho termelétrico subiu 49% no semestre e explica boa parte da alta de 15% no consumo.",so:"Crescimento do GN não é todo de varejo: o residencial subiu só 2,3%."},
+ {i:"volunteer_activism",sig:"watch",sl:"Atenção",t:"Gás do Povo virou política permanente",p:"Lei 15.348/2026. Cerca de 15 milhões de famílias, vales todo dia 10 e retirada em revendas credenciadas. O Nordeste concentra a maior fatia.",so:"Volume garantido na base da pirâmide, mas o próprio setor questiona o ganho real de mercado. Vale medir revenda credenciada por região.",src:[["eixos · 23/03/26", "https://eixos.com.br/gas-natural/gas-do-povo-chega-a-15-milhoes-de-familias-com-nova-expansao/"], ["Cenário Energia · 02/03/26", "https://cenarioenergia.com.br/2026/03/02/gas-do-povo-avanca-com-crescimento-recorde-do-glp-e-sindigas-cobra-coerencia-regulatoria-para-sustentar-expansao/"]]},
+ {i:"gavel",sig:"up",sl:"Estabilidade",t:"Reforma do GLP travada",p:"Fracionamento já tinha sido vetado na lei do Gás do Povo; a ANP engavetou a reforma em junho e o CNPE fechou mais uma porta em 6/11.",so:"Botijão marcado e envase pela própria distribuidora seguem protegidos. Reduz a incerteza sobre o investimento em vasilhames.",src:[["eixos · 06/11/26", "https://eixos.com.br/combustiveis-e-bioenergia/governo-usa-cnpe-para-barrar-de-vez-a-reforma-do-glp-na-anp/"], ["Agência iNFRA · 12/06/26", "https://agenciainfra.com/blog/anp-colocara-reforma-do-glp-na-geladeira-para-focar-em-subvencao/"]]},
+ {i:"oil_barrel",sig:"risk",sl:"Risco",t:"Petrobras de volta à distribuição de GLP",p:"Conselho aprovou o retorno em ago/25, sem detalhar modelo. A estatal já vende GLP por leilão às distribuidoras.",so:"Possível novo concorrente com acesso direto ao produto. Acompanhar fatos relevantes e o desenho de canal.",src:[["Agência iNFRA · 08/08/25", "https://agenciainfra.com/blog/?p=25982"]]},
+ {i:"factory",sig:"risk",sl:"Concorrência",t:"Gás natural mais barato para a indústria",p:"Mercado livre industrial cresce quase 50%; leilão do gás da União mira US$ 5/MMBtu; Gasmig congela tarifas.",so:"Pressão sobre o GLP granel industrial onde há rede. Priorizar contas fora do alcance dos dutos e o argumento do BioGL.",src:[["XP · 30/07/26", "https://conteudos.xpi.com.br/?p=1551159"], ["Agência Minas", "https://www.agenciaminas.mg.gov.br/noticia/gasmig-mantem-tarifas-sem-reajuste-pela-segunda-vez-consecutiva-em-2026"]]},
+ {i:"eco",sig:"up",sl:"Oportunidade",t:"Renováveis: biometano no GN, BioGL no GLP",p:"Distribuidoras disputam biometano (Gasmig, Compagas, Sulgás, Cegás). No GLP, a Supergasbras abriu o mercado de BioGL com certificação ISCC PLUS.",so:"Descarbonização vira argumento comercial dos dois lados. Escopo 1 sem trocar equipamento é o nosso diferencial.",src:[["Cenário Energia · 03/07/26", "https://cenarioenergia.com.br/2026/07/03/supergasbras-inaugura-mercado-de-biogl-no-brasil-com-contrato-certificado-iscc-plus/"], ["TAGD · 08/10/26", "https://tagdlaw.com.br/?p=16258"]]},
+ {i:"storefront",sig:"watch",sl:"Atenção",t:"Revendas no centro da disputa",p:"São cerca de 59 a 60 mil revendas, 73% vinculadas às grandes. A Abragás quer que as de grande porte possam envasar; o Gás do Povo já passa por 42% delas; a Nacional Gás digitaliza a rede com app próprio.",so:"Fidelizar e digitalizar a rede revendedora vira vantagem competitiva. Vale comparar nossos programas de revenda com o “Minha Revenda”.",src:[["InvestNews · 17/07/26", "https://investnews.com.br/negocios/disputa-gas-cozinha-anp/amp/"], ["Baguete · 27/10/25", "https://baguete.com.br/public/noticias/nacional-gas-cria-aplicativo-para-revenda-de-botijoes"]]},
+ {i:"route",sig:"up",sl:"Expansão",t:"Redes de gás avançam pelo interior",p:"Londrina, Maringá, Triângulo Mineiro, Planalto Norte de SC e Serra Gaúcha recebem dutos e redes locais de biometano.",so:"Cidades médias passam a ter alternativa ao GLP em condomínios e comércio. Mapear bairros com obra de rede.",src:[["eixos", "https://eixos.com.br/gas-natural/biogas/londrina-e-cambe-tornam-se-as-primeiras-cidades-do-parana-com-rede-local-de-biometano/"]]},
+ {i:"bolt",sig:"watch",sl:"Atenção",t:"Térmicas puxam a demanda de gás",p:"O despacho termelétrico subiu 49% no semestre e explica boa parte da alta de 15% no consumo.",so:"Crescimento do GN não é todo de varejo: o residencial subiu só 2,3%.",src:[["Abegás · 03/11/26", "https://www.abegas.org.br/arquivos/102611"]]},
  {i:"handshake",sig:"watch",sl:"Atenção",t:"Concessões e governança em transição",p:"Rio vai relicitar CEG e CEG Rio (vencem em jul/27); Energisa entrou como sócia em distribuidoras do Nordeste; Gasmig mudou de regulador.",so:"Novos donos e regras podem acelerar a expansão de rede em praças hoje dominadas pelo GLP."}
 ];
 
@@ -1190,18 +1194,11 @@ const ufCount={};NEWS.forEach(n=>{if(n.uf!=="BR")ufCount[n.uf]=(ufCount[n.uf]||0
 COMPANIES.forEach(c=>{});
 function heat(n){return !n?"":n>=6?"h4":n>=4?"h3":n>=2?"h2":"h1"}
 function renderMap(){
-  const tm=$("#tilemap");tm.innerHTML="";
-  const grid=Array.from({length:8},()=>Array(7).fill(null));
-  Object.entries(UFS).forEach(([k,v])=>grid[v.y][v.c]=k);
-  grid.forEach((row,y)=>row.forEach((k,x)=>{
-    if(!k){const s=document.createElement("span");tm.appendChild(s);return}
-    const b=document.createElement("button");const n=ufCount[k]||0;
-    b.className="tile "+heat(n)+(state.uf===k?" sel":"");
-    b.innerHTML=`${k}<small>${n||""}</small>`;b.setAttribute("aria-label",`${UFS[k].n}: ${n} sinais`);
-    b.onclick=()=>{state.uf=state.uf===k?null:k;renderMap();renderUF()};
-    b.onmousemove=e=>showTip(e,`<b>${UFS[k].n}</b>${n} sinal(is) no radar<br>${GN_UF[k]?"GN: "+GN_UF[k]:"Sem distribuidora de GN mapeada"}`);
-    b.onmouseleave=hideTip;tm.appendChild(b);
-  }));
+  const tm=$("#tilemap");
+  const reg=!state.uf?null:state.uf.startsWith("R:")?state.uf.slice(2):UFS[state.uf].r;
+  const keys=Object.keys(UFS).filter(k=>!reg||UFS[k].r===reg).sort((a,b)=>(ufCount[b]||0)-(ufCount[a]||0)||a.localeCompare(b));
+  tm.innerHTML=keys.map(k=>{const n=ufCount[k]||0;return `<button class="ufb ${n?"has":"n0"} ${state.uf===k?"on":""}" data-u="${k}" title="${UFS[k].n}: ${n} notícia(s)${GN_UF[k]?" · GN: "+GN_UF[k]:""}">${k}<small>${n}</small></button>`}).join("");
+  $$("#tilemap .ufb").forEach(b=>b.onclick=()=>{const k=b.dataset.u;state.uf=state.uf===k?"R:"+UFS[k].r:k;renderMap();renderUF()});
 }
 function renderRegBtns(){
   $("#regBtns").innerHTML=`<button class="chip ${!state.uf?"on":""}" data-r="BR"><span class="ms">check</span>Brasil</button>`+Object.entries(REG).map(([k,v])=>`<button class="chip ${state.uf==="R:"+k?"on":""}" data-r="${k}"><span class="ms">check</span>${v}</button>`).join("");
@@ -1278,14 +1275,14 @@ let SR=[],SRi=-1;
 /* ===== RECLAME AQUI ===== */
 const RA_URL="https://www.reclameaqui.com.br/empresa/";
 const RA=[
- {n:"Supergasbras",s:"GLP",me:1,st:"Boa",nota:7.7,rec:600,resp:99.2,resol:81.3,volt:null,cons:null,tempo:"7d 11h",per:"Últimos 6 meses · consulta nov/26",obs:"Caiu de Ótima para Boa no semestre. As queixas mais citadas são mau atendimento e demora na execução, muitas de granel e condomínios.",u:RA_URL+"supergasbras/"},
- {n:"Ultragaz",s:"GLP",st:"Boa",nota:7.3,rec:2177,resp:99.8,resol:77.8,volt:62.6,cons:5.67,tempo:"7d 12h",per:"Fev–jul/26",obs:"Maior volume de reclamações do GLP. Está em 9º no ranking de Gás do Reclame Aqui e o problema mais citado é mau atendimento (13,9%).",u:RA_URL+"ultragaz/"},
- {n:"Consigaz",s:"GLP",st:"Boa",nota:null,rec:null,resp:null,resol:null,volt:null,cons:5.86,tempo:"3d 13h",per:"Fev–jul/26",obs:"7º lugar no ranking de Gás e a resposta mais rápida entre as grandes. Teve 225 reclamações avaliadas no período.",u:RA_URL+"consigaz-distribuidora-de-gas/"},
- {n:"Copa Energia",s:"GLP",st:"Regular",nota:6.8,rec:1350,resp:85.9,resol:79.0,volt:53.7,cons:5.6,tempo:null,per:"Últimos 6 meses · consulta nov/26",obs:"Dona das marcas Liquigás e Copagaz. Caiu de Boa para Regular; os temas mais comuns são cobrança indevida, demora na execução e mau atendimento. A página antiga da marca Liquigás no Reclame Aqui ainda mostra 7,9.",u:RA_URL+"copa-energia/"},
- {n:"Nacional Gás",s:"GLP",st:"Ruim",nota:5.7,rec:70,resp:92.9,resol:null,volt:null,cons:3.65,tempo:"17d 5h",per:"Jan–jun/26",obs:"Pior reputação entre as grandes de GLP, com nota do consumidor de 3,65. Há relatos de vazamento e de falta de suporte na troca do registro.",u:RA_URL+"nacional-gas-butano-distribuidora/"},
- {n:"Compagas (PR)",s:"GN",st:"Ótima",nota:9.1,rec:null,resp:null,resol:null,volt:null,cons:null,tempo:null,per:"2026",obs:"Saiu de 4,7 em 2023 e 5,6 em 2024 para 9,1. Foi indicada ao Prêmio Reclame AQUI 2026 em Distribuidora de Gás, com resultado em 8/12.",u:"https://www.gazetadopovo.com.br/vozes/parana-sa/premio-reclame-aqui-2026-compagas/"},
- {n:"Naturgy (RJ)",s:"GN",st:"Boa",nota:7.2,rec:null,resp:null,resol:null,volt:null,cons:5.41,tempo:null,per:"Últimos 6 meses",obs:"986 reclamações avaliadas e 34 aguardando resposta. Medição e valor da fatura aparecem entre os temas.",u:"https://www.reclameaqui.com.br/empresa/ceg-gas-natural-fenosa/lista-reclamacoes"},
- {n:"Comgás (SP)",s:"GN",st:"Regular",nota:6.2,rec:2742,resp:85.1,resol:69.7,volt:53.5,cons:4.59,tempo:"22d 10h",per:"Fev–jul/26",obs:"Cobrança indevida responde por 39% das queixas. É a resposta mais lenta do grupo, com 60 reclamações aguardando.",u:RA_URL+"comgas"}
+ {tip:"Mostrar no próprio chamado o prazo de execução e dar retorno em até 48h nos casos de granel e condomínio, que puxam as queixas de demora e atendimento. Pedir que o cliente diga se voltaria a fazer negócio, indicador que hoje não aparece.",n:"Supergasbras",s:"GLP",me:1,st:"Boa",nota:7.7,rec:600,resp:99.2,resol:81.3,volt:null,cons:null,tempo:"7d 11h",per:"Últimos 6 meses · consulta nov/26",obs:"Caiu de Ótima para Boa no semestre. As queixas mais citadas são mau atendimento e demora na execução, muitas de granel e condomínios.",u:RA_URL+"supergasbras/"},
+ {tip:"Com o maior volume de reclamações, o ganho está em resolver no primeiro contato: a nota do consumidor (5,67) está baixa mesmo com 99,8% de respostas.",n:"Ultragaz",s:"GLP",st:"Boa",nota:7.3,rec:2177,resp:99.8,resol:77.8,volt:62.6,cons:5.67,tempo:"7d 12h",per:"Fev–jul/26",obs:"Maior volume de reclamações do GLP. Está em 9º no ranking de Gás do Reclame Aqui e o problema mais citado é mau atendimento (13,9%).",u:RA_URL+"ultragaz/"},
+ {tip:"Pedir avaliação ao fim de cada atendimento para voltar a ter nota geral no perfil e aproveitar a resposta mais rápida do grupo.",n:"Consigaz",s:"GLP",st:"Boa",nota:null,rec:null,resp:null,resol:null,volt:null,cons:5.86,tempo:"3d 13h",per:"Fev–jul/26",obs:"7º lugar no ranking de Gás e a resposta mais rápida entre as grandes. Teve 225 reclamações avaliadas no período.",u:RA_URL+"consigaz-distribuidora-de-gas/"},
+ {tip:"Responder todas as reclamações (hoje 85,9%) e revisar cobranças de granel e contratos, tema que levou a reputação para Regular.",n:"Copa Energia",s:"GLP",st:"Regular",nota:6.8,rec:1350,resp:85.9,resol:79.0,volt:53.7,cons:5.6,tempo:null,per:"Últimos 6 meses · consulta nov/26",obs:"Dona das marcas Liquigás e Copagaz. Caiu de Boa para Regular; os temas mais comuns são cobrança indevida, demora na execução e mau atendimento. A página antiga da marca Liquigás no Reclame Aqui ainda mostra 7,9.",u:RA_URL+"copa-energia/"},
+ {tip:"Reduzir o prazo de resposta de 17 dias e criar atendimento rápido para vazamento e troca de registro, com visita técnica.",n:"Nacional Gás",s:"GLP",st:"Ruim",nota:5.7,rec:70,resp:92.9,resol:null,volt:null,cons:3.65,tempo:"17d 5h",per:"Jan–jun/26",obs:"Pior reputação entre as grandes de GLP, com nota do consumidor de 3,65. Há relatos de vazamento e de falta de suporte na troca do registro.",u:RA_URL+"nacional-gas-butano-distribuidora/"},
+ {tip:"Manter a área de reputação dentro de Experiência do Cliente e publicar o índice de solução para sustentar o 9,1.",n:"Compagas (PR)",s:"GN",st:"Ótima",nota:9.1,rec:null,resp:null,resol:null,volt:null,cons:null,tempo:null,per:"2026",obs:"Saiu de 4,7 em 2023 e 5,6 em 2024 para 9,1. Foi indicada ao Prêmio Reclame AQUI 2026 em Distribuidora de Gás, com resultado em 8/12.",u:"https://www.gazetadopovo.com.br/vozes/parana-sa/premio-reclame-aqui-2026-compagas/"},
+ {tip:"Zerar as reclamações sem resposta e explicar na fatura a leitura e a troca de medidor, temas mais citados.",n:"Naturgy (RJ)",s:"GN",st:"Boa",nota:7.2,rec:null,resp:null,resol:null,volt:null,cons:5.41,tempo:null,per:"Últimos 6 meses",obs:"986 reclamações avaliadas e 34 aguardando resposta. Medição e valor da fatura aparecem entre os temas.",u:"https://www.reclameaqui.com.br/empresa/ceg-gas-natural-fenosa/lista-reclamacoes"},
+ {tip:"Encurtar os 22 dias de resposta e revisar faturas lidas por média: cobrança indevida responde por 39% das queixas.",n:"Comgás (SP)",s:"GN",st:"Regular",nota:6.2,rec:2742,resp:85.1,resol:69.7,volt:53.5,cons:4.59,tempo:"22d 10h",per:"Fev–jul/26",obs:"Cobrança indevida responde por 39% das queixas. É a resposta mais lenta do grupo, com 60 reclamações aguardando.",u:RA_URL+"comgas"}
 ];
 const RQ=[
  {co:"Copa Energia",s:"GLP",tema:"Preço do granel",t:"Contrato renovado a R$ 6,80/kg cobrado com outro valor",d:"Cliente diz que a fatura não seguiu o preço por quilo combinado na renovação de julho de 2026.",st:"Não respondida",q:"nov/26",u:RA_URL+"copa-energia/lista-reclamacoes/"},
@@ -1321,6 +1318,7 @@ function renderRA(){
     <div class="ra-score">${r.nota==null?"—":nf(r.nota,1)}<small>/10</small></div>
     <div class="ra-stats"><div>Recebidas<b>${nb(r.rec)}</b></div><div>Respondidas<b>${pc1(r.resp)}</b></div><div>Resolvidas<b>${pc1(r.resol)}</b></div><div>Voltariam<b>${pc1(r.volt)}</b></div><div>Nota consumidor<b>${r.cons==null?"—":nf(r.cons,2)}</b></div><div>Resposta<b>${r.tempo||"—"}</b></div></div>
     <p class="ra-obs">${esc(r.obs)}</p>
+    ${r.tip?`<p class="ra-tip"><b class="ast">*</b><b>Sugestão para subir a nota:</b> ${esc(r.tip)}</p>`:""}
     <div class="ra-foot"><span>${esc(r.per)}</span><a href="${r.u}" target="_blank" rel="noopener">Ver perfil ↗</a></div></div>`).join("");
   const C=L.filter(r=>r.nota!=null).sort((a,b)=>b.nota-a.nota).map(r=>({n:r.n,v:r.nota,me:r.me,x:r.st+" · "+r.per}));
   bars($("#raChart"),C,10,v=>nf(v,1));
@@ -1335,62 +1333,11 @@ renderRA();
 $("#raTblBtn").onclick=()=>{const t=$("#raTbl");const on=t.style.display==="none";t.style.display=on?"block":"none";$("#raTblBtn").innerHTML=`<span class="ms">${on?"bar_chart":"table_rows"}</span>${on?"Ver gráfico":"Ver tabela"}`;$("#raChart").style.display=on?"none":"block"};
 
 /* ===== CANAIS DIGITAIS ===== */
-const DG_KPI=[
- {l:"Consumidores atendidos pelo Pedir Gás",v:"5 mi+",s:"Supergasbras, desde 2023 · abr/26",me:1},
- {l:"Atendimentos da Comgás feitos em canais digitais",v:"94%",s:"Comgás · Consumidor Moderno, 2026"},
- {l:"Clientes no app Ultragaz",v:"5 mi",s:"Ultrapar, apresentação 1S24"},
- {l:"Revendas no app Minha Revenda (meta)",v:"6 mil",s:"Nacional Gás · até o fim de 2026"}
-];
-const DG_COLS=["App do consumidor","WhatsApp","Assistente ou chatbot","Granel e medição individual","App para revendas","Fidelidade e cupons"];
-const DG=[
- {n:"Supergasbras",me:1,c:["Pedir Gás: P13 e P45, Pix e rastreio","Pedir Gás (0800 591 2591)","Chatbot no WhatsApp e no site","Super Gestão e portal Minha Conta","","Clube Pedir Gás"]},
- {n:"Ultragaz",c:["App Ultragaz: pedir ou agendar","Sim","Ully, assistente digital","Portal do cliente empresarial","MAP – Meu Aplicativo Parceiro","Cupons no app (ex.: 12/12)"]},
- {n:"Nacional Gás",c:["","","","App Minha conta Nacionalgás","Minha Revenda","" ]},
- {n:"Copa Energia",c:["","","","","Copa Shop (loja da revenda)",""]},
- {n:"Consigaz",c:["","","","App Grupo Consigaz (Conta SIM)","",""]},
- {n:"Comgás",c:["Comgás Virtual","(11) 3325-0197","IA no autoatendimento","388 mil medidores inteligentes","",""]},
- {n:"Naturgy",c:["Portal Minha Naturgy","Sim, via menu visual","Menu de autoatendimento","Fatura digital com Pix","",""]}
-];
-const DG_NPS=[
- "<b>Nenhuma distribuidora de GLP publica o NPS.</b> A Ultragaz diz acompanhar NPS e CSAT para priorizar melhorias, mas não divulga os números.",
- "<b>Comgás</b>: depois de usar IA no canal de análise de consumo, o NPS dessa jornada subiu 8 pontos e a resolução no digital cresceu 14%.",
- "<b>Ultragaz</b>: em 2022, segundo o Itaú BBA, o NPS total da empresa cresceu 14 pontos percentuais no ano.",
- "<b>Supergasbras</b>: ganhou em 2023 o prêmio MESC de melhor empresa em satisfação do cliente entre as distribuidoras de gás. O tempo médio de entrega do Pedir Gás é de 29 minutos.",
- "<b>Leitura para a Supergasbras</b>: no Reclame Aqui, a empresa não exibe o “voltariam a fazer negócio”. Vale medir um NPS por canal (app, WhatsApp, granel) para comparar com o mercado."
-];
-const DG_BACK=[{n:"Ultragaz",v:62.6},{n:"Copa Energia",v:53.7},{n:"Comgás",v:53.5}];
-const DG_CO=[
- {n:"Supergasbras",me:1,b:["Pedir Gás conecta consumidor, revenda e entregador; mais de 5 milhões de consumidores atendidos desde 2023.","Mais de R$ 60 milhões investidos em tecnologia para digitalizar o varejo de GLP (abr/26).","Clube Pedir Gás (jul/25): cupom a cada três compras no app ou no WhatsApp.","Para empresas e condomínios: Super Gestão, portal Minha Conta e WhatsApp para pedido e segunda via."],src:"Portal Tela, Click Petróleo e Gás, ITForum"},
- {n:"Ultragaz",b:["App lançado em 2020; a empresa citou 5 milhões de clientes no app em 2024.","Ully, assistente digital, e estratégia omnichannel com WhatsApp, telefone e chat.","MAP para a revenda e portal para o cliente empresarial.","Promoções exclusivas no app, como 12% de desconto no 12/12 com pagamento online."],src:"Ultrapar RI, Melhores Cartões, Consumidor Moderno"},
- {n:"Nacional Gás",b:["App Minha Revenda, o “iFood do botijão”, virou o principal canal de pedidos no piloto.","Meta de atender toda a base de mais de 6 mil revendas pelo app até o fim de 2026.","Plano de cerca de R$ 150 milhões por ano em tecnologia; teste de venda pelo Zé Delivery em MG e CE.","App Minha conta Nacionalgás para medição individual: segunda via e histórico de consumo."],src:"NeoFeed, Baguete, A Tarde"},
- {n:"Copa Energia",b:["Não foi encontrado app próprio de pedido de botijão para o consumidor.","Investe em marca: patrocínio do Bloco Coruja de Ivete Sangalo no Carnaval 2026, com blimp em forma de botijão Liquigás.","Campanha “Mais energia para sua vida” com promoção nas redes, TikTok e Kwai.","Copa Shop atende as revendas, mas gerou reclamação de atraso em 2026."],src:"ABC da Comunicação, Propmark, Reclame Aqui"},
- {n:"Comgás",b:["94% dos atendimentos já acontecem em canais digitais.","App Comgás Virtual, WhatsApp, chat e autoatendimento com IA.","388 mil clientes com medidor inteligente e leitura remota.","Vende serviços pela vitrine do Reclame Aqui, como troca de mangueira e ligação de fogão."],src:"Consumidor Moderno, Click Petróleo e Gás, Reclame Aqui"},
- {n:"Naturgy",b:["Portal Minha Naturgy ganhou o Prêmio Smart em Relacionamento Digital (2023).","Mais de 60% dos clientes recebem a fatura por e-mail, com Pix.","Menu visual de autoatendimento multiplicou por 2,6 os contatos digitais.","Nova conta de gás com pagamento por Pix começa a chegar no Rio (nov/26)."],src:"Correio da Manhã, Mobile Time, Diário do Rio"}
-];
-const DG_NEWS=[
- {d:"04/11/2026",t:"Naturgy muda a conta de gás no Rio e inclui pagamento por Pix",s:"Diário do Rio",u:"https://diariodorio.com/economia/2026/11/04/naturgy-muda-modelo-da-conta-de-gas-no-rio-veja-o-que-muda-na-fatura.html"},
- {d:"jul/2026",t:"Supergasbras faz 80 anos com cupom SUPER80 no app e no WhatsApp e ação com influenciadores",s:"Grandes Nomes da Propaganda",u:"https://grandesnomesdapropaganda.com.br/mercado-digital/supergasbras-mobiliza-influenciadores-para-celebrar-80-anos/"},
- {d:"17/04/2026",t:"Supergasbras investe mais de R$ 60 milhões para ampliar a digitalização do Pedir Gás",s:"Portal Tela",u:"https://www.portaltela.com/noticias/economia/2026/04/17/supergasbras-investe-60-milhoes-para-ampliar-digitalizacao/"},
- {d:"2026",t:"Comgás chega a 94% dos atendimentos em canais digitais e 388 mil medidores inteligentes",s:"Consumidor Moderno",u:"https://consumidormoderno.com.br/atendimento-digital-medidores-inteligentes-cx-comgas/"},
- {d:"20/02/2026",t:"Liquigás patrocina o Bloco Coruja, de Ivete Sangalo, no Carnaval de Salvador",s:"ABC da Comunicação",u:"https://www.abcdacomunicacao.com.br/?p=340942"},
- {d:"12/12/2025",t:"Ultragaz dá 12% de desconto no botijão pedido e pago pelo app",s:"Melhores Cartões",u:"https://www.melhorescartoes.com.br/promocao-desconto-botijao-gas-ultragaz-dez25.html"},
- {d:"27/10/2025",t:"Nacional Gás cria app Minha Revenda, o “iFood do botijão”",s:"NeoFeed e Baguete",u:"https://neofeed.com.br/negocios/nacional-gas-cria-o-ifood-do-botijao-a-espera-do-boom-de-consumo-do-gas-de-cozinha/"},
- {d:"24/07/2025",t:"Supergasbras lança o Clube Pedir Gás, com cupom a cada três compras",s:"Click Petróleo e Gás",u:"https://clickpetroleoegas.com.br/supergasbras-aposta-em-fidelizacao-digital-com-clube-pedir-gas-e-amplia-relacao-com-o-consumidor-brasileiro/"}
-];
-function renderDG(){
-  $("#dgKpi").innerHTML=DG_KPI.map(k=>`<div class="kpi"${k.me?' style="border-color:var(--laranja)"':""}><div class="lbl">${esc(k.l)}</div><div class="val">${k.v}</div><div class="src">${esc(k.s)}</div></div>`).join("");
-  $("#dgTbl").innerHTML=`<tr><th>Empresa</th>${DG_COLS.map(c=>`<th>${c}</th>`).join("")}</tr>`+DG.map(r=>`<tr class="${r.me?"me":""}"><td>${esc(r.n)}</td>${r.c.map(v=>v?`<td><span class="y"><span class="ms">check_circle</span><span>${esc(v)}</span></span></td>`:`<td class="n0">Não identificado</td>`).join("")}</tr>`).join("");
-  $("#dgNps").innerHTML=DG_NPS.map(t=>`<li>${t}</li>`).join("");
-  bars($("#dgBack"),DG_BACK,100,v=>nf(v,1)+"%");
-  $("#dgBack").querySelectorAll(".fill").forEach(f=>requestAnimationFrame(()=>f.style.width=f.dataset.w+"%"));
-  $("#dgCos").innerHTML=DG_CO.map(c=>`<div class="dg-card ${c.me?"me":""}"><h4>${esc(c.n)}</h4><ul>${c.b.map(b=>`<li>${esc(b)}</li>`).join("")}</ul><div class="src">Fontes: ${esc(c.src)}</div></div>`).join("");
-  $("#dgNews").innerHTML=DG_NEWS.map(n=>`<a class="mini" href="${n.u}" target="_blank" rel="noopener"><span class="d">${n.d}</span><span><span class="t">${esc(n.t)}</span><br><small style="color:var(--texto-3);font-size:11.5px">${esc(n.s)}</small></span></a>`).join("");
-}
-renderDG();
+
 
 
 const CD_KPI=[
- {l:"Taxa de medição individual",v:"R$ 4",s:"por unidade/mês, validada pelo STJ quando a assembleia escolhe a modalidade (2023)"},
+ {l:"Taxa de medição individual",v:"R$ 4",s:"por unidade/mês, validada pelo STJ quando a assembleia escolhe a modalidade (2023)",u:"https://www.sindiconet.com.br/informese/medicao-individualizada-de-gas-pode-ser-taxada-em-condominio-noticias-juridico",ul:"Fonte: SíndicoNet, 09/08/2023 · STJ diz que a taxa não é abusiva"},
  {l:"Comgás · medidor inteligente",v:"388 mil",s:"clientes com leitura remota; 94% do atendimento em canais digitais"},
  {l:"Obrigação federal",v:"Só água",s:"Lei 13.312/2016 exige medição individual de água em prédios novos desde 2021; para gás não há"}
 ];
@@ -1438,6 +1385,33 @@ const CD_NEWS=[
  {d:"2024",t:"Consigaz premiada por regulador com bloqueio para a Conta SIM",s:"Sindigás · Prêmio GLP",u:"https://sindigas.org.br/Download/PREMIO_GLP/2024/PROJETOS_DE_INSTALACOES/REGULADOR-DE-PRESSAO-PARA-GAS-DE-SEGUNDO-ESTAGIO-BAIXA-PRESSAO-COM-SISTEMA-INTERNO-DE-BLOQUEIO-MECANICO.pdf"},
  {d:"12/10/2023",t:"STJ: distribuidora pode cobrar tarifa pela medição individual em condomínio",s:"Dizer o Direito",u:"https://www.dizerodireito.com.br/2023/10/distribuidora-de-gas-pode-cobrar-tarifa.html"}
 ];
+const CD_CO=[
+ {n:"Supergasbras",s:"GLP",me:1,b:[["Oferta","SGI: leiturista mede cada apartamento e a fatura individual chega por e-mail ou correio. Três modalidades de manutenção grátis, assistência 24h e apoio na troca do gás natural para GLP aproveitando a tubulação."],["Portal e app","Super Gestão para o síndico e app Minha Conta para o morador (segunda via, histórico, débito automático): nota 4,8 no Google Play e 3,8 na App Store."],["Assistentes","Chat dentro do Minha Conta e WhatsApp (21) 98011-2323."],["NPS","Não divulgado. Prêmio MESC 2023 de satisfação entre distribuidoras de gás; nota 7,7 (Boa) no Reclame Aqui, com queixas de granel e condomínio entre as mais citadas."]],src:"SíndicoNet, App Store, Google Play, Reclame Aqui"},
+ {n:"Ultragaz",s:"GLP",b:[["Oferta","Medição individual com taxa por unidade (caso que o STJ validou em 2023) e o portfólio Condomínio Inteligente, que junta gás, energia e eficiência."],["Portal e app","Portal do cliente empresarial e perguntas frequentes do síndico na página do Reclame Aqui (vasilhames, cheiro de gás, documentação técnica)."],["Assistentes","Ully, assistente digital, e WhatsApp."],["NPS","Acompanha NPS e CSAT sem publicar; o NPS total subiu 14 pontos em 2022 (Itaú BBA). Reclame Aqui 7,3 e 62,6% voltariam a fazer negócio."]],src:"Abrainc, Consumidor Moderno, Reclame Aqui, STJ"},
+ {n:"Copa Energia",s:"GLP",b:[["Oferta","Granel para condomínios com medição individual pelas marcas Liquigás e Copagaz; não há número atual público de clientes."],["Portal e app","Não identificado portal ou app para síndico ou morador."],["Assistentes","Não identificado."],["NPS","Não divulgado. Reclame Aqui 6,8 (Regular), 53,7% voltariam; há queixa de condomínio sobre preço por quilo após renovação de contrato (2026)."]],src:"Reclame Aqui"},
+ {n:"Consigaz",s:"GLP",b:[["Oferta","Conta SIM (Sistema Individual de Medição), com regulador que permite corte e religação seguros por unidade (Prêmio GLP 2024)."],["Portal e app","App Grupo Consigaz para condôminos e lojistas de shopping (2,2 no Google Play, 1,32 mil avaliações) e Área do Cliente; central (11) 4197-9300."],["Assistentes","Não identificado."],["NPS","Não divulgado. Responde mais rápido que as grandes no Reclame Aqui (3d 13h), com nota do consumidor de 5,86."]],src:"Sindigás (Prêmio GLP), Google Play, Reclame Aqui"},
+ {n:"Nacional Gás",s:"GLP",b:[["Oferta","Medição individualizada com cadastro da unidade e pedido de religação por formulário online."],["Portal e app","App Minha Conta Nacional Gás: segunda via, histórico de consumo e certidão de débito (2,7 no Google Play, 58 avaliações)."],["Assistentes","Não identificado."],["NPS","Não divulgado. Pior reputação entre as grandes de GLP: 5,7 (Ruim) e nota do consumidor 3,65."]],src:"Formulários da empresa, Google Play, Reclame Aqui"},
+ {n:"Comgás",s:"GN",b:[["Oferta","Cada apartamento é cliente da concessionária; Guia do Síndico orienta a obra de infraestrutura e o mutirão de conversão."],["Portal e app","Comgás Virtual (4,7 na App Store, 3,7 no Google Play) e 388 mil medidores inteligentes com leitura remota."],["Assistentes","IA no autoatendimento e WhatsApp (11) 3325-0197; 94% dos atendimentos já são digitais."],["NPS","Com IA na análise de consumo, o NPS dessa jornada subiu 8 pontos. No Reclame Aqui, 6,2 (Regular), com cobrança indevida em 39% das queixas."]],src:"Consumidor Moderno, Comgás, lojas de apps, Reclame Aqui"},
+ {n:"Naturgy",s:"GN",b:[["Oferta","Cada apartamento é cliente; aproximação com administradoras e síndicos ajudou a crescer 606% em ligações residenciais no interior de SP (2025)."],["Portal e app","Portal Minha Naturgy (Prêmio Smart 2023); não há app brasileiro nas lojas. Nova fatura com Pix no Rio (nov/26)."],["Assistentes","Menu visual de autoatendimento, que multiplicou por 2,6 os contatos digitais, e WhatsApp."],["NPS","Não divulgado. Reclame Aqui 7,2 (Boa), com medição e valor da fatura entre os temas."]],src:"Cenário Energia, Mobile Time, Diário do Rio, Reclame Aqui"},
+ {n:"Compagas",s:"GN",b:[["Oferta","Instala os medidores individuais e defende economia de até 30% frente ao GLP nos prédios de Curitiba."],["Portal e app","Compagas Virtual, agência virtual para segunda via e serviços."],["Assistentes","Não identificado."],["NPS","Não divulgado, mas é a referência de reputação: subiu de 4,7 (2023) para 9,1 no Reclame Aqui, com área própria de reputação em Experiência do Cliente."]],src:"Bem Paraná, AEN-PR, Gazeta do Povo"}
+];
+const CD_PRICE=[
+ {s:"GLP",e:"Todas as distribuidoras (Brasil)",t:"GLP botijão e granel",m:"A Petrobras vendeu GLP em leilões com ágio de até 100% (31/03/26). Depois suspendeu os leilões e voltou ao preço de tabela: a Supergasbras reduziu R$ 1,53 e a Ultragaz R$ 3,04 por botijão, com corte proporcional por quilo em P20 e P45.",v:"01/05/2026",c:"Granel e P45 de condomínio seguem o preço por quilo do contrato",d:"05/05/2026",u:"https://diariodocomercio.com.br/negocios/preco-glp-reducao-petrobras/",f:"Diário do Comércio"},
+ {s:"GLP",e:"Confaz (todos os estados)",t:"ICMS do GLP",m:"ICMS sobe de R$ 1,47 para R$ 1,54 por quilo (+4,8%), ou R$ 0,91 a mais por botijão de 13 kg. Vale também para o GLP a granel.",v:"01/02/2027",c:"Mais R$ 0,07 por quilo na conta do granel",d:"29/10/2026",u:"https://movimentoeconomico.com.br/economia/combustivel/2026/10/29/confaz-estados-elevam-icms-sobre-diesel-gasolina-e-gas-de-cozinha-em-2027/",f:"Movimento Econômico"},
+ {s:"GN",e:"Petrobras (todas as concessionárias)",t:"Molécula do gás natural",m:"Queda média de 7,8% em fevereiro. Em novembro o preço ficou estável: sem o mecanismo de proteção, subiria cerca de 4,9%.",v:"01/02 e 01/11/2026",c:"Segura os reajustes das tarifas residenciais no fim do ano",d:"nov/2026",u:"https://clickpetroleoegas.com.br/petrobras-evita-alta-de-49-no-preco-do-gas-natural-para-distribuidoras-segura-reajuste-no-trimestre-e-mantem-protecao-contra-oscilacoes-do-petroleo-brent-no-mercado-internacional-nmb91/",f:"Click Petróleo e Gás (Reuters)"},
+ {s:"GN",e:"Comgás e Necta (SP)",t:"Gás natural canalizado",m:"Tarifas residenciais e comerciais sem alteração; o ajuste ficou só para a indústria. A Comgás tem tarifa própria para residencial com medição coletiva.",v:"set/2026",c:"Prédios em SP sem aumento de tarifa neste ciclo",d:"set/2026",u:"https://www.correiodamanha.com.br/nacional/sao-paulo/2026/09/318093-tarifa-de-gas-fica-estavel-para-casas-e-comercio.html",f:"Correio da Manhã"},
+ {s:"GN",e:"CEG Rio · Naturgy (interior do RJ)",t:"Gás natural e GLP canalizado",m:"Residencial até 7 m³ passa a R$ 7,5629/m³ (cerca de +0,6% sobre maio) e o GLP canalizado residencial a R$ 19,0616/kg (cerca de +2,7%).",v:"01/11/2026",c:"Condomínios com GLP canalizado da CEG Rio pagam por quilo regulado",d:"06/11/2026",u:"https://atlaspublico.com.br/estados/rj/noticias/agenersa-homologa-reajuste-das-tarifas-de-gas-natural-e-glp-99615",f:"Atlas Público (Agenersa)"},
+ {s:"GN",e:"CEG · Naturgy (capital do RJ)",t:"Gás natural e GLP canalizado",m:"Tabela de maio: residencial até 7 m³ a R$ 9,7518/m³ e GLP canalizado residencial a R$ 20,2088/kg, acima da CEG Rio.",v:"01/05/2026",c:"Referência para comparar com o GLP a granel na capital",d:"13/05/2026",u:"https://www.legisweb.com.br/legislacao/?id=495697",f:"DOE-RJ (LegisWeb)"},
+ {s:"GN",e:"Copergás (PE)",t:"Gás natural canalizado",m:"Residencial sobe de 1,10% a 1,46%, conforme a faixa; a indústria até 2,56%. Motivo: custo do gás comprado dos fornecedores.",v:"01/11/2026 a 31/01/2027",c:"Alta pequena para prédios no Recife",d:"30/10/2026",u:"https://movimentoeconomico.com.br/petroleo-e-gas/2026/10/30/gas-encanado-sobe-ate-256-para-industria-e-146-para-residencias-em-pernambuco/",f:"Movimento Econômico"},
+ {s:"GN",e:"Gasmig (MG)",t:"Gás natural canalizado",m:"Último reajuste foi em maio (+1%). Em agosto e novembro manteve as tarifas da indústria, veicular e cogeração; o residencial não foi citado.",v:"01/11/2026",c:"Sem sinal de alta para prédios em MG",d:"nov/2026",u:"https://diariodocomercio.com.br/economia/gas-natural-sem-reajuste-minas-gerais/",f:"Diário do Comércio"},
+ {s:"GN",e:"Bahiagás (BA)",t:"Gás natural canalizado",m:"Projeção de queda de 6,5% na tarifa média para nov/26 a jan/27, depois de alta projetada de 14% em ago a out/26.",v:"nov/2026",c:"Alívio esperado no trimestre",d:"ago/2026",u:"https://bahiagas.com.br/portalregulatorioedetarifas/src/pdfs/07 - Conta Gráfica e Projeção do Preço de Venda (PV) - Bahiagás.pdf",f:"Portal de tarifas Bahiagás"},
+ {s:"GN",e:"ES Gás · Energisa (ES)",t:"Gás natural canalizado",m:"Novo preço de venda, sem impostos, de R$ 3,0842/m³ para os segmentos não termelétricos.",v:"01/11/2026",c:"Base do custo para prédios no ES",d:"nov/2026",u:"https://visnoinvest.com.br/news/16006/energisa-engi3-registra-tarifa-de-gas-de-r-30842-por-m3",f:"Visno Invest"}
+];
+const CD_PRICE_READ=[
+ "<b>GLP a granel não tem tarifa regulada:</b> o condomínio paga o preço por quilo do contrato. Em 2026 o custo oscilou com os leilões da Petrobras e caiu em maio; o próximo aumento certo é o ICMS de fevereiro de 2027.",
+ "<b>Gás natural subiu pouco no fim do ano</b> (0,6% na CEG Rio e até 1,46% em Pernambuco) e ficou estável em São Paulo, porque a Petrobras segurou o preço da molécula em novembro.",
+ "<b>Ponto de debate com o síndico:</b> a cláusula de reajuste do contrato e uma fatura que mostre o preço por quilo. A reclamação de condomínio contra a Copa Energia em 2026 foi justamente sobre preço por quilo diferente do combinado."
+];
 const CD_APPS=[
  {e:"Supergasbras",me:1,a:"Pedir Gás",f:"Pedido de botijão P13 e P45",ios:"4,6 (3,2 mil)",and:"4,7 (28,2 mil)",obs:"Mais de 1 milhão de downloads no Android"},
  {e:"Supergasbras",me:1,a:"Minha Conta",f:"Morador com medição individual",ios:"3,8 (327)",and:"4,8 (720)",obs:"Segunda via, histórico, chat e débito automático"},
@@ -1465,7 +1439,7 @@ function renderCD(){
   const segs=[["all","Todos"],["GLP","GLP"],["GN","Gás natural"],["MED","Empresas de medição"]];
   $("#cdF").innerHTML=segs.map(([k,l])=>`<button class="chip ${cdSeg===k?"on":""}" data-cd="${k}">${l}</button>`).join("");
   $("#cdF").querySelectorAll("[data-cd]").forEach(b=>b.onclick=()=>{cdSeg=b.dataset.cd;renderCD()});
-  $("#cdKpi").innerHTML=CD_KPI.map(k=>`<div class="kpi"${k.me?' style="border-color:var(--laranja)"':""}><div class="lbl">${esc(k.l)}</div><div class="val">${k.v}</div><div class="src">${esc(k.s)}</div></div>`).join("");
+  $("#cdKpi").innerHTML=CD_KPI.map(k=>`<div class="kpi"${k.me?' style="border-color:var(--laranja)"':""}><div class="lbl">${esc(k.l)}</div><div class="val">${k.v}</div><div class="src">${esc(k.s)}</div>${k.u?`<a class="kpi-link" href="${k.u}" target="_blank" rel="noopener"><span class="ms">open_in_new</span>${esc(k.ul)}</a>`:""}</div>`).join("");
   $("#cdVs").innerHTML=CD_VS.map(m=>`<div class="cd-mod"><div class="tag">${esc(m.tag)}</div><h4><span class="ms">${m.i}</span>${esc(m.t)}</h4><ul>${m.b.map(b=>`<li>${b}</li>`).join("")}</ul></div>`).join("");
   $("#cdRead").innerHTML=CD_READ.map(t=>`<li>${t}</li>`).join("");
   const segTag=s=>`<span class="cd-seg ${s==="GN"?"gn":s==="GLP"?"glp":"med"}">${s==="GN"?"GN":s==="GLP"?"GLP":"Medição"}</span>`;
@@ -1475,6 +1449,9 @@ function renderCD(){
   $("#cdQ").innerHTML=Q.length?Q.map(q=>{const cls=/Resolvida/.test(q.st)&&!/Não/.test(q.st)?"ok":/Não|réplica/.test(q.st)?"open":"";
     return `<div class="rq ${cls}"><div class="co"><span>${esc(q.co)} · ${esc(q.tema)}</span><span>${esc(q.dt)}</span></div><div class="t">${esc(q.t)}</div><p class="d">${esc(q.d)}</p><div class="ft"><span class="st">${esc(q.st)}</span><a href="${q.u}" target="_blank" rel="noopener">Ler no Reclame Aqui ↗</a></div></div>`}).join(""):"";
   $("#cdQBox").style.display=Q.length?"":"none";
+  $("#cdPrice").innerHTML=`<tr><th>Empresa / estado</th><th>Tipo</th><th>O que mudou</th><th>Vigência</th><th>Efeito no condomínio</th><th>Fonte</th></tr>`+(CD_PRICE.filter(r=>cdSeg==="all"||r.s===cdSeg).map(r=>`<tr><td>${esc(r.e)}${segTag(r.s)}</td><td>${esc(r.t)}</td><td>${esc(r.m)}</td><td style="white-space:nowrap">${esc(r.v)}</td><td>${esc(r.c)}</td><td><a class="kpi-link" style="margin-top:0" href="${encodeURI(r.u)}" target="_blank" rel="noopener"><span class="ms">open_in_new</span>${esc(r.f)} · ${esc(r.d)}</a></td></tr>`).join("")||`<tr><td colspan="6" class="n0">Empresas de medição não definem preço do gás; elas repassam a tarifa da distribuidora.</td></tr>`);
+  $("#cdPriceRead").innerHTML=CD_PRICE_READ.map(t=>`<li>${t}</li>`).join("");
+  $("#cdCos").innerHTML=CD_CO.filter(c=>cdSeg==="all"||c.s===cdSeg).map(c=>`<div class="dg-card ${c.me?"me":""}"><h4>${esc(c.n)}</h4><ul>${c.b.map(([k,v])=>`<li><b>${esc(k)}:</b> ${esc(v)}</li>`).join("")}</ul><div class="src">Fontes: ${esc(c.src)}</div></div>`).join("")||`<p class="d" style="color:var(--texto-3);margin:0">As empresas de medição prestam serviço ao condomínio e não têm oferta comparável. Veja as reclamações abaixo.</p>`;
   $("#cdApps").innerHTML=`<tr><th>Empresa</th><th>App</th><th>Para quem</th><th>App Store</th><th>Google Play</th><th>Observação</th></tr>`+CD_APPS.map(a=>`<tr class="${a.me?"me":""}"><td>${esc(a.e)}</td><td>${esc(a.a)}</td><td>${esc(a.f)}</td>${[a.ios,a.and].map(v=>v?`<td><b>★ ${esc(v)}</b></td>`:`<td class="n0">Sem nota</td>`).join("")}<td>${esc(a.obs)}</td></tr>`).join("");
   $("#cdBench").innerHTML=CD_BENCH.map(b=>`<div class="dg-card"><h4>${esc(b.t)}</h4><ul><li><b>Benchmark:</b> ${esc(b.b)}</li><li><b>Sugestão:</b> ${esc(b.s)}</li></ul></div>`).join("");
   $("#cdNews").innerHTML=CD_NEWS.map(n=>`<a class="mini" href="${n.u}" target="_blank" rel="noopener"><span class="d">${n.d}</span><span><span class="t">${esc(n.t)}</span><br><small style="color:var(--texto-3);font-size:11.5px">${esc(n.s)}</small></span></a>`).join("");
@@ -1580,11 +1557,12 @@ function globalSearch(q){
   if(lc.length)groups.push(["Licitações e leilões",lc.slice(0,6)]);
   const ra=RA.filter(r=>hit([r.n,r.st,r.obs,"reclame aqui reputacao nota reclamacao",r.s==="GN"?"gas natural":"glp"].join(" "),ws)).map(r=>({i:"reviews",t:r.n+" · Reclame Aqui "+(r.nota==null?r.st:nf(r.nota,1)),d:r.st+" · "+r.per,go:()=>goSec("reputacao")}))
     .concat(RQ.filter(q=>hit([q.co,q.t,q.tema,q.d,"reclamacao reclame aqui"].join(" "),ws)).map(q=>({i:"report",t:q.t,d:q.co+" · "+q.st,go:()=>goSec("reputacao")})))
-    .concat(DG_CO.filter(c=>hit([c.n,c.b.join(" "),"app aplicativo whatsapp digital canais nps"].join(" "),ws)).map(c=>({i:"smartphone",t:c.n+" · canais digitais",d:c.b[0].slice(0,100),go:()=>goSec("digital")})));
-  if(ra.length)groups.push(["Reclame Aqui e canais digitais",ra.slice(0,6),ra.length]);
+  if(ra.length)groups.push(["Reclame Aqui",ra.slice(0,6),ra.length]);
   const cd=CD.filter(r=>hit([r.n,r.c.filter(Boolean).join(" "),"condominio condominios medicao individual sindico morador predio granel"].join(" "),ws)).map(r=>({i:"apartment",t:r.n+" · condomínios",d:(r.c[0]||"")+" · "+(r.c[2]||"canal do morador não identificado"),go:()=>goSec("condominios")}))
     .concat(CQ.filter(q=>hit([q.co,q.t,q.tema,q.d,"condominio reclamacao medicao gas"].join(" "),ws)).map(q=>({i:"report",t:q.t,d:q.co+" · "+q.st,go:()=>goSec("condominios")})))
     .concat(CD_NEWS.filter(n=>hit(n.t+" "+n.s+" condominio",ws)).map(n=>({i:"newspaper",t:n.t,d:n.s+" · "+n.d,go:()=>goSec("condominios")})));
+  cd.push(...CD_CO.filter(c=>hit([c.n,c.b.map(x=>x.join(" ")).join(" "),"condominio sindico portal nps assistente"].join(" "),ws)).map(c=>({i:"apartment",t:c.n+" · oferta para condomínios",d:c.b[0][1].slice(0,100),go:()=>goSec("condominios")})));
+  cd.push(...CD_PRICE.filter(r=>hit([r.e,r.t,r.m,"reajuste aumento preco tarifa gas condominio residencial"].join(" "),ws)).map(r=>({i:"trending_up",t:r.e+" · "+r.t,d:r.m.slice(0,100),go:()=>goSec("condominios")})));
   if(cd.length)groups.push(["Condomínios",cd.slice(0,6),cd.length]);
   const ag=AG_CULT.filter(c=>hit([c.c,c.d,c.u,c.p,"agro agronegocio cultura safra"].join(" "),ws)).map(c=>({i:"agriculture",t:c.c+" · agronegócio",d:c.u+" · "+c.p,go:()=>goSec("agro")}))
     .concat(AG_REG.filter(r=>hit([r.n,r.uf,r.b.join(" "),"regiao agro"].join(" "),ws)).map(r=>({i:"map",t:"Agro · "+r.n+" ("+r.uf+")",d:r.tag,go:()=>goSec("agro")})))
@@ -1637,7 +1615,7 @@ $$(".tab").forEach(t=>t.onclick=()=>{state.tab=t.dataset.tab;$$(".tab").forEach(
 
 /* trends, comms, agenda */
 const sigIcon={up:"north_east",watch:"visibility",risk:"warning"};
-$("#trends").innerHTML=TRENDS.map(t=>`<div class="tr rv"><div class="hd"><div class="ico"><span class="ms">${t.i}</span></div><span class="signal ${t.sig}"><span class="ms">${sigIcon[t.sig]}</span>${t.sl}</span></div><h4>${esc(t.t)}</h4><p>${esc(t.p)}</p><div class="so">${esc(t.so)}</div></div>`).join("");
+$("#trends").innerHTML=TRENDS.map(t=>`<div class="tr rv"><div class="hd"><div class="ico"><span class="ms">${t.i}</span></div><span class="signal ${t.sig}"><span class="ms">${sigIcon[t.sig]}</span>${t.sl}</span></div><h4>${esc(t.t)}</h4><p>${esc(t.p)}</p><div class="so">${esc(t.so)}</div>${t.src?`<div class="tr-src">${t.src.map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">Fonte: ${esc(l)} ↗</a>`).join("")}</div>`:""}</div>`).join("");
 $("#comms").innerHTML=COMMS.map(c=>`<div class="tl ${c.seg}"><div class="when">${c.w} · ${c.seg==="GN"?"Gás natural":"GLP"}</div><h5>${esc(c.t)}</h5><p>${esc(c.p)}</p><a href="${c.u}" target="_blank" rel="noopener">Ver fonte ↗</a></div>`).join("");
 $("#agenda").innerHTML=AGENDA.map(a=>`<div class="ag"><div class="date ${a.soft?"soft":""}"><b style="${a.d.length>3?"font-size:13px":""}">${a.d}</b><small>${a.m}</small></div><div><h5>${esc(a.t)}</h5><p>${esc(a.p)}</p></div></div>`).join("");
 
@@ -1855,7 +1833,7 @@ $$(".rv").forEach(el=>io.observe(el));
 setTimeout(()=>{$$(".rv").forEach(el=>{el.classList.add("in");el.querySelectorAll(".fill").forEach(f=>f.style.width=f.dataset.w+"%")})},2500);
 
 /* rail active + fab */
-const secs=["visao","share","precos","dados","mapa","noticias","empresas","tendencias","comunicacao","reputacao","digital","condominios","agro","licitacoes","alerta-uf"].map(id=>document.getElementById(id));
+const secs=["visao","share","precos","dados","mapa","noticias","empresas","tendencias","comunicacao","reputacao","condominios","agro","licitacoes","alerta-uf"].map(id=>document.getElementById(id));
 addEventListener("scroll",()=>{
   $("#fab").classList.toggle("show",scrollY>600);
   let cur="visao";secs.forEach(s=>{if(s.getBoundingClientRect().top<140)cur=s.id});
