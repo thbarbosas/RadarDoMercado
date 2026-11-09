@@ -51,7 +51,9 @@ a{color:inherit}
 .icon-btn:hover{background:var(--painel-2)}
 
 /* ---------- Navigation rail ---------- */
-.rail{position:fixed;left:0;top:0;bottom:0;width:88px;z-index:40;background:var(--painel);border-right:1px solid var(--linha);display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:6px}
+.rail{position:fixed;left:0;top:0;bottom:0;width:88px;z-index:40;background:var(--painel);border-right:1px solid var(--linha);display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:6px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--linha) transparent}
+.rail::-webkit-scrollbar{width:6px}.rail::-webkit-scrollbar-thumb{background:var(--linha);border-radius:3px}
+.rail>*{flex:none}
 .rail .logo{width:48px;height:48px;border-radius:14px;background:var(--laranja);display:grid;place-items:center;color:#fff;margin-bottom:14px}
 .rail a{display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;font-size:11px;font-weight:600;color:var(--texto-2);width:72px;padding:4px 0}
 .rail a .pill{width:56px;height:32px;border-radius:16px;display:grid;place-items:center;transition:background .2s}
@@ -444,7 +446,7 @@ footer{margin-top:20px}
   <div class="hl"></div>
   <p>Gás natural canalizado e GLP lado a lado: quem cresce, quem investe, o que muda na regra do jogo e onde cada movimento acontece no Brasil. Tudo a partir de portais públicos, associações e imprensa setorial.</p>
   <svg class="barra" viewBox="0 0 1200 86" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 380 40, 620 6, 1200 2 L1200 86 L0 86 Z" fill="#D33100"/></svg>
-  <div class="barra-txt"><span id="stamp">Atualizado em 9 nov 2026, 15h20 · ANP com dados até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
+  <div class="barra-txt"><span id="stamp">Atualizado em 9 nov 2026, 15h25 · ANP com dados até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
 </div>
 
 <!-- KPIs -->
@@ -1326,7 +1328,7 @@ const secs=["visao","share","precos","dados","mapa","noticias","empresas","tende
 addEventListener("scroll",()=>{
   $("#fab").classList.toggle("show",scrollY>600);
   let cur="visao";secs.forEach(s=>{if(s.getBoundingClientRect().top<140)cur=s.id});
-  $$("[data-nav]").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+cur));
+  $$("[data-nav]").forEach(a=>{const on=a.getAttribute("href")==="#"+cur;if(on&&!a.classList.contains("on")){const r=a.parentElement,ar=a.getBoundingClientRect(),rr=r.getBoundingClientRect();if(ar.bottom>rr.bottom)r.scrollTop+=ar.bottom-rr.bottom+8;else if(ar.top<rr.top)r.scrollTop-=rr.top-ar.top+8;if(ar.right>rr.right)r.scrollLeft+=ar.right-rr.right+8;else if(ar.left<rr.left)r.scrollLeft-=rr.left-ar.left+8;}a.classList.toggle("on",on)});
 },{passive:true});
 $("#fab").onclick=()=>scrollTo({top:0,behavior:"smooth"});
 addEventListener("scroll",hideTip,{passive:true});
