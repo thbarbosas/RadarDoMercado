@@ -391,6 +391,64 @@ footer{margin-top:20px}
   .hbar{grid-template-columns:96px 1fr 54px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* Reclame Aqui + Digital */
+.ra-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.ra-card{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio-card);padding:18px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--sombra)}
+.ra-card.me{border-color:var(--laranja);box-shadow:0 0 0 1px var(--laranja) inset,var(--sombra)}
+.ra-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.ra-nm{font-weight:700;font-size:15px;line-height:1.25}
+.ra-seg{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-3);margin-top:2px}
+.ra-badge{font-size:11px;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.ra-badge.otima{background:#DDF1E4;color:#17663A}.ra-badge.boa{background:#E1ECF8;color:#1C5596}.ra-badge.regular{background:#FFF0D1;color:#7A4E00}.ra-badge.ruim{background:#FBE1DE;color:#A3241A}
+[data-theme="dark"] .ra-badge.otima{background:#16301F;color:#7CD39A}[data-theme="dark"] .ra-badge.boa{background:#16253A;color:#8DB9EE}[data-theme="dark"] .ra-badge.regular{background:#33270D;color:#F2C46B}[data-theme="dark"] .ra-badge.ruim{background:#3A1714;color:#F19B92}
+.ra-score{font-weight:800;font-size:34px;line-height:1;letter-spacing:-.02em}.ra-score small{font-size:14px;color:var(--texto-3);font-weight:600;margin-left:2px}
+.ra-stats{display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;font-size:12px;color:var(--texto-2)}
+.ra-stats div{display:flex;justify-content:space-between;gap:6px;border-bottom:1px dashed var(--linha);padding:4px 0}.ra-stats b{color:var(--texto);font-variant-numeric:tabular-nums}
+.ra-obs{font-size:12.5px;color:var(--texto-2);line-height:1.45;margin:0}
+.ra-foot{font-size:11px;color:var(--texto-3);margin-top:auto;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.ra-foot a{color:var(--laranja);font-weight:700;text-decoration:none}
+.rq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.rq{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio-card);padding:16px 16px 14px 20px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:8px}
+.rq::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--cinza-claro)}
+.rq.open::before{background:var(--laranja)}.rq.ok::before{background:#2E8B57}
+.rq .co{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-3);display:flex;justify-content:space-between;gap:8px}
+.rq .t{font-weight:700;font-size:14px;line-height:1.35}
+.rq .d{font-size:12.5px;color:var(--texto-2);margin:0;line-height:1.45}
+.rq .ft{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;font-size:11.5px}
+.rq .st{font-weight:700;border-radius:999px;padding:2px 9px;background:var(--painel-2);color:var(--texto-2)}
+.rq.open .st{background:var(--laranja-10);color:var(--laranja)}.rq.ok .st{background:#DDF1E4;color:#17663A}[data-theme="dark"] .rq.ok .st{background:#16301F;color:#7CD39A}
+.rq .ft a{color:var(--laranja);font-weight:700;text-decoration:none}
+.insight{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:var(--texto-2)}
+.insight b{color:var(--texto)}
+.dg-wrap{overflow-x:auto}
+table.dg{width:100%;border-collapse:collapse;font-size:12.5px;min-width:820px}
+table.dg th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--texto-3);text-align:left;padding:8px;border-bottom:2px solid var(--linha);vertical-align:bottom}
+table.dg td{padding:10px 8px;border-bottom:1px solid var(--linha);vertical-align:top;line-height:1.35}
+table.dg td:first-child{font-weight:700;white-space:nowrap}
+table.dg tr.me td:first-child{color:var(--laranja)}
+table.dg .y{display:inline-flex;gap:4px;align-items:flex-start}.dg .y .ms{color:#2E8B57;font-size:16px;flex:none;width:1em;overflow:hidden}
+table.dg .n0{color:var(--texto-3)}
+.dg-co{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.dg-card{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio-card);padding:18px;display:flex;flex-direction:column;gap:10px}
+.dg-card.me{border-color:var(--laranja)}
+.dg-card h4{margin:0;font-size:15px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.dg-card ul{margin:0;padding-left:18px;font-size:12.5px;color:var(--texto-2);display:flex;flex-direction:column;gap:6px}
+.dg-card .src{font-size:11px;color:var(--texto-3)}
+
+/* Condomínios */
+.cd-vs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.cd-vs{grid-template-columns:1fr}}
+.cd-mod{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio-card);padding:18px;display:flex;flex-direction:column;gap:10px}
+.cd-mod h4{margin:0;font-size:15px;display:flex;gap:8px;align-items:center}
+.cd-mod h4 .ms{color:var(--laranja)}
+.cd-mod .tag{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-3)}
+.cd-mod ul{margin:0;padding-left:18px;font-size:12.5px;color:var(--texto-2);display:flex;flex-direction:column;gap:6px;line-height:1.45}
+.cd-mod ul b{color:var(--texto)}
+.cd-seg{font-size:10px;font-weight:700;border-radius:999px;padding:2px 8px;margin-left:6px;background:var(--painel-2);color:var(--texto-2);vertical-align:middle}
+.cd-seg.gn{background:#E1ECF8;color:#1C5596}[data-theme="dark"] .cd-seg.gn{background:#16253A;color:#8DB9EE}
+.cd-seg.glp{background:#FFE7D6;color:#9A3F00}[data-theme="dark"] .cd-seg.glp{background:#3A2210;color:#F5A66B}
+.cd-seg.med{background:#EDE7F6;color:#5B3A99}[data-theme="dark"] .cd-seg.med{background:#251C36;color:#C2A8F0}
 </style>
 </head>
 <body>
@@ -406,6 +464,9 @@ footer{margin-top:20px}
   <a href="#empresas" data-nav><span class="pill"><span class="ms">apartment</span></span>Empresas</a>
   <a href="#tendencias" data-nav><span class="pill"><span class="ms">trending_up</span></span>Tendências</a>
   <a href="#comunicacao" data-nav><span class="pill"><span class="ms">campaign</span></span>Comunicação</a>
+  <a href="#reputacao" data-nav title="Reputação no Reclame Aqui"><span class="pill"><span class="ms">reviews</span></span>Reputação</a>
+  <a href="#digital" data-nav title="Canais digitais"><span class="pill"><span class="ms">smartphone</span></span>Digital</a>
+  <a href="#condominios" data-nav title="Condomínios residenciais"><span class="pill"><span class="ms">apartment</span></span>Condomínios</a>
   <a href="#licitacoes" data-nav><span class="pill"><span class="ms">request_quote</span></span>Licitações</a>
   <a href="#alerta-uf" data-nav><span class="pill"><span class="ms">notifications_active</span></span>Alerta UF</a>
 </nav>
@@ -446,7 +507,7 @@ footer{margin-top:20px}
   <div class="hl"></div>
   <p>Gás natural canalizado e GLP lado a lado: quem cresce, quem investe, o que muda na regra do jogo e onde cada movimento acontece no Brasil. Tudo a partir de portais públicos, associações e imprensa setorial.</p>
   <svg class="barra" viewBox="0 0 1200 86" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 380 40, 620 6, 1200 2 L1200 86 L0 86 Z" fill="#D33100"/></svg>
-  <div class="barra-txt"><span id="stamp">Atualizado em 9 nov 2026, 15h25 · ANP com dados até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
+  <div class="barra-txt"><span id="stamp">Atualizado em 9 nov 2026, 19h · ANP com dados até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
 </div>
 
 <!-- KPIs -->
@@ -627,6 +688,47 @@ footer{margin-top:20px}
     <div class="panel rv"><p class="chart-title" style="margin-bottom:16px">Linha do tempo de comunicação</p><div class="timeline" id="comms"></div></div>
     <div class="panel rv"><p class="chart-title" style="margin-bottom:6px">No radar dos próximos meses</p><div id="agenda"></div></div>
   </div>
+</section>
+
+
+<!-- RECLAME AQUI -->
+<section id="reputacao">
+  <div class="sec-head rv"><div><div class="eyebrow">Voz do consumidor</div><h2>Reputação no <b>Reclame Aqui</b></h2><p>Nota, índices de resposta e solução das distribuidoras de GLP e de gás natural, e as reclamações recentes que merecem atenção.</p></div></div>
+  <div class="chips rv" id="raF" style="margin-bottom:16px"></div>
+  <div class="ra-grid rv" id="raCards"></div>
+  <div class="grid g-2" style="margin-top:16px">
+    <div class="panel rv"><p class="chart-title">Nota de reputação no Reclame Aqui</p><p class="chart-sub">De 0 a 10, últimos 6 meses. Ótima a partir de 8, Boa de 7 a 7,9, Regular de 6 a 6,9 e Ruim de 5 a 5,9.</p><div id="raChart"></div><div class="axisnote"><span>Fonte: perfis das empresas no Reclame Aqui e Gazeta do Povo (Compagas).</span><button class="tbl-toggle" id="raTblBtn"><span class="ms">table_rows</span>Ver tabela</button></div><div id="raTbl" style="display:none"></div></div>
+    <div class="panel rv"><p class="chart-title" style="margin-bottom:12px">Leitura rápida</p><ul class="insight" id="raRead"></ul></div>
+  </div>
+  <div class="panel rv" style="margin-top:16px"><p class="chart-title">Reclamações recentes em destaque</p><p class="chart-sub">Casos públicos de 2026, resumidos. Abra o link para ler a reclamação e a resposta da empresa.</p><div class="rq-grid" id="raQ"></div></div>
+  <p class="note rv" style="font-size:11.5px;color:var(--texto-3);margin:12px 0 0">Os perfis do Reclame Aqui mudam todo dia e cada um mostra uma janela de 6 meses própria, indicada em cada cartão. Liquigás e Copa Energia aparecem separadas porque têm perfis distintos na plataforma. Consigaz não exibiu a nota geral na consulta.</p>
+</section>
+
+<!-- CANAIS DIGITAIS -->
+<section id="digital">
+  <div class="sec-head rv"><div><div class="eyebrow">Experiência digital</div><h2>Canais <b>digitais</b> das distribuidoras</h2><p>O que cada empresa oferece em app, WhatsApp, assistente virtual e portais, os números divulgados, o que se sabe de NPS e as notícias mais recentes.</p></div></div>
+  <div class="grid g-4 rv" id="dgKpi"></div>
+  <div class="panel rv" style="margin-top:16px"><p class="chart-title">Quem oferece o quê</p><p class="chart-sub">Canais encontrados em sites, lojas de aplicativos, notícias e respostas das empresas. “Não identificado” quer dizer que a pesquisa não achou o canal, não que ele não exista.</p><div class="dg-wrap"><table class="dg" id="dgTbl"></table></div></div>
+  <div class="grid g-2" style="margin-top:16px">
+    <div class="panel rv"><p class="chart-title" style="margin-bottom:12px">NPS e satisfação: o que é público</p><ul class="insight" id="dgNps"></ul></div>
+    <div class="panel rv"><p class="chart-title">Voltariam a fazer negócio</p><p class="chart-sub">Indicador do Reclame Aqui mais próximo de um NPS público: % de quem reclamou e diz que compraria de novo.</p><div id="dgBack"></div><div class="axisnote"><span>Fonte: Reclame Aqui, últimos 6 meses de cada perfil.</span></div></div>
+  </div>
+  <div class="dg-co rv" id="dgCos" style="margin-top:16px"></div>
+  <div class="panel rv" style="margin-top:16px"><p class="chart-title" style="margin-bottom:12px">Notícias sobre canais digitais</p><div class="mini-list" id="dgNews" style="max-height:none"></div></div>
+</section>
+
+
+<!-- CONDOMÍNIOS -->
+<section id="condominios">
+  <div class="sec-head rv"><div><div class="eyebrow">Segmento residencial vertical</div><h2>Condomínios <b>residenciais</b></h2><p>Como GLP a granel e gás natural canalizado disputam os prédios, com e sem medição individual: o estado do mercado, o que as empresas oferecem ao síndico e ao morador, as reclamações e as notícias recentes.</p></div></div>
+  <div class="chips rv" id="cdF" style="margin-bottom:16px"></div>
+  <div class="grid g-4 rv" id="cdKpi" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))"></div>
+  <div class="cd-vs rv" style="margin-top:16px" id="cdVs"></div>
+  <div class="panel rv" style="margin-top:16px"><p class="chart-title" style="margin-bottom:12px">Como está o mercado</p><ul class="insight" id="cdRead"></ul></div>
+  <div class="panel rv" style="margin-top:16px"><p class="chart-title">Canais digitais para síndico e morador</p><p class="chart-sub">O que cada empresa oferece a condomínios. “Não identificado” quer dizer que a pesquisa não achou o canal, não que ele não exista.</p><div class="dg-wrap"><table class="dg" id="cdTbl"></table></div></div>
+  <div class="panel rv" id="cdQBox" style="margin-top:16px"><p class="chart-title">Reclamações recentes em condomínios</p><p class="chart-sub">Casos públicos de 2026 no Reclame Aqui. Boa parte mira a empresa terceirizada de medição, não a distribuidora.</p><div class="rq-grid" id="cdQ"></div></div>
+  <div class="panel rv" style="margin-top:16px"><p class="chart-title" style="margin-bottom:12px">Notícias e decisões sobre gás em condomínios</p><div class="mini-list" id="cdNews" style="max-height:none"></div></div>
+  <p class="note rv" style="font-size:11.5px;color:var(--texto-3);margin:12px 0 0">Não há estatística pública consolidada de quantos condomínios usam GLP ou gás natural, nem de quantos têm medição individual de gás. Os números acima são os que as próprias empresas ou a imprensa divulgaram, com a data de cada um.</p>
 </section>
 
 <!-- LICITAÇÕES -->
@@ -1129,6 +1231,190 @@ function hit(hay,ws){const h=NORM(hay);return ws.every(w=>has(h,w))||ws.some(w=>
 function hl(t,ws){let o=esc(t);ws.filter(w=>w.length>2).sort((a,b)=>b.length-a.length).slice(0,1).forEach(w=>{const re=new RegExp("("+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","gi");const nt=NORM(o);let out="",i=0,m;re.lastIndex=0;while((m=re.exec(nt))){out+=o.slice(i,m.index)+"<mark>"+o.slice(m.index,m.index+m[0].length)+"</mark>";i=m.index+m[0].length;if(!re.global)break}o=out+o.slice(i)});return o}
 function ufName(u){return u==="BR"?"Brasil Nacional":(UFS[u]?UFS[u].n+" "+REG[UFS[u].r]:"")}
 let SR=[],SRi=-1;
+
+/* ===== RECLAME AQUI ===== */
+const RA_URL="https://www.reclameaqui.com.br/empresa/";
+const RA=[
+ {n:"Supergasbras",s:"GLP",me:1,st:"Boa",nota:7.7,rec:600,resp:99.2,resol:81.3,volt:null,cons:null,tempo:"7d 11h",per:"Últimos 6 meses · consulta nov/26",obs:"Caiu de Ótima para Boa no semestre. As queixas mais citadas são mau atendimento e demora na execução, muitas de granel e condomínios.",u:RA_URL+"supergasbras/"},
+ {n:"Liquigás (Copa Energia)",s:"GLP",st:"Boa",nota:7.9,rec:98,resp:88.8,resol:82.4,volt:72.5,cons:7.18,tempo:"11d 8h",per:"Mar–ago/26",obs:"Melhor nota entre as marcas de botijão, mas passou de Ótima para Boa em julho e tinha 11 reclamações sem resposta.",u:RA_URL+"liquigas-distribuidora/"},
+ {n:"Ultragaz",s:"GLP",st:"Boa",nota:7.3,rec:2177,resp:99.8,resol:77.8,volt:62.6,cons:5.67,tempo:"7d 12h",per:"Fev–jul/26",obs:"Maior volume de reclamações do GLP. Está em 9º no ranking de Gás do Reclame Aqui e o problema mais citado é mau atendimento (13,9%).",u:RA_URL+"ultragaz/"},
+ {n:"Consigaz",s:"GLP",st:"Boa",nota:null,rec:null,resp:null,resol:null,volt:null,cons:5.86,tempo:"3d 13h",per:"Fev–jul/26",obs:"7º lugar no ranking de Gás e a resposta mais rápida entre as grandes. Teve 225 reclamações avaliadas no período.",u:RA_URL+"consigaz-distribuidora-de-gas/"},
+ {n:"Copa Energia",s:"GLP",st:"Regular",nota:6.8,rec:1350,resp:85.9,resol:79.0,volt:53.7,cons:5.6,tempo:null,per:"Últimos 6 meses · consulta nov/26",obs:"Caiu de Boa para Regular. Os temas mais comuns são cobrança indevida, demora na execução e mau atendimento.",u:RA_URL+"copa-energia/"},
+ {n:"Nacional Gás",s:"GLP",st:"Ruim",nota:5.7,rec:70,resp:92.9,resol:null,volt:null,cons:3.65,tempo:"17d 5h",per:"Jan–jun/26",obs:"Pior reputação entre as grandes de GLP, com nota do consumidor de 3,65. Há relatos de vazamento e de falta de suporte na troca do registro.",u:RA_URL+"nacional-gas-butano-distribuidora/"},
+ {n:"Compagas (PR)",s:"GN",st:"Ótima",nota:9.1,rec:null,resp:null,resol:null,volt:null,cons:null,tempo:null,per:"2026",obs:"Saiu de 4,7 em 2023 e 5,6 em 2024 para 9,1. Foi indicada ao Prêmio Reclame AQUI 2026 em Distribuidora de Gás, com resultado em 8/12.",u:"https://www.gazetadopovo.com.br/vozes/parana-sa/premio-reclame-aqui-2026-compagas/"},
+ {n:"Naturgy (RJ)",s:"GN",st:"Boa",nota:7.2,rec:null,resp:null,resol:null,volt:null,cons:5.41,tempo:null,per:"Últimos 6 meses",obs:"986 reclamações avaliadas e 34 aguardando resposta. Medição e valor da fatura aparecem entre os temas.",u:"https://www.reclameaqui.com.br/empresa/ceg-gas-natural-fenosa/lista-reclamacoes"},
+ {n:"Comgás (SP)",s:"GN",st:"Regular",nota:6.2,rec:2742,resp:85.1,resol:69.7,volt:53.5,cons:4.59,tempo:"22d 10h",per:"Fev–jul/26",obs:"Cobrança indevida responde por 39% das queixas. É a resposta mais lenta do grupo, com 60 reclamações aguardando.",u:RA_URL+"comgas"}
+];
+const RQ=[
+ {co:"Copa Energia",s:"GLP",tema:"Preço do granel",t:"Contrato renovado a R$ 6,80/kg cobrado com outro valor",d:"Cliente diz que a fatura não seguiu o preço por quilo combinado na renovação de julho de 2026.",st:"Não respondida",q:"nov/26",u:RA_URL+"copa-energia/lista-reclamacoes/"},
+ {co:"Copa Energia",s:"GLP",tema:"Cobrança",t:"Nome negativado sem contrato ativo",d:"Consumidores relatam cobranças por WhatsApp e negativação sem nunca terem sido clientes.",st:"Não respondida",q:"nov/26",u:RA_URL+"copa-energia/lista-reclamacoes/"},
+ {co:"Copa Energia",s:"GLP",tema:"Fim de contrato",t:"Cobrança depois que o condomínio saiu",d:"O condomínio encerrou o contrato em 27/08 e o morador recebeu boleto com vencimento em outubro.",st:"Em aberto",q:"out/26",u:RA_URL+"copa-energia/"},
+ {co:"Supergasbras",s:"GLP",tema:"Fatura do granel",t:"Conta incompatível com o consumo",d:"Cliente contesta os valores da fatura de gás e diz que não teve retorno do atendimento.",st:"Em aberto",q:"2026",u:RA_URL+"supergasbras/"},
+ {co:"Supergasbras",s:"GLP",tema:"Valor abusivo",t:"Aumento forte na conta de gás",d:"Cliente antigo de condomínio reclama de alta na fatura e diz que sempre pagou em dia.",st:"Em aberto",q:"2026",u:"https://www.reclameaqui.com.br/empresa/supergasbras/lista-reclamacoes/?problema=0000000000000171"},
+ {co:"Liquigás",s:"GLP",tema:"Segurança",t:"Botijão lacrado com vazamento",d:"Consumidor relata vazamento antes do uso. Em outro caso, a revenda negou atendimento e indicou outra marca.",st:"Não respondida",q:"2026",u:RA_URL+"liquigas-distribuidora/lista-reclamacoes/"},
+ {co:"Liquigás",s:"GLP",tema:"Qualidade",t:"Chama alaranjada e panelas sujas",d:"Depois de 30 dias de uso, o gás passou a sujar as panelas. A cliente deu nota 2 e disse que não compra mais.",st:"Não resolvida",q:"ago/26",u:"https://www.reclameaqui.com.br/liquigas-distribuidora/gas-de-pessima-qualidade_Y0k-SNNzY0S9VZDM/"},
+ {co:"Liquigás",s:"GLP",tema:"Revenda",t:"Revenda de 30 anos sem uniformes nem reembolso",d:"Revenda autorizada comprou uniformes na loja da Copa e esperou meses. A empresa entregou depois da reclamação.",st:"Resolvida",q:"mai/26",u:"https://www.reclameaqui.com.br/copa-energia/copa-energia-e-liquigas-nao-entregam-uniformes-e-nao-realizam-reembolso-e-site-indisponivel_MZd5MRbQ6vLKkzRu/"},
+ {co:"Nacional Gás",s:"GLP",tema:"Suporte",t:"Sem ajuda para trocar o registro do botijão",d:"Cliente precisou trocar o registro e não teve suporte. Outro relato fala em vazamento na hora da troca.",st:"Não respondida",q:"2026",u:RA_URL+"nacional-gas-butano-distribuidora/lista-reclamacoes/"},
+ {co:"Comgás",s:"GN",tema:"Religação",t:"Religação pelo site veio com cobrança indevida",d:"Caso de 23/07/2026, resolvido. Na resposta, a Comgás indicou o app Comgás Virtual, o WhatsApp e o chat.",st:"Resolvida",q:"jul/26",u:"https://www.reclameaqui.com.br/comgas/cobranca-indevida-e-dificuldade-de-atendimento-para-religacao-de-gas_WiHv9yb7c0Iq2q0i/"},
+ {co:"Naturgy",s:"GN",tema:"Medição",t:"Consumo cobrado pelo medidor antigo",d:"Cliente trocou o medidor, enviou laudo e segue aguardando a revisão da fatura.",st:"Em análise",q:"jul/26",u:"https://www.reclameaqui.com.br/agenersa-agencia-reguladora-de-energia-e-saneamento-do-estado-do-rio-d/naturgy-cobra-consumo-abusivo-e-mantem-registro-de-medidor-antigo-apos-troca-e-envio-de-laudo_NXp2-i9Nv-lTt3Ia/"}
+];
+const RA_READ=[
+ "<b>Supergasbras está em 3º no GLP pela nota (7,7)</b>, atrás de Liquigás (7,9), e à frente de Ultragaz (7,3), Copa Energia (6,8) e Nacional Gás (5,7). Respondeu 99,2% e resolveu 81,3%, mas perdeu o selo Ótima no semestre.",
+ "<b>Granel e condomínio concentram as queixas.</b> Cobrança, valor por quilo e fatura incompatível aparecem em Supergasbras, Copa e no gás canalizado. No botijão, os temas são vazamento, registro e gás que acaba rápido.",
+ "<b>A Copa Energia piorou</b>: caiu de Boa para Regular, com só 53,7% de clientes que voltariam a comprar. Há reclamações recentes de negativação e de cobrança sem contrato, sem resposta.",
+ "<b>No gás natural, a Compagas virou referência</b> (de 4,7 para 9,1 em três anos) com uma área dedicada à reputação dentro de Experiência do Cliente. A Comgás segue Regular, com 22 dias para responder.",
+ "<b>Prêmio Reclame AQUI 2026</b>: a votação terminou em 5/11 e o resultado sai em 8/12. A Compagas concorre em Distribuidora de Gás."
+];
+let raSeg="ALL";
+const raCls=st=>({"Ótima":"otima","Boa":"boa","Regular":"regular","Ruim":"ruim"}[st]||"boa");
+const pc1=v=>v==null?"—":v.toLocaleString("pt-BR",{maximumFractionDigits:1})+"%";
+const nb=v=>v==null?"—":v.toLocaleString("pt-BR");
+function renderRA(){
+  const segs=[["ALL","Todas",RA.length],["GLP","GLP",RA.filter(r=>r.s==="GLP").length],["GN","Gás natural",RA.filter(r=>r.s==="GN").length]];
+  $("#raF").innerHTML=segs.map(([k,l,n])=>`<button class="chip ${raSeg===k?"on":""}" data-s="${k}"><span class="ms">check</span>${l} <span class="n">${n}</span></button>`).join("");
+  $$("#raF .chip").forEach(b=>b.onclick=()=>{raSeg=b.dataset.s;renderRA()});
+  const L=RA.filter(r=>raSeg==="ALL"||r.s===raSeg);
+  $("#raCards").innerHTML=L.map(r=>`<div class="ra-card ${r.me?"me":""}" data-ra="${esc(r.n)}">
+    <div class="ra-top"><div><div class="ra-nm">${esc(r.n)}</div><div class="ra-seg">${r.s==="GN"?"Gás natural":"GLP"}</div></div><span class="ra-badge ${raCls(r.st)}">${r.st}</span></div>
+    <div class="ra-score">${r.nota==null?"—":nf(r.nota,1)}<small>/10</small></div>
+    <div class="ra-stats"><div>Recebidas<b>${nb(r.rec)}</b></div><div>Respondidas<b>${pc1(r.resp)}</b></div><div>Resolvidas<b>${pc1(r.resol)}</b></div><div>Voltariam<b>${pc1(r.volt)}</b></div><div>Nota consumidor<b>${r.cons==null?"—":nf(r.cons,2)}</b></div><div>Resposta<b>${r.tempo||"—"}</b></div></div>
+    <p class="ra-obs">${esc(r.obs)}</p>
+    <div class="ra-foot"><span>${esc(r.per)}</span><a href="${r.u}" target="_blank" rel="noopener">Ver perfil ↗</a></div></div>`).join("");
+  const C=L.filter(r=>r.nota!=null).sort((a,b)=>b.nota-a.nota).map(r=>({n:r.n,v:r.nota,me:r.me,x:r.st+" · "+r.per}));
+  bars($("#raChart"),C,10,v=>nf(v,1));
+  $("#raChart").querySelectorAll(".fill").forEach(f=>requestAnimationFrame(()=>f.style.width=f.dataset.w+"%"));
+  $("#raTbl").innerHTML=`<table class="data"><tr><th>Empresa</th><th>Reputação</th><th style="text-align:right">Nota</th><th style="text-align:right">Resolvidas</th><th style="text-align:right">Voltariam</th></tr>${L.map(r=>`<tr><td>${esc(r.n)}</td><td>${r.st}</td><td class="n">${r.nota==null?"—":nf(r.nota,1)}</td><td class="n">${pc1(r.resol)}</td><td class="n">${pc1(r.volt)}</td></tr>`).join("")}</table>`;
+  $("#raRead").innerHTML=RA_READ.map(t=>`<li>${t}</li>`).join("");
+  const Q=RQ.filter(q=>raSeg==="ALL"||q.s===raSeg);
+  $("#raQ").innerHTML=Q.map(q=>{const cls=/Resolvida/.test(q.st)&&!/Não/.test(q.st)?"ok":/Não|aberto|análise/.test(q.st)?"open":"";
+    return `<div class="rq ${cls}"><div class="co"><span>${esc(q.co)} · ${esc(q.tema)}</span><span>${esc(q.q)}</span></div><div class="t">${esc(q.t)}</div><p class="d">${esc(q.d)}</p><div class="ft"><span class="st">${esc(q.st)}</span><a href="${q.u}" target="_blank" rel="noopener">Ler no Reclame Aqui ↗</a></div></div>`}).join("");
+}
+renderRA();
+$("#raTblBtn").onclick=()=>{const t=$("#raTbl");const on=t.style.display==="none";t.style.display=on?"block":"none";$("#raTblBtn").innerHTML=`<span class="ms">${on?"bar_chart":"table_rows"}</span>${on?"Ver gráfico":"Ver tabela"}`;$("#raChart").style.display=on?"none":"block"};
+
+/* ===== CANAIS DIGITAIS ===== */
+const DG_KPI=[
+ {l:"Consumidores atendidos pelo Pedir Gás",v:"5 mi+",s:"Supergasbras, desde 2023 · abr/26",me:1},
+ {l:"Atendimentos da Comgás feitos em canais digitais",v:"94%",s:"Comgás · Consumidor Moderno, 2026"},
+ {l:"Clientes no app Ultragaz",v:"5 mi",s:"Ultrapar, apresentação 1S24"},
+ {l:"Revendas no app Minha Revenda (meta)",v:"6 mil",s:"Nacional Gás · até o fim de 2026"}
+];
+const DG_COLS=["App do consumidor","WhatsApp","Assistente ou chatbot","Granel e medição individual","App para revendas","Fidelidade e cupons"];
+const DG=[
+ {n:"Supergasbras",me:1,c:["Pedir Gás: P13 e P45, Pix e rastreio","Pedir Gás (0800 591 2591)","Chatbot no WhatsApp e no site","Super Gestão e portal Minha Conta","","Clube Pedir Gás"]},
+ {n:"Ultragaz",c:["App Ultragaz: pedir ou agendar","Sim","Ully, assistente digital","Portal do cliente empresarial","MAP – Meu Aplicativo Parceiro","Cupons no app (ex.: 12/12)"]},
+ {n:"Nacional Gás",c:["","","","App Minha conta Nacionalgás","Minha Revenda","" ]},
+ {n:"Copa Energia (Liquigás e Copagaz)",c:["","","","","Copa Shop (loja da revenda)",""]},
+ {n:"Consigaz",c:["","","","App Grupo Consigaz (Conta SIM)","",""]},
+ {n:"Comgás",c:["Comgás Virtual","(11) 3325-0197","IA no autoatendimento","388 mil medidores inteligentes","",""]},
+ {n:"Naturgy",c:["Portal Minha Naturgy","Sim, via menu visual","Menu de autoatendimento","Fatura digital com Pix","",""]}
+];
+const DG_NPS=[
+ "<b>Nenhuma distribuidora de GLP publica o NPS.</b> A Ultragaz diz acompanhar NPS e CSAT para priorizar melhorias, mas não divulga os números.",
+ "<b>Comgás</b>: depois de usar IA no canal de análise de consumo, o NPS dessa jornada subiu 8 pontos e a resolução no digital cresceu 14%.",
+ "<b>Ultragaz</b>: em 2022, segundo o Itaú BBA, o NPS total da empresa cresceu 14 pontos percentuais no ano.",
+ "<b>Supergasbras</b>: ganhou em 2023 o prêmio MESC de melhor empresa em satisfação do cliente entre as distribuidoras de gás. O tempo médio de entrega do Pedir Gás é de 29 minutos.",
+ "<b>Leitura para a Supergasbras</b>: no Reclame Aqui, a empresa não exibe o “voltariam a fazer negócio”. Vale medir um NPS por canal (app, WhatsApp, granel) para comparar com o mercado."
+];
+const DG_BACK=[{n:"Liquigás (Copa Energia)",v:72.5},{n:"Ultragaz",v:62.6},{n:"Copa Energia",v:53.7},{n:"Comgás",v:53.5}];
+const DG_CO=[
+ {n:"Supergasbras",me:1,b:["Pedir Gás conecta consumidor, revenda e entregador; mais de 5 milhões de consumidores atendidos desde 2023.","Mais de R$ 60 milhões investidos em tecnologia para digitalizar o varejo de GLP (abr/26).","Clube Pedir Gás (jul/25): cupom a cada três compras no app ou no WhatsApp.","Para empresas e condomínios: Super Gestão, portal Minha Conta e WhatsApp para pedido e segunda via."],src:"Portal Tela, Click Petróleo e Gás, ITForum"},
+ {n:"Ultragaz",b:["App lançado em 2020; a empresa citou 5 milhões de clientes no app em 2024.","Ully, assistente digital, e estratégia omnichannel com WhatsApp, telefone e chat.","MAP para a revenda e portal para o cliente empresarial.","Promoções exclusivas no app, como 12% de desconto no 12/12 com pagamento online."],src:"Ultrapar RI, Melhores Cartões, Consumidor Moderno"},
+ {n:"Nacional Gás",b:["App Minha Revenda, o “iFood do botijão”, virou o principal canal de pedidos no piloto.","Meta de atender toda a base de mais de 6 mil revendas pelo app até o fim de 2026.","Plano de cerca de R$ 150 milhões por ano em tecnologia; teste de venda pelo Zé Delivery em MG e CE.","App Minha conta Nacionalgás para medição individual: segunda via e histórico de consumo."],src:"NeoFeed, Baguete, A Tarde"},
+ {n:"Copa Energia",b:["Não foi encontrado app próprio de pedido de botijão para o consumidor.","Investe em marca: patrocínio do Bloco Coruja de Ivete Sangalo no Carnaval 2026, com blimp em forma de botijão Liquigás.","Campanha “Mais energia para sua vida” com promoção nas redes, TikTok e Kwai.","Copa Shop atende as revendas, mas gerou reclamação de atraso em 2026."],src:"ABC da Comunicação, Propmark, Reclame Aqui"},
+ {n:"Comgás",b:["94% dos atendimentos já acontecem em canais digitais.","App Comgás Virtual, WhatsApp, chat e autoatendimento com IA.","388 mil clientes com medidor inteligente e leitura remota.","Vende serviços pela vitrine do Reclame Aqui, como troca de mangueira e ligação de fogão."],src:"Consumidor Moderno, Click Petróleo e Gás, Reclame Aqui"},
+ {n:"Naturgy",b:["Portal Minha Naturgy ganhou o Prêmio Smart em Relacionamento Digital (2023).","Mais de 60% dos clientes recebem a fatura por e-mail, com Pix.","Menu visual de autoatendimento multiplicou por 2,6 os contatos digitais.","Nova conta de gás com pagamento por Pix começa a chegar no Rio (nov/26)."],src:"Correio da Manhã, Mobile Time, Diário do Rio"}
+];
+const DG_NEWS=[
+ {d:"04/11/2026",t:"Naturgy muda a conta de gás no Rio e inclui pagamento por Pix",s:"Diário do Rio",u:"https://diariodorio.com/economia/2026/11/04/naturgy-muda-modelo-da-conta-de-gas-no-rio-veja-o-que-muda-na-fatura.html"},
+ {d:"jul/2026",t:"Supergasbras faz 80 anos com cupom SUPER80 no app e no WhatsApp e ação com influenciadores",s:"Grandes Nomes da Propaganda",u:"https://grandesnomesdapropaganda.com.br/mercado-digital/supergasbras-mobiliza-influenciadores-para-celebrar-80-anos/"},
+ {d:"17/04/2026",t:"Supergasbras investe mais de R$ 60 milhões para ampliar a digitalização do Pedir Gás",s:"Portal Tela",u:"https://www.portaltela.com/noticias/economia/2026/04/17/supergasbras-investe-60-milhoes-para-ampliar-digitalizacao/"},
+ {d:"2026",t:"Comgás chega a 94% dos atendimentos em canais digitais e 388 mil medidores inteligentes",s:"Consumidor Moderno",u:"https://consumidormoderno.com.br/atendimento-digital-medidores-inteligentes-cx-comgas/"},
+ {d:"20/02/2026",t:"Liquigás patrocina o Bloco Coruja, de Ivete Sangalo, no Carnaval de Salvador",s:"ABC da Comunicação",u:"https://www.abcdacomunicacao.com.br/?p=340942"},
+ {d:"12/12/2025",t:"Ultragaz dá 12% de desconto no botijão pedido e pago pelo app",s:"Melhores Cartões",u:"https://www.melhorescartoes.com.br/promocao-desconto-botijao-gas-ultragaz-dez25.html"},
+ {d:"27/10/2025",t:"Nacional Gás cria app Minha Revenda, o “iFood do botijão”",s:"NeoFeed e Baguete",u:"https://neofeed.com.br/negocios/nacional-gas-cria-o-ifood-do-botijao-a-espera-do-boom-de-consumo-do-gas-de-cozinha/"},
+ {d:"24/07/2025",t:"Supergasbras lança o Clube Pedir Gás, com cupom a cada três compras",s:"Click Petróleo e Gás",u:"https://clickpetroleoegas.com.br/supergasbras-aposta-em-fidelizacao-digital-com-clube-pedir-gas-e-amplia-relacao-com-o-consumidor-brasileiro/"}
+];
+function renderDG(){
+  $("#dgKpi").innerHTML=DG_KPI.map(k=>`<div class="kpi"${k.me?' style="border-color:var(--laranja)"':""}><div class="lbl">${esc(k.l)}</div><div class="val">${k.v}</div><div class="src">${esc(k.s)}</div></div>`).join("");
+  $("#dgTbl").innerHTML=`<tr><th>Empresa</th>${DG_COLS.map(c=>`<th>${c}</th>`).join("")}</tr>`+DG.map(r=>`<tr class="${r.me?"me":""}"><td>${esc(r.n)}</td>${r.c.map(v=>v?`<td><span class="y"><span class="ms">check_circle</span><span>${esc(v)}</span></span></td>`:`<td class="n0">Não identificado</td>`).join("")}</tr>`).join("");
+  $("#dgNps").innerHTML=DG_NPS.map(t=>`<li>${t}</li>`).join("");
+  bars($("#dgBack"),DG_BACK,100,v=>nf(v,1)+"%");
+  $("#dgBack").querySelectorAll(".fill").forEach(f=>requestAnimationFrame(()=>f.style.width=f.dataset.w+"%"));
+  $("#dgCos").innerHTML=DG_CO.map(c=>`<div class="dg-card ${c.me?"me":""}"><h4>${esc(c.n)}</h4><ul>${c.b.map(b=>`<li>${esc(b)}</li>`).join("")}</ul><div class="src">Fontes: ${esc(c.src)}</div></div>`).join("");
+  $("#dgNews").innerHTML=DG_NEWS.map(n=>`<a class="mini" href="${n.u}" target="_blank" rel="noopener"><span class="d">${n.d}</span><span><span class="t">${esc(n.t)}</span><br><small style="color:var(--texto-3);font-size:11.5px">${esc(n.s)}</small></span></a>`).join("");
+}
+renderDG();
+
+
+const CD_KPI=[
+ {l:"Taxa de medição individual",v:"R$ 4",s:"por unidade/mês, validada pelo STJ quando a assembleia escolhe a modalidade (2023)"},
+ {l:"Comgás · medidor inteligente",v:"388 mil",s:"clientes com leitura remota; 94% do atendimento em canais digitais"},
+ {l:"Obrigação federal",v:"Só água",s:"Lei 13.312/2016 exige medição individual de água em prédios novos desde 2021; para gás não há"}
+];
+const CD_VS=[
+ {i:"groups",t:"Sem medição individual (coletiva)",tag:"Contrato com o condomínio",b:["O condomínio compra o gás e <b>rateia</b> a conta, por fração ou por leitura própria.","Mais barato de operar, mas gera <b>conflito em assembleia</b>: quem consome pouco paga pelo vizinho.","A <b>inadimplência</b> de um morador recai sobre o caixa do condomínio.","No gás natural, a distribuidora fatura só o <b>medidor fiscal</b>; a divisão fica com a administradora ou uma empresa de medição."]},
+ {i:"person",t:"Com medição individual",tag:"Contrato com cada morador",b:["No GLP a granel, a própria distribuidora lê o medidor de cada apartamento e <b>emite fatura individual</b>, com taxa de serviço.","Desonera o condomínio do rateio e do risco de inadimplência, segundo o STJ, o que <b>justifica a taxa</b>.","No gás natural, cada apartamento costuma ser <b>cliente direto</b> da concessionária; em prédios com medidor único, surgem empresas como Livet, Urbatech e Techem.","Vista como fator de <b>valorização do imóvel</b> por síndicos e administradoras."]}
+];
+const CD_READ=[
+ "<b>Dois modelos convivem.</b> As distribuidoras de GLP oferecem medição coletiva e fornecimento com leitura individual; a escolha é da assembleia e vale para todas as unidades.",
+ "<b>A taxa está pacificada.</b> O STJ (3ª Turma, 2023, caso Ultragaz) considerou legal cobrar pela medição individual quando a modalidade é escolhida livremente. Decisões estaduais seguem a mesma linha.",
+ "<b>O gás natural avança sobre os prédios.</b> Naturgy multiplicou por sete as ligações residenciais no interior de SP em 2025, trabalhando com administradoras e síndicos; a Compagas fala em economia de até 30% e Cegás e Gasmig fazem campanhas voltadas a condomínios.",
+ "<b>Tecnologia virou argumento de venda.</b> Telemetria do tanque, medidor inteligente com leitura remota e app para o morador ver consumo e segunda via aparecem em quase todas as ofertas.",
+ "<b>A dor do morador é a conta que dispara.</b> As reclamações de 2026 se concentram em leituras estimadas, medidor com defeito e cobrança lançada no boleto do condomínio sem explicação clara.",
+ "<b>Segurança e regra local pesam.</b> No RJ, a autovistoria do gás em condomínios teve prazo prorrogado de novo em jul/26, e as distribuidoras usam a manutenção gratuita como diferencial."
+];
+const CD_COLS=["Medição individual","Canal do síndico","Canal do morador","WhatsApp","Telemetria / leitura remota"];
+const CD=[
+ {n:"Supergasbras",s:"GLP",me:1,c:["SGI, leiturista e fatura por e-mail ou correio","Super Gestão e portal","App e portal Minha Conta","(21) 98011-2323","Sim, telemetria dos tanques"]},
+ {n:"Ultragaz",s:"GLP",c:["Sim, com taxa por unidade","Portfólio Condomínio Inteligente; FAQ do síndico no Reclame Aqui","App Ultragaz",null,"Em evolução, segundo relatório de 2025"]},
+ {n:"Consigaz",s:"GLP",c:["Conta SIM (Sistema Individual de Medição)",null,"App Grupo Consigaz e Área do Cliente",null,"Regulador com bloqueio para corte e religação (Prêmio GLP 2024)"]},
+ {n:"Nacional Gás",s:"GLP",c:["Sim",null,"App Minha conta Nacionalgás: segunda via, histórico e certidão de débito",null,null]},
+ {n:"Liquigás / Copa",s:"GLP",c:["Sim",null,null,null,null]},
+ {n:"Comgás",s:"GN",c:["Cada apartamento é cliente da concessionária","Guia do Síndico para obra e mutirão de conversão","App Comgás Virtual","(11) 3325-0197","388 mil medidores inteligentes"]},
+ {n:"Naturgy",s:"GN",c:["Cada apartamento é cliente da concessionária","Atuação com administradoras e síndicos","Portal Minha Naturgy, fatura com Pix",null,null]},
+ {n:"Compagas",s:"GN",c:["A Compagas instala os medidores individuais",null,null,null,null]}
+];
+const CQ=[
+ {co:"Urbatech",s:"MED",tema:"Medição terceirizada",t:"Falhas na cobrança do gás desde a mudança",d:"Morador do Reserva da Aldeia, em Carapicuíba, relata erros desde março e questiona ter de comprar o medidor da própria Urbatech.",dt:"27/07/2026",st:"Respondida",u:"https://www.reclameaqui.com.br/urbatech-apoio-operacional/cobranca-abusiva_dbSSGOvqhEsWqTzz/"},
+ {co:"Comgás",s:"GN",tema:"Cobrança",t:"Conta alta logo após a instalação do gás",d:"Em Campinas, consumidor pede revisão da leitura e da medição após a ligação, sem aumento de uso que explique o valor.",dt:"24/07/2026",st:"Em réplica",u:"https://www.reclameaqui.com.br/comgas/cobranca-abusiva-apos-instalacao-do-gas-da-comgas__dnQVZywLO9gXpeP/"},
+ {co:"Livet",s:"MED",tema:"Medidor com defeito",t:"Cobrança indevida por medidor com defeito",d:"Em Brasília, a empresa corrigiu a leitura e mandou a retificação à administradora, que é quem estorna no boleto.",dt:"14/07/2026",st:"Em réplica",u:"https://www.reclameaqui.com.br/livet/cobranca-indevida-de-consumo-de-gas-no-condominio-com-medidor-com-defeito_HedizcS3TTnQQ9nK/"},
+ {co:"OMA Condomínios",s:"MED",tema:"Lançamento no boleto",t:"Acréscimo de mais de R$ 100 por erro de lançamento",d:"Em SP, o condomínio lançou a diferença no boleto e só depois explicou que o medidor estava com defeito.",dt:"07/07/2026",st:"Não resolvida",u:"https://www.reclameaqui.com.br/oma-condominios/cobranca-indevida-de-gas-no-condominio-devido-a-erros-de-lancamento-e-defeito-no-medidor_wbBIUHGPyYKCdikE/"},
+ {co:"Livet",s:"MED",tema:"Consumo",t:"Gás de 34 m³ para 52 m³ de um mês para o outro",d:"No Oasis Ecovida, em Osasco, a conta subiu de R$ 296 para R$ 454; a empresa diz que só faz a leitura e o processamento.",dt:"03/07/2026",st:"Respondida",u:"https://www.reclameaqui.com.br/livet/cobranca-de-gas-muito-acima-do-consumo-real_MEh5Cwg-Jcqn2MB1/"},
+ {co:"Techem",s:"MED",tema:"Leitura por média",t:"Valores muito altos no condomínio Azaleia",d:"Em Osasco, a empresa atribuiu a alta a leituras fora de data e faturamento por média da concessionária.",dt:"03/06/2026",st:"Resolvida",u:"https://www.reclameaqui.com.br/techem/valores-absurdos-de-gas-cobrados-em-condominio_fw1niKm8IEo4nKuz/"},
+ {co:"Metragem",s:"MED",tema:"Gás estimado",t:"Gás cobrado por estimativa da água quente",d:"Em Volta Redonda, fatura de R$ 714 de gás calculada pelo consumo de água quente, método definido pelo condomínio.",dt:"23/04/2026",st:"Em réplica",u:"https://www.reclameaqui.com.br/metragem/contestacao-de-fatura-de-marco2026-por-erro-sistemico-de-consumo-de-agua-e-cobranca-de-gas_gKhGqiOOyoRzVnm7/"},
+ {co:"Hidrotech",s:"MED",tema:"Medição",t:"Falhas recorrentes na medição individual",d:"Em Santos, a empresa refez o relatório pela média de consumo da unidade, de acordo com a gestão do condomínio.",dt:"08/04/2026",st:"Respondida",u:"https://www.reclameaqui.com.br/hidrotech-sistemas-prediais/cobranca-de-gas-incompativel-com-o-historico-de-consumo-e-padrao-de-uso-com-suspeita-de-falha-no-sistema-de-medicao_-EMVNZTkmQFjcO8J/"},
+ {co:"Naturgy",s:"GN",tema:"Troca de medidor",t:"Técnicos faltam à troca de medidor antigo",d:"No Rio, morador cobra a troca para fazer a inspeção obrigatória do gás; caso encerrado como resolvido em agosto.",dt:"03/08/2026",st:"Resolvida",u:"https://www.reclameaqui.com.br/ceg-gas-natural-fenosa/ausencia-repetida-dos-tecnicos-da-naturgy-para-troca-de-medidor-de-gas_aGstU-Q6jdRaKfkm/"}
+];
+const CD_NEWS=[
+ {d:"17/07/2026",t:"RJ: inspeção de gás em condomínios ganha novo prazo",s:"SíndicoNet",u:"https://www.sindiconet.com.br/informese/inspecao-gas-condominio-rio-de-janeiro-prazo-prorrogado-noticias-manutencao"},
+ {d:"22/06/2026",t:"Gás encanado no DF: prédios novos já são entregues prontos para a Naturgy",s:"Sou Brasília",u:"https://soubrasilia.com/naturgy-gas-encanado-df-como-solicitar/"},
+ {d:"12/05/2026",t:"Cegás leva gás natural, LED e automação para a ExpoMarket Condomínios 2026",s:"O Povo",u:"https://www.opovo.com.br/noticias/especialpublicitario/expomarketing/2026/05/12/gas-natural-led-e-automacao-o-caminho-para-condominios-mais-eficientes-e-economicos.html"},
+ {d:"20/01/2026",t:"Naturgy cresce 606% em ligações residenciais no interior de SP e se aproxima de síndicos",s:"Cenário Energia",u:"https://cenarioenergia.com.br/2026/01/20/expansao-naturgy-cresce-600-em-ligacoes-de-gas-residencial-no-interior-de-sp-em-2025/"},
+ {d:"30/09/2025",t:"Opinião: não ter medição individual de água e gás desvaloriza o condomínio",s:"Hoje em Dia",u:"https://www.hojeemdia.com.br/opiniao/opiniao/o-erro-que-desvaloriza-seu-condominio-n-o-ter-medic-o-individual-de-agua-e-gas-1.1086077"},
+ {d:"18/09/2025",t:"Supergasbras apresenta medição individual, manutenção grátis e telemetria para condomínios",s:"SíndicoNet",u:"https://www.sindiconet.com.br/informese/glp-em-condominios-supergasbras-mercado-coluna-de-olho-no-mercado"},
+ {d:"2024",t:"Consigaz premiada por regulador com bloqueio para a Conta SIM",s:"Sindigás · Prêmio GLP",u:"https://sindigas.org.br/Download/PREMIO_GLP/2024/PROJETOS_DE_INSTALACOES/REGULADOR-DE-PRESSAO-PARA-GAS-DE-SEGUNDO-ESTAGIO-BAIXA-PRESSAO-COM-SISTEMA-INTERNO-DE-BLOQUEIO-MECANICO.pdf"},
+ {d:"12/10/2023",t:"STJ: distribuidora pode cobrar tarifa pela medição individual em condomínio",s:"Dizer o Direito",u:"https://www.dizerodireito.com.br/2023/10/distribuidora-de-gas-pode-cobrar-tarifa.html"}
+];
+let cdSeg="all";
+function renderCD(){
+  const segs=[["all","Todos"],["GLP","GLP"],["GN","Gás natural"],["MED","Empresas de medição"]];
+  $("#cdF").innerHTML=segs.map(([k,l])=>`<button class="chip ${cdSeg===k?"on":""}" data-cd="${k}">${l}</button>`).join("");
+  $("#cdF").querySelectorAll("[data-cd]").forEach(b=>b.onclick=()=>{cdSeg=b.dataset.cd;renderCD()});
+  $("#cdKpi").innerHTML=CD_KPI.map(k=>`<div class="kpi"${k.me?' style="border-color:var(--laranja)"':""}><div class="lbl">${esc(k.l)}</div><div class="val">${k.v}</div><div class="src">${esc(k.s)}</div></div>`).join("");
+  $("#cdVs").innerHTML=CD_VS.map(m=>`<div class="cd-mod"><div class="tag">${esc(m.tag)}</div><h4><span class="ms">${m.i}</span>${esc(m.t)}</h4><ul>${m.b.map(b=>`<li>${b}</li>`).join("")}</ul></div>`).join("");
+  $("#cdRead").innerHTML=CD_READ.map(t=>`<li>${t}</li>`).join("");
+  const segTag=s=>`<span class="cd-seg ${s==="GN"?"gn":s==="GLP"?"glp":"med"}">${s==="GN"?"GN":s==="GLP"?"GLP":"Medição"}</span>`;
+  const rows=CD.filter(r=>cdSeg==="all"||r.s===cdSeg);
+  $("#cdTbl").innerHTML=`<tr><th>Empresa</th>${CD_COLS.map(c=>`<th>${c}</th>`).join("")}</tr>`+(rows.length?rows.map(r=>`<tr class="${r.me?"me":""}"><td>${esc(r.n)}${segTag(r.s)}</td>${r.c.map(v=>v?`<td><span class="y"><span class="ms">check_circle</span><span>${esc(v)}</span></span></td>`:`<td class="n0">Não identificado</td>`).join("")}</tr>`).join(""):`<tr><td colspan="6" class="n0">As empresas de medição são prestadoras contratadas pelo condomínio e não têm oferta digital comparável. Veja as reclamações abaixo.</td></tr>`);
+  const Q=CQ.filter(q=>cdSeg==="all"||q.s===cdSeg).sort((a,b)=>b.dt.split("/").reverse().join("").localeCompare(a.dt.split("/").reverse().join("")));
+  $("#cdQ").innerHTML=Q.length?Q.map(q=>{const cls=/Resolvida/.test(q.st)&&!/Não/.test(q.st)?"ok":/Não|réplica/.test(q.st)?"open":"";
+    return `<div class="rq ${cls}"><div class="co"><span>${esc(q.co)} · ${esc(q.tema)}</span><span>${esc(q.dt)}</span></div><div class="t">${esc(q.t)}</div><p class="d">${esc(q.d)}</p><div class="ft"><span class="st">${esc(q.st)}</span><a href="${q.u}" target="_blank" rel="noopener">Ler no Reclame Aqui ↗</a></div></div>`}).join(""):"";
+  $("#cdQBox").style.display=Q.length?"":"none";
+  $("#cdNews").innerHTML=CD_NEWS.map(n=>`<a class="mini" href="${n.u}" target="_blank" rel="noopener"><span class="d">${n.d}</span><span><span class="t">${esc(n.t)}</span><br><small style="color:var(--texto-3);font-size:11.5px">${esc(n.s)}</small></span></a>`).join("");
+}
+renderCD();
+
 function globalSearch(q){
   const box=$("#sres");const ws=words(q);$("#qClear").style.display=q?"grid":"none";
   if(!ws.length){box.classList.remove("show");box.innerHTML="";return}
@@ -1142,6 +1428,14 @@ function globalSearch(q){
   const lu=LIC_UF.filter(l=>hit([l.org,l.t,l.k,l.uf,ufName(l.uf),"licitacao pregao edital glp"].join(" "),ws)).map(l=>({i:"notifications_active",t:l.org+" ("+l.uf+")",d:l.t+" · "+(isOpen(l)?"aberta":"encerrada"),go:()=>{ufSel=l.uf;renderUfBar();renderUfAlert();goSec("alerta-uf")}}));
   lc.push(...lu);
   if(lc.length)groups.push(["Licitações e leilões",lc.slice(0,6)]);
+  const ra=RA.filter(r=>hit([r.n,r.st,r.obs,"reclame aqui reputacao nota reclamacao",r.s==="GN"?"gas natural":"glp"].join(" "),ws)).map(r=>({i:"reviews",t:r.n+" · Reclame Aqui "+(r.nota==null?r.st:nf(r.nota,1)),d:r.st+" · "+r.per,go:()=>goSec("reputacao")}))
+    .concat(RQ.filter(q=>hit([q.co,q.t,q.tema,q.d,"reclamacao reclame aqui"].join(" "),ws)).map(q=>({i:"report",t:q.t,d:q.co+" · "+q.st,go:()=>goSec("reputacao")})))
+    .concat(DG_CO.filter(c=>hit([c.n,c.b.join(" "),"app aplicativo whatsapp digital canais nps"].join(" "),ws)).map(c=>({i:"smartphone",t:c.n+" · canais digitais",d:c.b[0].slice(0,100),go:()=>goSec("digital")})));
+  if(ra.length)groups.push(["Reclame Aqui e canais digitais",ra.slice(0,6),ra.length]);
+  const cd=CD.filter(r=>hit([r.n,r.c.filter(Boolean).join(" "),"condominio condominios medicao individual sindico morador predio granel"].join(" "),ws)).map(r=>({i:"apartment",t:r.n+" · condomínios",d:(r.c[0]||"")+" · "+(r.c[2]||"canal do morador não identificado"),go:()=>goSec("condominios")}))
+    .concat(CQ.filter(q=>hit([q.co,q.t,q.tema,q.d,"condominio reclamacao medicao gas"].join(" "),ws)).map(q=>({i:"report",t:q.t,d:q.co+" · "+q.st,go:()=>goSec("condominios")})))
+    .concat(CD_NEWS.filter(n=>hit(n.t+" "+n.s+" condominio",ws)).map(n=>({i:"newspaper",t:n.t,d:n.s+" · "+n.d,go:()=>goSec("condominios")})));
+  if(cd.length)groups.push(["Condomínios",cd.slice(0,6),cd.length]);
   const ms=[...SHARES["2026"].rows].filter(r=>hit(r.n+" "+(r.x||"")+" market share participacao",ws));
   if(ms.length)groups.push(["Market share (jan–mai/26)",ms.map(r=>({i:"pie_chart",t:r.n+" · "+pct(r.v),d:"Sindigás com dados da ANP",go:()=>goSec("share")}))]);
   const pu=Object.keys(UF_PRICE).filter(k=>hit(k+" "+UFS[k].n+" preco botijao p13",ws));
@@ -1406,7 +1700,7 @@ $$(".rv").forEach(el=>io.observe(el));
 setTimeout(()=>{$$(".rv").forEach(el=>{el.classList.add("in");el.querySelectorAll(".fill").forEach(f=>f.style.width=f.dataset.w+"%")})},2500);
 
 /* rail active + fab */
-const secs=["visao","share","precos","dados","mapa","noticias","empresas","tendencias","comunicacao","licitacoes","alerta-uf"].map(id=>document.getElementById(id));
+const secs=["visao","share","precos","dados","mapa","noticias","empresas","tendencias","comunicacao","reputacao","digital","condominios","licitacoes","alerta-uf"].map(id=>document.getElementById(id));
 addEventListener("scroll",()=>{
   $("#fab").classList.toggle("show",scrollY>600);
   let cur="visao";secs.forEach(s=>{if(s.getBoundingClientRect().top<140)cur=s.id});
