@@ -540,7 +540,7 @@ table.dg .n0{color:var(--texto-3)}
   <div class="hl"></div>
   <p>GLP e gás natural lado a lado: quem cresce, quem investe e o que muda no mercado, com dados públicos.</p>
   <svg class="barra" viewBox="0 0 1200 86" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 380 40, 620 6, 1200 2 L1200 86 L0 86 Z" fill="#D33100"/></svg>
-  <div class="barra-txt"><span id="stamp">Atualizado em 11 nov 2026, 8h · ANP com preços até set/2026 e vendas até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
+  <div class="barra-txt"><span id="stamp">Atualizado em 11 nov 2026, 13h45 · ANP com preços até a semana de 01 a 07/11/2026 e vendas até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
 </div>
 
 <!-- KPIs -->
@@ -840,6 +840,8 @@ table.dg .n0{color:var(--texto-3)}
    tema: mercado | regulacao | expansao | resultados | sustentabilidade | comunicacao | social
    ========================================================= */
 const NEWS = [
+ {d:"2026-11-11",dl:"11 nov 2026",seg:"GLP",uf:"AC",tema:"precos",co:"ANP",t:"P13 custa R$ 122,91 em Rio Branco, 6,7% acima da média nacional",s:"Pesquisa semanal da ANP de 1º a 7/11: o botijão de 13 kg ficou em R$ 115,21 na média do Brasil e R$ 7,70 mais caro na capital acreana.",src:"Portal Acre · 11/11/26",u:"https://portalacre.com.br/2026/11/gasolina-e-gas-de-cozinha-seguem-acima-da-media-nacional-em-rio-branco-aponta-anp/",cli:["residencial"]},
+ {d:"2026-11-05",dl:"05 nov 2026",seg:"GLP",uf:"CE",tema:"precos",co:"ANP",t:"Botijão sobe 3% em Fortaleza e chega a R$ 109,40",s:"Na semana de 25 a 31/10, o P13 passou de R$ 106,18 para R$ 109,40 na capital e de R$ 112,60 para R$ 114,70 no Ceará (+1,9%), contra +0,1% no Brasil e +0,4% no Nordeste.",src:"O Povo · 05/11/26",u:"https://mais.opovo.com.br/jornal/farol/2026/11/05/preco-do-gas-de-cozinha-sobe-3-em-fortaleza-e-19-no-ceara-veja-precos.html",cli:["residencial"]},
  {d:"2026-11-09",dl:"09 nov 2026",seg:"GN",uf:"AL",tema:"precos",co:"Algás",t:"Arsal reduz tarifas do gás canalizado em Alagoas desde 1º/11",s:"Indústria paga R$ 0,05/m³ a menos e recebe de volta R$ 958 mil em penalidades; demais segmentos caem R$ 0,0174/m³. Residencial até 15 m³ fica em R$ 8,0266/m³ sem tributos. O gás comprado pela Algás caiu de R$ 1,8704 para R$ 1,8529/m³.",src:"Cada Minuto · 09/11/26",u:"https://www.cadaminuto.com.br/noticia/2026/11/09/tarifas-de-gas-canalizado-sao-reduzidas-em-alagoas-veja-novos-valores",cli:["residencial","comercial","industrial"]},
  {d:"2026-11-05",dl:"05 nov 2026",seg:"GN",uf:"SP",tema:"expansao",co:"Ultragaz",t:"Ultragaz terá o 1º posto de biometano em rodovia, na Bandeirantes",s:"Estação no km 58 (sentido interior) e km 62 (sentido capital), com 48 mil m³/dia para mais de 400 caminhões por dia. Operação comercial prevista para o início de 2027; é o ponto de partida de uma rede de “rotas verdes”.",src:"Cenário Energia · 05/11/26",u:"https://cenarioenergia.com.br/2026/11/05/ultragaz-primeiro-posto-biometano-rodovia-dos-bandeirantes-rotas-verdes/",cli:["industrial"]},
  {d:"2026-10-29",dl:"29 out 2026",seg:"GN",uf:"AM",tema:"regulacao",co:"Arsepam",t:"Amazonas cria regra para devolver créditos de PIS/Cofins na tarifa do gás",s:"Resolução 006/2026 da Arsepam manda os valores recuperados pela concessionária na Justiça para uma conta gráfica, a ser usada nas próximas revisões tarifárias para moderar as tarifas.",src:"Segundo a Segundo · 05/11/26",u:"https://segundoasegundo.com.br/2026/11/consumidores-de-gas-natural-no-am/",cli:["residencial","comercial","industrial"]},
@@ -967,7 +969,8 @@ const PRICE = [
  {d:"2026-07-15",v:114.22,l:"jul/26 · média mensal oficial"},
  {d:"2026-08-15",v:113.90,l:"ago/26 · média mensal oficial"},
  {d:"2026-09-15",v:114.33,l:"set/26 · média mensal oficial"},
- {d:"2026-10-31",v:115.13,l:"semana de 25 a 31/10/26 · pesquisa semanal ANP",m:true}
+ {d:"2026-10-31",v:115.13,l:"semana de 25 a 31/10/26 · pesquisa semanal ANP",m:true},
+ {d:"2026-11-07",v:115.21,l:"semana de 01 a 07/11/26 · pesquisa semanal ANP",m:true}
 ];
 const COMP = {m:["Produtor","ICMS","Distribuição","Revenda"],a:[38.38,19.11,22.17,30.65],b:[36.13,19.11,25.09,34.00],u:"R$",la:"jan/26",lb:"set/26"};
 const COMP_M = {m:["jan","fev","mar","abr","mai","jun","jul","ago","set"],prod:[38.38,36.21,36.71,37.91,36.27,36.41,36.39,36.17,36.13],dist:[22.17,24.19,22.95,25.51,25.98,24.79,24.02,23.72,25.09],rev:[30.65,30.49,31.38,31.16,33.35,34.21,34.71,34.90,34.00],fin:[110.31,110.00,110.15,113.69,114.71,114.52,114.22,113.90,114.33]};
@@ -1704,6 +1707,30 @@ $("#licList").innerHTML=LIC.map(l=>`<div class="lic rv in"><div class="top"><spa
 
 /* ===== alerta de licitações por UF ===== */
 const LIC_UF = [
+ {uf:"SP",org:"Adm. Penitenciária · Iaras",t:"Aquisição de GLP",d:"2026-11-12",val:"R$ 1.021.200",k:"Edital 23/2027",u:"https://alertalicitacao.com.br/!licitacao/PNCP-96291141000180-1-000019-2027"},
+ {uf:"SP",org:"Prefeitura de São Lourenço da Serra",t:"Recargas de GLP P13 e P45",d:"2026-11-12",val:"R$ 148.186",k:"Edital 20/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-59058131000172-1-000149-2026"},
+ {uf:"SP",org:"Adm. Penitenciária · Presidente Venceslau",t:"GLP P13",d:"2026-11-13",val:"R$ 2.730",k:"Contratação direta 16/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-96291141000180-1-007737-2026"},
+ {uf:"SP",org:"Prefeitura de Monte Aprazível",t:"Recargas de GLP P13 e acessórios",d:"2026-11-13",val:"Não informado",k:"Edital 43/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-53221701000117-1-000081-2026"},
+ {uf:"SP",org:"Prefeitura de Iporanga",t:"Recargas de GLP P13 e P45 e vasilhames",d:"2026-11-16",val:"Não informado",k:"Pregão eletrônico 44/2026",u:"https://alertalicitacao.com.br/!licitacao/BLL-3521200-b125-442026"},
+ {uf:"SP",org:"Prefeitura de Batatais",t:"GLP P13 e P45 para a Educação",d:"2026-11-16",val:"Não informado",k:"PE 46/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-45299104000187-1-000164-2026"},
+ {uf:"SP",org:"Adm. Penitenciária · Pirajuí",t:"GLP a granel e botijões P45",d:"2026-11-16",val:"R$ 1.246.590",k:"Edital 54/2027 · granel",u:"https://alertalicitacao.com.br/!licitacao/PNCP-96291141000180-1-000021-2027"},
+ {uf:"SP",org:"Prefeitura de Capivari",t:"Aquisição de GLP por 12 meses",d:"2026-11-17",val:"R$ 483.987",k:"Edital 100/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-44723674000190-1-000920-2026"},
+ {uf:"SP",org:"Prefeitura de Marília",t:"GLP a granel com tanques em comodato",d:"2026-11-17",val:"R$ 1.306.500",k:"Edital 43/2026 · granel",u:"https://alertalicitacao.com.br/!licitacao/PNCP-44477909000100-1-000981-2026"},
+ {uf:"SP",org:"Prefeitura de Tambaú",t:"GLP P190 com abastecimento no local (merenda)",d:"2026-11-18",val:"R$ 60.480",k:"Edital 80/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-46373445000118-1-000309-2026"},
+ {uf:"SP",org:"Adm. Penitenciária · Pacaembu",t:"GLP a granel para 2027",d:"2026-11-18",val:"R$ 1.096.800",k:"Edital 46/2026 · granel",u:"https://alertalicitacao.com.br/!licitacao/PNCP-96291141000180-1-007504-2026"},
+ {uf:"SP",org:"Adm. Penitenciária · Limeira",t:"GLP a granel",d:"2026-11-19",val:"R$ 851.136",k:"Edital 11/2027 · granel",u:"https://alertalicitacao.com.br/!licitacao/PNCP-96291141000180-1-000025-2027"},
+ {uf:"SP",org:"Adm. Penitenciária · Andradina",t:"GLP a granel para 2027",d:"2026-11-19",val:"R$ 583.950",k:"Edital 28/2026 · granel",u:"https://alertalicitacao.com.br/!licitacao/PNCP-96291141000180-1-007569-2026"},
+ {uf:"SP",org:"Prefeitura de Jales",t:"Recargas de GLP com entrega parcelada",d:"2026-11-23",val:"R$ 67.535",k:"Edital 54/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-45131885000104-1-000502-2026"},
+ {uf:"SP",org:"Adm. Penitenciária · Itaí",t:"GLP a granel",d:"2026-11-23",val:"R$ 656.902",k:"Edital 11/2027 · granel",u:"https://alertalicitacao.com.br/!licitacao/PNCP-96291141000180-1-000031-2027"},
+ {uf:"SP",org:"Prefeitura de Piquete",t:"Cilindros de gás P45",d:"2026-11-23",val:"R$ 30.687",k:"Edital 53/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-47563325000146-1-000077-2026"},
+ {uf:"SP",org:"Prefeitura de São João da Boa Vista",t:"GLP em botijões P13, P20 e P45",d:"2026-11-24",val:"R$ 45.149",k:"Edital 105/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-46429379000150-1-000234-2026"},
+ {uf:"SP",org:"Adm. Penitenciária · Franca",t:"Aquisição de GLP",d:"2026-11-24",val:"R$ 556.470",k:"Edital 36/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-96291141000180-1-007698-2026"},
+ {uf:"SP",org:"Adm. Penitenciária · Irapuru",t:"GLP a granel para 2027",d:"2026-11-25",val:"R$ 632.525",k:"Edital 28/2027 · granel",u:"https://alertalicitacao.com.br/!licitacao/PNCP-96291141000180-1-000043-2027"},
+ {uf:"RS",org:"Prefeitura de Sapiranga",t:"Cargas de GLP e botijões para as secretarias",d:"2026-12-01",val:"R$ 381.482",k:"Edital 87/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-87366159000102-1-000460-2026"},
+ {uf:"PE",org:"Prefeitura de Verdejante",t:"Água e GLP",d:"2026-11-12",val:"R$ 51.679",k:"Edital 039/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-11348570000193-1-000076-2026"},
+ {uf:"PE",org:"Assistência Social de Arcoverde",t:"GLP em botijões P13",d:"2026-11-19",val:"R$ 161.706",k:"Edital 043/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-13872021000149-1-000001-2026"},
+ {uf:"PE",org:"Prefeitura de Salgueiro",t:"GLP P13 e vasilhames vazios",d:"2026-11-19",val:"R$ 35.279",k:"Edital 084/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-11361243000171-1-000257-2026"},
+ {uf:"PE",org:"Prefeitura da Ilha de Itamaracá",t:"Água mineral e GLP em botijões P13",d:"2026-11-24",val:"R$ 418.500",k:"Edital 00014/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-09680315000100-1-000033-2026"},
  {uf:"MS",org:"Instituto de Meio Ambiente de MS (Imasul)",t:"Aquisição de GLP",d:"2026-11-13",val:"Não informado",k:"Contratação direta 4/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-02386443000198-1-000008-2026"},
  {uf:"MA",org:"Prefeitura de Penalva",t:"Gás de cozinha (GLP) por registro de preços",d:"2026-11-19",val:"Não informado",k:"Pregão eletrônico 48/2026",u:"https://alertalicitacao.com.br/!licitacao/DOU-6aa79b6d46f80d9b03a4"},
  {uf:"MA",org:"Município de Santa Helena",t:"GLP em botijões de 13 kg e 45 kg",d:"2026-11-23",val:"Não informado",k:"PE 43/2026-SRP",u:"https://alertalicitacao.com.br/!licitacao/PNCP-06226583000150-1-000083-2026"},
