@@ -540,7 +540,7 @@ table.dg .n0{color:var(--texto-3)}
   <div class="hl"></div>
   <p>GLP e gás natural lado a lado: quem cresce, quem investe e o que muda no mercado, com dados públicos.</p>
   <svg class="barra" viewBox="0 0 1200 86" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 380 40, 620 6, 1200 2 L1200 86 L0 86 Z" fill="#D33100"/></svg>
-  <div class="barra-txt"><span id="stamp">Atualizado em 9 nov 2026, 19h · ANP com dados até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
+  <div class="barra-txt"><span id="stamp">Atualizado em 11 nov 2026, 8h · ANP com preços até set/2026 e vendas até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
 </div>
 
 <!-- KPIs -->
@@ -597,8 +597,8 @@ table.dg .n0{color:var(--texto-3)}
   <div class="grid g-2">
     <div class="panel rv">
       <p class="chart-title">Composição do preço do P13 · Brasil</p>
-      <p class="chart-sub">R$ por botijão · janeiro vs agosto de 2026 · total: R$ 110,31 → R$ 113,90</p>
-      <div class="legend"><span><i style="background:var(--cinza-claro)"></i>jan/26</span><span><i style="background:var(--laranja)"></i>ago/26</span></div>
+      <p class="chart-sub">R$ por botijão · janeiro vs setembro de 2026 · total: R$ 110,31 → R$ 114,33</p>
+      <div class="legend"><span><i style="background:var(--cinza-claro)"></i>jan/26</span><span><i style="background:var(--laranja)"></i>set/26</span></div>
       <div id="chartComp"></div>
       <div class="axisnote"><span>Fonte: ANP, Evolução dos preços de GLP 2026 · média Brasil</span><button class="tbl-toggle" data-tbl="tComp"><span class="ms" style="font-size:16px">table_rows</span>Ver tabela</button></div>
       <div id="tComp" hidden></div>
@@ -609,8 +609,8 @@ table.dg .n0{color:var(--texto-3)}
     </div>
   </div>
   <div class="panel rv" style="margin-top:16px" id="ufPrice">
-    <p class="chart-title">Preço final do P13 por estado · agosto de 2026</p>
-    <p class="chart-sub">R$ por botijão de 13 kg · média Brasil: R$ 113,90 · do mais caro ao mais barato</p>
+    <p class="chart-title">Preço final do P13 por estado · setembro de 2026</p>
+    <p class="chart-sub">R$ por botijão de 13 kg · média Brasil: R$ 114,33 · do mais caro ao mais barato</p>
     <div class="grid g-2"><div id="ufP1"></div><div id="ufP2"></div></div>
     <div class="axisnote"><span>Fonte: ANP, Evolução dos preços de GLP 2026 (média mensal por UF)</span></div>
   </div>
@@ -821,7 +821,7 @@ table.dg .n0{color:var(--texto-3)}
 </section>
 
 <footer>
-  <div class="note"><span class="ms">info</span><div><b>Como ler este radar.</b> É uma fotografia em 9/11/2026. Os números vêm primeiro da ANP, do Sindigás e da Abegás; portais e RI das empresas e agências estaduais complementam, e a imprensa setorial entra só para fatos que essas fontes não publicam. Os cards com fonte oficial têm o selo “Fonte oficial”. Números citados como foram publicados por cada fonte; quando a data exata da notícia não estava clara, o card mostra só o mês ou o ano. </div></div>
+  <div class="note"><span class="ms">info</span><div><b>Como ler este radar.</b> É uma fotografia em 11/11/2026. Os números vêm primeiro da ANP, do Sindigás e da Abegás; portais e RI das empresas e agências estaduais complementam, e a imprensa setorial entra só para fatos que essas fontes não publicam. Os cards com fonte oficial têm o selo “Fonte oficial”. Números citados como foram publicados por cada fonte; quando a data exata da notícia não estava clara, o card mostra só o mês ou o ano. </div></div>
   <div class="panel">
     <p class="chart-title" style="margin-bottom:12px">Fontes</p>
     <ul class="sources" id="sources"></ul>
@@ -840,9 +840,16 @@ table.dg .n0{color:var(--texto-3)}
    tema: mercado | regulacao | expansao | resultados | sustentabilidade | comunicacao | social
    ========================================================= */
 const NEWS = [
+ {d:"2026-11-09",dl:"09 nov 2026",seg:"GN",uf:"AL",tema:"precos",co:"Algás",t:"Arsal reduz tarifas do gás canalizado em Alagoas desde 1º/11",s:"Indústria paga R$ 0,05/m³ a menos e recebe de volta R$ 958 mil em penalidades; demais segmentos caem R$ 0,0174/m³. Residencial até 15 m³ fica em R$ 8,0266/m³ sem tributos. O gás comprado pela Algás caiu de R$ 1,8704 para R$ 1,8529/m³.",src:"Cada Minuto · 09/11/26",u:"https://www.cadaminuto.com.br/noticia/2026/11/09/tarifas-de-gas-canalizado-sao-reduzidas-em-alagoas-veja-novos-valores",cli:["residencial","comercial","industrial"]},
+ {d:"2026-11-05",dl:"05 nov 2026",seg:"GN",uf:"SP",tema:"expansao",co:"Ultragaz",t:"Ultragaz terá o 1º posto de biometano em rodovia, na Bandeirantes",s:"Estação no km 58 (sentido interior) e km 62 (sentido capital), com 48 mil m³/dia para mais de 400 caminhões por dia. Operação comercial prevista para o início de 2027; é o ponto de partida de uma rede de “rotas verdes”.",src:"Cenário Energia · 05/11/26",u:"https://cenarioenergia.com.br/2026/11/05/ultragaz-primeiro-posto-biometano-rodovia-dos-bandeirantes-rotas-verdes/",cli:["industrial"]},
+ {d:"2026-10-29",dl:"29 out 2026",seg:"GN",uf:"AM",tema:"regulacao",co:"Arsepam",t:"Amazonas cria regra para devolver créditos de PIS/Cofins na tarifa do gás",s:"Resolução 006/2026 da Arsepam manda os valores recuperados pela concessionária na Justiça para uma conta gráfica, a ser usada nas próximas revisões tarifárias para moderar as tarifas.",src:"Segundo a Segundo · 05/11/26",u:"https://segundoasegundo.com.br/2026/11/consumidores-de-gas-natural-no-am/",cli:["residencial","comercial","industrial"]},
+ {d:"2026-11-03",dl:"03 nov 2026",seg:"GN",uf:"BA",tema:"precos",co:"Bahiagás",t:"Gás natural cai 0,95% na Bahia em novembro",s:"Agerba (Resolução 27) homologou a redução para todos os segmentos; GNV para postos cai 0,80%. A Bahiagás repassa o preço médio de 16 fornecedores.",src:"Movimento Econômico",u:"https://movimentoeconomico.com.br/geral/redacao/2026/11/03/gas-natural-cai-095-na-bahia-sobe-224-em-pernambuco-e-fica-estavel-no-ceara/",cli:["residencial","comercial","industrial"]},
+ {d:"2026-11-03",dl:"03 nov 2026",seg:"GN",uf:"CE",tema:"precos",co:"Cegás",t:"Cegás mantém tarifas de novembro e corta 21% para o setor público",s:"Indústria, comércio, residências e GNV sem mudança de 1º a 30/11; o setor público passa de R$ 4,1270 para R$ 3,2567/m³ sem impostos.",src:"Movimento Econômico",u:"https://movimentoeconomico.com.br/geral/redacao/2026/11/03/gas-natural-cai-095-na-bahia-sobe-224-em-pernambuco-e-fica-estavel-no-ceara/",cli:["residencial","comercial","industrial"]},
+ {d:"2026-11-09",dl:"09 nov 2026",seg:"GLP",uf:"BR",tema:"social",co:"Gás do Povo",t:"MP prorroga o Gás do Povo até novembro de 2031",s:"Medida provisória altera o art. 8º da Lei 14.237/2021 e mantém de 4 a 6 recargas gratuitas por ano para cerca de 15 milhões de famílias. Os efeitos dependem da abertura de créditos orçamentários.",src:"A Tarde · 09/11/26",u:"https://atarde.com.br/brasil/lula-prorroga-gas-do-povo-ate-2031-e-garante-gratuidade-no-botijao-1408913",cli:["residencial"],rev:true},
+ {d:"2026-11-06",dl:"06 nov 2026",seg:"GLP",uf:"BR",tema:"social",co:"Gás do Povo",t:"Gás do Povo libera 3,1 milhões de vales em 10 de novembro",s:"Inclui 380,5 mil famílias novas; investimento de mais de R$ 337 milhões no ciclo e 27.160 revendas credenciadas.",src:"ANF · 06/11/26",u:"https://www.anf.org.br/gas-do-povo-libera-novos-vales-para-31-milhoes-de-familias-em-novembro/",cli:["residencial"],rev:true},
  {d:"2026-04-09",dl:"09 abr 2026",seg:"GLP",uf:"BR",tema:"precos",co:"Petrobras",t:"Petrobras neutraliza efeito do leilão de GLP e devolve parte do ganho",s:"Decisão após o leilão de 31/03, que vendeu 70 mil t com ágio de até 100%.",src:"Agência iNFRA",u:"https://agenciainfra.com/blog/petrobras-devolvera-parte-do-lucro-de-leilao-de-glp-as-distribuidoras/",cli:["residencial","comercial","industrial"]},
  {d:"2026-07-01",dl:"jun 2026",seg:"GLP",uf:"BR",tema:"mercado",co:"Sindigás",t:"Sindigás: Supergasbras é a 3ª maior no ano, com 21,49%",s:"Market share jan–mai/26 com dados da ANP: Copa 23,81%, Ultragaz 21,92%, Supergasbras 21,49%, Nacional 21,37% e Consigaz 7,31%. Consumo de 3,08 milhões de t no período.",src:"Sindigás · Panorama jun/2026",u:"https://www.sindigas.org.br/Download/PANORAMAS/NOVO%20GLP%20EM%20MOVIMENTO_JUN_2026.pdf",cli:["residencial","industrial","comercial","agro"]},
- {d:"2026-10-01",dl:"out 2026",seg:"GLP",uf:"BR",tema:"precos",co:"ANP",t:"P13 fecha setembro em R$ 114,33; revenda fica com R$ 34,90 por botijão",s:"Série mensal oficial: o preço subiu de R$ 110,31 (jan) para R$ 114,71 (mai) e estabilizou. A margem da revenda foi a parcela que mais cresceu no ano.",src:"ANP · Evolução dos preços de GLP 2026",u:"https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arq-precos/tabelas/2026-margens-p13-tabela.pdf",cli:["residencial"],rev:true},
+ {d:"2026-10-01",dl:"out 2026",seg:"GLP",uf:"BR",tema:"precos",co:"ANP",t:"P13 fecha setembro em R$ 114,33; revenda fica com R$ 34,00 por botijão",s:"Série mensal oficial: o preço subiu de R$ 110,31 (jan) para R$ 114,71 (mai) e estabilizou. A margem da revenda foi a parcela que mais cresceu no ano.",src:"ANP · Evolução dos preços de GLP 2026",u:"https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arq-precos/tabelas/2026-margens-p13-tabela.pdf",cli:["residencial"],rev:true},
  {d:"2026-05-04",dl:"04 mai 2026",seg:"GN",uf:"ES",tema:"expansao",co:"ES Gás",t:"ES Gás projeta alta de 44% no consumo de gás até 2030",s:"GNV deve dobrar com a frota pesada; comercial e residencial devem crescer 81% cada. Clientes no mercado livre subiram 33% no ano.",src:"Abegás",u:"https://www.abegas.org.br/arquivos/100095",cli:["residencial","comercial","industrial"]},
  {d:"2026-11-02",dl:"02 nov 2026",seg:"GLP",uf:"BA",tema:"precos",co:"Acelen (Refinaria de Mataripe)",t:"Mataripe sobe 17,5% o GLP às distribuidoras da Bahia",s:"Maior reajuste desde a venda da refinaria. Estimativa de R$ 12 a R$ 15 a mais no botijão; antes da alta, o P13 custava em média R$ 117,35 no estado.",src:"Click Petróleo e Gás",u:"https://clickpetroleoegas.com.br/refinaria-de-mataripe-aumenta-em-17-5-o-gas-de-cozinha-na-bahia-o-maior-reajuste-desde-que-foi-vendida-pela-petrobras-e-o-botijao-de-13-kg-pode-subir-ate-r-15-btl96",cli:["residencial","comercial","industrial"],rev:true},
  {d:"2026-10-31",dl:"nov 2026",seg:"GN",uf:"ES",tema:"precos",co:"ES Gás (Energisa)",t:"ARSP homologa reajuste das tarifas de gás canalizado no ES a partir de 1º/11",s:"Comunicado da Energisa, sócia da ES Gás, ao mercado.",src:"Visno Invest",u:"https://visnoinvest.com.br/news/16006/energisa-engi3-registra-tarifa-de-gas-de-r-30842-por-m3",cli:["residencial","industrial","comercial"]},
@@ -962,9 +969,9 @@ const PRICE = [
  {d:"2026-09-15",v:114.33,l:"set/26 · média mensal oficial"},
  {d:"2026-10-31",v:115.13,l:"semana de 25 a 31/10/26 · pesquisa semanal ANP",m:true}
 ];
-const COMP = {m:["Produtor","ICMS","Distribuição","Revenda"],a:[38.38,19.11,22.17,30.65],b:[36.17,19.11,23.72,34.90],u:"R$",la:"jan/26",lb:"ago/26"};
-const COMP_M = {m:["jan","fev","mar","abr","mai","jun","jul","ago"],prod:[38.38,36.21,36.71,37.91,36.27,36.41,36.39,36.17],dist:[22.17,24.19,22.95,25.51,25.98,24.79,24.02,23.72],rev:[30.65,30.49,31.38,31.16,33.35,34.21,34.71,34.90],fin:[110.31,110.00,110.15,113.69,114.71,114.52,114.22,113.90]};
-const UF_PRICE = {AC:126.20,AP:128.64,AM:128.63,PA:116.58,RO:127.43,RR:142.06,TO:132.63,AL:106.15,BA:115.07,CE:115.95,MA:126.62,PB:108.87,PE:103.98,PI:112.29,RN:114.75,SE:113.22,ES:105.76,MG:111.07,RJ:102.00,SP:115.84,PR:111.80,RS:117.59,SC:122.87,DF:106.28,GO:113.92,MT:127.47,MS:119.14};
+const COMP = {m:["Produtor","ICMS","Distribuição","Revenda"],a:[38.38,19.11,22.17,30.65],b:[36.13,19.11,25.09,34.00],u:"R$",la:"jan/26",lb:"set/26"};
+const COMP_M = {m:["jan","fev","mar","abr","mai","jun","jul","ago","set"],prod:[38.38,36.21,36.71,37.91,36.27,36.41,36.39,36.17,36.13],dist:[22.17,24.19,22.95,25.51,25.98,24.79,24.02,23.72,25.09],rev:[30.65,30.49,31.38,31.16,33.35,34.21,34.71,34.90,34.00],fin:[110.31,110.00,110.15,113.69,114.71,114.52,114.22,113.90,114.33]};
+const UF_PRICE = {AC:124.97,AP:128.73,AM:128.70,PA:116.85,RO:127.56,RR:142.81,TO:134.45,AL:106.08,BA:114.89,CE:115.51,MA:128.76,PB:108.91,PE:104.51,PI:112.82,RN:115.27,SE:113.28,ES:106.43,MG:111.45,RJ:103.79,SP:115.82,PR:113.37,RS:118.16,SC:122.34,DF:106.69,GO:114.15,MT:127.75,MS:119.53};
 const SHARE_HIST = [
  {n:"Copa Energia",x:"Copagaz + Liquigás",v:{"2016":null,"jan–nov/25":23.77,"jan–mai/26":23.81},note:"Em 2016, a Liquigás (então da Petrobras) tinha 21,6%"},
  {n:"Ultragaz",x:"inclui a Bahiana, como na ANP",v:{"2016":23.9,"jan–nov/25":22.36,"jan–mai/26":21.92}},
@@ -1103,7 +1110,7 @@ const COMPANIES = [
 ];
 
 const TRENDS = [
- {i:"volunteer_activism",sig:"watch",sl:"Atenção",t:"Gás do Povo virou política permanente",p:"Lei 15.348/2026. Cerca de 15 milhões de famílias, vales todo dia 10 e retirada em revendas credenciadas. O Nordeste concentra a maior fatia.",so:"Volume garantido na base da pirâmide, mas o próprio setor questiona o ganho real de mercado. Vale medir revenda credenciada por região.",src:[["eixos · 23/03/26", "https://eixos.com.br/gas-natural/gas-do-povo-chega-a-15-milhoes-de-familias-com-nova-expansao/"], ["Cenário Energia · 02/03/26", "https://cenarioenergia.com.br/2026/03/02/gas-do-povo-avanca-com-crescimento-recorde-do-glp-e-sindigas-cobra-coerencia-regulatoria-para-sustentar-expansao/"]]},
+ {i:"volunteer_activism",sig:"watch",sl:"Atenção",t:"Gás do Povo virou política permanente",p:"Lei 15.348/2026 e MP de 9/11/26, que prorroga o programa até 2031. Cerca de 15 milhões de famílias, vales todo dia 10 e retirada em revendas credenciadas. O Nordeste concentra a maior fatia.",so:"Volume garantido na base da pirâmide, mas o próprio setor questiona o ganho real de mercado. Vale medir revenda credenciada por região.",src:[["A Tarde · 09/11/26", "https://atarde.com.br/brasil/lula-prorroga-gas-do-povo-ate-2031-e-garante-gratuidade-no-botijao-1408913"], ["eixos · 23/03/26", "https://eixos.com.br/gas-natural/gas-do-povo-chega-a-15-milhoes-de-familias-com-nova-expansao/"], ["Cenário Energia · 02/03/26", "https://cenarioenergia.com.br/2026/03/02/gas-do-povo-avanca-com-crescimento-recorde-do-glp-e-sindigas-cobra-coerencia-regulatoria-para-sustentar-expansao/"]]},
  {i:"gavel",sig:"up",sl:"Estabilidade",t:"Reforma do GLP travada",p:"Fracionamento já tinha sido vetado na lei do Gás do Povo; a ANP engavetou a reforma em junho e o CNPE fechou mais uma porta em 6/11.",so:"Botijão marcado e envase pela própria distribuidora seguem protegidos. Reduz a incerteza sobre o investimento em vasilhames.",src:[["eixos · 06/11/26", "https://eixos.com.br/combustiveis-e-bioenergia/governo-usa-cnpe-para-barrar-de-vez-a-reforma-do-glp-na-anp/"], ["Agência iNFRA · 12/06/26", "https://agenciainfra.com/blog/anp-colocara-reforma-do-glp-na-geladeira-para-focar-em-subvencao/"]]},
  {i:"oil_barrel",sig:"risk",sl:"Risco",t:"Petrobras de volta à distribuição de GLP",p:"Conselho aprovou o retorno em ago/25, sem detalhar modelo. A estatal já vende GLP por leilão às distribuidoras.",so:"Possível novo concorrente com acesso direto ao produto. Acompanhar fatos relevantes e o desenho de canal.",src:[["Agência iNFRA · 08/08/25", "https://agenciainfra.com/blog/?p=25982"]]},
  {i:"factory",sig:"risk",sl:"Concorrência",t:"Gás natural mais barato para a indústria",p:"Mercado livre industrial cresce quase 50%; leilão do gás da União mira US$ 5/MMBtu; Gasmig congela tarifas.",so:"Pressão sobre o GLP granel industrial onde há rede. Priorizar contas fora do alcance dos dutos e o argumento do BioGL.",src:[["XP · 30/07/26", "https://conteudos.xpi.com.br/?p=1551159"], ["Agência Minas", "https://www.agenciaminas.mg.gov.br/noticia/gasmig-mantem-tarifas-sem-reajuste-pela-segunda-vez-consecutiva-em-2026"]]},
@@ -1111,7 +1118,7 @@ const TRENDS = [
  {i:"storefront",sig:"watch",sl:"Atenção",t:"Revendas no centro da disputa",p:"São cerca de 59 a 60 mil revendas, 73% vinculadas às grandes. A Abragás quer que as de grande porte possam envasar; o Gás do Povo já passa por 42% delas; a Nacional Gás digitaliza a rede com app próprio.",so:"Fidelizar e digitalizar a rede revendedora vira vantagem competitiva. Vale comparar nossos programas de revenda com o “Minha Revenda”.",src:[["InvestNews · 17/07/26", "https://investnews.com.br/negocios/disputa-gas-cozinha-anp/amp/"], ["Baguete · 27/10/25", "https://baguete.com.br/public/noticias/nacional-gas-cria-aplicativo-para-revenda-de-botijoes"]]},
  {i:"route",sig:"up",sl:"Expansão",t:"Redes de gás avançam pelo interior",p:"Londrina, Maringá, Triângulo Mineiro, Planalto Norte de SC e Serra Gaúcha recebem dutos e redes locais de biometano.",so:"Cidades médias passam a ter alternativa ao GLP em condomínios e comércio. Mapear bairros com obra de rede.",src:[["eixos", "https://eixos.com.br/gas-natural/biogas/londrina-e-cambe-tornam-se-as-primeiras-cidades-do-parana-com-rede-local-de-biometano/"]]},
  {i:"bolt",sig:"watch",sl:"Atenção",t:"Térmicas puxam a demanda de gás",p:"O despacho termelétrico subiu 49% no semestre e explica boa parte da alta de 15% no consumo.",so:"Crescimento do GN não é todo de varejo: o residencial subiu só 2,3%.",src:[["Abegás · 03/11/26", "https://www.abegas.org.br/arquivos/102611"]]},
- {i:"handshake",sig:"watch",sl:"Atenção",t:"Concessões e governança em transição",p:"Rio vai relicitar CEG e CEG Rio (vencem em jul/27); Energisa entrou como sócia em distribuidoras do Nordeste; Gasmig mudou de regulador.",so:"Novos donos e regras podem acelerar a expansão de rede em praças hoje dominadas pelo GLP."}
+ {i:"handshake",sig:"watch",sl:"Atenção",t:"Concessões e governança em transição",p:"Rio vai relicitar CEG e CEG Rio (vencem em jul/27); Energisa entrou como sócia em distribuidoras do Nordeste; Gasmig mudou de regulador.",so:"Novos donos e regras podem acelerar a expansão de rede em praças hoje dominadas pelo GLP.",src:[["eixos · CEG e CEG Rio", "https://eixos.com.br/gas-natural/mercado-de-gas/governo-do-rio-vai-relicitar-as-concessoes-de-gas-da-ceg-e-ceg-rio/"], ["Visno Invest · Energisa/ES Gás", "https://visnoinvest.com.br/news/16006/energisa-engi3-registra-tarifa-de-gas-de-r-30842-por-m3"]]}
 ];
 
 const COMMS = [
@@ -1124,7 +1131,7 @@ const COMMS = [
 ];
 
 const AGENDA = [
- {d:"10",m:"nov",t:"Gás do Povo · ciclo de novembro",p:"Novos vales liberados pela Caixa (calendário do dia 10). Ciclo de outubro encerrou em 9/11."},
+ {d:"10",m:"nov",t:"Gás do Povo · ciclo de novembro",p:"3,1 milhões de vales liberados em 10/11, com 380,5 mil famílias novas (ANF, 06/11/26). Ciclo de outubro encerrou em 9/11."},
  {d:"12",m:"nov",t:"Ultrapar divulga o 3T26",p:"Números da Ultragaz após o 2T26 fraco em volume. Teleconferência em 13/11."},
  {d:"nov–dez",m:"2026",t:"1º leilão do gás da União",p:"Previsto pelo MME/PPSA para o último bimestre de 2026, com gás mais barato para a indústria.",soft:true},
  {d:"jul",m:"2027",t:"Vencimento das concessões CEG e CEG Rio",p:"Rio de Janeiro prepara relicitação; Naturgy busca renovar.",soft:true}
@@ -1408,7 +1415,8 @@ const CD_PRICE=[
  {s:"GN",e:"CEG · Naturgy (capital do RJ)",t:"Gás natural e GLP canalizado",m:"Tabela de maio: residencial até 7 m³ a R$ 9,7518/m³ e GLP canalizado residencial a R$ 20,2088/kg, acima da CEG Rio.",v:"01/05/2026",c:"Referência para comparar com o GLP a granel na capital",d:"13/05/2026",u:"https://www.legisweb.com.br/legislacao/?id=495697",f:"DOE-RJ (LegisWeb)"},
  {s:"GN",e:"Copergás (PE)",t:"Gás natural canalizado",m:"Residencial sobe de 1,10% a 1,46%, conforme a faixa; a indústria até 2,56%. Motivo: custo do gás comprado dos fornecedores.",v:"01/11/2026 a 31/01/2027",c:"Alta pequena para prédios no Recife",d:"30/10/2026",u:"https://movimentoeconomico.com.br/petroleo-e-gas/2026/10/30/gas-encanado-sobe-ate-256-para-industria-e-146-para-residencias-em-pernambuco/",f:"Movimento Econômico"},
  {s:"GN",e:"Gasmig (MG)",t:"Gás natural canalizado",m:"Último reajuste foi em maio (+1%). Em agosto e novembro manteve as tarifas da indústria, veicular e cogeração; o residencial não foi citado.",v:"01/11/2026",c:"Sem sinal de alta para prédios em MG",d:"nov/2026",u:"https://diariodocomercio.com.br/economia/gas-natural-sem-reajuste-minas-gerais/",f:"Diário do Comércio"},
- {s:"GN",e:"Bahiagás (BA)",t:"Gás natural canalizado",m:"Projeção de queda de 6,5% na tarifa média para nov/26 a jan/27, depois de alta projetada de 14% em ago a out/26.",v:"nov/2026",c:"Alívio esperado no trimestre",d:"ago/2026",u:"https://bahiagas.com.br/portalregulatorioedetarifas/src/pdfs/07 - Conta Gráfica e Projeção do Preço de Venda (PV) - Bahiagás.pdf",f:"Portal de tarifas Bahiagás"},
+ {s:"GN",e:"Bahiagás (BA)",t:"Gás natural canalizado",m:"Agerba (Resolução 27) homologou queda média de 0,95% para todos os segmentos a partir de 1º/11; o GNV para postos cai 0,80%. A projeção de ago/26 indicava queda maior (6,5%).",v:"01/11/2026",c:"Pequeno alívio para prédios na Bahia",d:"03/11/2026",u:"https://movimentoeconomico.com.br/geral/redacao/2026/11/03/gas-natural-cai-095-na-bahia-sobe-224-em-pernambuco-e-fica-estavel-no-ceara/",f:"Movimento Econômico · Agerba"},
+ {s:"GN",e:"Algás (AL)",t:"Gás natural canalizado",m:"Arsal homologou queda de R$ 0,0174/m³ para os segmentos não industriais (R$ 0,05/m³ na indústria). Residencial até 15 m³: R$ 8,0266/m³; de 16 a 50 m³: R$ 7,7266/m³, sem tributos.",v:"01/11/2026",c:"Pequeno alívio para prédios em Maceió",d:"09/11/2026",u:"https://www.cadaminuto.com.br/noticia/2026/11/09/tarifas-de-gas-canalizado-sao-reduzidas-em-alagoas-veja-novos-valores",f:"Cada Minuto (DOE-AL)"},
  {s:"GN",e:"ES Gás · Energisa (ES)",t:"Gás natural canalizado",m:"Novo preço de venda, sem impostos, de R$ 3,0842/m³ para os segmentos não termelétricos.",v:"01/11/2026",c:"Base do custo para prédios no ES",d:"nov/2026",u:"https://visnoinvest.com.br/news/16006/energisa-engi3-registra-tarifa-de-gas-de-r-30842-por-m3",f:"Visno Invest"}
 ];
 const CD_PRICE_READ=[
@@ -1577,7 +1585,7 @@ function globalSearch(q){
   const ms=[...SHARES["2026"].rows].filter(r=>hit(r.n+" "+(r.x||"")+" market share participacao",ws));
   if(ms.length)groups.push(["Market share (jan–mai/26)",ms.map(r=>({i:"pie_chart",t:r.n+" · "+pct(r.v),d:"Sindigás com dados da ANP",go:()=>goSec("share")}))]);
   const pu=Object.keys(UF_PRICE).filter(k=>hit(k+" "+UFS[k].n+" preco botijao p13",ws));
-  if(pu.length&&pu.length<6)groups.push(["Preço do P13 (ago/26)",pu.map(k=>({i:"sell",t:UFS[k].n+" · R$ "+nf(UF_PRICE[k],2),d:"Média mensal ANP · Brasil R$ 113,90",go:()=>goSec("precos")}))]);
+  if(pu.length&&pu.length<6)groups.push(["Preço do P13 (set/26)",pu.map(k=>({i:"sell",t:UFS[k].n+" · R$ "+nf(UF_PRICE[k],2),d:"Média mensal ANP · Brasil R$ 114,33",go:()=>goSec("precos")}))]);
   const tr=TRENDS.filter(t=>hit(t.t+" "+t.p+" "+t.so,ws)).concat(SHARE_READS.filter(t=>hit(t.t+" "+t.p,ws)));
   if(tr.length)groups.push(["Tendências e leituras",tr.slice(0,4).map(t=>({i:"trending_up",t:t.t,d:t.p.slice(0,110)+(t.p.length>110?"…":""),go:()=>goSec(TRENDS.includes(t)?"tendencias":"share")}))]);
   const ufHit=Object.keys(UFS).find(k=>NORM(q).trim()===NORM(k)||NORM(q).trim()===NORM(UFS[k].n));
@@ -1696,6 +1704,11 @@ $("#licList").innerHTML=LIC.map(l=>`<div class="lic rv in"><div class="top"><spa
 
 /* ===== alerta de licitações por UF ===== */
 const LIC_UF = [
+ {uf:"MS",org:"Instituto de Meio Ambiente de MS (Imasul)",t:"Aquisição de GLP",d:"2026-11-13",val:"Não informado",k:"Contratação direta 4/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-02386443000198-1-000008-2026"},
+ {uf:"MA",org:"Prefeitura de Penalva",t:"Gás de cozinha (GLP) por registro de preços",d:"2026-11-19",val:"Não informado",k:"Pregão eletrônico 48/2026",u:"https://alertalicitacao.com.br/!licitacao/DOU-6aa79b6d46f80d9b03a4"},
+ {uf:"MA",org:"Município de Santa Helena",t:"GLP em botijões de 13 kg e 45 kg",d:"2026-11-23",val:"Não informado",k:"PE 43/2026-SRP",u:"https://alertalicitacao.com.br/!licitacao/PNCP-06226583000150-1-000083-2026"},
+ {uf:"GO",org:"Prefeitura de Jussara",t:"GLP, água mineral, gelo e bebidas por registro de preços",d:"2026-11-25",val:"Não informado",k:"Pregão presencial 31/2026",u:"https://alertalicitacao.com.br/!licitacao/N-5212204-17470"},
+ {uf:"RJ",org:"Prefeitura de Comendador Levy Gasparian",t:"GLP para a rede municipal de ensino, entregas parceladas",d:"2026-10-26",val:"Não informado",k:"Pregão eletrônico 48/2026",u:"https://alertalicitacao.com.br/!licitacao/MN-3300951-5-482026"},
  {uf:"RS",org:"Prefeitura de Torres",t:"Recargas de GLP P13 com troca de botijão",d:"2026-11-11",val:"R$ 134.420",k:"Pregão eletrônico 392/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-87876801000101-1-000307-2026"},
  {uf:"RS",org:"Comando Militar do Sul",t:"GLP em botijões P13 e cilindros P45, com troca de recipientes",d:"2026-11-11",val:"Federal",k:"Pregão 41/2026",u:"https://alertalicitacao.com.br/!licitacao/DOU-95901d08fc19234dd513"},
  {uf:"RS",org:"Município de Bom Jesus",t:"Água mineral, GLP e acessórios por registro de preços",d:"2026-11-12",val:"Não informado",k:"Pregão eletrônico 051/2026",u:"https://alertalicitacao.com.br/!licitacao/BLL-4302303-1994-0512026"},
@@ -1730,7 +1743,6 @@ const LIC_UF = [
  {uf:"MG",org:"Município de Contagem",t:"Vasilhames e recarga de GLP 13 kg (credenciamento contínuo)",d:"2099-01-27",val:"R$ 132.119",k:"Chamamento 108/2026",cred:true,u:"https://alertalicitacao.com.br/!licitacao/PNCP-18715508000131-1-000011-2026"},
  {uf:"MG",org:"Prefeitura de Betim",t:"GLP em botijões de 13 kg e 45 kg",d:"2026-11-06",val:"Não informado",k:"Edital 30/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-18715391000196-1-000323-2026"},
  {uf:"MG",org:"Instituto Federal do Sul de Minas",t:"Aquisição futura de gás GLP",d:"2026-10-29",val:"R$ 322.140",k:"Edital 643/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-10648539000105-1-000243-2026"},
- {uf:"MG",org:"Universidade Federal de Ouro Preto",t:"Registro de preços de gás GLP",d:"2026-09-11",val:"Federal",k:"Pregão 65/2026",u:"https://alertalicitacao.com.br/!licitacao/DOU-0a1c441e6068bdc5ec7d"},
  {uf:"PR",org:"Município de Mallet",t:"GLP e água mineral para as secretarias",d:"2026-11-10",val:"R$ 193.921",k:"Edital 047/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-75654566000136-1-000148-2026"},
  {uf:"PR",org:"Município de Anahy",t:"Gás de cozinha para os departamentos",d:"2026-11-10",val:"R$ 49.720",k:"Contratação direta 16/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-95594800000194-1-000105-2026"},
  {uf:"PR",org:"Município de Iporã",t:"Gás de cozinha para saúde, educação e assistência",d:"2026-11-13",val:"R$ 175.617",k:"Edital 83/2026",u:"https://alertalicitacao.com.br/!licitacao/PNCP-75738484000170-1-000185-2026"},
@@ -1817,7 +1829,7 @@ function renderUfAlert(){
   const list=full.filter(l=>ufAll||isOpen(l)).sort((a,b)=>(isOpen(b)-isOpen(a))||(isOpen(a)?a.d.localeCompare(b.d):b.d.localeCompare(a.d)));
   const op=full.filter(isOpen).length;const k=ufSel;const opVal=full.filter(isOpen).reduce((a,l)=>a+valNum(l.val),0);const opUfs=new Set(full.filter(isOpen).map(l=>l.uf)).size;
   const name=k?UFS[k].n:"Brasil";
-  const price=k&&UF_PRICE[k]?`<span class="pillinfo"><span class="ms">sell</span>P13 na ANP (ago/26): R$ ${nf(UF_PRICE[k],2)}</span>`:`<span class="pillinfo"><span class="ms">sell</span>P13 Brasil (ago/26): R$ 113,90</span>`;
+  const price=k&&UF_PRICE[k]?`<span class="pillinfo"><span class="ms">sell</span>P13 na ANP (set/26): R$ ${nf(UF_PRICE[k],2)}</span>`:`<span class="pillinfo"><span class="ms">sell</span>P13 Brasil (set/26): R$ 114,33</span>`;
   const al=k?`https://alertalicitacao.com.br/licitacoes/glp/${k}`:"https://alertalicitacao.com.br/!cnae/855";
   $("#ufAlert").innerHTML=`<div class="uf-head"><div><h3>${name}</h3><div class="uf-stats" style="margin-top:8px"><span class="pillinfo"><span class="ms" style="color:#1E7B45">radio_button_checked</span>${op} aberta(s)${!k?" em "+opUfs+" estados":""}</span><span class="pillinfo"><span class="ms">payments</span>R$ ${nf(opVal/1e6,1)} mi em editais abertos com valor</span><span class="pillinfo"><span class="ms">description</span>${full.length} edital(is) no radar</span>${price}</div></div>
     <div class="chips"><a class="btn-o" href="${al}" target="_blank" rel="noopener"><span class="ms">notifications_active</span>Alerta Licitação · GLP${k?" "+k:""}</a><a class="btn-o" href="https://alertalicitacao.com.br/!buscaPNCP" target="_blank" rel="noopener" title="Termos: GLP, gás LP, P13, P20, P45, granel, BioGL"><span class="ms">search</span>Busca PNCP gratuita</a><a class="btn-o" href="https://pncp.gov.br/app/editais" target="_blank" rel="noopener"><span class="ms">account_balance</span>PNCP</a></div></div>
@@ -1849,3 +1861,5 @@ addEventListener("scroll",hideTip,{passive:true});
 </script>
 </body>
 </html>
+
+</body></html>
