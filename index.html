@@ -540,7 +540,7 @@ table.dg .n0{color:var(--texto-3)}
   <div class="hl"></div>
   <p>GLP e gás natural lado a lado: quem cresce, quem investe e o que muda no mercado, com dados públicos.</p>
   <svg class="barra" viewBox="0 0 1200 86" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 380 40, 620 6, 1200 2 L1200 86 L0 86 Z" fill="#D33100"/></svg>
-  <div class="barra-txt"><span id="stamp">Atualizado em 13 nov 2026, 07h55 · ANP com preços até a semana de 01 a 07/11/2026 e vendas até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
+  <div class="barra-txt"><span id="stamp">Atualizado em 13 nov 2026, 14h05 · ANP com preços até a semana de 01 a 07/11/2026 e vendas até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
 </div>
 
 <!-- KPIs -->
@@ -765,7 +765,7 @@ table.dg .n0{color:var(--texto-3)}
   <div class="panel rv" style="margin-top:16px"><p class="chart-title">Onde o GLP e o BioGL entram no campo</p><p class="chart-sub">Aplicações de calor de processo citadas por Sindigás, distribuidoras e imprensa setorial. O BioGL é “drop-in”: usa a mesma instalação do GLP.</p><div class="ag-use" id="agUse"></div></div>
   <div class="panel rv" style="margin-top:16px"><p class="chart-title">Destaques das culturas</p><p class="chart-sub">Números mais recentes de Conab, IBGE e entidades do setor, com a aplicação de gás em cada cadeia e os principais polos.</p><div class="chips" id="agF" style="margin:4px 0 12px"></div><div class="dg-wrap"><table class="dg" id="agTbl"></table></div></div>
   <div class="grid g-2" style="margin-top:16px">
-    <div class="panel rv"><p class="chart-title">Safra de grãos (Conab)</p><p class="chart-sub">Milhões de toneladas. 2025/26 fechado no 12º levantamento; 2026/27 é a primeira estimativa.</p><div id="agSafra"></div><div class="axisnote"><span>Fonte: Conab, levantamentos de set/26 e out/26.</span></div></div>
+    <div class="panel rv"><p class="chart-title">Safra de grãos (Conab)</p><p class="chart-sub">Milhões de toneladas. 2025/26 fechado no 12º levantamento; 2026/27 é a segunda estimativa.</p><div id="agSafra"></div><div class="axisnote"><span>Fonte: Conab, levantamentos de set/26 e <a href="https://agenciagov.ebc.com.br/noticias/202611/nova-estimativa-da-conab-para-safra-de-graos-2026-27-e-de-366-1-milhoes-de-toneladas" target="_blank" rel="noopener">nov/26</a>.</span></div></div>
     <div class="panel rv"><p class="chart-title">Participação no abate de frangos</p><p class="chart-sub">Principais estados, % do abate nacional. Sul soma cerca de 60%.</p><div id="agAves"></div><div class="axisnote"><span>Fonte: IBGE via AEN-PR e O Presente Rural (2025 e 1º tri/26).</span></div></div>
   </div>
   <div class="sec-head rv" style="margin-top:28px"><div><h3 style="margin:0;font-size:20px">Melhores regiões para atuar</h3><p style="margin:6px 0 0">Leitura do Radar a partir da concentração das cadeias que usam calor, da distância da rede de gás natural e da logística de GLP e BioGL. Escala de 1 a 5.</p></div></div>
@@ -840,6 +840,9 @@ table.dg .n0{color:var(--texto-3)}
    tema: mercado | regulacao | expansao | resultados | sustentabilidade | comunicacao | social
    ========================================================= */
 const NEWS = [
+ {d:"2026-11-13",dl:"13 nov 2026",seg:"GN",uf:"MG",tema:"expansao",co:"Ultragaz",t:"Ultragaz leva a Sabará (MG) seu maior projeto de biometano em 2027",s:"A Grande BH vira base de rotas com biometano para BH–SP e BH–RJ, voltadas a indústrias e transportadoras. A empresa quer chegar a oito estados e instalar até 20 postos em rodovias em dois a três anos; hoje abastece mais de 300 caminhões por dia.",src:"O Tempo · 13/11/26",u:"https://www.otempo.com.br/economia/2026/11/13/grande-bh-vai-receber-o-maior-projeto-de-biometano-da-ultragaz-no-pais-em-2027",cli:["industrial"]},
+ {d:"2026-11-13",dl:"13 nov 2026",seg:"GN",uf:"SC",tema:"expansao",co:"SCGás",t:"SCGás testa ônibus a gás natural e estima economia de 25% a 30% sobre o diesel",s:"Com a Scania, o ônibus rodou cerca de 3,6 mil km em Criciúma e em Biguaçu (out–nov). Numa demonstração em Governador Celso Ramos, a economia operacional foi de cerca de 37%. A próxima etapa é em Florianópolis.",src:"CBN Total · 13/11/26",u:"https://cbntotal.com.br/cidades/onibus-movido-a-gas-natural-passa-por-testes-em-cidades-de-sc-e-pode-reduzir-custos-do-transporte-coletivo/",cli:["comercial"]},
+ {d:"2026-11-09",dl:"09 nov 2026",seg:"GN",uf:"RJ",tema:"regulacao",co:"Naturgy (CEG / CEG Rio) / Agenersa",t:"Decisão sobre as concessões de gás do Rio fica para o próximo governador",s:"Na Alerj, a Casa Civil disse que a escolha entre prorrogar com a Naturgy ou relicitar fica para a gestão que assume em jan/27. A FGV entrega o Plano Estadual de Gás até 30/11; a avaliação dos ativos pela IFC vai até fev/27. Os contratos vencem em jul/27.",src:"A Voz da Cidade · 09/11/26",u:"https://avozdacidade.com/wp/decisao-sobre-concessao-de-gas-ficara-para-proximo-governo-do-rio/",cli:["residencial","comercial","industrial"]},
  {d:"2026-11-12",dl:"12 nov 2026",seg:"GLP",uf:"RJ",tema:"sustentabilidade",co:"Supergasbras",t:"Supergasbras prevê fechar 2026 com 33 caminhões a biometano",s:"Nove já rodam no sistema dual fuel (quatro no RJ e cinco em SP), com conversão de três por semana em novembro nas bases de Duque de Caxias e Paulínia. O biometano substitui até 30% do diesel; em dezembro entra o primeiro caminhão 100% a biometano.",src:"Cenário Energia · 12/11/26",u:"https://cenarioenergia.com.br/2026/11/12/supergasbras-caminhoes-biometano-frota-2026/",cli:["industrial"]},
  {d:"2026-11-12",dl:"12 nov 2026",seg:"GN",uf:"RS",tema:"regulacao",co:"Sulgás / Agergs",t:"Agergs aprova revisão tarifária da Sulgás com margem de R$ 0,4976/m³",s:"A agência retirou R$ 0,0451/m³ de uma parcela de retroatividade; sem o ajuste, a margem bruta poderia chegar a R$ 0,5427/m³.",src:"Jornal do Comércio · 12/11/26",u:"https://www.jornaldocomercio.com/economia/2026/11/1270379-agergs-aprova-revisao-tarifaria-da-sulgas.html",cli:["residencial","comercial","industrial"]},
  {d:"2026-11-12",dl:"12 nov 2026",seg:"GLP",uf:"PB",tema:"precos",co:"Procon-CG",t:"P13 varia 21% em Campina Grande: de R$ 95 a R$ 115 à vista",s:"Pesquisa do Procon-CG em 15 pontos de venda no dia 10/11: média de R$ 103,87 à vista e R$ 108,27 no cartão; o menor preço foi numa revenda Ultragaz.",src:"Portal BR230 · 12/11/26",u:"https://www.br230.com.br/pesquisa-do-procon-cg-identifica-variacao-de-ate-56-nos-precos-da-agua-e-de-21-no-gas-de-cozinha/",cli:["residencial"],rev:true},
@@ -1129,7 +1132,7 @@ const TRENDS = [
  {i:"storefront",sig:"watch",sl:"Atenção",t:"Revendas no centro da disputa",p:"São cerca de 59 a 60 mil revendas, 73% vinculadas às grandes. A Abragás quer que as de grande porte possam envasar; o Gás do Povo já passa por 42% delas; a Nacional Gás digitaliza a rede com app próprio.",so:"Fidelizar e digitalizar a rede revendedora vira vantagem competitiva. Vale comparar nossos programas de revenda com o “Minha Revenda”.",src:[["InvestNews · 17/07/26", "https://investnews.com.br/negocios/disputa-gas-cozinha-anp/amp/"], ["Baguete · 27/10/25", "https://baguete.com.br/public/noticias/nacional-gas-cria-aplicativo-para-revenda-de-botijoes"]]},
  {i:"route",sig:"up",sl:"Expansão",t:"Redes de gás avançam pelo interior",p:"Londrina, Maringá, Triângulo Mineiro, Planalto Norte de SC e Serra Gaúcha recebem dutos e redes locais de biometano.",so:"Cidades médias passam a ter alternativa ao GLP em condomínios e comércio. Mapear bairros com obra de rede.",src:[["eixos", "https://eixos.com.br/gas-natural/biogas/londrina-e-cambe-tornam-se-as-primeiras-cidades-do-parana-com-rede-local-de-biometano/"]]},
  {i:"bolt",sig:"watch",sl:"Atenção",t:"Térmicas puxam a demanda de gás",p:"O despacho termelétrico subiu 49% no semestre e explica boa parte da alta de 15% no consumo.",so:"Crescimento do GN não é todo de varejo: o residencial subiu só 2,3%.",src:[["Abegás · 03/11/26", "https://www.abegas.org.br/arquivos/102611"]]},
- {i:"handshake",sig:"watch",sl:"Atenção",t:"Concessões e governança em transição",p:"Rio vai relicitar CEG e CEG Rio (vencem em jul/27); Energisa entrou como sócia em distribuidoras do Nordeste; Gasmig mudou de regulador.",so:"Novos donos e regras podem acelerar a expansão de rede em praças hoje dominadas pelo GLP.",src:[["eixos · CEG e CEG Rio", "https://eixos.com.br/gas-natural/mercado-de-gas/governo-do-rio-vai-relicitar-as-concessoes-de-gas-da-ceg-e-ceg-rio/"], ["Visno Invest · Energisa/ES Gás", "https://visnoinvest.com.br/news/16006/energisa-engi3-registra-tarifa-de-gas-de-r-30842-por-m3"]]}
+ {i:"handshake",sig:"watch",sl:"Atenção",t:"Concessões e governança em transição",p:"A decisão entre prorrogar ou relicitar CEG e CEG Rio (vencem em jul/27) ficou para o governo que assume em jan/27; Energisa entrou como sócia em distribuidoras do Nordeste; Gasmig mudou de regulador.",so:"Novos donos e regras podem acelerar a expansão de rede em praças hoje dominadas pelo GLP.",src:[["A Voz da Cidade · concessões do RJ (09/11/26)", "https://avozdacidade.com/wp/decisao-sobre-concessao-de-gas-ficara-para-proximo-governo-do-rio/"], ["eixos · CEG e CEG Rio", "https://eixos.com.br/gas-natural/mercado-de-gas/governo-do-rio-vai-relicitar-as-concessoes-de-gas-da-ceg-e-ceg-rio/"], ["Visno Invest · Energisa/ES Gás", "https://visnoinvest.com.br/news/16006/energisa-engi3-registra-tarifa-de-gas-de-r-30842-por-m3"]]}
 ];
 
 const COMMS = [
@@ -1145,7 +1148,7 @@ const AGENDA = [
  {d:"10",m:"nov",t:"Gás do Povo · ciclo de novembro",p:"3,1 milhões de vales liberados em 10/11, com 380,5 mil famílias novas (ANF, 06/11/26). Ciclo de outubro encerrou em 9/11."},
  {d:"12",m:"nov",t:"Ultrapar divulga o 3T26",p:"Números da Ultragaz após o 2T26 fraco em volume. Teleconferência em 13/11."},
  {d:"nov–dez",m:"2026",t:"1º leilão do gás da União",p:"Previsto pelo MME/PPSA para o último bimestre de 2026, com gás mais barato para a indústria.",soft:true},
- {d:"jul",m:"2027",t:"Vencimento das concessões CEG e CEG Rio",p:"Rio de Janeiro prepara relicitação; Naturgy busca renovar.",soft:true}
+ {d:"jul",m:"2027",t:"Vencimento das concessões CEG e CEG Rio",p:"Prorrogação ou relicitação será decidida pelo governo que assume em jan/27; Naturgy busca renovar.",soft:true}
 ];
 
 /* ========================================================= */
@@ -1484,7 +1487,7 @@ renderCD();
 
 
 const AG_KPI=[
- {l:"Safra de grãos 2026/27",v:"367,1 Mt",s:"1ª estimativa da Conab (out/26), +1,4%; soja em 181,6 Mt"},
+ {l:"Safra de grãos 2026/27",v:"366,1 Mt",s:"2ª estimativa da Conab (nov/26), +1,3%; soja em 181,6 Mt e milho em 148 Mt"},
  {l:"Frangos abatidos em 2025",v:"6,69 bi",s:"recorde da série do IBGE; Paraná faz cerca de 35%"},
  {l:"Café 2026",v:"67,6 mi sc",s:"recorde da Conab (set/26), +19,6%; Minas com 34,96 mi sacas de arábica"},
  {l:"Primeira carga de BioGL",v:"1,7 mil t",s:"importada pela Supergasbras em abr/26 via Tergasul (RS), para granel na indústria e no agro"}
@@ -1500,7 +1503,7 @@ const AG_USE=[
  {i:"recycling",t:"BioGL e escopo 1",d:"Agroindústrias compram volume de BioGL certificado ISCC PLUS para abater emissões diretas sem trocar equipamento.",pl:"Grandes clientes granel"}
 ];
 const AG_CULT=[
- {c:"Soja e milho",g:"grãos",d:"Safra 2025/26 fechou em 361,7 Mt (+2,6%); 2026/27 começa estimada em 367,1 Mt, com soja em 181,6 Mt.",u:"Secagem e aeração em armazéns, cooperativas e fazendas",p:"MT (32% dos grãos), PR, GO, RS, MS"},
+ {c:"Soja e milho",g:"grãos",d:"Safra 2025/26 fechou em 361,7 Mt (+2,6%); 2026/27 estimada em 366,1 Mt (Conab, nov/26), com soja em 181,6 Mt e milho em 148 Mt.",u:"Secagem e aeração em armazéns, cooperativas e fazendas",p:"MT (32% dos grãos), PR, GO, RS, MS"},
  {c:"Arroz",g:"grãos",d:"11,08 Mt em 2025/26, queda de 13,2% com menor área; produtor migra para soja e milho.",u:"Secagem a baixa temperatura, sem cheiro de fumaça",p:"RS, SC, TO"},
  {c:"Feijão e sementes",g:"grãos",d:"Cerca de 3 Mt por safra; sementes exigem secagem precisa para manter germinação.",u:"Secagem com controle automatizado",p:"PR, MG, GO, BA"},
  {c:"Trigo",g:"grãos",d:"5,7 Mt em 2026, queda de 27,1% e área 21% menor.",u:"Secagem pós-colheita",p:"PR, RS"},
@@ -1511,7 +1514,7 @@ const AG_CULT=[
  {c:"Tabaco",g:"perenes",d:"Sul responde por 98% da produção, com cerca de 150 mil produtores integrados; colheita 2026/27 aberta em nov/26 no Vale do Rio Pardo.",u:"Cura em estufa, hoje quase toda a lenha",p:"RS, SC, PR"},
  {c:"Algodão",g:"perenes",d:"Cadeia concentrada no Cerrado, com alto nível de mecanização.",u:"Secagem e beneficiamento da pluma e da semente",p:"MT, BA, GO"}
 ];
-const AG_SAFRA=[{n:"2024/25",v:352.5},{n:"2025/26",v:361.7},{n:"2026/27 (est.)",v:367.1}];
+const AG_SAFRA=[{n:"2024/25",v:352.5},{n:"2025/26",v:361.7},{n:"2026/27 (est.)",v:366.1}];
 const AG_AVES=[{n:"Paraná",v:34.4},{n:"Santa Catarina",v:13.7},{n:"Rio Grande do Sul",v:11.8},{n:"São Paulo",v:10.9}];
 const AG_REG=[
  {n:"Sul",uf:"PR · SC · RS",sc:5,tag:"Prioridade alta",b:["Concentra cerca de 60% do abate de frangos e a maior parte da suinocultura: calor o ano todo nos aviários e creches.","Arroz gaúcho e grãos do Paraná puxam secagem; tabaco ainda cura a lenha em quase todas as estufas.","Porta de entrada do BioGL: Tergasul (RS) e Refinaria Riograndense, que tem autorização para produzir bioGLP."]},
@@ -1535,6 +1538,7 @@ const AG_TR=[
  "<b>Safras grandes, renda apertada.</b> Recordes em grãos e café convivem com juros altos e um Plano Safra 26/27 criticado pela FPA: proposta de valor precisa mostrar economia."
 ];
 const AG_NEWS=[
+ {d:"13/11/2026",t:"Conab revisa safra de grãos 2026/27 para 366,1 milhões de toneladas",s:"Agência Gov",u:"https://agenciagov.ebc.com.br/noticias/202611/nova-estimativa-da-conab-para-safra-de-graos-2026-27-e-de-366-1-milhoes-de-toneladas"},
  {d:"06/11/2026",t:"Colheita do tabaco 2026/27 começa oficialmente no RS",s:"Agrolink",u:"https://www.agrolink.com.br/noticias/colheita-do-tabaco-2026-2027-comeca-oficialmente-no-rio-grande-do-sul_520687.html"},
  {d:"15/10/2026",t:"Conab estima safra de grãos 2026/27 acima de 367 milhões de toneladas",s:"Agência Gov",u:"https://agenciagov.ebc.com.br/noticias/202610/primeiro-levantamento-da-safra-de-graos-2026-27-estima-producao-acima-de-367-milhoes-de-toneladas"},
  {d:"set/2026",t:"Supergasbras vê agro e geração de energia como oportunidades para o GLP",s:"eixos (ROG.e 2026)",u:"https://eixos.com.br/videos-e-podcasts/ao-vivo/mercado-de-glp-nao-cresce-como-esperado-com-o-gas-do-povo-e-supergasbras-pede-estudos-sobre-o-real-impacto-do-programa/"},
