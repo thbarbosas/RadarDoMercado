@@ -540,7 +540,7 @@ table.dg .n0{color:var(--texto-3)}
   <div class="hl"></div>
   <p>GLP e gás natural lado a lado: quem cresce, quem investe e o que muda no mercado, com dados públicos.</p>
   <svg class="barra" viewBox="0 0 1200 86" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 380 40, 620 6, 1200 2 L1200 86 L0 86 Z" fill="#D33100"/></svg>
-  <div class="barra-txt"><span id="stamp">Atualizado em 23 nov 2026, 07h44 · ANP com preços até a semana de 08 a 14/11/2026 (a pesquisa de 15 a 21/11 sai em 23/11, por causa do feriado de 20/11) e vendas até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
+  <div class="barra-txt"><span id="stamp">Atualizado em 23 nov 2026, 13h40 · ANP com preço mensal do P13 até out/2026, semanas até 08 a 14/11/2026 (a pesquisa de 15 a 21/11 sai em 23/11, por causa do feriado de 20/11) e vendas até ago/2026</span><span>Fontes: ANP · Abegás · Sindigás · RI das empresas · imprensa setorial</span></div>
 </div>
 
 <!-- KPIs -->
@@ -554,7 +554,7 @@ table.dg .n0{color:var(--texto-3)}
   <div class="grid g-2">
     <div class="panel rv">
       <p class="chart-title">Preço médio do botijão P13 no Brasil</p>
-      <p class="chart-sub">R$ por botijão de 13 kg · média mensal oficial da ANP (jan–set/26) e última semana pesquisada (25–31/10)</p>
+      <p class="chart-sub">R$ por botijão de 13 kg · média mensal oficial da ANP (jan–out/26) e semanas pesquisadas de novembro (01–14/11)</p>
       <div id="chartPrice"></div>
       <div class="axisnote"><span>Fonte: ANP, Evolução dos preços de GLP 2026 (R$/botijão de 13 kg) · ponto vazado = pesquisa semanal ANP</span><button class="tbl-toggle" data-tbl="tPrice"><span class="ms" style="font-size:16px">table_rows</span>Ver tabela</button></div>
       <div id="tPrice" hidden></div>
@@ -597,8 +597,8 @@ table.dg .n0{color:var(--texto-3)}
   <div class="grid g-2">
     <div class="panel rv">
       <p class="chart-title">Composição do preço do P13 · Brasil</p>
-      <p class="chart-sub">R$ por botijão · janeiro vs setembro de 2026 · total: R$ 110,31 → R$ 114,33</p>
-      <div class="legend"><span><i style="background:var(--cinza-claro)"></i>jan/26</span><span><i style="background:var(--laranja)"></i>set/26</span></div>
+      <p class="chart-sub">R$ por botijão · janeiro vs outubro de 2026 · total: R$ 110,31 → R$ 114,73</p>
+      <div class="legend"><span><i style="background:var(--cinza-claro)"></i>jan/26</span><span><i style="background:var(--laranja)"></i>out/26</span></div>
       <div id="chartComp"></div>
       <div class="axisnote"><span>Fonte: ANP, Evolução dos preços de GLP 2026 · média Brasil</span><button class="tbl-toggle" data-tbl="tComp"><span class="ms" style="font-size:16px">table_rows</span>Ver tabela</button></div>
       <div id="tComp" hidden></div>
@@ -609,8 +609,8 @@ table.dg .n0{color:var(--texto-3)}
     </div>
   </div>
   <div class="panel rv" style="margin-top:16px" id="ufPrice">
-    <p class="chart-title">Preço final do P13 por estado · setembro de 2026</p>
-    <p class="chart-sub">R$ por botijão de 13 kg · média Brasil: R$ 114,33 · do mais caro ao mais barato</p>
+    <p class="chart-title">Preço final do P13 por estado · outubro de 2026</p>
+    <p class="chart-sub">R$ por botijão de 13 kg · média Brasil: R$ 114,73 · do mais caro ao mais barato</p>
     <div class="grid g-2"><div id="ufP1"></div><div id="ufP2"></div></div>
     <div class="axisnote"><span>Fonte: ANP, Evolução dos preços de GLP 2026 (média mensal por UF)</span></div>
   </div>
@@ -619,7 +619,7 @@ table.dg .n0{color:var(--texto-3)}
 <!-- ANP -->
 <section id="dados">
   <div class="sec-head rv"><div><div class="eyebrow">Dados oficiais</div><h2>ANP, Sindigás e <b>Abegás</b>, direto na fonte</h2><p>Vendas de GLP da Síntese Mensal da ANP, consumo por região do Sindigás e o balanço do gás canalizado da Abegás.</p></div></div>
-  <div class="anp-strip rv"><span class="dotlive"></span><span><b>Calendário da ANP:</b> a base é atualizada no <b>dia 1º</b> (fechamento do mês retrasado) e no <b>dia 20</b> (prévia do mês anterior). Última Síntese Mensal consultada: <b>agosto/2026</b>. Preços do P13 mensais até set/2026. Sindigás: Panorama de jun/2026 (dados até mai/26). Abegás: balanço do 1º semestre de 2026, publicado em 04/11/2026.</span></div>
+  <div class="anp-strip rv"><span class="dotlive"></span><span><b>Calendário da ANP:</b> a base é atualizada no <b>dia 1º</b> (fechamento do mês retrasado) e no <b>dia 20</b> (prévia do mês anterior). Última Síntese Mensal consultada: <b>agosto/2026</b>. Preços do P13 mensais até out/2026. Sindigás: Panorama de jun/2026 (dados até mai/26). Abegás: balanço do 1º semestre de 2026, publicado em 04/11/2026.</span></div>
   <div class="grid g-kpi" id="anpKpis" style="margin-bottom:16px"></div>
   <div class="grid g-2">
     <div class="panel rv">
@@ -908,6 +908,7 @@ if(ref&&!document.querySelector('nav.rail a[href="#congeneres"]')){const a=docum
    tema: mercado | regulacao | expansao | resultados | sustentabilidade | comunicacao | social
    ========================================================= */
 const NEWS = [
+ {d:"2026-11-23",dl:"23 nov 2026",seg:"GLP",uf:"BR",tema:"precos",co:"ANP",t:"P13 fecha outubro em R$ 114,73; revenda fica com R$ 33,33 por botijão",s:"Na média mensal oficial de outubro, o botijão subiu 0,3% sobre setembro (R$ 114,33). O preço do produtor foi de R$ 36,13 para R$ 36,41 e a margem de distribuição de R$ 25,09 para R$ 25,88, enquanto a da revenda caiu de R$ 34,00 para R$ 33,33. Roraima (R$ 141,40) e Tocantins (R$ 134,68) seguem os mais caros; Pernambuco (R$ 104,92) e Rio de Janeiro (R$ 104,50), os mais baratos.",src:"ANP · Evolução dos preços de GLP 2026 (out/26)",u:"https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arq-precos/tabelas/2026-margens-p13-tabela.pdf",cli:["residencial"],rev:true},
  {d:"2026-11-19",dl:"19 nov 2026",seg:"GN",uf:"BR",tema:"regulacao",co:"ANP / NTS / TAG / TBG",t:"ANP abre a última fase da revisão das tarifas de transporte de gás para 2026-2030",s:"Consulta de dez dias sobre receitas e tarifas das transportadoras, com novas tarifas previstas para 1º/01/2027. As simulações preliminares, que a ANP chama de indicativas, apontam queda de cerca de 35% nas tarifas da NTS e de 12% a 17% nas da TAG, e alta de 3,12% a 26,41% nas da TBG. Os recursos de NTS e TAG ainda serão julgados.",src:"eixos · 19/11/26",u:"https://eixos.com.br/newsletters/comece-seu-dia/o-que-falta-para-a-anp-fechar-as-novas-tarifas-dos-gasodutos/",cli:["industrial"]},
  {d:"2026-11-05",dl:"05 nov 2026",seg:"GN",uf:"BR",tema:"mercado",co:"ANP / Petrobras / MDIC",t:"Programa de desconcentração (gas release) divide o governo antes da audiência da ANP",s:"Na consulta pública, 43 de 49 participantes (88%) apoiaram o programa. O MDIC passou a questionar a eficácia da medida, e a Petrobras, que respondeu por 59% da comercialização no ano passado, pede que ele fique para a próxima década. A audiência pública da ANP foi marcada para 19/11.",src:"eixos · 05/11/26",u:"https://eixos.com.br/newsletters/comece-seu-dia/programa-de-desconcentracao-do-gas-natural-expoe-disputa-entre-abertura-do-mercado-e-politica-industrial/",cli:["industrial"]},
  {d:"2026-11-19",dl:"19 nov 2026",seg:"GLP",uf:"BR",tema:"regulacao",co:"CNPE / ANP / MME",t:"Resolução do CNPE publicada: botijões de até 13 kg com marca em alto-relevo, lacre e cheios",s:"Publicada em 19/11, a resolução exige marca em alto-relevo, lacre e quantidade igual à capacidade do recipiente nos botijões de até 13 kg, e prevê fiscalização integrada de ANP, MME e MDS sobre distribuidoras e revendas credenciadas no Gás do Povo, com foco em sobrepreço e desvio de finalidade. Denúncias à ANP: 0800 970 0267.",src:"ISTOÉ Dinheiro · 19/11/26",u:"https://istoedinheiro.com.br/gas-do-povo-fiscalizacao-fraudes-revendas",cli:["residencial"],rev:true},
@@ -1072,13 +1073,13 @@ const PRICE = [
  {d:"2026-07-15",v:114.22,l:"jul/26 · média mensal oficial"},
  {d:"2026-08-15",v:113.90,l:"ago/26 · média mensal oficial"},
  {d:"2026-09-15",v:114.33,l:"set/26 · média mensal oficial"},
- {d:"2026-10-31",v:115.13,l:"semana de 25 a 31/10/26 · pesquisa semanal ANP",m:true},
+ {d:"2026-10-15",v:114.73,l:"out/26 · média mensal oficial"},
  {d:"2026-11-07",v:115.21,l:"semana de 01 a 07/11/26 · pesquisa semanal ANP",m:true},
  {d:"2026-11-14",v:115.33,l:"semana de 08 a 14/11/26 · pesquisa semanal ANP",m:true}
 ];
-const COMP = {m:["Produtor","ICMS","Distribuição","Revenda"],a:[38.38,19.11,22.17,30.65],b:[36.13,19.11,25.09,34.00],u:"R$",la:"jan/26",lb:"set/26"};
-const COMP_M = {m:["jan","fev","mar","abr","mai","jun","jul","ago","set"],prod:[38.38,36.21,36.71,37.91,36.27,36.41,36.39,36.17,36.13],dist:[22.17,24.19,22.95,25.51,25.98,24.79,24.02,23.72,25.09],rev:[30.65,30.49,31.38,31.16,33.35,34.21,34.71,34.90,34.00],fin:[110.31,110.00,110.15,113.69,114.71,114.52,114.22,113.90,114.33]};
-const UF_PRICE = {AC:124.97,AP:128.73,AM:128.70,PA:116.85,RO:127.56,RR:142.81,TO:134.45,AL:106.08,BA:114.89,CE:115.51,MA:128.76,PB:108.91,PE:104.51,PI:112.82,RN:115.27,SE:113.28,ES:106.43,MG:111.45,RJ:103.79,SP:115.82,PR:113.37,RS:118.16,SC:122.34,DF:106.69,GO:114.15,MT:127.75,MS:119.53};
+const COMP = {m:["Produtor","ICMS","Distribuição","Revenda"],a:[38.38,19.11,22.17,30.65],b:[36.41,19.11,25.88,33.33],u:"R$",la:"jan/26",lb:"out/26"};
+const COMP_M = {m:["jan","fev","mar","abr","mai","jun","jul","ago","set","out"],prod:[38.38,36.21,36.71,37.91,36.27,36.41,36.39,36.17,36.13,36.41],dist:[22.17,24.19,22.95,25.51,25.98,24.79,24.02,23.72,25.09,25.88],rev:[30.65,30.49,31.38,31.16,33.35,34.21,34.71,34.90,34.00,33.33],fin:[110.31,110.00,110.15,113.69,114.71,114.52,114.22,113.90,114.33,114.73]};
+const UF_PRICE = {AC:124.41,AP:129.31,AM:128.84,PA:117.49,RO:127.92,RR:141.40,TO:134.68,AL:107.05,BA:115.98,CE:112.65,MA:131.48,PB:109.10,PE:104.92,PI:112.68,RN:115.22,SE:113.15,ES:106.57,MG:111.82,RJ:104.50,SP:116.57,PR:114.18,RS:118.57,SC:122.39,DF:107.96,GO:113.65,MT:127.63,MS:119.89};
 const SHARE_HIST = [
  {n:"Copa Energia",x:"Copagaz + Liquigás",v:{"2016":null,"jan–nov/25":23.77,"jan–mai/26":23.81},note:"Em 2016, a Liquigás (então da Petrobras) tinha 21,6%"},
  {n:"Ultragaz",x:"inclui a Bahiana, como na ANP",v:{"2016":23.9,"jan–nov/25":22.36,"jan–mai/26":21.92}},
@@ -1696,7 +1697,7 @@ function globalSearch(q){
   const ms=[...SHARES["2026"].rows].filter(r=>hit(r.n+" "+(r.x||"")+" market share participacao",ws));
   if(ms.length)groups.push(["Market share (jan–mai/26)",ms.map(r=>({i:"pie_chart",t:r.n+" · "+pct(r.v),d:"Sindigás com dados da ANP",go:()=>goSec("share")}))]);
   const pu=Object.keys(UF_PRICE).filter(k=>hit(k+" "+UFS[k].n+" preco botijao p13",ws));
-  if(pu.length&&pu.length<6)groups.push(["Preço do P13 (set/26)",pu.map(k=>({i:"sell",t:UFS[k].n+" · R$ "+nf(UF_PRICE[k],2),d:"Média mensal ANP · Brasil R$ 114,33",go:()=>goSec("precos")}))]);
+  if(pu.length&&pu.length<6)groups.push(["Preço do P13 (out/26)",pu.map(k=>({i:"sell",t:UFS[k].n+" · R$ "+nf(UF_PRICE[k],2),d:"Média mensal ANP · Brasil R$ 114,73",go:()=>goSec("precos")}))]);
   const tr=TRENDS.filter(t=>hit(t.t+" "+t.p+" "+t.so,ws)).concat(SHARE_READS.filter(t=>hit(t.t+" "+t.p,ws)));
   if(tr.length)groups.push(["Tendências e leituras",tr.slice(0,4).map(t=>({i:"trending_up",t:t.t,d:t.p.slice(0,110)+(t.p.length>110?"…":""),go:()=>goSec(TRENDS.includes(t)?"tendencias":"share")}))]);
   const ufHit=Object.keys(UFS).find(k=>NORM(q).trim()===NORM(k)||NORM(q).trim()===NORM(UFS[k].n));
@@ -2037,7 +2038,7 @@ function renderUfAlert(){
   const list=full.filter(l=>ufAll||isOpen(l)).sort((a,b)=>(isOpen(b)-isOpen(a))||(isOpen(a)?a.d.localeCompare(b.d):b.d.localeCompare(a.d)));
   const op=full.filter(isOpen).length;const k=ufSel;const opVal=full.filter(isOpen).reduce((a,l)=>a+valNum(l.val),0);const opUfs=new Set(full.filter(isOpen).map(l=>l.uf)).size;
   const name=k?UFS[k].n:"Brasil";
-  const price=k&&UF_PRICE[k]?`<span class="pillinfo"><span class="ms">sell</span>P13 na ANP (set/26): R$ ${nf(UF_PRICE[k],2)}</span>`:`<span class="pillinfo"><span class="ms">sell</span>P13 Brasil (set/26): R$ 114,33</span>`;
+  const price=k&&UF_PRICE[k]?`<span class="pillinfo"><span class="ms">sell</span>P13 na ANP (out/26): R$ ${nf(UF_PRICE[k],2)}</span>`:`<span class="pillinfo"><span class="ms">sell</span>P13 Brasil (out/26): R$ 114,73</span>`;
   const al=k?`https://alertalicitacao.com.br/licitacoes/glp/${k}`:"https://alertalicitacao.com.br/!cnae/855";
   $("#ufAlert").innerHTML=`<div class="uf-head"><div><h3>${name}</h3><div class="uf-stats" style="margin-top:8px"><span class="pillinfo"><span class="ms" style="color:#1E7B45">radio_button_checked</span>${op} aberta(s)${!k?" em "+opUfs+" estados":""}</span><span class="pillinfo"><span class="ms">payments</span>R$ ${nf(opVal/1e6,1)} mi em editais abertos com valor</span><span class="pillinfo"><span class="ms">description</span>${full.length} edital(is) no radar</span>${price}</div></div>
     <div class="chips"><a class="btn-o" href="${al}" target="_blank" rel="noopener"><span class="ms">notifications_active</span>Alerta Licitação · GLP${k?" "+k:""}</a><a class="btn-o" href="https://alertalicitacao.com.br/!buscaPNCP" target="_blank" rel="noopener" title="Termos: GLP, gás LP, P13, P20, P45, granel, BioGL"><span class="ms">search</span>Busca PNCP gratuita</a><a class="btn-o" href="https://pncp.gov.br/app/editais" target="_blank" rel="noopener"><span class="ms">account_balance</span>PNCP</a></div></div>
