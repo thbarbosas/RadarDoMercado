@@ -776,7 +776,7 @@ const fit=()=>{try{const d=fr.contentDocument;if(d&&d.documentElement)fr.style.h
 fr.addEventListener("load",()=>{fit();try{new ResizeObserver(fit).observe(fr.contentDocument.documentElement)}catch(e){};setTimeout(fit,800);setTimeout(fit,2500)});
 fr.srcdoc=html;
 const ref=document.querySelector('nav.rail a[href="#condominios"]');
-if(ref&&!document.querySelector('nav.rail a[href="#precocond"]')){const a=document.createElement("a");a.href="#precocond";a.setAttribute("data-nav","");a.title="Preço em condomínios: GLP a granel × gás natural";a.innerHTML='<span class="pill"><span class="ms">payments</span></span>Preço cond.';ref.after(a)}
+if(ref&&!document.querySelector('nav.rail a[href="#precocond"]')){const a=document.createElement("a");a.href="#precocond";a.setAttribute("data-nav","");a.title="Preço em condomínios: GLP a granel × gás natural";a.innerHTML='<span class="pill"><span class="ms">payments</span></span>Preço Condomínio';ref.after(a)}
 })();
 </script>
 <!--PRECO:FIM-->
@@ -840,7 +840,7 @@ const F=document.getElementById("cgF");
 F.innerHTML=opts.map(([v,l])=>`<button class="chip" data-f="${e(v)}">${e(l)}</button>`).join("");
 F.addEventListener("click",ev=>{const b=ev.target.closest(".chip");if(!b)return;f=b.dataset.f;draw()});
 draw();
-const ref=document.querySelector('nav.rail a[href="#condominios"]');
+const ref=document.querySelector('nav.rail a[href="#precocond"]')||document.querySelector('nav.rail a[href="#condominios"]');
 if(ref&&!document.querySelector('nav.rail a[href="#congeneres"]')){const a=document.createElement("a");a.href="#congeneres";a.setAttribute("data-nav","");a.title="Dossiê dos congêneres";a.innerHTML='<span class="pill"><span class="ms">travel_explore</span></span>Congêneres';ref.after(a)}
 })();
 </script>
