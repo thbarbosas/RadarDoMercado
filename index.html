@@ -501,7 +501,6 @@ table.dg .n0{color:var(--texto-3)}
   <a href="#condominios" data-nav title="Condomínios residenciais"><span class="pill"><span class="ms">apartment</span></span>Condomínios</a>
   <a href="#agro" data-nav title="Agronegócio, GLP e BioGL"><span class="pill"><span class="ms">agriculture</span></span>Agro</a>
   <a href="#licitacoes" data-nav><span class="pill"><span class="ms">request_quote</span></span>Licitações</a>
-  <a href="#alerta-uf" data-nav><span class="pill"><span class="ms">notifications_active</span></span>Alerta UF</a>
 </nav>
 
 <div class="sres" id="sres" role="listbox" aria-label="Resultados da busca"></div>
@@ -889,10 +888,9 @@ if(ref&&!document.querySelector('nav.rail a[href="#congeneres"]')){const a=docum
   </div>
   <p class="chart-title rv" style="margin:0 0 12px">Compras públicas de GLP · exemplos de 2026</p>
   <div class="lic-grid" id="licList"></div>
-</section>
 
-<!-- ALERTA POR ESTADO -->
-<section id="alerta-uf">
+  <!-- ALERTA POR ESTADO (dentro de Licitações) -->
+  <div id="alerta-uf" style="margin-top:40px">
   <div class="sec-head rv"><div><div class="eyebrow">Alerta de licitações</div><h2>Licitações de <b>GLP e BioGL</b> por estado</h2><p>Escolha um estado para ver os editais de GLP (P13, P20, P45 e granel) que ainda recebem propostas e os atalhos para acompanhar novos pregões. O ponto verde indica estado com edital aberto.</p></div></div>
   <div class="panel rv">
     <div class="uf-bar" id="ufBar"></div>
@@ -907,6 +905,7 @@ if(ref&&!document.querySelector('nav.rail a[href="#congeneres"]')){const a=docum
       <li>Fique de olho em editais de órgãos com metas de descarbonização (universidades federais, tribunais, estatais) que já compram GLP a granel: um item de “GLP com conteúdo renovável certificado” pode ser proposto em consulta pública ou audiência prévia.</li>
     </ul>
   </div>
+</div>
 </section>
 
 <footer>
@@ -2123,7 +2122,7 @@ $$(".rv").forEach(el=>io.observe(el));
 setTimeout(()=>{$$(".rv").forEach(el=>{el.classList.add("in");el.querySelectorAll(".fill").forEach(f=>f.style.width=f.dataset.w+"%")})},2500);
 
 /* rail active + fab */
-const secs=["visao","share","precos","dados","mapa","noticias","empresas","tendencias","comunicacao","reputacao","condominios","agro","licitacoes","alerta-uf"].map(id=>document.getElementById(id));
+const secs=["visao","share","precos","dados","mapa","noticias","empresas","tendencias","comunicacao","reputacao","condominios","agro","licitacoes"].map(id=>document.getElementById(id));
 addEventListener("scroll",()=>{
   $("#fab").classList.toggle("show",scrollY>600);
   let cur="visao";secs.forEach(s=>{if(s.getBoundingClientRect().top<140)cur=s.id});
