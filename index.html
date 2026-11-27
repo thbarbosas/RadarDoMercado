@@ -780,6 +780,285 @@ if(ref&&!document.querySelector('nav.rail a[href="#precocond"]')){const a=docume
 </script>
 <!--PRECO:FIM-->
 
+<!--REDES:INICIO-->
+<style>
+#redes .rd-hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:18px;align-items:stretch}
+#redes .rd-termo{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio-card,16px);padding:20px;display:flex;flex-direction:column;gap:12px}
+#redes .rd-bar{display:flex;height:34px;border-radius:999px;overflow:hidden;border:1px solid var(--linha)}
+#redes .rd-bar span{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;white-space:nowrap}
+#redes .rd-neg{background:#B23A1E}#redes .rd-mix{background:#8A8A8A}#redes .rd-pos{background:#2E8B57}
+#redes .rd-leg{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--texto-2)}
+#redes .rd-leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+#redes .rd-quote{background:var(--laranja);color:#fff;border-radius:var(--raio-card,16px);padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+#redes .rd-quote b{font-size:22px;line-height:1.2}
+#redes .rd-quote small{opacity:.9;font-size:12.5px}
+#redes .rd-quote a{color:#fff;text-decoration:underline}
+#redes .rd-chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 12px}
+#redes .rd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+#redes .rd-card{background:var(--painel);border:1px solid var(--linha);border-radius:var(--raio-card,16px);padding:16px;display:flex;flex-direction:column;gap:9px;position:relative;overflow:hidden}
+#redes .rd-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px}
+#redes .rd-card.neg::before{background:#B23A1E}#redes .rd-card.pos::before{background:#2E8B57}#redes .rd-card.mix::before{background:#8A8A8A}
+#redes .rd-card h4{margin:0;font-size:15.5px;line-height:1.25}
+#redes .rd-card p{margin:0;font-size:12.8px;color:var(--texto-2);line-height:1.45}
+#redes .rd-tags{display:flex;flex-wrap:wrap;gap:5px}
+#redes .rd-tag{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:2px 8px;background:var(--bg,#fff);border:1px solid var(--linha);color:var(--texto-2)}
+#redes .rd-tag.br{border-color:var(--laranja);color:var(--laranja)}
+#redes .rd-voz{font-family:Georgia,serif;font-style:italic;font-size:13px;color:var(--texto-1,inherit);border-left:3px solid var(--linha);padding-left:10px}
+#redes .rd-src{font-size:11px;color:var(--texto-3)}
+#redes .rd-src a{color:var(--texto-3)}
+#redes .rd-src a:hover{color:var(--laranja)}
+#redes .rd-marcas{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+#redes .rd-m{border:1px solid var(--linha);border-radius:var(--raio-card,16px);padding:16px;background:var(--painel);display:flex;flex-direction:column;gap:8px}
+#redes .rd-m.me{border-color:var(--laranja)}
+#redes .rd-m h4{margin:0;font-size:15px;display:flex;justify-content:space-between;gap:6px}
+#redes .rd-m .seg{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-3)}
+#redes .rd-m ul{margin:0;padding-left:16px;font-size:12.5px;color:var(--texto-2);display:flex;flex-direction:column;gap:5px}
+#redes .rd-m .lido{font-size:12px;background:var(--bg,#fff);border-radius:10px;padding:8px 10px;border:1px dashed var(--linha)}
+#redes .rd-prints{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+#redes .rd-print{border-radius:18px;border:1px solid var(--linha);overflow:hidden;background:var(--painel);display:flex;flex-direction:column}
+#redes .rd-print .top{display:flex;align-items:center;gap:8px;padding:10px 12px;font-size:12px;font-weight:700;border-bottom:1px solid var(--linha)}
+#redes .rd-print .top .ms{font-size:18px;color:var(--laranja)}
+#redes .rd-print .body{padding:14px 12px;font-size:13px;line-height:1.45;flex:1}
+#redes .rd-print .body b{display:block;font-size:20px;margin-bottom:6px}
+#redes .rd-print .foot{padding:8px 12px;font-size:11px;color:var(--texto-3);border-top:1px solid var(--linha)}
+#redes .rd-print .foot a{color:var(--texto-3)}
+#redes table.dg td{font-size:12.5px;vertical-align:top}
+#redes .rd-ideias{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+#redes .rd-i{border-radius:var(--raio-card,16px);padding:16px;background:linear-gradient(135deg,rgba(211,49,0,.08),rgba(240,190,0,.10));border:1px solid var(--linha)}
+#redes .rd-i .n{font-size:30px;font-weight:800;color:var(--laranja);line-height:1}
+#redes .rd-i h4{margin:6px 0 4px;font-size:14.5px}
+#redes .rd-i p{margin:0;font-size:12.5px;color:var(--texto-2)}
+#redes .rd-i .fmt{display:inline-block;margin-top:8px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--laranja)}
+#redes .rd-note{font-size:11.5px;color:var(--texto-3);margin:12px 0 0}
+#redes .rd-ban{margin-top:16px;border-radius:var(--raio-card,16px);padding:20px;background:linear-gradient(120deg,#1d1d1f 0%,#3a1a10 55%,#D33100 130%);color:#fff}
+#redes .rd-ban h3{margin:0;font-size:19px;color:#fff}
+#redes .rd-ban .sub{margin:4px 0 14px;font-size:12.5px;opacity:.8}
+#redes .rd-ban .leg{display:flex;flex-wrap:wrap;gap:12px;font-size:11.5px;opacity:.9;margin-bottom:12px}
+#redes .rd-ban .leg span{display:flex;align-items:center;gap:5px;white-space:nowrap}
+#redes .rd-ban .leg svg{width:16px;height:16px;flex:none}
+#redes .rd-sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+#redes .rd-s{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:11px 12px;display:flex;flex-direction:column;gap:8px}
+#redes .rd-s.me{border-color:#F0BE00;background:rgba(240,190,0,.12)}
+#redes .rd-s .hd{display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+#redes .rd-s b{font-size:14px}
+#redes .rd-s .seg{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+#redes .rd-s .n{font-size:11px;opacity:.75}
+#redes .rd-ic{display:flex;gap:6px;flex-wrap:wrap}
+#redes .rd-ic a,#redes .rd-ic span{display:inline-flex;width:28px;height:28px;border-radius:8px;transition:transform .15s}
+#redes .rd-ic a:hover{transform:translateY(-2px)}
+#redes .rd-ic .off{opacity:.18;filter:grayscale(1)}
+#redes .rd-ic svg{width:28px;height:28px;display:block}
+#redes .rd-ban .ins{margin:14px 0 0;font-size:12.5px;line-height:1.5;opacity:.92}
+#redes .rd-ban .ins b{color:#F0BE00}
+#redes .rd-ban .src{margin:8px 0 0;font-size:11px;opacity:.6}
+@media(max-width:820px){#redes .rd-hero{grid-template-columns:minmax(0,1fr)}}
+</style>
+<section id="redes">
+  <div class="sec-head"><div><div class="eyebrow">Escuta social · condomínios residenciais</div><h2>Redes sociais <b>· residencial</b></h2><p>O que síndicos e moradores andam dizendo sobre gás no condomínio em TikTok, Instagram, grupos de moradores, Reclame Aqui e imprensa local; o que as marcas de GLP e gás natural publicam; e onde dá para virar o jogo. Cada item traz a fonte.</p></div></div>
+
+  <div class="rd-hero">
+    <div class="rd-termo">
+      <p class="chart-title" style="margin:0">Termômetro do condomínio</p>
+      <p class="chart-sub" style="margin:0">Tom de cada assunto encontrado nesta pesquisa (amostra qualitativa, não é medição de volume).</p>
+      <div class="rd-bar" id="rdBar"></div>
+      <div class="rd-leg"><span><i class="rd-neg" style="background:#B23A1E"></i>Negativo</span><span><i style="background:#8A8A8A"></i>Dividido</span><span><i style="background:#2E8B57"></i>Positivo</span></div>
+      <p style="margin:0;font-size:13px;color:var(--texto-2)" id="rdResumo"></p>
+    </div>
+    <div class="rd-quote">
+      <span class="rd-tag" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.5);align-self:flex-start">Frase que resume o momento</span>
+      <b>“Ficou assustada com as contas que começaram a chegar.”</b>
+      <small>É o que um criador de conteúdo de condomínio no TikTok diz ouvir dos vizinhos depois da individualização do gás, mesmo defendendo que a cobrança individual é a mais justa. <a href="https://www.tiktok.com/discover/como-ligar-gas-canalizado-no-apartamento" target="_blank" rel="noopener">TikTok ↗</a></small>
+    </div>
+  </div>
+
+  <div class="rd-ban"><h3>Onde cada empresa está nas redes</h3><p class="sub">Perfis oficiais linkados no site de cada empresa de GLP e de gás natural. Clique no ícone para abrir o perfil; ícone apagado = rede não divulgada no site.</p><div class="leg" id="rdSocLeg"></div><div class="rd-sgrid" id="rdSoc"></div><p class="ins" id="rdSocIns"></p><p class="src">Levantamento de 27/11/2026 nos rodapés dos sites oficiais (supergasbras.com.br, ultragaz.com.br, copaenergia.com.br, consigaz.com.br, nacionalgas.com.br, comgas.com.br, naturgy.com.br, compagas.com.br, gasmig.com.br, bahiagas.com.br, copergas.com.br, cegas.com.br). Sulgás não carregou e ficou de fora. O YouTube da Supergasbras (@SupergasbrasOficial) foi informado pela equipe Supergasbras. Uma empresa pode ter perfis que não divulga no site.</p></div>
+
+  <div class="rd-chips" id="rdF"></div>
+  <div class="panel"><p class="chart-title">Os assuntos que mais aparecem</p><p class="chart-sub">Cada cartão é um assunto, com a voz de quem reclama ou elogia, onde aparece e quais marcas são citadas. Segue o filtro acima.</p><div class="rd-grid" id="rdTemas" style="margin-top:8px"></div></div>
+
+  <div class="panel" style="margin-top:16px"><p class="chart-title">Prints que circulam</p><p class="chart-sub">O que vira imagem nas redes: conta na tela do celular, foto do medidor, prédio evacuado, post do condomínio, vídeo no TikTok. É o formato que mais espalha a reclamação.</p><div class="rd-prints" id="rdPrints" style="margin-top:8px"></div></div>
+
+  <div class="panel" style="margin-top:16px"><p class="chart-title">O que as marcas estão falando nas redes</p><p class="chart-sub">Campanhas, posts e ações das empresas de GLP e gás natural, com a leitura estratégica de cada uma.</p><div class="rd-marcas" id="rdMarcas" style="margin-top:8px"></div></div>
+
+
+  <div class="panel" style="margin-top:16px"><p class="chart-title">Ideias de conteúdo para virar a conversa</p><p class="chart-sub">12 propostas criativas a partir das dores e dos elogios encontrados. São ideias da análise, para avaliar com Marketing.</p><div class="rd-ideias" id="rdIdeias" style="margin-top:8px"></div></div>
+  <p class="rd-note">Pesquisa de 27/11/2026 em páginas públicas: TikTok, imprensa local, Reclame Aqui, SíndicoNet, portais de marketing e sites das empresas. Redes fechadas (grupos de WhatsApp e Facebook) aparecem só quando citadas pela imprensa. O termômetro conta assuntos, não posts.</p>
+</section>
+<script>
+(()=>{
+const e=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const S=a=>a.map(([l,u])=>`<a href="${e(u)}" target="_blank" rel="noopener">${e(l)} ↗</a>`).join(" · ");
+const T=[
+ {t:"“Minha conta veio 3 vezes maior”",tom:"neg",gas:"GN",onde:["Grupos de moradores","Redes sociais","Reclame Aqui","Imprensa local"],marcas:["Comgás","Naturgy"],
+  txt:"O assunto número 1. Leitura que não acontece, conta por média e depois a cobrança acumulada. Em Jundiaí, moradores postaram prints das faturas em grupos e redes; em Osasco, conta triplicada depois de uma viagem de 10 dias.",
+  voz:"Ao retornar de uma viagem de 10 dias, recebi minha fatura de gás 3 vezes mais alta.",
+  src:[["Tribuna de Jundiaí","https://tribunadejundiai.com.br/cidades/jundiai/aumento-abusivo-contas-gas-jundiai-comgas/"],["Reclame Aqui (Osasco)","https://www.reclameaqui.com.br/comgas/absurdo-conta-3x-maior-por-erro-da-comgastcm-nenhum-retorno-protocolos-ignorados-e-jogo-de-empurra-quero-solucao-imediata_VERvb2IM8YGteubH/"],["Gazeta de Pinheiros","https://gazetadepinheiros.com.br/noticia/14399/consumidores-reclamam-de-aumento-abrupto-contas-gas"]]},
+ {t:"Fim da tarifa “para sempre”",tom:"neg",gas:"GN",onde:["Instagram do condomínio","TV local"],marcas:["Comgás"],
+  txt:"Em São Bernardo, um acordo de tarifa reduzida divulgado no Instagram do condomínio como “por prazo indeterminado” acabou; contas de R$ 130 foram a R$ 500 e o post foi apagado. Promessa feita em rede social vira prova contra a marca.",
+  voz:"Os moradores afirmam que não sabiam que o benefício tinha data para terminar.",
+  src:[["TV São Bernardo, out/26","https://tvsaobernardo.com/moradores-do-condominio-tiradentes-relatam-aumentos-expressivos-na-conta-de-gas-em-sao-bernardo/"]]},
+ {t:"Individualização: justiça ou susto?",tom:"mix",gas:"GLP e GN",onde:["TikTok","Blogs de medição","Assembleias"],marcas:["Empresas de medição"],
+  txt:"Debate dividido: quase todos acham justo cada um pagar o que usa, mas a primeira conta individual assusta quem usava pouco no rateio. Empresas de medição já escrevem conteúdo só para responder a “minha conta aumentou depois da individualização”.",
+  voz:"Na minha opinião o justo é a cobrança individual, porém existem vários pontos que devem ser levados em consideração.",
+  src:[["TikTok @ape_j.c","https://www.tiktok.com/discover/como-ligar-gas-canalizado-no-apartamento"],["Grupo MJ","https://grupomj.com.br/individualizacao-de-gas-em-condominio/"],["Hidrotech no Reclame Aqui","https://www.reclameaqui.com.br/hidrotech-sistemas-prediais/cobranca-de-gas-incompativel-com-o-historico-de-consumo-e-padrao-de-uso-com-suspeita-de-falha-no-sistema-de-medicao_-EMVNZTkmQFjcO8J/"]]},
+ {t:"Condomínio inteiro sem gás",tom:"neg",gas:"GLP",onde:["Imprensa local","Reclame Aqui","Grupos de moradores"],marcas:["Supergasbras","Consigaz","Ultragaz"],
+  txt:"No GLP a granel, a crise que viraliza é a falta de abastecimento: Praia do Forte (BA) sem gás no feriado de julho/26, 380 apartamentos em Salvador num fim de semana, 5 dias sem gás com a Consigaz, 365 famílias de um CDHU com a Ultragaz.",
+  voz:"Desde o dia 4 de julho estamos sem gás.",
+  src:[["Bahia Notícias, jul/26","https://www.bahianoticias.com.br/municipios/noticia/51497-supergasbras-e-alvo-de-reclamacoes-apos-condominio-ficar-sem-servico-em-praia-do-forte"],["Reclame Aqui (Belo Horto)","https://www.reclameaqui.com.br/supergasbras/falta-de-gas_Kz9gKxliWVOKd8uu/"],["Reclame Aqui (Consigaz)","https://www.reclameaqui.com.br/consigaz-distribuidora-de-gas/falta-de-gas-e-descaso-da-consigas-com-condominio_6QAQinJ4Qg425D8m/"],["Portal Aqui Vale (Ultragaz)","https://portalaquivale.com.br/em-nota-ultragaz-diz-que-rescindiu-contrato-com-o-condominio-por-medidores-lacrados/"]]},
+ {t:"Troquei de fornecedor e deu problema",tom:"neg",gas:"GLP",onde:["Reclame Aqui","Assembleias"],marcas:["Ultragaz","Supergasbras"],
+  txt:"A migração é o momento de maior risco de imagem: aquecedores danificados na conversão de gás natural para GLP (4 casos no mesmo condomínio com a Ultragaz) e instalação “desorganizada, com equipe reduzida” na troca para a Supergasbras em nov/26.",
+  voz:"A decisão foi tomada com base na proposta, que indicava não ser necessário realizar alterações internas nas unidades.",
+  src:[["Reclame Aqui (Ultragaz)","https://www.reclameaqui.com.br/ultragaz/danos-em-aquecedor-apos-individualizacao-do-de-gn-para-glp-utilizando-converter-para-gn_LgFIOo0j-NJjWfcx/"],["Reclame Aqui (Supergasbras)","https://www.reclameaqui.com.br/empresa/supergasbras/"]]},
+ {t:"Rateio sem transparência",tom:"neg",gas:"GN",onde:["Reclame Aqui","Grupos de moradores"],marcas:["Comgás","Administradoras"],
+  txt:"Quando a conta é coletiva, a raiva sobra para o síndico e a administradora: morador novo recebe rateio alto e ninguém explica a conta. Distribuidoras como a Cegás já oferecem planilha de rateio pronta para o síndico.",
+  voz:"O condomínio fez o rateio da conta e a administradora não tem gerência nenhuma sobre os valores cobrados.",
+  src:[["Reclame Aqui","https://www.reclameaqui.com.br/prospero-prestacao-de-servicos-de-sindico-profissional/conta-de-gas-com-valores-abusivos-apos-mudanca-para-condominio_vcLrdwuJ43aA10GX/"],["Planilha de rateio da Cegás","https://www.cegas.com.br/wp-content/uploads/2018/03/Planilha-de-Rateio-Passo-a-Passo.pdf"]]},
+ {t:"Economizar gás virou conteúdo",tom:"pos",gas:"GLP e GN",onde:["TikTok","Portais de receita","Imprensa"],marcas:["Tudo Gostoso","Manual do Mundo"],
+  txt:"Dicas para o botijão durar mais e para a conta do gás encanado baixar estão em alta em portais e no TikTok (o Manual do Mundo tem vídeo com 10 dicas). Assunto positivo, com espaço para a marca entrar ensinando.",
+  voz:"O botijão parece estar durando menos? Ou a conta do gás encanado aumentou sem motivo aparente?",
+  src:[["Tupi FM (vídeo Manual do Mundo)","https://www.tupi.fm/?p=2254081"],["Tudo Gostoso","https://www.tudogostoso.com.br/noticias/erro-comum-na-cozinha-faz-voce-perder-gas-sem-nem-perceber-a21482.htm"]]},
+ {t:"“Ganhamos espaço e economia”",tom:"pos",gas:"GN",onde:["Jornais de condomínio"],marcas:["Compagas"],
+  txt:"O elogio mais forte ao gás natural vem de síndicos: em Curitiba, redução média de 30% na conta e a área dos cilindros virou bicicletário e cozinha de funcionários. É o argumento que o GLP a granel precisa rebater.",
+  voz:"Como não precisávamos mais manter cilindros, a área se tornou um bicicletário.",
+  src:[["Jornal dos Condomínios (SC)","https://condominiosc.com.br/radar/2796-gas-natural-gera-economia-de-ate-30-em-condominios"]]},
+ {t:"Segurança e inspeção no prédio",tom:"pos",gas:"GN",onde:["Imprensa","Portais de síndico"],marcas:["Comgás","Naturgy"],
+  txt:"Pauta positiva e pouco explorada: a Comgás treinou zeladores de condomínio em segurança de instalações e a Naturgy fez convênio com o CREA-RJ para ampliar a inspeção obrigatória (9% dos clientes da capital ainda não regularizaram).",
+  voz:"Criamos esse programa de treinamento personalizado, destinado a capacitar os zeladores.",
+  src:[["SíndicoNet (Comgás)","https://www.sindiconet.com.br/informese/capacitacao-zeladores-comgas-noticias-eventos"],["Diário do Rio (Naturgy)","https://diariodorio.com/convenio-da-naturgy-com-crea-rj-vai-ampliar-inspecao-de-gas-no-estado-do-rio"]]},
+ {t:"Conta nova, Pix e renegociação",tom:"mix",gas:"GN",onde:["Imprensa","Redes da Naturgy"],marcas:["Naturgy"],
+  txt:"A Naturgy mudou o modelo da conta no Rio, com Pix e nota fiscal eletrônica (nov/26), e roda a campanha “Última Chance” de renegociação de dívidas em mutirões. Ajuda o cliente, mas reforça a pauta de corte e cobrança.",
+  voz:"Os clientes vão receber uma conta de gás com aparência diferente.",
+  src:[["Diário do Rio, nov/26","https://diariodorio.com/economia/2026/11/04/naturgy-muda-modelo-da-conta-de-gas-no-rio-veja-o-que-muda-na-fatura.html"],["Diário do Rio, set/26","https://diariodorio.com/economia/2026/09/11/naturgy-participa-de-mutirao-de-negociacao-de-dividas-que-acontece-no-tijuca-tenis-clube-na-proxima-semana.html"]]}
+ ,
+ {t:"Cheiro de gás, prédio evacuado",tom:"neg",gas:"GLP e GN",onde:["Imprensa","Defesa Civil","Vídeos de moradores"],marcas:["Sem marca citada"],
+  txt:"Acidentes viram vídeo e foto em minutos. Em jul/26 uma explosão de GLP interditou um prédio no Núcleo Bandeirante (DF); em ago/26 um prédio no Stiep (Salvador) foi evacuado por vazamento durante o reabastecimento de um cilindro de GLP.",
+  voz:"No fim do dia, já dava para sentir o cheiro de gás só de passar pela fachada do prédio.",
+  src:[["Correio Braziliense, jul/26","https://www.correiobraziliense.com.br/cidades-df/2026/07/7469284-predio-e-evacuado-apos-explosao-de-gas-no-nucleo-bandeirante.html"],["Correio (Salvador), ago/26","https://www.correio24horas.com.br/salvador/predio-residencial-e-evacuado-no-stiep-apos-vazamento-de-gas-0826"],["SíndicoNet","https://www.sindiconet.com.br/informese/explosao-gas-predio-distrito-federal-nucleo-bandeirante-noticias-manutencao"]]},
+ {t:"Telemetria que falha",tom:"neg",gas:"GLP e GN",onde:["Reclame Aqui"],marcas:["Urbatech","Livet","Techem"],
+  txt:"A leitura remota também gera detratores: medição zerada por falha de comunicação do rádio, visor quebrado que impede a captação e leitura por média repassada ao morador. O morador manda foto do medidor para provar o consumo.",
+  voz:"Minha medição de gás individualizada no mês passado veio zerada.",
+  src:[["Reclame Aqui (Urbatech)","https://www.reclameaqui.com.br/urbatech-apoio-operacional/pessimo-atendimento-com-varias-incongruencias_FK5fDSTP3vVXp910/"],["Reclame Aqui (Urbatech, visor)","https://www.reclameaqui.com.br/urbatech-apoio-operacional/cobranca-abusiva_dbSSGOvqhEsWqTzz/"],["Reclame Aqui (Techem)","https://www.reclameaqui.com.br/techem/valores-absurdos-de-gas-cobrados-em-condominio_fw1niKm8IEo4nKuz/"]]},
+ {t:"Frio chega, conta dispara",tom:"neg",gas:"GN",onde:["TV","Redes sociais"],marcas:["Comgás"],
+  txt:"Todo inverno a conta alta volta à pauta. Na TV, um síndico mostrou a fatura saindo de R$ 98 em abril para R$ 285 em agosto; a distribuidora respondeu que não houve reajuste e que julho teve o maior consumo residencial dos últimos anos.",
+  voz:"Clientes viram valores residenciais superarem R$ 1 mil em poucos meses.",
+  src:[["Band · Bora Brasil","https://www.band.com.br/noticias/bora-brasil/ultimas/aumento-valores-conta-gas-sp-202508290921"]]},
+ {t:"Inspeção obrigatória com prazo",tom:"mix",gas:"GN",onde:["Portais de síndico","Imprensa"],marcas:["Naturgy","Agenersa"],
+  txt:"No Rio, a Inspeção Periódica do Gás teve prazo prorrogado para 23/09/2026. O síndico precisa contratar empresa autorizada: é custo e burocracia, mas também uma pauta de segurança que a marca pode liderar.",
+  voz:"A relação das empresas autorizadas a realizar a vistoria do gás está disponível no site da Naturgy.",
+  src:[["SíndicoNet, jul/26","https://www.sindiconet.com.br/informese/inspecao-gas-condominio-rio-de-janeiro-prazo-prorrogado-noticias-manutencao"]]},
+ {t:"Gás natural chegando a novos prédios",tom:"pos",gas:"GN",onde:["Imprensa regional","Portais"],marcas:["Copergás","Naturgy"],
+  txt:"Conteúdo positivo de expansão: a Copergás fechou contratos com condomínios do programa Morar Bem PE (2.500 unidades) e portais do DF explicam como pedir a ligação da Naturgy como alternativa ao botijão.",
+  voz:"O gás natural canalizado vem ganhando espaço nas casas e nos condomínios do Distrito Federal.",
+  src:[["Portal de Prefeitura (PE)","https://portaldeprefeitura.com.br/pernambuco/copergas-e-morar-bem-pe-parceria-resulta-em-fornecimento-de-gas/583376/"],["Sou Brasília, jun/26","https://soubrasilia.com/?p=7195"]]},
+ {t:"Medir por apartamento economiza",tom:"pos",gas:"GLP e GN",onde:["Portais de síndico","TV"],marcas:["Medição individual"],
+  txt:"O lado bom da individualização: síndico de um prédio na Vila Andrade (SP) relata queda de cerca de 30% no consumo depois dos medidores individuais, porque cada morador passou a ver o que gasta.",
+  voz:"Os moradores mudaram de hábitos quando passaram a perceber quanto consomem.",
+  src:[["SíndicoNet","https://www.sindiconet.com.br/informese/controle-das-financas-noticias-administracao"]]}
+];
+const PR=[
+ {ic:"photo_camera",rede:"Grupos de moradores · prints de fatura",big:"R$ 56,81 → R$ 103,38",txt:"Moradores comparam faturas de meses seguidos e compartilham capturas de tela; a síndica avisa no grupo que procurou a distribuidora.",src:["Tribuna de Jundiaí","https://tribunadejundiai.com.br/cidades/jundiai/aumento-abusivo-contas-gas-jundiai-comgas/"]},
+ {ic:"delete",rede:"Instagram do condomínio · post apagado",big:"R$ 130 → R$ 500",txt:"O post que anunciava a tarifa reduzida “por prazo indeterminado” foi apagado quando o desconto acabou. O print vira a prova do morador.",src:["TV São Bernardo","https://tvsaobernardo.com/moradores-do-condominio-tiradentes-relatam-aumentos-expressivos-na-conta-de-gas-em-sao-bernardo/"]},
+ {ic:"smart_display",rede:"TikTok · vídeo de morador",big:"“Pergunte aos vizinhos”",txt:"Criador de conteúdo de condomínio sugere perguntar aos vizinhos como ficaram as contas depois da individualização. Formato de opinião em vídeo curto.",src:["TikTok","https://www.tiktok.com/discover/como-ligar-gas-canalizado-no-apartamento"]},
+ {ic:"campaign",rede:"Imprensa local · síndico em foto",big:"Sem gás no feriado",txt:"A matéria traz o síndico identificado e a previsão de religação adiada para 12 dias depois. Crise que nasce no grupo e chega ao portal.",src:["Bahia Notícias","https://www.bahianoticias.com.br/municipios/noticia/51497-supergasbras-e-alvo-de-reclamacoes-apos-condominio-ficar-sem-servico-em-praia-do-forte"]}
+ ,
+ {ic:"local_fire_department",rede:"Imprensa · foto do prédio interditado",big:"Explosão de GLP no DF",txt:"Foto da fachada danificada e relato de vizinhos sobre o cheiro de gás circulam em portais e no SíndicoNet. Imagem de risco que gruda na categoria GLP.",src:["Correio Braziliense","https://www.correiobraziliense.com.br/cidades-df/2026/07/7469694-predio-permanece-interditado-apos-explosao-de-botijao-de-gas.html"]},
+ {ic:"local_shipping",rede:"Defesa Civil · foto da evacuação",big:"Vazamento no reabastecimento",txt:"A Codesal divulgou imagens da área isolada em Salvador: o vazamento ocorreu durante o reabastecimento de um cilindro de GLP, o momento mais visível do serviço.",src:["Correio (Salvador)","https://www.correio24horas.com.br/salvador/predio-residencial-e-evacuado-no-stiep-apos-vazamento-de-gas-0826"]},
+ {ic:"live_tv",rede:"TV · fatura na tela",big:"R$ 98,12 → R$ 285,66",txt:"O síndico mostra as contas de abril e agosto no telejornal. O frame da fatura é recortado e repostado nas redes.",src:["Band · Bora Brasil","https://www.band.com.br/noticias/bora-brasil/ultimas/aumento-valores-conta-gas-sp-202508290921"]},
+ {ic:"receipt_long",rede:"Reclame Aqui · fatura anexada",big:"R$ 1.737,74",txt:"Morador anexa a fatura de janeiro/26 e pede revisão por possível erro de medição. Valor alto em destaque é o que vira manchete.",src:["Reclame Aqui (Comgás)","https://www.reclameaqui.com.br/comgas/cobranca-abusiva-na-fatura-de-gas-aumento-injustificado-e-possivel-erro-de-medicao_zDlU-KIf2qeyWlA0/"]},
+ {ic:"speed",rede:"Reclame Aqui · foto do medidor",big:"Leitura zerada",txt:"A moradora envia a foto do próprio medidor para provar que não havia defeito; a empresa depois admite falha de comunicação da telemetria.",src:["Reclame Aqui (Urbatech)","https://www.reclameaqui.com.br/urbatech-apoio-operacional/pessimo-atendimento-com-varias-incongruencias_FK5fDSTP3vVXp910/"]},
+ {ic:"photo_library",rede:"Reclame Aqui · fotos do visor",big:"Foto em cada leitura",txt:"Sem trocar o medidor, empresa e morador combinam o envio de fotos do visor nas datas de leitura. O print vira a auditoria do cliente.",src:["Reclame Aqui (Hidrotech)","https://www.reclameaqui.com.br/hidrotech-sistemas-prediais/cobranca-de-gas-incompativel-com-o-historico-de-consumo-e-padrao-de-uso-com-suspeita-de-falha-no-sistema-de-medicao_-EMVNZTkmQFjcO8J/"]},
+ {ic:"bar_chart",rede:"Comunicado da administradora · gráfico",big:"“Gráfico confuso”",txt:"A administradora divulga aos moradores um gráfico de consumo de junho; a moradora o chama de confuso e duvidoso. Comunicação mal desenhada também vira detrator.",src:["Reclame Aqui (Oma)","https://www.reclameaqui.com.br/oma-condominios/cobranca-indevida-de-gas-no-condominio-devido-a-erros-de-lancamento-e-defeito-no-medidor_wbBIUHGPyYKCdikE/"]},
+ {ic:"music_note",rede:"TikTok · campanha de marca",big:"Energia no Beat",txt:"O lado positivo das imagens: a Ultragaz transformou o jingle em desafio no TikTok com criadores e mediu aumento de lembrança de marca.",src:["TikTok for Business","https://ads.tiktok.com/business/pt-BR/inspiration/ultragaz-branded-mission"]}
+];
+const M=[
+ {n:"Supergasbras",s:"GLP",me:1,it:["80 anos com Tati Machado: “Evoluir junto com você é Super” (JOR, jul/26)","Natal com influenciadores regionais, Tudo Gostoso e “Pedir Gás Day”","Persona Su com avatar criado com IA para as redes","Coluna no SíndicoNet: 3 modalidades de manutenção grátis e assistência 24h"],
+  lido:"Marca forte no B2C e no app; o condomínio aparece pouco nas redes. As crises de abastecimento (BA) contradizem a promessa de 24h.",
+  src:[["Grandes Nomes da Propaganda","https://grandesnomesdapropaganda.com.br/mercado-digital/supergasbras-lanca-campanha-de-80-anos/"],["ABC da Comunicação","https://www.abcdacomunicacao.com.br/campanha-de-natal-da-supergasbras-aposta-em-influenciadores-regionais-e-parceria-com-tudo-gostoso-para-reforcar-presenca-cultural-da-marca/"],["SíndicoNet","https://www.sindiconet.com.br/informese/glp-em-condominios-supergasbras-mercado-coluna-de-olho-no-mercado"]]},
+ {n:"Ultragaz",s:"GLP",it:["“Energia no Beat” no TikTok com Monks e Rastro: recorde de lembrança (+9,8%) e preferência (+5,2%)","“Tá Ligado” (Talent): GLP, biometano e energia elétrica na mesma conversa","Condomínio Inteligente: medição digital, energia e lavanderia"],
+  lido:"É quem mais domina o vídeo curto. Usa o jingle como ativo de rede e vende o condomínio como pacote de energia.",
+  src:[["TikTok for Business","https://ads.tiktok.com/business/pt-BR/inspiration/ultragaz-branded-mission"],["Abrainc","https://www.abrainc.org.br/conteudo-patrocinado/2024/06/17/ultragaz-centralidade-no-cliente-deve-ser-o-principal-motor-de-inovacao-para-o-mercado-de-energia-no-brasil"]]},
+ {n:"Copa Energia",s:"GLP",it:["Purpple assume redes e campanhas 360° de Copa, Copagaz e Liquigás (mai/26)","“Andanças – 70 anos” (DPZ) em TV, rádio, digital e OOH (ago/26)"],
+  lido:"Redes em reestruturação com agência nova. Ainda não há conteúdo próprio para síndico: janela para quem chegar primeiro.",
+  src:[["Nosso Meio","https://nossomeio.com.br/purpple-conquista-copa-energia-e-assume-comunicacao-integrada-de-copagaz-e-liquigas/"],["Grandes Nomes da Propaganda","https://grandesnomesdapropaganda.com.br/anunciantes/copa-energia-lanca-campanha-andancas-70-anos/"]]},
+ {n:"Consigaz",s:"GLP",it:["50 anos com Lucas Lucco: “Aqui o Gás Nunca Acaba!”","“Show de Bola” com Cafu, Edmilson e Zé Roberto"],
+  lido:"O slogan “o gás nunca acaba” é arriscado: cada condomínio sem gás no Reclame Aqui vira contraprova.",
+  src:[["Mercado & Consumo","https://mercadoeconsumo.com.br/01/03/2025/noticias/no-aniversario-de-50-anos-consigaz-investe-em-aproximacao-com-o-consumidor/"],["Reclame Aqui","https://www.reclameaqui.com.br/consigaz-distribuidora-de-gas/falta-de-gas-e-descaso-da-consigas-com-condominio_6QAQinJ4Qg425D8m/"]]},
+ {n:"Comgás",s:"GN",it:["“Renove Seus Hábitos” com o chef Rodrigo Oliveira: dicas de consumo e transparência da fatura nas redes","Treinamento de zeladores em segurança de instalações","Embaixador Comgás: indicação com cortesias"],
+  lido:"Fala de fatura e consumo consciente, mas é a marca mais citada nos prints de conta alta. Discurso e experiência ainda descolados.",
+  src:[["Marcas pelo Mundo","https://marcaspelomundo.com.br/destaques/chef-rodrigo-oliveira-em-nova-campanha-da-comgas/"],["SíndicoNet","https://www.sindiconet.com.br/informese/capacitacao-zeladores-comgas-noticias-eventos"]]},
+ {n:"Naturgy",s:"GN",it:["170 anos no Rio com rádio, OOH e redes (agência Sides)","Nova conta com Pix (nov/26) e campanha “Última Chance” de renegociação","Convênio com o CREA-RJ para inspeção de gás"],
+  lido:"Comunicação de serviço e cobrança; pouca emoção. A troca “Que saudades da CEG” aparece em reclamações, sinal de marca ainda não assimilada.",
+  src:[["Grandes Nomes da Propaganda","https://grandesnomesdapropaganda.com.br/anunciantes/naturgy-lanca-campanha-em-comemoracao-aos-seus-170-anos/"],["Diário do Rio","https://diariodorio.com/economia/2026/11/04/naturgy-muda-modelo-da-conta-de-gas-no-rio-veja-o-que-muda-na-fatura.html"],["Reclame Aqui","https://www.reclameaqui.com.br/ceg-gas-natural-fenosa/ausencia-repetida-dos-tecnicos-da-naturgy-para-troca-de-medidor-de-gas_aGstU-Q6jdRaKfkm/"]]},
+ {n:"Cegás (CE)",s:"GN",it:["Diretor técnico palestra no ExpoMarket Condomínios 2026 sobre gás natural, LED e automação para reduzir custos"],
+  lido:"Distribuidora regional ocupando palco de síndico com conteúdo de eficiência. Modelo de presença em eventos que vira post.",
+  src:[["O Povo, mai/26","https://www.opovo.com.br/noticias/especialpublicitario/expomarketing/2026/05/12/gas-natural-led-e-automacao-o-caminho-para-condominios-mais-eficientes-e-economicos.html"]]}
+];
+const I=[
+ {t:"Conta explicada em 30s",d:"Reels em que um técnico desmonta uma conta real (anonimizada): leitura, kg, taxa. Responde ao print antes que ele viralize.",f:"Reels · TikTok"},
+ {t:"Síndico sem susto",d:"Série curta para síndicos: o que fazer quando a conta sobe, como explicar a individualização na assembleia, prazos de abastecimento.",f:"Carrossel · LinkedIn"},
+ {t:"Status do tanque",d:"Card automático para o síndico postar no grupo: nível do tanque e data da próxima entrega. Transforma a maior crise do GLP em prova de serviço.",f:"WhatsApp · Stories"},
+ {t:"Antes e depois da medição",d:"Depoimentos de moradores e síndicos que passaram do rateio para a medição individual, com a conta antes e depois.",f:"Vídeo UGC"},
+ {t:"Zelador parceiro",d:"Treinamento de segurança para zeladores, como a Comgás faz, com certificado e post do condomínio marcando a marca.",f:"Evento · Instagram"},
+ {t:"Desafio do gás que rende",d:"Trend de dicas de economia com receitas parceiras e o app Pedir Gás. Entra num assunto positivo que já está em alta.",f:"TikTok · Influência"}
+ ,
+ {t:"Cheirou gás? 4 passos",d:"Card fixo para elevador, grupo e Stories com o que fazer em caso de cheiro de gás e o número 24h. Responde aos vídeos de evacuação com orientação, não com silêncio.",f:"Stories · Cartaz QR"},
+ {t:"Bastidores do abastecimento",d:"Vídeo curto do motorista e do técnico mostrando o passo a passo seguro da recarga do tanque, com aviso prévio ao condomínio no dia da entrega.",f:"Reels · TikTok"},
+ {t:"Confira seu medidor",d:"Tutorial de 15 segundos para o morador ler o próprio medidor e comparar com o app. Tira o poder do “print da conta” e devolve controle ao cliente.",f:"Reels · App"},
+ {t:"Inverno sem susto",d:"Campanha antes do frio avisando que o banho quente aumenta o consumo, com simulação de quanto a conta pode subir e dicas para segurar.",f:"Sazonal · E-mail · Stories"},
+ {t:"Síndico conta",d:"Série de depoimentos de síndicos clientes (troca sem susto, economia, atendimento). Prova social para outros síndicos no LinkedIn e em grupos.",f:"Vídeo · LinkedIn"},
+ {t:"Resposta em público",d:"Responder rápido e com nome no Reclame Aqui e nos comentários do Instagram, e mostrar o caso resolvido. Transforma detrator em prova de atendimento.",f:"Social care"}
+];
+
+const IC={
+ ig:{n:"Instagram",svg:'<svg viewBox="0 0 28 28"><defs><linearGradient id="rdig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".4" stop-color="#D62976"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect width="28" height="28" rx="8" fill="url(#rdig)"/><rect x="7" y="7" width="14" height="14" rx="4.5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="14" cy="14" r="3.4" fill="none" stroke="#fff" stroke-width="2"/><circle cx="18.6" cy="9.4" r="1.1" fill="#fff"/></svg>'},
+ fb:{n:"Facebook",svg:'<svg viewBox="0 0 28 28"><rect width="28" height="28" rx="8" fill="#1877F2"/><path d="M15.6 23v-7.3h2.4l.4-2.8h-2.8v-1.8c0-.8.3-1.4 1.4-1.4h1.5V7.2c-.3 0-1.2-.1-2.2-.1-2.2 0-3.6 1.3-3.6 3.7v2.1H10.3v2.8h2.4V23z" fill="#fff"/></svg>'},
+ li:{n:"LinkedIn",svg:'<svg viewBox="0 0 28 28"><rect width="28" height="28" rx="8" fill="#0A66C2"/><rect x="7.3" y="11.5" width="3" height="9.3" fill="#fff"/><circle cx="8.8" cy="8.3" r="1.8" fill="#fff"/><path d="M12.6 11.5h2.9v1.3c.4-.8 1.5-1.6 3-1.6 3 0 3.5 1.9 3.5 4.4v5.2h-3v-4.6c0-1.1 0-2.5-1.5-2.5s-1.8 1.2-1.8 2.4v4.7h-3.1z" fill="#fff"/></svg>'},
+ yt:{n:"YouTube",svg:'<svg viewBox="0 0 28 28"><rect width="28" height="28" rx="8" fill="#FF0000"/><rect x="5.5" y="8.5" width="17" height="11" rx="3.2" fill="#fff"/><path d="M12.4 11.4v5.2l4.4-2.6z" fill="#FF0000"/></svg>'},
+ tt:{n:"TikTok",svg:'<svg viewBox="0 0 28 28"><rect width="28" height="28" rx="8" fill="#111"/><path d="M16.3 6.5h2.6c.2 1.8 1.4 3.1 3.1 3.3v2.7c-1.2 0-2.3-.4-3.2-1v5.3a4.9 4.9 0 1 1-4.9-4.9h.4v2.7h-.4a2.2 2.2 0 1 0 2.4 2.2z" fill="#25F4EE" transform="translate(-.6 -.4)"/><path d="M16.3 6.5h2.6c.2 1.8 1.4 3.1 3.1 3.3v2.7c-1.2 0-2.3-.4-3.2-1v5.3a4.9 4.9 0 1 1-4.9-4.9h.4v2.7h-.4a2.2 2.2 0 1 0 2.4 2.2z" fill="#FE2C55" transform="translate(.6 .4)"/><path d="M16.3 6.5h2.6c.2 1.8 1.4 3.1 3.1 3.3v2.7c-1.2 0-2.3-.4-3.2-1v5.3a4.9 4.9 0 1 1-4.9-4.9h.4v2.7h-.4a2.2 2.2 0 1 0 2.4 2.2z" fill="#fff"/></svg>'},
+ x:{n:"X (Twitter)",svg:'<svg viewBox="0 0 28 28"><rect width="28" height="28" rx="8" fill="#000" stroke="#444"/><path d="M7.5 7.5h4.2l3.1 4.3 3.7-4.3h1.6l-4.6 5.3 5 7.7h-4.2l-3.4-4.8-4.1 4.8H7.2l5-5.8z" fill="#fff"/></svg>'},
+ wa:{n:"WhatsApp",svg:'<svg viewBox="0 0 28 28"><rect width="28" height="28" rx="8" fill="#25D366"/><path d="M14 6.5a7.5 7.5 0 0 0-6.5 11.2L6.5 21.5l3.9-1A7.5 7.5 0 1 0 14 6.5z" fill="#fff"/><path d="M11.4 10.3c.2 0 .4 0 .5.4l.7 1.6c0 .2 0 .3-.1.5l-.5.6c.6 1.2 1.6 2.1 2.8 2.7l.6-.7c.2-.2.3-.2.5-.1l1.6.8c.2.1.3.2.3.4 0 .6-.4 1.4-1.4 1.6-1.6.3-5.5-1.8-6.3-4.9-.3-1.3.4-2.6 1.3-2.9z" fill="#25D366"/></svg>'}
+};
+const ORD=["ig","fb","li","yt","tt","x","wa"];
+const SOC=[
+ {n:"Supergasbras",s:"GLP",me:1,site:"https://www.supergasbras.com.br/",r:{ig:"https://www.instagram.com/supergasbras/",fb:"https://www.facebook.com/Supergasbras",li:"https://www.linkedin.com/company/supergasbras",yt:"https://www.youtube.com/@SupergasbrasOficial",tt:"https://www.tiktok.com/@supergasbras",wa:1}},
+ {n:"Ultragaz",s:"GLP",site:"https://www.ultragaz.com.br/",r:{ig:"https://www.instagram.com/ultragazoficial/",fb:"https://www.facebook.com/ultragazoficial/",li:"https://www.linkedin.com/company/ultragaz/",yt:"https://www.youtube.com/channel/UCIJ0JnsSqv6LisxSgMsSuqg",wa:1}},
+ {n:"Copa Energia",s:"GLP",site:"https://www.copaenergia.com.br/",r:{ig:"https://www.instagram.com/copa.energia/",fb:"https://www.facebook.com/copaenergia/",li:"https://www.linkedin.com/company/copa-energia/",yt:"https://www.youtube.com/@CopaEnergia",wa:1}},
+ {n:"Consigaz",s:"GLP",site:"https://www.consigaz.com.br/",r:{ig:"https://www.instagram.com/consigazbrasil/",fb:"https://www.facebook.com/consigazbrasil",li:"https://www.linkedin.com/company/consigaz/",yt:"https://www.youtube.com/channel/UCjjUe_uGsmf8-7-VFt8unGA",wa:1}},
+ {n:"Nacional Gás",s:"GLP",site:"https://www.nacionalgas.com.br/",r:{ig:"https://www.instagram.com/sounacionalgas/",fb:"https://www.facebook.com/sounacionalgas/",yt:"https://www.youtube.com/@sounacionalgas",wa:1}},
+ {n:"Comgás",s:"GN",site:"https://www.comgas.com.br/",r:{ig:"https://www.instagram.com/comgasbr/",fb:"https://www.facebook.com/comgasoficial/",li:"https://br.linkedin.com/company/comgas",yt:"https://www.youtube.com/ComgasNatural",x:"https://twitter.com/ComgasBR",wa:1}},
+ {n:"Naturgy",s:"GN",site:"https://www.naturgy.com.br/",r:{ig:"https://www.instagram.com/naturgybrasil/",fb:"https://www.facebook.com/naturgybrasil/",li:"https://br.linkedin.com/company/naturgybr",yt:"https://www.youtube.com/Naturgybr",x:"https://twitter.com/Naturgybrasil"}},
+ {n:"Compagas",s:"GN",site:"https://www.compagas.com.br/",r:{ig:"https://www.instagram.com/compagasoficial/",fb:"https://www.facebook.com/compagas/",li:"https://www.linkedin.com/company/companhia-paranaense-de-gas-compagas/",yt:"https://www.youtube.com/compagasoficial",wa:1}},
+ {n:"Gasmig",s:"GN",site:"https://www.gasmig.com.br/",r:{ig:"https://www.instagram.com/gasmigoficial/",fb:"https://www.facebook.com/GasmigOficial/",li:"https://www.linkedin.com/company/gasmig/",yt:"https://www.youtube.com/GasmigOficial"}},
+ {n:"Bahiagás",s:"GN",site:"https://www.bahiagas.com.br/",r:{ig:"https://www.instagram.com/bahiagasoficial/",li:"https://br.linkedin.com/company/bahiagasoficial",yt:"https://www.youtube.com/channel/UCm50NzyLuwT8Dye04SxnmDA"}},
+ {n:"Copergás",s:"GN",site:"https://www.copergas.com.br/",r:{ig:"https://www.instagram.com/copergas/",fb:"https://www.facebook.com/copergasoficial",li:"https://www.linkedin.com/company/coperg-s/"}},
+ {n:"Cegás",s:"GN",site:"https://www.cegas.com.br/",r:{ig:"https://www.instagram.com/cegasoficial/",fb:1,li:"https://br.linkedin.com/company/cegas",wa:"https://wa.me/558532666900"}}
+];
+document.getElementById("rdSocLeg").innerHTML=ORD.map(k=>`<span>${IC[k].svg.replace('width="28" height="28"','width="16" height="16"')}${IC[k].n}</span>`).join("");
+document.getElementById("rdSoc").innerHTML=SOC.map(c=>{const t=ORD.filter(k=>c.r[k]).length;return `<div class="rd-s ${c.me?"me":""}"><div class="hd"><b>${e(c.n)}</b><span class="seg">${c.s==="GN"?"Gás natural":"GLP"}</span></div><div class="rd-ic">${ORD.map(k=>{const v=c.r[k];if(!v)return `<span class="off" title="${IC[k].n}: não divulgado no site">${IC[k].svg}</span>`;const u=v===1?c.site:v;return `<a href="${e(u)}" target="_blank" rel="noopener" title="${e(c.n)} no ${IC[k].n}${v===1?" (link no site oficial)":""}">${IC[k].svg}</a>`}).join("")}</div><span class="n">${t} de ${ORD.length} redes divulgadas</span></div>`}).join("");
+const has=k=>SOC.filter(c=>c.r[k]).map(c=>c.n);
+document.getElementById("rdSocIns").innerHTML=`<b>Leitura:</b> Instagram está em todas as ${SOC.length} empresas. <b>TikTok</b> só aparece no site da ${e(has("tt").join(", "))}, que é a única com perfil divulgado na rede onde nascem os vídeos de conta alta (a Ultragaz faz campanhas no TikTok, mas não divulga o perfil no site). <b>X</b> só é divulgado por ${e(has("x").join(" e "))}, as duas distribuidoras de gás natural mais citadas nos prints de fatura. Com o YouTube, a <b>Supergasbras</b> tem a presença mais completa entre as de GLP (6 de 7 redes); a Nacional Gás é a única de GLP sem LinkedIn divulgado.`;
+let f="all";
+const tomN={neg:"Negativo",pos:"Positivo",mix:"Dividido"};
+function draw(){
+  const L=T.filter(x=>f==="all"||x.tom===f||x.gas.includes(f));
+  document.getElementById("rdTemas").innerHTML=L.map(x=>`<div class="rd-card ${x.tom}"><div class="rd-tags"><span class="rd-tag">${tomN[x.tom]}</span><span class="rd-tag">${e(x.gas)}</span>${x.marcas.map(m=>`<span class="rd-tag br">${e(m)}</span>`).join("")}</div><h4>${e(x.t)}</h4><p>${e(x.txt)}</p><div class="rd-voz">“${e(x.voz)}”</div><div class="rd-tags">${x.onde.map(o=>`<span class="rd-tag">${e(o)}</span>`).join("")}</div><div class="rd-src">${S(x.src)}</div></div>`).join("")||'<p style="color:var(--texto-3)">Nenhum assunto com esse filtro.</p>';
+  document.querySelectorAll("#rdF .chip").forEach(b=>b.classList.toggle("on",b.dataset.f===f));
+}
+const cnt={neg:0,mix:0,pos:0};T.forEach(x=>cnt[x.tom]++);
+document.getElementById("rdBar").innerHTML=["neg","mix","pos"].map(k=>`<span class="rd-${k}" style="width:${(cnt[k]/T.length*100).toFixed(1)}%">${cnt[k]}</span>`).join("");
+document.getElementById("rdResumo").textContent=`${T.length} assuntos: ${cnt.neg} negativos, ${cnt.mix} divididos e ${cnt.pos} positivos. Conta alta, falta de gás e segurança dominam o lado negativo; economia, medição individual e expansão do gás natural puxam o positivo.`;
+const F=document.getElementById("rdF");
+F.innerHTML=[["all","Todos"],["neg","Negativos"],["mix","Divididos"],["pos","Positivos"],["GLP","GLP"],["GN","Gás natural"]].map(([v,l])=>`<button class="chip" data-f="${v}">${l}</button>`).join("");
+F.addEventListener("click",ev=>{const b=ev.target.closest(".chip");if(!b)return;f=b.dataset.f;draw()});
+draw();
+document.getElementById("rdPrints").innerHTML=PR.map(p=>`<div class="rd-print"><div class="top"><span class="ms">${p.ic}</span>${e(p.rede)}</div><div class="body"><b>${e(p.big)}</b>${e(p.txt)}</div><div class="foot"><a href="${e(p.src[1])}" target="_blank" rel="noopener">${e(p.src[0])} ↗</a></div></div>`).join("");
+document.getElementById("rdMarcas").innerHTML=M.map(m=>`<div class="rd-m ${m.me?"me":""}"><h4>${e(m.n)}<span class="seg">${m.s==="GN"?"Gás natural":"GLP"}</span></h4><ul>${m.it.map(i=>`<li>${e(i)}</li>`).join("")}</ul><div class="lido"><b>Leitura:</b> ${e(m.lido)}</div><div class="rd-src">${S(m.src)}</div></div>`).join("");
+document.getElementById("rdIdeias").innerHTML=I.map((x,i)=>`<div class="rd-i"><div class="n">${String(i+1).padStart(2,"0")}</div><h4>${e(x.t)}</h4><p>${e(x.d)}</p><span class="fmt">${e(x.f)}</span></div>`).join("");
+const ref=document.querySelector('nav.rail a[href="#precocond"]')||document.querySelector('nav.rail a[href="#condominios"]');
+if(ref&&!document.querySelector('nav.rail a[href="#redes"]')){const a=document.createElement("a");a.href="#redes";a.setAttribute("data-nav","");a.title="Redes sociais · residencial";a.innerHTML='<span class="pill"><span class="ms">forum</span></span>Redes sociais';ref.after(a)}
+})();
+</script>
+<!--REDES:FIM-->
 <!--CONGENERES:INICIO-->
 <style>
 #congeneres .cg-priv{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--laranja);border:1.5px solid var(--laranja);border-radius:var(--raio-selo,20px);padding:3px 10px;margin-top:10px}
